@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     Camera myCam;
+    public Movement playerMove;
+    bool deleteAfterTesting;
     void Start()
     {
         myCam = Camera.main;
@@ -15,18 +17,31 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            deleteAfterTesting = true;
+        }
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = 100;
         mousePos = myCam.ScreenToWorldPoint(mousePos);
 
         Ray rayo = myCam.ScreenPointToRay(mousePos);
-        RaycastHit2D hit = Physics2D.Raycast(myCam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-        
-        if (hit.collider.gameObject.tag.Equals("Card Slot"))
+
+        if (!deleteAfterTesting)
         {
-            hit.collider.gameObject.GetComponent<CardSlot>().hoverTimer = 0.2f;
+            RaycastHit2D hit = Physics2D.Raycast(myCam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
+
+            if (hit.collider.gameObject.tag.Equals("Card Slot"))
+            {
+                CardSlot currentCard = hit.collider.gameObject.GetComponent<CardSlot>();
+                currentCard.hoverTimer = 0.2f;
+                if (Input.GetMouseButtonDown(0))
+                {
+                    playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
+                }
+            }
         }
-        
         
     }
 }
