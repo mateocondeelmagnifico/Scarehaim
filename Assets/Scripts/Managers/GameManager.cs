@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     Camera myCam;
     public Movement playerMove;
     bool deleteAfterTesting;
+    private bool cardGrabbed;
     void Start()
     {
         myCam = Camera.main;
@@ -31,15 +32,35 @@ public class GameManager : MonoBehaviour
         {
             RaycastHit2D hit = Physics2D.Raycast(myCam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-
             if (hit.collider.gameObject.tag.Equals("Card Slot"))
             {
                 CardSlot currentCard = hit.collider.gameObject.GetComponent<CardSlot>();
                 currentCard.hoverTimer = 0.2f;
                 if (Input.GetMouseButtonDown(0))
                 {
-                    playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
+                    if (!currentCard.isInHand)
+                    {
+                        playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
+                    }
                 }
+
+                //This code is for cards in your hand
+                if(currentCard.isInHand)
+                {
+                    CardSlotHand currentCardHand = hit.collider.gameObject.GetComponent<CardSlotHand>();
+                    if (Input.GetMouseButton(0) && !cardGrabbed)
+                    {
+                        currentCardHand.followMouse = true;
+                        cardGrabbed = true;
+                    }
+
+                    if (Input.GetMouseButtonUp(0))
+                    {
+                        currentCardHand.followMouse = false;
+                        cardGrabbed = false;
+                    }
+                }
+               
             }
         }
         

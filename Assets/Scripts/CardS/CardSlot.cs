@@ -8,6 +8,7 @@ public class CardSlot: MonoBehaviour
     bool isActivated;
     private bool isHovered;
     public Vector2 Location;
+    public bool isInHand;
 
     public float hoverTimer;
 
