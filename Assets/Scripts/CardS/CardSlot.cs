@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CardSlot: MonoBehaviour
 {
-    Card mycard;
+    public Card mycard;
     bool isActivated;
     private bool isHovered;
     public Vector2 Location;
