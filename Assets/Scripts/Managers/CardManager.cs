@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CardManager : MonoBehaviour
 {
-    public CreatureCard[] cards;
+    public Treat[] cards;
 
     public GameObject cardsOnBoard;
     void Start()
