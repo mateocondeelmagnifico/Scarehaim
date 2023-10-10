@@ -6,7 +6,11 @@ using UnityEngine;
 public class Card 
 {
     public string name;
-    public string type;
 
     public Sprite image;
+
+    public virtual void Effect(GameObject player)
+    {
+
+    }
 }

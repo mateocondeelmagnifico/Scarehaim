@@ -6,7 +6,6 @@ public class CardSlot: MonoBehaviour
 {
     public Card mycard;
     bool isActivated;
-    private bool isHovered;
     public Vector2 Location;
     public bool isInHand;
 
@@ -17,15 +16,15 @@ public class CardSlot: MonoBehaviour
         if (hoverTimer > 0)
         {
             hoverTimer -= Time.deltaTime;
-            isHovered = true;
-        }
-        else
-        {
-            isHovered = true;
         }
     }
-    public void changeCard(Card newCard)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        mycard = newCard;
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            GetComponent<SpriteRenderer>().sprite = mycard.image;
+            mycard.Effect(collision.gameObject);
+        }
     }
 }
