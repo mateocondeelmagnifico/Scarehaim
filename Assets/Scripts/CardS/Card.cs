@@ -9,7 +9,7 @@ public class Card
 
     public Sprite image;
 
-    public virtual void Effect(GameObject player)
+    public virtual void Effect(GameObject player, GameObject cardSlot)
     {
 
     }

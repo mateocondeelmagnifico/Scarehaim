@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class Treat : Card
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Effect(GameObject player, GameObject cardSlot)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GameObject newSlot = cardSlot;
+        newSlot = GameObject.Instantiate(cardSlot);
+        newSlot.GetComponent<CardSlot>().enabled = false;
+        newSlot.AddComponent<CardSlotHand>();
     }
 }

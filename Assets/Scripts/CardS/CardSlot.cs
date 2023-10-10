@@ -23,8 +23,8 @@ public class CardSlot: MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            GetComponent<SpriteRenderer>().sprite = mycard.image;
-            mycard.Effect(collision.gameObject);
+            //GetComponent<SpriteRenderer>().sprite = mycard.image;
+            //mycard.Effect(collision.gameObject, this.gameObject);
         }
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class CreatureCard : Card
 {
 
-    public override void Effect(GameObject player)
+    public override void Effect(GameObject player, GameObject cardSlot)
     {
         player.GetComponent<Fear>().fear++;
     }

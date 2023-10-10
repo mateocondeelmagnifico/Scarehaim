@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
                 //This code is for cards in your hand
                 if(currentCard.isInHand)
                 {
+                    Debug.Log(1);
                     CardSlotHand currentCardHand = hit.collider.gameObject.GetComponent<CardSlotHand>();
                     if (Input.GetMouseButton(0) && !cardGrabbed)
                     {
