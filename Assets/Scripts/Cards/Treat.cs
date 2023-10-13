@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Treat : Card
 {
+    GameManager manager;
     public override void Effect(GameObject player, GameObject cardSlot)
     {
         GameObject newSlot = cardSlot;
@@ -12,8 +13,11 @@ public class Treat : Card
         newSlot.GetComponent<CardSlot>().enabled = false;
         newSlot.AddComponent<CardSlotHand>();
         newSlot.GetComponent<CardSlotHand>().mycard = this;
+        newSlot.GetComponent<CardSlotHand>().enabled = false;
 
-        GameManager.Instance.selectedCard = newSlot;
-        GameManager.Instance.moveCard = true;
+        manager = GameManager.Instance;
+
+        manager.selectedCard = newSlot;
+        manager.moveCard = true;
     }
 }

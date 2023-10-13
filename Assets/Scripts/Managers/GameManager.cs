@@ -46,7 +46,6 @@ public class GameManager : MonoBehaviour
         {
             if (player.transform.position == selectedCard.transform.position)
             {
-                Debug.Log(1);
                 InformCard();
             }
         }
@@ -74,7 +73,10 @@ public class GameManager : MonoBehaviour
             {
                 if (!currentCard.isInHand)
                 {
-                    selectedCard = hit.collider.gameObject;
+                    if(!moveCard)
+                    {
+                        selectedCard = hit.collider.gameObject;
+                    }
                     playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
                 }
             }
@@ -105,7 +107,7 @@ public class GameManager : MonoBehaviour
     }
     public void MoveCardToHand(GameObject card)
     {
-        Vector3 desiredPos = new Vector3(0, -15.5f, 0);
+        Vector3 desiredPos = new Vector3(0, -5f, 0);
         card.transform.position = Vector3.MoveTowards(card.transform.position,desiredPos, 5 * Time.deltaTime);
         if(card.transform.position == desiredPos)
         {
