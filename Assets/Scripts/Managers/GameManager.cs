@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     //Player should be a singleton later on
     public GameObject player;
-    public GameObject selectedCard;
+    public GameObject selectedCardSlot;
     void Awake()
     {
         if(Instance == null)
@@ -42,9 +42,9 @@ public class GameManager : MonoBehaviour
             Raycast();
         }
         
-        if(selectedCard != null)
+        if(selectedCardSlot != null)
         {
-            if (player.transform.position == selectedCard.transform.position)
+            if (player.transform.position == selectedCardSlot.transform.position)
             {
                 InformCard();
             }
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
 
         if(moveCard)
         {
-            MoveCardToHand(selectedCard);
+            MoveCardToHand(selectedCardSlot);
         }
     }
     private void Raycast()
@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
                 {
                     if(!moveCard)
                     {
-                        selectedCard = hit.collider.gameObject;
+                        selectedCardSlot = hit.collider.gameObject;
                     }
                     playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
                 }
@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
     private void InformCard()
     {
         //This script tells the card that it has to activate
-        selectedCard.GetComponent<CardSlot>().mycard.Effect(player, selectedCard);
+        selectedCardSlot.transform.GetChild(0).GetComponent<CardObject>().myCard.MoveToHand(selectedCardSlot.transform.GetChild(0).gameObject, selectedCardSlot);
     }
     public void MoveCardToHand(GameObject card)
     {

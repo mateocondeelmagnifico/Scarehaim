@@ -12,12 +12,11 @@ public class Treat : Card
         newSlot = GameObject.Instantiate(cardSlot);
         newSlot.GetComponent<CardSlot>().enabled = false;
         newSlot.AddComponent<CardSlotHand>();
-        newSlot.GetComponent<CardSlotHand>().mycard = this;
         newSlot.GetComponent<CardSlotHand>().enabled = false;
 
         manager = GameManager.Instance;
 
-        manager.selectedCard = newSlot;
+        manager.selectedCardSlot = newSlot;
         manager.moveCard = true;
     }
 }

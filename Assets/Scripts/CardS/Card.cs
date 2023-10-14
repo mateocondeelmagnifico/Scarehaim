@@ -13,4 +13,18 @@ public class Card
     {
 
     }
+    public virtual void MoveToHand(GameObject card, GameObject cardSlot) 
+    {
+        GameManager manager = GameManager.Instance;
+
+        GameObject newSlot = cardSlot;
+        newSlot = GameObject.Instantiate(cardSlot);
+        newSlot.AddComponent<CardSlotHand>();
+        newSlot.GetComponent<CardSlotHand>().enabled = false;
+        card.transform.parent = newSlot.transform;
+
+        manager.selectedCardSlot = cardSlot;
+        manager.moveCard = true;
+    }
+
 }

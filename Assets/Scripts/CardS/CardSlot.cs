@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CardSlot: MonoBehaviour
 {
-    public Card mycard;
+    public GameObject cardObject;
     bool isActivated;
     public Vector2 Location;
     public bool isInHand;
@@ -19,12 +19,4 @@ public class CardSlot: MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            //GetComponent<SpriteRenderer>().sprite = mycard.image;
-            //mycard.Effect(collision.gameObject, this.gameObject);
-        }
-    }
 }
