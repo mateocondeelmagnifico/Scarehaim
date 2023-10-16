@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     //Player should be a singleton later on
     public GameObject player;
-    public GameObject selectedCardSlot;
+    public GameObject selectedCardSlot, handSlotPrefab;
     void Awake()
     {
         if(Instance == null)
@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
     private void InformCard()
     {
         //This script tells the card that it has to activate
-        selectedCardSlot.transform.GetChild(0).GetComponent<CardObject>().myCard.MoveToHand(selectedCardSlot.transform.GetChild(0).gameObject, selectedCardSlot);
+        selectedCardSlot.transform.GetChild(0).GetComponent<CardObject>().myCard.MoveToHand(selectedCardSlot.transform.GetChild(0).gameObject, handSlotPrefab);
     }
     public void MoveCardToHand(GameObject card)
     {

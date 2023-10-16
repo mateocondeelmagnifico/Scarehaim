@@ -2843,6 +2843,7 @@ MonoBehaviour:
   moveCard: 0
   player: {fileID: 688192956}
   selectedCardSlot: {fileID: 0}
+  handSlotPrefab: {fileID: 5757337979554174078, guid: 215caa4bbbf4e41498cc4f35ea8d78b8, type: 3}
 --- !u!1 &2012204618
 GameObject:
   m_ObjectHideFlags: 0
