@@ -6,17 +6,9 @@ using UnityEngine;
 public class Treat : Card
 {
     GameManager manager;
-    public override void Effect(GameObject player, GameObject cardSlot)
+    public override void Effect(GameObject card, GameObject cardSlot)
     {
-        GameObject newSlot = cardSlot;
-        newSlot = GameObject.Instantiate(cardSlot);
-        newSlot.GetComponent<CardSlot>().enabled = false;
-        newSlot.AddComponent<CardSlotHand>();
-        newSlot.GetComponent<CardSlotHand>().enabled = false;
-
-        manager = GameManager.Instance;
-
-        manager.selectedCardSlot = newSlot;
-        manager.moveCard = true;
+        CardManager.Instance.cardsUntilExit--;
+        MoveToHand(card, cardSlot);
     }
 }

@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class CardManager : MonoBehaviour
 {
-    public Treat[] cards;
+    public static CardManager Instance {get; set;}
 
+    public Treat[] cards;
+    public float cardsUntilExit;
     public GameObject cardsOnBoard, cardPrefab;
     void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         //Give a random card to all the card slots on the board
-        for(int i = 0; i < cardsOnBoard.transform.childCount; i++)
+        for (int i = 0; i < cardsOnBoard.transform.childCount; i++)
         {
             #region Create Card Prefabs and asign them to each card
             int randomInt = Random.Range(0, cards.Length);
