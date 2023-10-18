@@ -10,7 +10,7 @@ public class CardSlotHand : CardSlot
     public bool goHome;
     public bool followMouse;
 
-    void Start()
+    private void OnEnable()
     {
         isInHand = true;
         startingPos = transform.position;

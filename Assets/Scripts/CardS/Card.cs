@@ -18,6 +18,7 @@ public class Card
         GameManager manager = GameManager.Instance;
         GameObject newSlot = GameObject.Instantiate(cardSlot);
 
+        newSlot.transform.position = card.transform.position;
         newSlot.GetComponent<CardSlotHand>().enabled = false;
         card.transform.parent = newSlot.transform;
 

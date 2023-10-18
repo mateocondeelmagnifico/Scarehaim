@@ -103,7 +103,6 @@ public class GameManager : MonoBehaviour
     private void InformCard()
     {
         //This script tells the card that it has to activate
-        //selectedCardSlot.transform.GetChild(0).GetComponent<CardObject>().myCard.MoveToHand(selectedCardSlot.transform.GetChild(0).gameObject, handSlotPrefab);
         selectedCardSlot.transform.GetChild(0).GetComponent<CardObject>().myCard.Effect(selectedCardSlot.transform.GetChild(0).gameObject, handSlotPrefab);
     }
     public void MoveCardToHand(GameObject card)
@@ -113,6 +112,11 @@ public class GameManager : MonoBehaviour
         if(card.transform.position == desiredPos)
         {
             moveCard = false;
+            if(card.GetComponent<CardSlotHand>() != null)
+            {
+                //The component is disabled until it arrives to avoid bugs
+                card.GetComponent<CardSlotHand>().enabled = true;
+            }
         }
     }
 }
