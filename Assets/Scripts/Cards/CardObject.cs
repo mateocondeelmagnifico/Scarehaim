@@ -10,5 +10,16 @@ public class CardObject : MonoBehaviour
     void Start()
     {
         rendereador.sprite = myCard.image;
+        
+    }
+
+    private void Update()
+    {
+        myCard.replaceCard += ReplaceCard();
+    }
+
+    private void ReplaceCard()
+    {
+        transform.GetComponentInParent<CardSlot>().ReplaceCard();
     }
 }

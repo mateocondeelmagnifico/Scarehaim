@@ -19,4 +19,9 @@ public class CardSlot: MonoBehaviour
         }
     }
 
+    public void ReplaceCard()
+    {
+        Destroy(cardObject);
+        CardManager.Instance.DistributeCard(this);
+    }
 }

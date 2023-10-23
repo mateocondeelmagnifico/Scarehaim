@@ -8,6 +8,6 @@ public class Enviroment : Card
     public override void Effect(GameObject card, GameObject cardSlot)
     {
         CardManager.Instance.cardsUntilExit--;
-        //Add function to cardslot to destroy
+        replaceCard.Invoke();
     }
 }
