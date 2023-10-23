@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-[System.Serializable]
-public class Treat : Card
+public class Enviroment : Card
 {
-    GameManager manager;
     public override void Effect(GameObject card, GameObject cardSlot)
     {
-        MoveToHand(card, cardSlot);
+        CardManager.Instance.cardsUntilExit--;
+        //Add function to cardslot to destroy
     }
 }

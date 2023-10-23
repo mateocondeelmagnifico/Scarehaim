@@ -2891,6 +2891,8 @@ MonoBehaviour:
   cards:
   - name: Basic Treat
     image: {fileID: 21300000, guid: 7ef439a5bce05d04a9d7ec52412a9a30, type: 3}
+  - name: Enviroment
+    image: {fileID: 21300000, guid: 7ef439a5bce05d04a9d7ec52412a9a30, type: 3}
   cardsUntilExit: 15
   cardsOnBoard: {fileID: 1505720235}
   cardPrefab: {fileID: 8929231805802886072, guid: 02029671aee72844892ff20b614ee6d5, type: 3}
