@@ -15,7 +15,6 @@ public class Card
 
     public delegate void cardEffect();
     public event cardEffect replaceCard;
-    //public UnityEvent  replaceCard;
 
 
     public virtual void Effect(GameObject card, GameObject cardSlot)
@@ -35,4 +34,8 @@ public class Card
         manager.moveCard = true;
     }
 
+    public void ReplaceCard()
+    {
+        replaceCard.Invoke();
+    }
 }
