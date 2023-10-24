@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardSlotHand : CardSlot
+public class CardSlotHand: CardSlot
 {
     private Vector3 startingPos;
     Vector3 direction;

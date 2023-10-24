@@ -23,6 +23,7 @@ public class CardManager : MonoBehaviour
         //Give a random card to all the card slots on the board
         for (int i = 0; i < cardsOnBoard.transform.childCount; i++)
         {
+            /*
             #region Create Card Prefabs and asign them to each card
             GameObject cardToPut = Instantiate(cardPrefab);
             cardsOnBoard.transform.GetChild(i).GetComponent<CardSlot>().cardObject = cardToPut;
@@ -31,6 +32,7 @@ public class CardManager : MonoBehaviour
             #endregion
 
             DistributeCard(cardsOnBoard.transform.GetChild(i).GetComponent<CardSlot>());
+            */
         }
     }
 

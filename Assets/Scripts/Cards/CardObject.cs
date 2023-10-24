@@ -10,10 +10,15 @@ public class CardObject : MonoBehaviour
 
     void Start()
     {
+        GetComponentInParent<CardSlot>().cardObject = this.gameObject;
+        rendereador = GetComponent<SpriteRenderer>();
+        if(GetComponent<Card>() != null)
+        {
+            myCard = GetComponent<Card>();
+        }
         rendereador.sprite = myCard.image;
         myCard.replaceCard += ReplaceCard;
     }
-
     private void ReplaceCard()
     {
         transform.GetComponentInParent<CardSlot>().ReplaceCard();

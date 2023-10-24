@@ -4,8 +4,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-[System.Serializable]
-public class Card 
+
+public class Card : MonoBehaviour
 {
     public string name;
 
