@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public Movement playerMove;
     bool deleteAfterTesting;
     private bool cardGrabbed;
-    public bool moveCard;
+    public bool moveCard, cardInformed;
 
     public GameState State;
     public bool playerTurnInProgress;
@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
     public CardManager cardManager;
     public EnemyMovement enemy;
 
-    //Player should be a singleton later on
     public GameObject player;
     public GameObject selectedCardSlot, handSlotPrefab;
     void Awake()
@@ -92,7 +91,7 @@ public class GameManager : MonoBehaviour
 
         if (selectedCardSlot != null)
         {
-            if (player.transform.position == selectedCardSlot.transform.position)
+            if (player.transform.position == selectedCardSlot.transform.position && !cardInformed)
             {
                 InformCard();
             }
@@ -177,6 +176,7 @@ public class GameManager : MonoBehaviour
                     if(!moveCard)
                     {
                         selectedCardSlot = hit.collider.gameObject;
+                        cardInformed = false;
                     }
                     playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
                 }
@@ -205,6 +205,7 @@ public class GameManager : MonoBehaviour
     {
         //This script tells the card that it has to activate
         selectedCardSlot.transform.GetChild(0).GetComponent<CardObject>().myCard.Effect(selectedCardSlot.transform.GetChild(0).gameObject, handSlotPrefab);
+        cardInformed = true;
     }
     public void MoveCardToHand(GameObject card)
     {

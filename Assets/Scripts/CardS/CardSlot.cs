@@ -11,6 +11,12 @@ public class CardSlot : MonoBehaviour
 
     public float hoverTimer;
 
+    private CardManager cardManager;
+
+    private void Start()
+    {
+        cardManager = CardManager.Instance;
+    }
     private void Update()
     {
         if (hoverTimer > 0)
@@ -19,9 +25,9 @@ public class CardSlot : MonoBehaviour
         }
     }
 
-    public void ReplaceCard()
+    public void DiscardCard()
     {
         Destroy(cardObject);
-        CardManager.Instance.DistributeCard(this);
+        cardManager.CardDiscarded(this);
     }
 }

@@ -7,14 +7,13 @@ using UnityEngine.Events;
 
 public class Card : MonoBehaviour
 {
-    public string name;
 
     public Sprite image;
 
     CardSlot slot;
 
     public delegate void cardEffect();
-    public event cardEffect replaceCard;
+    public event cardEffect discardCard;
 
 
     public virtual void Effect(GameObject card, GameObject cardSlot)
@@ -34,8 +33,8 @@ public class Card : MonoBehaviour
         manager.moveCard = true;
     }
 
-    public void ReplaceCard()
+    public void DiscardCard()
     {
-        replaceCard.Invoke();
+        discardCard.Invoke();
     }
 }

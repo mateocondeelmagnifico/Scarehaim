@@ -3671,6 +3671,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMove: {fileID: 688192960}
   moveCard: 0
+  State: 0
+  playerTurnInProgress: 0
+  cardManager: {fileID: 2012204620}
+  enemy: {fileID: 0}
   player: {fileID: 688192956}
   selectedCardSlot: {fileID: 0}
   handSlotPrefab: {fileID: 5757337979554174078, guid: 215caa4bbbf4e41498cc4f35ea8d78b8, type: 3}
@@ -3790,8 +3794,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cards:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 638242032198707708, guid: d32385184c6a48b419c2137da8affdec, type: 3}
+  - {fileID: 638242032198707708, guid: 8ea2ad0331422734e858efeaecb84e4d, type: 3}
   cardsUntilExit: 15
   cardsOnBoard: {fileID: 1505720235}
   cardPrefab: {fileID: 8929231805802886072, guid: 02029671aee72844892ff20b614ee6d5, type: 3}

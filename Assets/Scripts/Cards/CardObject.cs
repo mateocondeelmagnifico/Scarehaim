@@ -17,10 +17,10 @@ public class CardObject : MonoBehaviour
             myCard = GetComponent<Card>();
         }
         rendereador.sprite = myCard.image;
-        myCard.replaceCard += ReplaceCard;
+        myCard.discardCard += ReplaceCard;
     }
     private void ReplaceCard()
     {
-        transform.GetComponentInParent<CardSlot>().ReplaceCard();
+        transform.GetComponentInParent<CardSlot>().DiscardCard();
     }
 }
