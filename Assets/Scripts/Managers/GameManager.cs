@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -10,6 +12,13 @@ public class GameManager : MonoBehaviour
     bool deleteAfterTesting;
     private bool cardGrabbed;
     public bool moveCard;
+
+    public GameState State;
+    public bool playerTurnInProgress;
+    private bool winCondition;
+    private bool loseCondition;
+    public CardManager cardManager;
+    public EnemyMovement enemy;
 
     //Player should be a singleton later on
     public GameObject player;
@@ -30,8 +39,47 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
     }
 
-    void Update()
+    void Start()
+    {       
+        //El jugador empieza teniendo dos turnos seguidos
+        playerTurnInProgress = true;
+        updateGameState(GameState.PlayerTurn);
+    }
+
+    private void Update()
     {
+        if(winCondition)
+            updateGameState(GameState.Victory);
+        else if(loseCondition)
+            updateGameState(GameState.Defeat);
+        else if (playerTurnInProgress)
+            updateGameState(GameState.PlayerTurn);
+        else
+            updateGameState(GameState.EnemyTurn);
+    }
+    public void updateGameState(GameState newState)
+    {
+        State = newState;
+        switch (newState)
+        {
+            case GameState.PlayerTurn:
+                HandlePlayerTurn();
+                break;
+            case GameState.EnemyTurn:
+                HandleEnemyTurn();
+                break;
+            case GameState.Victory:
+                break;
+            case GameState.Defeat:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
+        }
+    }
+
+    private void HandlePlayerTurn()
+    {
+        // turno del jugador
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             deleteAfterTesting = true;
@@ -41,8 +89,8 @@ public class GameManager : MonoBehaviour
         {
             Raycast();
         }
-        
-        if(selectedCardSlot != null)
+
+        if (selectedCardSlot != null)
         {
             if (player.transform.position == selectedCardSlot.transform.position)
             {
@@ -50,11 +98,64 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if(moveCard)
+        if (moveCard)
         {
             MoveCardToHand(selectedCardSlot);
+            EndPlayerTurn();
         }
     }
+    private void HandleEnemyTurn()
+    {
+        // turno del enemigo
+        if (enemy != null)
+        {
+            enemy.TryMove();
+
+            if (enemy.myPos == playerMove.myPos) 
+                loseCondition = true;
+        }
+
+        playerTurnInProgress = true;
+    }
+    
+    private void EndPlayerTurn()
+    {
+        playerTurnInProgress = false;
+
+        // win cons and lose cons
+        // de momento no tenemos la casilla de salida asi que la condicion de victoria es descartar todas las cartas
+        if (cardManager.cardsUntilExit == 0)
+            winCondition = true;
+
+        // condicion de derrota por hacer, if(fear >= 10)
+
+    }
+    //void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Escape))
+    //    {
+    //        deleteAfterTesting = true;
+    //    }
+    //
+    //    if (!deleteAfterTesting)
+    //    {
+    //        Raycast();
+    //    }
+    //    
+    //    if(selectedCardSlot != null)
+    //    {
+    //        if (player.transform.position == selectedCardSlot.transform.position)
+    //        {
+    //            InformCard();
+    //        }
+    //    }
+    //
+    //    if(moveCard)
+    //    {
+    //        MoveCardToHand(selectedCardSlot);
+    //    }
+    //}
+
     private void Raycast()
     {
         #region Raycast Variables
@@ -118,5 +219,13 @@ public class GameManager : MonoBehaviour
                 card.GetComponent<CardSlotHand>().enabled = true;
             }
         }
+    }
+
+    public enum GameState
+    {
+        PlayerTurn,
+        EnemyTurn,
+        Victory,
+        Defeat
     }
 }
