@@ -10,6 +10,13 @@ public class Movement : MonoBehaviour
 
     private Vector2 destination;
 
+    private GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = GameManager.Instance;
+    }
+
     private void Update()
     {
         if(isMoving)
@@ -19,6 +26,7 @@ public class Movement : MonoBehaviour
             if(transform.position.x == destination.x && transform.position.y == destination.y)
             {
                 isMoving = false;
+                gameManager.EndPlayerTurn();
             }
         }
     }

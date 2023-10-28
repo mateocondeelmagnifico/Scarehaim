@@ -989,6 +989,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d32385184c6a48b419c2137da8affdec, type: 3}
+--- !u!114 &577825579 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 342247524212788997, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
+  m_PrefabInstance: {fileID: 301111690}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45a05fe882c9ce34c945c699bbb075fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &581244604
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1424,9 +1435,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 862340020dd1c6c469190fb2636e3d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myPos: {x: 0, y: 0}
+  myPos: {x: 2, y: 1}
   playerMove: {fileID: 688192960}
-  initialSlot: {fileID: 0}
+  initialSlot: {fileID: 577825579}
   cardGrid: {fileID: 1505720235}
   isMoving: 0
 --- !u!212 &798634177

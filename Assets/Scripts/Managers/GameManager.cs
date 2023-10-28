@@ -100,7 +100,6 @@ public class GameManager : MonoBehaviour
         if (moveCard)
         {
             MoveCardToHand(selectedCardSlot);
-            EndPlayerTurn();
         }
     }
     private void HandleEnemyTurn()
@@ -117,8 +116,9 @@ public class GameManager : MonoBehaviour
         playerTurnInProgress = true;
     }
     
-    private void EndPlayerTurn()
+    public void EndPlayerTurn()
     {
+        //ahora este void lo llama el juegador cuando se mueve
         playerTurnInProgress = false;
 
         // win cons and lose cons
