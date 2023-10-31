@@ -22,6 +22,7 @@ public class Card : MonoBehaviour
     }
     public virtual void MoveToHand(GameObject card, GameObject cardSlot) 
     {
+        transform.parent.GetComponent<CardSlot>().cardObject = null;
         GameManager manager = GameManager.Instance;
         GameObject newSlot = GameObject.Instantiate(cardSlot);
 
@@ -37,4 +38,5 @@ public class Card : MonoBehaviour
     {
         discardCard.Invoke();
     }
+
 }

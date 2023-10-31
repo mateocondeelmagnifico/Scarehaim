@@ -7,7 +7,9 @@ public class CardManager : MonoBehaviour
     public static CardManager Instance {get; set;}
 
     public GameObject[] cards;
+    public GameObject exitCard;
     public GameObject cardsOnBoard, cardPrefab;
+    private GameObject newCard;
 
     public float cardsUntilExit;
 
@@ -43,8 +45,15 @@ public class CardManager : MonoBehaviour
     public void DistributeCard()
     {
         #region Create card
-        int randomInt = Random.Range(0, cards.Length);
-        GameObject newCard = Instantiate(cards[randomInt], cardSlot.gameObject.transform);
+        if (cardsUntilExit == 0)
+        {
+            newCard = Instantiate(exitCard, cardSlot.gameObject.transform);
+        }
+        else
+        {
+            int randomInt = Random.Range(0, cards.Length);
+            newCard = Instantiate(cards[randomInt], cardSlot.gameObject.transform);
+        }
         #endregion
 
         #region Assign card

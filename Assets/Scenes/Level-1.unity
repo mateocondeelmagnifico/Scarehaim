@@ -3943,6 +3943,7 @@ MonoBehaviour:
   cards:
   - {fileID: 638242032198707708, guid: d32385184c6a48b419c2137da8affdec, type: 3}
   - {fileID: 638242032198707708, guid: 8ea2ad0331422734e858efeaecb84e4d, type: 3}
+  exitCard: {fileID: 638242032198707708, guid: 47cd3a6bc6ebda44ca528a7ede6a955f, type: 3}
   cardsOnBoard: {fileID: 1505720235}
   cardPrefab: {fileID: 8929231805802886072, guid: 02029671aee72844892ff20b614ee6d5, type: 3}
   cardsUntilExit: 15

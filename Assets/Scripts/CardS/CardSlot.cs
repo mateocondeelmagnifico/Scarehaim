@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class CardSlot : MonoBehaviour
@@ -23,11 +24,17 @@ public class CardSlot : MonoBehaviour
         {
             hoverTimer -= Time.deltaTime;
         }
+
+        if (cardObject == null)
+        {
+            cardManager.CardDiscarded(this);
+        }
     }
 
-    public void DiscardCard()
+    public void ReplaceCard()
     {
         Destroy(cardObject);
-        cardManager.CardDiscarded(this);
+        Debug.Log(1);
     }
+
 }
