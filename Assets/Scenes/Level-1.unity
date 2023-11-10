@@ -1424,7 +1424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 862340020dd1c6c469190fb2636e3d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myPos: {x: 0, y: 0}
+  myPos: {x: 3, y: 5}
   playerMove: {fileID: 688192960}
   initialSlot: {fileID: 0}
   cardGrid: {fileID: 1505720235}
@@ -1489,7 +1489,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 798634175}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3898021, y: -0.10726049, z: 0.018785529}
+  m_LocalPosition: {x: 7.59, y: 2.88, z: 0.018785529}
   m_LocalScale: {x: 0.06, y: 0.06, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2768,6 +2768,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Well Card
       objectReference: {fileID: 0}
+    - target: {fileID: 2019230849771319314, guid: d32385184c6a48b419c2137da8affdec, type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 21300000, guid: 081ca5ca32903db4ba39921d53404ece, type: 3}
     - target: {fileID: 4676084009188673460, guid: d32385184c6a48b419c2137da8affdec, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3019,13 +3023,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1571830515}
+  - component: {fileID: 1571830516}
   m_Layer: 0
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1571830515
 Transform:
   m_ObjectHideFlags: 0
@@ -3044,6 +3049,52 @@ Transform:
   m_Father: {fileID: 763641823}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1571830516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571830514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5382299738ef9514c9079bf7778b5de0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceFitContainer: 0
+  alignment: 1
+  allowCardRepositioning: 1
+  maxCardRotation: 0
+  maxHeightDisplacement: 0
+  zoomConfig:
+    zoomOnHover: 0
+    multiplier: 1
+    overrideYPosition: -1
+    defaultSortOrder: 0
+    bringToFrontOnHover: 0
+    zoomedSortOrder: 0
+    resetRotationOnZoom: 0
+  animationSpeedConfig:
+    rotation: 60
+    position: 500
+    releasePosition: 2000
+    zoom: 0.3
+  cardPlayConfig:
+    playArea: {fileID: 0}
+    destroyOnPlay: 0
+  eventsConfig:
+    OnCardPlayed:
+      m_PersistentCalls:
+        m_Calls: []
+    OnCardHover:
+      m_PersistentCalls:
+        m_Calls: []
+    OnCardUnhover:
+      m_PersistentCalls:
+        m_Calls: []
+    OnCardDestroy:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1001 &1584677805
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3811,6 +3862,7 @@ MonoBehaviour:
   playerTurnInProgress: 0
   cardManager: {fileID: 2012204620}
   enemy: {fileID: 798634176}
+  turnCount: 0
   player: {fileID: 688192956}
   selectedCardSlot: {fileID: 0}
   handSlotPrefab: {fileID: 5757337979554174078, guid: 215caa4bbbf4e41498cc4f35ea8d78b8, type: 3}

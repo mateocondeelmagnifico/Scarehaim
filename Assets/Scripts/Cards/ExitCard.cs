@@ -8,4 +8,9 @@ public class ExitCard : Card
     {
          SceneManagement.Instance.NextScene();
     }
+
+    public override int GetCardType()
+    {
+        return 4;
+    }
 }

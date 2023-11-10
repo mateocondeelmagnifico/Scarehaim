@@ -10,4 +10,9 @@ public class Treat: Card
     {
         MoveToHand(card, cardSlot);
     }
+
+    public override int GetCardType()
+    {
+        return 1;
+    }
 }

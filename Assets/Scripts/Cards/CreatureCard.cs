@@ -10,4 +10,9 @@ public class CreatureCard : Card
     {
         player.GetComponent<Fear>().fear++;
     }
+
+    public override int GetCardType()
+    {
+        return 2;
+    }
 }

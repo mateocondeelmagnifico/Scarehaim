@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     public CardManager cardManager;
     public EnemyMovement enemy;
 
+    public int turnCount;
+
     public GameObject player;
     public GameObject selectedCardSlot, handSlotPrefab;
     void Awake()
@@ -42,6 +44,7 @@ public class GameManager : MonoBehaviour
     {       
         //El jugador empieza teniendo dos turnos seguidos
         playerTurnInProgress = true;
+        turnCount = 1;
         updateGameState(GameState.PlayerTurn);
     }
 
@@ -100,8 +103,8 @@ public class GameManager : MonoBehaviour
         if (moveCard)
         {
             MoveCardToHand(selectedCardSlot);
-            EndPlayerTurn();
         }
+
     }
     private void HandleEnemyTurn()
     {
@@ -113,12 +116,13 @@ public class GameManager : MonoBehaviour
             if (enemy.myPos == playerMove.myPos) 
                 loseCondition = true;
         }
-
+        turnCount++;
         playerTurnInProgress = true;
     }
     
-    private void EndPlayerTurn()
+    public void EndPlayerTurn()
     {
+        turnCount++;
         playerTurnInProgress = false;
 
         // win cons and lose cons
@@ -129,31 +133,6 @@ public class GameManager : MonoBehaviour
         // condicion de derrota por hacer, if(fear >= 10)
 
     }
-    //void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Escape))
-    //    {
-    //        deleteAfterTesting = true;
-    //    }
-    //
-    //    if (!deleteAfterTesting)
-    //    {
-    //        Raycast();
-    //    }
-    //    
-    //    if(selectedCardSlot != null)
-    //    {
-    //        if (player.transform.position == selectedCardSlot.transform.position)
-    //        {
-    //            InformCard();
-    //        }
-    //    }
-    //
-    //    if(moveCard)
-    //    {
-    //        MoveCardToHand(selectedCardSlot);
-    //    }
-    //}
 
     private void Raycast()
     {
@@ -225,6 +204,9 @@ public class GameManager : MonoBehaviour
     public enum GameState
     {
         PlayerTurn,
+            MonsterCardEffect,
+            CardToHandEffect,
+            CardToDiscardPileEffect,
         EnemyTurn,
         Victory,
         Defeat
