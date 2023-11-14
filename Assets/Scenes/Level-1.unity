@@ -3023,7 +3023,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1571830515}
-  - component: {fileID: 1571830516}
   m_Layer: 0
   m_Name: Hand
   m_TagString: Untagged
@@ -3049,52 +3048,6 @@ Transform:
   m_Father: {fileID: 763641823}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1571830516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1571830514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5382299738ef9514c9079bf7778b5de0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  forceFitContainer: 0
-  alignment: 1
-  allowCardRepositioning: 1
-  maxCardRotation: 0
-  maxHeightDisplacement: 0
-  zoomConfig:
-    zoomOnHover: 0
-    multiplier: 1
-    overrideYPosition: -1
-    defaultSortOrder: 0
-    bringToFrontOnHover: 0
-    zoomedSortOrder: 0
-    resetRotationOnZoom: 0
-  animationSpeedConfig:
-    rotation: 60
-    position: 500
-    releasePosition: 2000
-    zoom: 0.3
-  cardPlayConfig:
-    playArea: {fileID: 0}
-    destroyOnPlay: 0
-  eventsConfig:
-    OnCardPlayed:
-      m_PersistentCalls:
-        m_Calls: []
-    OnCardHover:
-      m_PersistentCalls:
-        m_Calls: []
-    OnCardUnhover:
-      m_PersistentCalls:
-        m_Calls: []
-    OnCardDestroy:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!1001 &1584677805
 PrefabInstance:
   m_ObjectHideFlags: 0
