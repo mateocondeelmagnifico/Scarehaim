@@ -9,6 +9,7 @@ public class CardSlot : MonoBehaviour
     bool isActivated;
     public Vector2 Location;
     public bool isInHand;
+    private bool cardNeeded;
 
     public float hoverTimer;
 
@@ -28,10 +29,14 @@ public class CardSlot : MonoBehaviour
 
     public void ReplaceCard()
     {
-        Debug.Log(1);
-        GameManager.Instance.currentState = GameManager.turnState.Movecard;
-        Destroy(cardObject);
+        if (cardObject != null)
+        {
+            Destroy(cardObject);
+        }
+        
         cardManager.CardDiscarded(this);
+
+        GameManager.Instance.currentState = GameManager.turnState.Movecard;
     }
 
 }

@@ -29,14 +29,6 @@ public class CardManager : MonoBehaviour
         
         gameManager = GameManager.Instance;
     }
-
-    private void Update()
-    {
-        if(cardHasToBeReplaced && !gameManager.cardInformed)
-        {
-            //DistributeCard();
-        }
-    }
     public void CardDiscarded(CardSlot whatSlot)
     {
         cardSlot = whatSlot;
@@ -45,6 +37,8 @@ public class CardManager : MonoBehaviour
     }
     public void DistributeCard()
     {
+        //Called by gameManager
+
         #region Create card
         if (cardsUntilExit == 0)
         {

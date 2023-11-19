@@ -207,6 +207,7 @@ public class GameManager : MonoBehaviour
         {
             Vector3 desiredPos = new Vector3(-2*i, -5f, 0);
             card.transform.position = Vector3.MoveTowards(card.transform.position, desiredPos, 5 * Time.deltaTime);
+            Debug.Log(desiredPos);
             if (card.transform.position == desiredPos)
             {
                 moveCard = false;
@@ -215,9 +216,10 @@ public class GameManager : MonoBehaviour
                     //The component is disabled until it arrives to avoid bugs
                     card.GetComponent<CardSlotHand>().enabled = true;
                 }
+                currentState = turnState.Endturn;
             }
         }
-        currentState = turnState.Endturn;
+        
     }
 
     private void MoveToReplaceCard()
