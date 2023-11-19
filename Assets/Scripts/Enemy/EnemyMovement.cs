@@ -20,7 +20,7 @@ public class EnemyMovement : MonoBehaviour
         if(isMoving)
         {
             Move();
-
+    
             if(transform.position.x == destination.x && transform.position.y == destination.y)
             {
                 isMoving = false;

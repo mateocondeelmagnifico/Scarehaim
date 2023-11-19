@@ -10,4 +10,9 @@ public class Enviroment : Card
         CardManager.Instance.cardsUntilExit--;
         DiscardCard();
     }
+
+    public override int GetCardType()
+    {
+        return 3;
+    }
 }

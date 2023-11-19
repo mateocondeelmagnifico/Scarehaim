@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -12,28 +10,27 @@ public class Movement : MonoBehaviour
 
     private GameManager gameManager;
 
-    private void Start()
+    private void Awake()
     {
         gameManager = GameManager.Instance;
     }
 
     private void Update()
     {
-        if(isMoving)
+        if (isMoving)
         {
             Move();
 
-            if(transform.position.x == destination.x && transform.position.y == destination.y)
+            if (transform.position.x == destination.x && transform.position.y == destination.y)
             {
                 isMoving = false;
-                gameManager.EndPlayerTurn();
             }
         }
     }
 
     public void TryMove(Vector2 cardGridPos, Vector2 cardActualPos)
     {
-        if(cardGridPos.x <= myPos.x + 1 && cardGridPos.x >= myPos.x - 1 && cardGridPos.y <= myPos.y + 1 && cardGridPos.y >= myPos.y - 1 && !isMoving)
+        if (cardGridPos.x <= myPos.x + 1 && cardGridPos.x >= myPos.x - 1 && cardGridPos.y <= myPos.y + 1 && cardGridPos.y >= myPos.y - 1 && !isMoving)
         {
             destination = cardActualPos;
             myPos = cardGridPos;
@@ -43,5 +40,14 @@ public class Movement : MonoBehaviour
     private void Move()
     {
         transform.position = Vector2.MoveTowards(transform.position, destination, 4.5f * Time.deltaTime);
+
+        if (gameManager != null)
+        {
+            gameManager.EndPlayerTurn();
+        }
+        else
+        {
+            Debug.LogError("GameManager reference is not assigned.");
+        }
     }
 }
