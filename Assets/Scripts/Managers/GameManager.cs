@@ -20,6 +20,10 @@ public class GameManager : MonoBehaviour
     public CardManager cardManager;
     public EnemyMovement enemy;
 
+    public int turnCount;
+
+    private List<GameObject> cardsInHand = new List<GameObject>();
+
     public GameObject player;
     public GameObject selectedCardSlot, handSlotPrefab;
     void Awake()
@@ -40,8 +44,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {       
-        //El jugador empieza teniendo dos turnos seguidos
         playerTurnInProgress = true;
+        turnCount = 1;
         updateGameState(GameState.PlayerTurn);
     }
 
@@ -101,6 +105,7 @@ public class GameManager : MonoBehaviour
         {
             MoveCardToHand(selectedCardSlot);
         }
+
     }
     private void HandleEnemyTurn()
     {
@@ -112,13 +117,13 @@ public class GameManager : MonoBehaviour
             if (enemy.myPos == playerMove.myPos) 
                 loseCondition = true;
         }
-
+        turnCount++;
         playerTurnInProgress = true;
     }
     
     public void EndPlayerTurn()
     {
-        //ahora este void lo llama el juegador cuando se mueve
+        turnCount++;
         playerTurnInProgress = false;
 
         // win cons and lose cons
@@ -129,31 +134,6 @@ public class GameManager : MonoBehaviour
         // condicion de derrota por hacer, if(fear >= 10)
 
     }
-    //void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Escape))
-    //    {
-    //        deleteAfterTesting = true;
-    //    }
-    //
-    //    if (!deleteAfterTesting)
-    //    {
-    //        Raycast();
-    //    }
-    //    
-    //    if(selectedCardSlot != null)
-    //    {
-    //        if (player.transform.position == selectedCardSlot.transform.position)
-    //        {
-    //            InformCard();
-    //        }
-    //    }
-    //
-    //    if(moveCard)
-    //    {
-    //        MoveCardToHand(selectedCardSlot);
-    //    }
-    //}
 
     private void Raycast()
     {
@@ -207,17 +187,39 @@ public class GameManager : MonoBehaviour
         selectedCardSlot.transform.GetChild(0).GetComponent<CardObject>().myCard.Effect(selectedCardSlot.transform.GetChild(0).gameObject, handSlotPrefab);
         cardInformed = true;
     }
+
     public void MoveCardToHand(GameObject card)
     {
-        Vector3 desiredPos = new Vector3(0, -5f, 0);
-        card.transform.position = Vector3.MoveTowards(card.transform.position,desiredPos, 5 * Time.deltaTime);
-        if(card.transform.position == desiredPos)
+        cardsInHand.Add(card);
+
+        SortCardsInHand(card);
+        //Vector3 desiredPos = new Vector3(0, -5f, 0);
+        //card.transform.position = Vector3.MoveTowards(card.transform.position,desiredPos, 5 * Time.deltaTime);
+        //if(card.transform.position == desiredPos)
+        //{
+        //    moveCard = false;
+        //    if(card.GetComponent<CardSlotHand>() != null)
+        //    {
+        //        //The component is disabled until it arrives to avoid bugs
+        //        card.GetComponent<CardSlotHand>().enabled = true;
+        //    }
+        //}
+    }
+
+    public void SortCardsInHand(GameObject card)
+    {
+        for(int i = 0; i < cardsInHand.Count; i++)
         {
-            moveCard = false;
-            if(card.GetComponent<CardSlotHand>() != null)
+            Vector3 desiredPos = new Vector3(-2*i, -5f, 0);
+            card.transform.position = Vector3.MoveTowards(card.transform.position, desiredPos, 5 * Time.deltaTime);
+            if (card.transform.position == desiredPos)
             {
-                //The component is disabled until it arrives to avoid bugs
-                card.GetComponent<CardSlotHand>().enabled = true;
+                moveCard = false;
+                if (card.GetComponent<CardSlotHand>() != null)
+                {
+                    //The component is disabled until it arrives to avoid bugs
+                    card.GetComponent<CardSlotHand>().enabled = true;
+                }
             }
         }
     }
@@ -225,6 +227,9 @@ public class GameManager : MonoBehaviour
     public enum GameState
     {
         PlayerTurn,
+            MonsterCardEffect,
+            CardToHandEffect,
+            CardToDiscardPileEffect,
         EnemyTurn,
         Victory,
         Defeat

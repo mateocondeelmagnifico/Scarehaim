@@ -11,4 +11,9 @@ public class Enviroment : Card
 
         DiscardCard();
     }
+
+    public override int GetCardType()
+    {
+        return 3;
+    }
 }

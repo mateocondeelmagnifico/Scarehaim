@@ -989,17 +989,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d32385184c6a48b419c2137da8affdec, type: 3}
---- !u!114 &577825579 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 342247524212788997, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
-  m_PrefabInstance: {fileID: 301111690}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45a05fe882c9ce34c945c699bbb075fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &581244604
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1435,9 +1424,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 862340020dd1c6c469190fb2636e3d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myPos: {x: 2, y: 1}
+  myPos: {x: 3, y: 5}
   playerMove: {fileID: 688192960}
-  initialSlot: {fileID: 577825579}
+  initialSlot: {fileID: 0}
   cardGrid: {fileID: 1505720235}
   isMoving: 0
 --- !u!212 &798634177
@@ -1480,7 +1469,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6320f4730c6d30940a78cc49955dc84c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1500,7 +1489,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 798634175}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3898021, y: -0.10726049, z: 0.018785529}
+  m_LocalPosition: {x: 7.59, y: 2.88, z: 0.018785529}
   m_LocalScale: {x: 0.06, y: 0.06, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2779,6 +2768,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Well Card
       objectReference: {fileID: 0}
+    - target: {fileID: 2019230849771319314, guid: d32385184c6a48b419c2137da8affdec, type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 21300000, guid: 081ca5ca32903db4ba39921d53404ece, type: 3}
     - target: {fileID: 4676084009188673460, guid: d32385184c6a48b419c2137da8affdec, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3036,7 +3029,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1571830515
 Transform:
   m_ObjectHideFlags: 0
@@ -3822,6 +3815,7 @@ MonoBehaviour:
   playerTurnInProgress: 0
   cardManager: {fileID: 2012204620}
   enemy: {fileID: 798634176}
+  turnCount: 0
   player: {fileID: 688192956}
   selectedCardSlot: {fileID: 0}
   handSlotPrefab: {fileID: 5757337979554174078, guid: 215caa4bbbf4e41498cc4f35ea8d78b8, type: 3}

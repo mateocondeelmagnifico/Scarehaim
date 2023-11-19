@@ -34,6 +34,11 @@ public class Card : MonoBehaviour
         manager.moveCard = true;
     }
 
+    public virtual int GetCardType()
+    {
+        return 0;
+    }
+
     public void DiscardCard()
     {
         discardCard.Invoke();
