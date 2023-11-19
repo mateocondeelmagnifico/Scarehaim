@@ -1517,7 +1517,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 6320f4730c6d30940a78cc49955dc84c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3859,8 +3859,10 @@ MonoBehaviour:
   playerMove: {fileID: 688192960}
   moveCard: 0
   cardInformed: 0
+  cardDiscarded: 0
   State: 0
   playerTurnInProgress: 0
+  currentState: 0
   cardManager: {fileID: 2012204620}
   enemy: {fileID: 798634176}
   turnCount: 0

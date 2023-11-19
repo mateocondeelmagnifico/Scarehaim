@@ -31,7 +31,6 @@ public class MouseManager : MonoBehaviour
             Raycast();
        } 
 
-       manager.selectedCardSlot = selectedCardSlot;
     }
 
     private void Raycast()
@@ -54,7 +53,7 @@ public class MouseManager : MonoBehaviour
                 {
                     if (manager.currentState == GameManager.turnState.CheckMovement)
                     {
-                        selectedCardSlot = hit.collider.gameObject;
+                        manager.selectedCardSlot = hit.collider.gameObject;
                         cardInformed = false;
                     }
                     playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));

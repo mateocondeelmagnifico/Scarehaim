@@ -23,17 +23,19 @@ public class Card : MonoBehaviour
     public virtual void MoveToHand(GameObject card, GameObject cardSlot) 
     {
         transform.parent.GetComponent<CardSlot>().cardObject = null;
-        CardManager.Instance.CardDiscarded(transform.parent.GetComponent<CardSlot>());
-        CardManager.Instance.DistributeCard();
+
         GameManager manager = GameManager.Instance;
         GameObject newSlot = GameObject.Instantiate(cardSlot);
 
         newSlot.transform.position = card.transform.position;
         newSlot.GetComponent<CardSlotHand>().enabled = false;
+        CardManager.Instance.CardDiscarded(transform.parent.GetComponent<CardSlot>());
         card.transform.parent = newSlot.transform;
 
         manager.selectedCardSlot = newSlot;
         manager.moveCard = true;
+
+        
         GameManager.Instance.currentState = GameManager.turnState.Movecard;
     }
 
