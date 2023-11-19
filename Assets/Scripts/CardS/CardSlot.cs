@@ -24,17 +24,14 @@ public class CardSlot : MonoBehaviour
         {
             hoverTimer -= Time.deltaTime;
         }
-
-        if (cardObject == null)
-        {
-            cardManager.CardDiscarded(this);
-        }
     }
 
     public void ReplaceCard()
     {
-        Destroy(cardObject);
         Debug.Log(1);
+        GameManager.Instance.currentState = GameManager.turnState.Movecard;
+        Destroy(cardObject);
+        cardManager.CardDiscarded(this);
     }
 
 }

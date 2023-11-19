@@ -2,21 +2,37 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    Camera myCam;
     public Movement playerMove;
-    bool deleteAfterTesting;
-    private bool cardGrabbed;
+    //private bool cardGrabbed;
     public bool moveCard, cardInformed;
+
+    public int cardDiscarded;
 
     public GameState State;
     public bool playerTurnInProgress;
-    private bool winCondition;
-    private bool loseCondition;
+    private bool winCondition, loseCondition;
+
+    [HideInInspector]
+    public enum turnState
+    {
+        CheckMovement,
+        Moving,
+        CheckCardEffect,
+        ApplyCardEffect,
+        Movecard,
+        ReplaceCard,
+        Endturn
+    }
+
+    public turnState currentState;
+
     public CardManager cardManager;
     public EnemyMovement enemy;
 
@@ -24,8 +40,7 @@ public class GameManager : MonoBehaviour
 
     private List<GameObject> cardsInHand = new List<GameObject>();
 
-    public GameObject player;
-    public GameObject selectedCardSlot, handSlotPrefab;
+    public GameObject player, selectedCardSlot, handSlotPrefab;
     void Awake()
     {
         if(Instance == null)
@@ -37,13 +52,14 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        myCam = Camera.main;
+        currentState = turnState.CheckMovement;
+
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
     }
 
     void Start()
-    {       
+    {
         playerTurnInProgress = true;
         turnCount = 1;
         updateGameState(GameState.PlayerTurn);
@@ -66,7 +82,7 @@ public class GameManager : MonoBehaviour
         switch (newState)
         {
             case GameState.PlayerTurn:
-                HandlePlayerTurn();
+                HandlePlayerTurn(currentState);
                 break;
             case GameState.EnemyTurn:
                 HandleEnemyTurn();
@@ -80,31 +96,55 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void HandlePlayerTurn()
+    private void HandlePlayerTurn(turnState currentState)
     {
         // turno del jugador
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            deleteAfterTesting = true;
-        }
 
-        if (!deleteAfterTesting)
+        switch (currentState)
         {
-            Raycast();
-        }
+            //En muchos estados no pasa nada, pero estan ahía para las acciones vayan de estado en estado
+            case turnState.CheckMovement:
+                //Player movement is the one that changes to the next state
+            break;
 
-        if (selectedCardSlot != null)
-        {
-            if (player.transform.position == selectedCardSlot.transform.position && !cardInformed)
-            {
+            case turnState.Moving:
+                //Also changed in player movement
+                break;
+
+            case turnState.CheckCardEffect:
+                //This is changed by the card's script
                 InformCard();
-            }
+                break;
+
+            case turnState.ApplyCardEffect:
+                //Changed by the cardSlot
+            break;
+
+            case turnState.Movecard:
+                if (moveCard)
+                {
+                    MoveCardToHand(selectedCardSlot);
+                }
+                else
+                {
+                    MoveToReplaceCard();
+                }
+                break;
+
+            case turnState.ReplaceCard:
+                //Este estado lo cambia el cardManager
+                if (cardDiscarded > 0)
+                {
+                    cardManager.DistributeCard();
+                }
+                break;
+
+            case turnState.Endturn:
+                EndPlayerTurn();
+            break;
         }
 
-        if (moveCard)
-        {
-            MoveCardToHand(selectedCardSlot);
-        }
+       
 
     }
     private void HandleEnemyTurn()
@@ -119,6 +159,7 @@ public class GameManager : MonoBehaviour
         }
         turnCount++;
         playerTurnInProgress = true;
+        currentState = turnState.CheckMovement;
     }
     
     public void EndPlayerTurn()
@@ -135,52 +176,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void Raycast()
-    {
-        #region Raycast Variables
-        Vector3 mousePos = Input.mousePosition;
-        mousePos.z = 100;
-        mousePos = myCam.ScreenToWorldPoint(mousePos);
-        Ray rayo = myCam.ScreenPointToRay(mousePos);
-        RaycastHit2D hit = Physics2D.Raycast(myCam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-        #endregion
-
-        if (hit.collider.gameObject.tag.Equals("Card Slot"))
-        {
-            CardSlot currentCard = hit.collider.gameObject.GetComponent<CardSlot>();
-            currentCard.hoverTimer = 0.2f;
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (!currentCard.isInHand)
-                {
-                    if(!moveCard)
-                    {
-                        selectedCardSlot = hit.collider.gameObject;
-                        cardInformed = false;
-                    }
-                    playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
-                }
-            }
-
-            //This code is for cards in your hand
-            if (currentCard.isInHand)
-            {
-                CardSlotHand currentCardHand = hit.collider.gameObject.GetComponent<CardSlotHand>();
-                if (Input.GetMouseButton(0) && !cardGrabbed)
-                {
-                    currentCardHand.followMouse = true;
-                    cardGrabbed = true;
-                }
-
-                if (Input.GetMouseButtonUp(0))
-                {
-                    currentCardHand.followMouse = false;
-                    cardGrabbed = false;
-                }
-            }
-
-        }
-    }
     private void InformCard()
     {
         //This script tells the card that it has to activate
@@ -222,6 +217,13 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+        currentState = turnState.Endturn;
+    }
+
+    private void MoveToReplaceCard()
+    {
+        //Esta funcion esta porque no funciona cambiar el state dentro del switch
+        currentState = turnState.ReplaceCard;
     }
 
     public enum GameState

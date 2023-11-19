@@ -32,6 +32,7 @@ public class Card : MonoBehaviour
 
         manager.selectedCardSlot = newSlot;
         manager.moveCard = true;
+        GameManager.Instance.currentState = GameManager.turnState.Movecard;
     }
 
     public virtual int GetCardType()

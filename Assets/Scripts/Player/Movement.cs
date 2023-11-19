@@ -24,6 +24,7 @@ public class Movement : MonoBehaviour
             if (transform.position.x == destination.x && transform.position.y == destination.y)
             {
                 isMoving = false;
+                gameManager.currentState = GameManager.turnState.CheckCardEffect;
             }
         }
     }
@@ -40,14 +41,6 @@ public class Movement : MonoBehaviour
     private void Move()
     {
         transform.position = Vector2.MoveTowards(transform.position, destination, 4.5f * Time.deltaTime);
-
-        if (gameManager != null)
-        {
-            gameManager.EndPlayerTurn();
-        }
-        else
-        {
-            Debug.LogError("GameManager reference is not assigned.");
-        }
+        gameManager.currentState = GameManager.turnState.Moving;
     }
 }

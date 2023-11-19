@@ -34,13 +34,14 @@ public class CardManager : MonoBehaviour
     {
         if(cardHasToBeReplaced && !gameManager.cardInformed)
         {
-            DistributeCard();
+            //DistributeCard();
         }
     }
     public void CardDiscarded(CardSlot whatSlot)
     {
         cardSlot = whatSlot;
         cardHasToBeReplaced = true;
+        gameManager.cardDiscarded++;
     }
     public void DistributeCard()
     {
@@ -62,5 +63,8 @@ public class CardManager : MonoBehaviour
         #endregion
 
         cardHasToBeReplaced = false;
+
+        gameManager.cardDiscarded--;
+        gameManager.currentState = GameManager.turnState.Endturn;
     }
 }

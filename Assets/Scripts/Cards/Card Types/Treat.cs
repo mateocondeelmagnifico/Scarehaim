@@ -5,9 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class Treat: Card
 {
-    GameManager manager;
     public override void Effect(GameObject card, GameObject cardSlot)
     {
+        //TurnState is changed in the card script
         MoveToHand(card, cardSlot);
     }
 
