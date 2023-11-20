@@ -14,10 +14,12 @@ public class CardSlot : MonoBehaviour
     public float hoverTimer;
 
     private CardManager cardManager;
+    private GameManager gameManager;
 
     private void Start()
     {
         cardManager = CardManager.Instance;
+        gameManager = GameManager.Instance;
     }
     private void Update()
     {
@@ -31,12 +33,14 @@ public class CardSlot : MonoBehaviour
     {
         if (cardObject != null)
         {
-            Destroy(cardObject);
+            //Destroy(cardObject);
         }
-        
+        gameManager.selectedCard = cardObject;
+        gameManager.moveCard = true;
+
         cardManager.CardDiscarded(this);
 
-        GameManager.Instance.currentState = GameManager.turnState.Movecard;
+        gameManager.currentState = GameManager.turnState.Movecard;
     }
 
 }

@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public Movement playerMove;
     //private bool cardGrabbed;
-    public bool moveCard, cardInformed;
+    public bool moveCardToHand, moveCard, cardInformed;
 
     public int cardDiscarded;
 
@@ -40,7 +40,9 @@ public class GameManager : MonoBehaviour
 
     private List<GameObject> cardsInHand = new List<GameObject>();
 
-    public GameObject player, selectedCardSlot, handSlotPrefab;
+    public GameObject player, selectedCardSlot, handSlotPrefab, selectedCard;
+
+    [SerializeField] private Transform deck, discardPile;
     void Awake()
     {
         if(Instance == null)
@@ -121,8 +123,12 @@ public class GameManager : MonoBehaviour
             break;
 
             case turnState.Movecard:
-                if (moveCard)
+                if (moveCardToHand || moveCard)
                 {
+                    if (moveCard)
+                        MoveCard(discardPile.position, selectedCard);
+
+                    if(moveCardToHand)
                     MoveCardToHand(selectedCardSlot);
                 }
                 else
@@ -181,6 +187,16 @@ public class GameManager : MonoBehaviour
         //This script tells the card that it has to activate
         selectedCardSlot.transform.GetChild(0).GetComponent<CardObject>().myCard.Effect(selectedCardSlot.transform.GetChild(0).gameObject, handSlotPrefab);
         cardInformed = true;
+    }
+
+    private void MoveCard(Vector3 desiredPos, GameObject whatCard)
+    {
+        whatCard.transform.position = Vector3.MoveTowards(whatCard.transform.position, desiredPos, 5 * Time.deltaTime);
+        if(whatCard.transform.position == desiredPos)
+        {
+            moveCard = false;
+            currentState = turnState.ReplaceCard;
+        }
     }
 
     public void MoveCardToHand(GameObject card)
