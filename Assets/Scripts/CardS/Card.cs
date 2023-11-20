@@ -32,8 +32,8 @@ public class Card : MonoBehaviour
         CardManager.Instance.CardDiscarded(transform.parent.GetComponent<CardSlot>());
         card.transform.parent = newSlot.transform;
 
-        manager.selectedCardSlot = newSlot;
-        manager.moveCard = true;
+        manager.newCardSlot = newSlot;
+        manager.moveCardToHand = true;
 
         
         GameManager.Instance.currentState = GameManager.turnState.Movecard;

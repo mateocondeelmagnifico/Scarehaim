@@ -31,10 +31,6 @@ public class CardSlot : MonoBehaviour
 
     public void ReplaceCard()
     {
-        if (cardObject != null)
-        {
-            //Destroy(cardObject);
-        }
         gameManager.selectedCard = cardObject;
         gameManager.moveCard = true;
 

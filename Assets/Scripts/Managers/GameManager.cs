@@ -40,9 +40,9 @@ public class GameManager : MonoBehaviour
 
     private List<GameObject> cardsInHand = new List<GameObject>();
 
-    public GameObject player, selectedCardSlot, handSlotPrefab, selectedCard;
+    public GameObject player, selectedCardSlot, handSlotPrefab, selectedCard, newCardSlot;
 
-    [SerializeField] private Transform deck, discardPile;
+    public Transform deck, discardPile;
     void Awake()
     {
         if(Instance == null)
@@ -126,10 +126,10 @@ public class GameManager : MonoBehaviour
                 if (moveCardToHand || moveCard)
                 {
                     if (moveCard)
-                        MoveCard(discardPile.position, selectedCard);
+                        MoveCard(selectedCard, discardPile.position);
 
                     if(moveCardToHand)
-                    MoveCardToHand(selectedCardSlot);
+                    MoveCardToHand(newCardSlot);
                 }
                 else
                 {
@@ -138,11 +138,11 @@ public class GameManager : MonoBehaviour
                 break;
 
             case turnState.ReplaceCard:
-                //Este estado lo cambia el cardManager
                 if (cardDiscarded > 0)
                 {
                     cardManager.DistributeCard();
                 }
+                MoveCard(selectedCard, selectedCardSlot.transform.position);
                 break;
 
             case turnState.Endturn:
@@ -189,13 +189,23 @@ public class GameManager : MonoBehaviour
         cardInformed = true;
     }
 
-    private void MoveCard(Vector3 desiredPos, GameObject whatCard)
+    private void MoveCard( GameObject whatCard, Vector3 desiredPos)
     {
-        whatCard.transform.position = Vector3.MoveTowards(whatCard.transform.position, desiredPos, 5 * Time.deltaTime);
+        //This cript is used to move cards to the deck and discard pile
+        whatCard.transform.position = Vector3.MoveTowards(whatCard.transform.position, desiredPos, 8 * Time.deltaTime);
         if(whatCard.transform.position == desiredPos)
         {
             moveCard = false;
-            currentState = turnState.ReplaceCard;
+
+            if(desiredPos == discardPile.position)
+            {
+                whatCard.transform.parent = discardPile;
+                currentState = turnState.ReplaceCard;
+            }
+            if (desiredPos == selectedCardSlot.transform.position)
+            {
+                currentState = turnState.Endturn;
+            }
         }
     }
 
@@ -226,7 +236,7 @@ public class GameManager : MonoBehaviour
             card.transform.position = desiredPos;
             if (card.transform.position == desiredPos)
             {
-                moveCard = false;
+                moveCardToHand = false;
                 if (card.GetComponent<CardSlotHand>() != null)
                 {
                     //The component is disabled until it arrives to avoid bugs
