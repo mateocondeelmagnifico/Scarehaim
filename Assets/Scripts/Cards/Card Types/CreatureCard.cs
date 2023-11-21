@@ -5,11 +5,12 @@ using UnityEngine;
 [System.Serializable]
 public class CreatureCard : Card
 {
-    public bool conditionMet;
+    public bool hasPayed;
 
     public override void Effect(GameObject player, GameObject cardSlot)
     {
         player.GetComponent<Fear>().fear++;
+        hasPayed = false;
     }
 
     public override int GetCardType()
