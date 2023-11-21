@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class CreatureCard : Card
 {
+    public bool conditionMet;
 
     public override void Effect(GameObject player, GameObject cardSlot)
     {
