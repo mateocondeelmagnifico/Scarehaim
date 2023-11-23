@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public Movement playerMove;
-    //private bool cardGrabbed;
     public bool moveCardToHand, moveCard, cardInformed;
 
     public int cardDiscarded;

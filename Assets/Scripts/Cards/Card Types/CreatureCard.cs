@@ -2,15 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class CreatureCard : Card
 {
-    public bool hasPayed;
-
-    public override void Effect(GameObject player, GameObject cardSlot)
+    public override void Effect(GameObject card, GameObject cardSlot)
     {
-        player.GetComponent<Fear>().fear++;
-        hasPayed = false;
+        GameManager.Instance.player.GetComponent<Fear>().fear++;
+        CardEffectManager.instance.ActivatePayment(image);
     }
 
     public override int GetCardType()
