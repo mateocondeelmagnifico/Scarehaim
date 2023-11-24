@@ -7,7 +7,7 @@ public class CreatureCard : Card
     public override void Effect(GameObject card, GameObject cardSlot)
     {
         GameManager.Instance.player.GetComponent<Fear>().fear++;
-        CardEffectManager.instance.ActivatePayment(image);
+        CardEffectManager.Instance.ActivatePayment(image);
     }
 
     public override int GetCardType()

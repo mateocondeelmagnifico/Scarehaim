@@ -68,7 +68,6 @@ public class MouseManager : MonoBehaviour
                 {
                     currentCardHand.followMouse = true;
                     cardGrabbed = true;
-                    Debug.Log(2);
                 }
 
                 if (Input.GetMouseButtonUp(0))
@@ -76,7 +75,6 @@ public class MouseManager : MonoBehaviour
                     currentCardHand.followMouse = false;
                     cardGrabbed = false;
                 }
-                Debug.Log(1);
             }
 
         }

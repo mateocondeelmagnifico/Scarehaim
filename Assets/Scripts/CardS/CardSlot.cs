@@ -14,7 +14,7 @@ public class CardSlot : MonoBehaviour
     public float hoverTimer;
 
     private CardManager cardManager;
-    private GameManager gameManager;
+    public GameManager gameManager;
 
     private void Start()
     {

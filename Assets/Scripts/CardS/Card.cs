@@ -22,7 +22,10 @@ public class Card : MonoBehaviour
     }
     public virtual void MoveToHand(GameObject card, GameObject cardSlot) 
     {
+        #region Make new cardslot and change variables
         transform.parent.GetComponent<CardSlot>().cardObject = null;
+
+        GetComponent<SpriteRenderer>().sortingOrder = 20;
 
         GameManager manager = GameManager.Instance;
         GameObject newSlot = GameObject.Instantiate(cardSlot);
@@ -35,7 +38,8 @@ public class Card : MonoBehaviour
         manager.newCardSlot = newSlot;
         manager.moveCardToHand = true;
 
-        
+        #endregion
+
         GameManager.Instance.currentState = GameManager.turnState.Movecard;
     }
 

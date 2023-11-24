@@ -6,14 +6,15 @@ using UnityEngine.UI;
 public class CardEffectManager : MonoBehaviour
 {
     public GameObject paymentMenu, blackScreen;
-    public static CardEffectManager instance;
+    public static CardEffectManager Instance { get; private set; }
     private Image displayImage;
+    public bool effectActive;
 
     private void Awake()
     {
-        if(instance == null)
+        if(Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {
@@ -34,11 +35,13 @@ public class CardEffectManager : MonoBehaviour
     {
         paymentMenu.SetActive(true);
         blackScreen.SetActive(true);
+        effectActive = true;
     }
 
     public void Payment(bool wantsToPay)
     {
         paymentMenu.SetActive(false);
         blackScreen.SetActive(false);
+        effectActive = false;
     }
 }
