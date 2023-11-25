@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CardSlotHand: CardSlot
@@ -86,12 +87,13 @@ public class CardSlotHand: CardSlot
             if(gameManager.currentState == GameManager.turnState.CheckCardEffect && effectManager.effectActive)
             {
                 float[] distances = new float[3];
+                if (blackScreen.childCount == 2) distances[2] = 50000;
 
                 #region Check Which Slot is Closer
                 //This loop gets the position of the payment spots
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < blackScreen.childCount; i++)
                 {
-                    if (blackScreen.GetChild(i).childCount == 0)
+                    if (blackScreen.GetChild(i).childCount < 2 && blackScreen.GetChild(i).tag == cardObject.tag)
                     {
                         distances[i] = Vector3.Distance(blackScreen.GetChild(i).transform.position, transform.position);
                     }
@@ -102,25 +104,31 @@ public class CardSlotHand: CardSlot
                     }
                 }
 
+                if (Mathf.Min(distances[0], distances[1], distances[2]) < 45000)
+                {
+                    if (Mathf.Min(distances[0], distances[1], distances[2]) == distances[0])
+                    {
+                        chosenSlot = 0;
+                    }
+                    if (Mathf.Min(distances[0], distances[1], distances[2]) == distances[1])
+                    {
+                        chosenSlot = 1;
+                    }
+                    if (Mathf.Min(distances[0], distances[1], distances[2]) == distances[2])
+                    {
+                        chosenSlot = 2;
+                    }
 
-                if (Mathf.Min(distances[0], distances[1], distances[2]) == distances[0])
-                {
-                    chosenSlot = 0;
+                    direction = blackScreen.GetChild(chosenSlot).position;
+                    isPayment = true;
+                    transform.parent = effectManager.blackScreen.transform.GetChild(chosenSlot);
+                    cardPlayed = true;
                 }
-                if (Mathf.Min(distances[0], distances[1], distances[2]) == distances[1])
+                else
                 {
-                    chosenSlot = 1;
+                    goHome = true;
                 }
-                if (Mathf.Min(distances[0], distances[1], distances[2]) == distances[2])
-                {
-                    chosenSlot = 2;
-                }
-            #endregion
-
-                direction = blackScreen.GetChild(chosenSlot).position;
-                isPayment = true;
-                transform.parent = effectManager.blackScreen.transform.GetChild(chosenSlot);
-                cardPlayed = true;
+                    #endregion
             }
       
             if(!cardPlayed)

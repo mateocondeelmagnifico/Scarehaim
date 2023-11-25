@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5984906273801955380}
   m_Layer: 0
   m_Name: Candy Treat Card
-  m_TagString: Untagged
+  m_TagString: Treat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

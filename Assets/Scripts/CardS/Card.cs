@@ -31,6 +31,7 @@ public class Card : MonoBehaviour
         GameObject newSlot = GameObject.Instantiate(cardSlot);
 
         newSlot.transform.position = card.transform.position;
+        newSlot.GetComponent<CardSlotHand>().cardObject = card;
         newSlot.GetComponent<CardSlotHand>().enabled = false;
         CardManager.Instance.CardDiscarded(transform.parent.GetComponent<CardSlot>());
         card.transform.parent = newSlot.transform;

@@ -27,9 +27,9 @@ public class MouseManager : MonoBehaviour
         }
 
         if (!deleteAfterTesting)
-       {
+        {
             Raycast();
-       } 
+        } 
 
     }
 
