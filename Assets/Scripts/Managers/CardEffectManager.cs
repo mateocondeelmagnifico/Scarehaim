@@ -125,7 +125,17 @@ public class CardEffectManager : MonoBehaviour
 
         paymentMenu.SetActive(false);
         blackScreen.SetActive(false);
-        manager.currentState = GameManager.turnState.Endturn;
+
+        if(manager.trapTriggered)
+        {
+            //If you triggered a card
+            manager.trapTriggered = false;
+        }
+        else
+        {
+            //If you trigerred a creature
+            manager.currentState = GameManager.turnState.Endturn;
+        }
         effectActive = false;
     }
 }

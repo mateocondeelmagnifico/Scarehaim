@@ -23,7 +23,6 @@ public class CreatureCard : Card
     public override void Effect(GameObject card, GameObject cardSlot)
     {
         if(isDone) return; 
-        GameManager.Instance.player.GetComponent<Fear>().fear++;
         CardEffectManager.Instance.ActivatePayment(image, 2, "Treat");
         CardEffectManager.Instance.setConsequence(3, "Fear");
         isDone = true;

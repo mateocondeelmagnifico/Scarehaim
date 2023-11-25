@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public int cardDiscarded;
 
     public GameState State;
-    public bool playerTurnInProgress;
+    public bool playerTurnInProgress, trapTriggered;
     private bool winCondition, loseCondition;
 
     [HideInInspector]
@@ -114,7 +114,10 @@ public class GameManager : MonoBehaviour
 
             case turnState.CheckCardEffect:
                 //This is changed by the card's script
-                InformCard();
+                if(!trapTriggered)
+                {
+                    InformCard();
+                }
                 break;
 
             case turnState.ApplyCardEffect:
