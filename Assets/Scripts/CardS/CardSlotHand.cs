@@ -5,11 +5,9 @@ using UnityEngine;
 
 public class CardSlotHand: CardSlot
 {
-    private Vector3 startingPos;
-    public Vector3 direction;
+    public Vector3 direction, startingPos;
 
-    public bool goHome, followMouse;
-    private bool isPayment;
+    public bool goHome, followMouse, isPayment;
 
     private CardEffectManager effectManager;
     private Transform blackScreen;

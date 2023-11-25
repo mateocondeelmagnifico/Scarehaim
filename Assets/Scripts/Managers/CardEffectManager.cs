@@ -96,7 +96,18 @@ public class CardEffectManager : MonoBehaviour
         }
         else
         {
-            if(consequenceName == "Fear")
+            //this returns the cards to your hand
+            for (int i = 0; i < blackScreen.transform.childCount; i++)
+            {
+                if (blackScreen.transform.GetChild(i).childCount != 0)
+                {
+                    blackScreen.transform.GetChild(i).transform.GetChild(0).position = blackScreen.transform.GetChild(i).transform.GetChild(0).GetComponent<CardSlotHand>().startingPos;
+                    blackScreen.transform.GetChild(i).transform.GetComponentInChildren<CardSlotHand>().isPayment = false;
+                    blackScreen.transform.GetChild(i).transform.GetChild(0).parent = null;
+                }
+            }
+
+            if (consequenceName == "Fear")
             {
                 player.GetComponent<Fear>().fear += consequenceAmount;
 
@@ -107,6 +118,11 @@ public class CardEffectManager : MonoBehaviour
 
     private void DeactivateMenu()
     {
+        for (int i = 0; i < blackScreen.transform.childCount; i++)
+        {
+            Destroy(blackScreen.transform.GetChild(i).gameObject);
+        }
+
         paymentMenu.SetActive(false);
         blackScreen.SetActive(false);
         manager.currentState = GameManager.turnState.Endturn;
