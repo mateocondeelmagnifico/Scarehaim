@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trap : Card
+public class Trick : Card
 {
     private Transform player;
     private GameManager manager;
