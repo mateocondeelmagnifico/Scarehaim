@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Trick : Card
 {
+    public Cost myCost;
     private Transform player;
     private GameManager manager;
 
@@ -28,7 +29,7 @@ public class Trick : Card
     }
     public override void Effect(GameObject card, GameObject cardSlot)
     {
-        CardEffectManager.Instance.ActivatePayment(image, 2, "Costume");
-        CardEffectManager.Instance.setConsequence(3, "Fear");
+        CardEffectManager.Instance.ActivatePayment(image, myCost.costAmount, myCost.mainCostName);
+        CardEffectManager.Instance.setConsequence(myCost.consequenceAmount, myCost.consequenceName);
     }
 }

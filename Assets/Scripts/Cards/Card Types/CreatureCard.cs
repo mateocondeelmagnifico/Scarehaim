@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class CreatureCard : Card
 {
-    GameManager manager;
+    public Cost myCost;
+
+    private GameManager manager;
 
     private bool isDone;
 
@@ -23,8 +25,8 @@ public class CreatureCard : Card
     public override void Effect(GameObject card, GameObject cardSlot)
     {
         if(isDone) return; 
-        CardEffectManager.Instance.ActivatePayment(image, 2, "Treat");
-        CardEffectManager.Instance.setConsequence(3, "Fear");
+        CardEffectManager.Instance.ActivatePayment(image, myCost.costAmount, myCost.mainCostName);
+        CardEffectManager.Instance.setConsequence(myCost.consequenceAmount, myCost.consequenceName);
         isDone = true;
     }
 

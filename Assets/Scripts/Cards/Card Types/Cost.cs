@@ -5,12 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class Cost 
 {
-  public string mainCostName;
-    public int howMuch1;
-
-    public string alternateCostName;
-    public int howMuch2;
+    public string mainCostName;
+    public int costAmount;
 
     public string consequenceName;
-    public int HowMuch3;
+    public int consequenceAmount;
 }
