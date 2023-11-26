@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 359fbd18a3f48ad4183d9fa4a4252930, type: 3}
+  bigImage: {fileID: 21300000, guid: 5d4b21cb18226424ba18506ed5c81f10, type: 3}
   myCost:
     mainCostName: Treat
     costAmount: 2

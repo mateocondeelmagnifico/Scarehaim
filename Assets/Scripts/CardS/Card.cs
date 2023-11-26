@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class Card : MonoBehaviour
 {
 
-    public Sprite image;
+    public Sprite image, bigImage;
 
     CardSlot slot;
 

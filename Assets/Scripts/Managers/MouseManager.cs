@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MouseManager : MonoBehaviour
 {
     private GameManager manager;
     private Camera myCam;
     public Movement playerMove;
+    public Image display;
 
     private bool deleteAfterTesting;
     private bool cardGrabbed;
@@ -18,6 +18,7 @@ public class MouseManager : MonoBehaviour
     {
         manager = GameManager.Instance;
         myCam = Camera.main;
+        display.enabled = false;
     }
     private void Update()
     {
@@ -76,7 +77,16 @@ public class MouseManager : MonoBehaviour
                     cardGrabbed = false;
                 }
             }
-
+            else if(manager.currentState != GameManager.turnState.CheckCardEffect) 
+            {
+                //this is to display the card on the left
+                display.enabled = true;
+                display.sprite = hit.collider.GetComponentInChildren<Card>().bigImage;
+            }
+        }
+        else
+        {
+            display.enabled = false;
         }
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CardManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class CardManager : MonoBehaviour
     public bool cardHasToBeReplaced;
     private GameManager gameManager;
     private CardSlot cardSlot;
+    public TMPro.TextMeshProUGUI doorText;
     void Awake()
     {
         if (Instance == null)
@@ -28,12 +30,15 @@ public class CardManager : MonoBehaviour
         }
         
         gameManager = GameManager.Instance;
+        doorText.text = cardsUntilExit.ToString();
     }
+
     public void CardDiscarded(CardSlot whatSlot)
     {
         cardSlot = whatSlot;
         cardHasToBeReplaced = true;
         gameManager.cardDiscarded++;
+        doorText.text = cardsUntilExit.ToString();
     }
     public void DistributeCard()
     {
