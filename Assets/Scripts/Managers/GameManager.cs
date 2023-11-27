@@ -55,8 +55,7 @@ public class GameManager : MonoBehaviour
 
         currentState = turnState.CheckMovement;
 
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
+        
     }
 
     void Start()

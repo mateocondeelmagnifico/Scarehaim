@@ -8,10 +8,10 @@ public class CardSlot : MonoBehaviour
     public GameObject cardObject;
     bool isActivated;
     public Vector2 Location;
-    public bool isInHand;
+    public bool isInHand, isHovered;
     private bool cardNeeded;
 
-    public float hoverTimer;
+    public float hoverTimer, otherTimer;
 
     private CardManager cardManager;
     public GameManager gameManager;
@@ -23,9 +23,22 @@ public class CardSlot : MonoBehaviour
     }
     private void Update()
     {
-        if (hoverTimer > 0)
+        if(otherTimer > 0)
         {
-            hoverTimer -= Time.deltaTime;
+            otherTimer -= Time.deltaTime;
+        }
+        else
+        {
+            isHovered = false;
+        }
+
+        if (isHovered)
+        {
+            hoverTimer += Time.deltaTime;
+        }
+        else
+        {
+            hoverTimer = 0;
         }
     }
 
