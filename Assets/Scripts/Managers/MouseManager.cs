@@ -38,53 +38,67 @@ public class MouseManager : MonoBehaviour
 
         if(hit.collider != null)
         {
-            if (hit.collider.gameObject.tag.Equals("Card Slot"))
+            if (hit.collider.gameObject.tag.Equals("Card Slot") || hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
             {
-                #region Set Variables
-                CardSlot currentCard = hit.collider.gameObject.GetComponent<CardSlot>();
-                currentCard.isHovered = true;
-                currentCard.otherTimer = 0.2f;
-                #endregion
-
-                if (Input.GetMouseButtonDown(0))
+                if (hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
                 {
-                    if (!currentCard.isInHand)
-                    {
-                        if (manager.currentState == GameManager.turnState.CheckMovement)
-                        {
-                            manager.selectedCardSlot = hit.collider.gameObject;
-                            cardInformed = false;
-                            playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
-                        }
-                    }
-                }
-
-                //This code is for cards in your hand
-                if (currentCard.isInHand)
-                {
-                    CardSlotHand currentCardHand = hit.collider.gameObject.GetComponent<CardSlotHand>();
-                    if (Input.GetMouseButton(0) && !cardGrabbed)
-                    {
-                        currentCard = currentCardHand;
-                        currentCardHand.followMouse = true;
-                        cardGrabbed = true;
-                    }
-
-                    if (Input.GetMouseButtonUp(0))
-                    {
-                        currentCardHand.followMouse = false;
-                        cardGrabbed = false;
-                    }
-                }
-                else if (manager.currentState != GameManager.turnState.CheckCardEffect)
-                {
-                    //this is to display the card on the left
-                    if(currentCard.hoverTimer > 0.8f)
+                    //Check if it's hitting a player or enemy
+                    hit.collider.GetComponent<DisplayBigImage>().isHovered = true;
+                    if (hit.collider.GetComponent<DisplayBigImage>().hoverTimer > 0.8f)
                     {
                         display.enabled = true;
-                        if(hit.collider.transform.childCount > 0)
+                        display.sprite = hit.collider.GetComponent<DisplayBigImage>().bigImage;
+                    }
+                    Debug.Log(1);
+                }
+                else
+                {
+                    #region Set Variables
+                    CardSlot currentCard = hit.collider.gameObject.GetComponent<CardSlot>();
+                    currentCard.isHovered = true;
+                    currentCard.otherTimer = 0.2f;
+                    #endregion
+
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        if (!currentCard.isInHand)
                         {
-                            display.sprite = hit.collider.GetComponentInChildren<Card>().bigImage;
+                            if (manager.currentState == GameManager.turnState.CheckMovement)
+                            {
+                                manager.selectedCardSlot = hit.collider.gameObject;
+                                cardInformed = false;
+                                playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
+                            }
+                        }
+                    }
+
+                    //This code is for cards in your hand
+                    if (currentCard.isInHand)
+                    {
+                        CardSlotHand currentCardHand = hit.collider.gameObject.GetComponent<CardSlotHand>();
+                        if (Input.GetMouseButton(0) && !cardGrabbed)
+                        {
+                            currentCard = currentCardHand;
+                            currentCardHand.followMouse = true;
+                            cardGrabbed = true;
+                        }
+
+                        if (Input.GetMouseButtonUp(0))
+                        {
+                            currentCardHand.followMouse = false;
+                            cardGrabbed = false;
+                        }
+                    }
+                    else if (manager.currentState != GameManager.turnState.CheckCardEffect)
+                    {
+                        //this is to display the card on the left
+                        if (currentCard.hoverTimer > 0.8f)
+                        {
+                            display.enabled = true;
+                            if (hit.collider.transform.childCount > 0)
+                            {
+                                display.sprite = hit.collider.GetComponentInChildren<Card>().bigImage;
+                            }
                         }
                     }
                 }

@@ -7,6 +7,7 @@ TagManager:
   - Card Slot
   - Treat
   - Costume
+  - Enemy
   layers:
   - Default
   - TransparentFX
