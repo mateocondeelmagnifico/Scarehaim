@@ -230,23 +230,28 @@ public class GameManager : MonoBehaviour
 
     public void SortCardsInHand(GameObject card)
     {
+        Vector3 desiredPos = new Vector3(0, -5f, -2);
+        card.transform.position = desiredPos;
+
+        if (card.transform.position == desiredPos)
+        {
+            moveCardToHand = false;
+            if (card.GetComponent<CardSlotHand>() != null)
+            {
+                //The component is disabled until it arrives to avoid bugs
+                card.GetComponent<CardSlotHand>().enabled = true;
+            }
+            currentState = turnState.ReplaceCard;
+        }
+
+        /*
         for(int i = 0; i < cardsInHand.Count; i++)
         {
-            Vector3 desiredPos = new Vector3(-2*i, -5f, 0);
+            
             //card.transform.position = Vector3.MoveTowards(card.transform.position, desiredPos, 5 * Time.deltaTime);
-            card.transform.position = desiredPos;
-            if (card.transform.position == desiredPos)
-            {
-                moveCardToHand = false;
-                if (card.GetComponent<CardSlotHand>() != null)
-                {
-                    //The component is disabled until it arrives to avoid bugs
-                    card.GetComponent<CardSlotHand>().enabled = true;
-                }
-                currentState = turnState.ReplaceCard;
-            }
+            
         }
-        
+        */
     }
 
     private void MoveToReplaceCard()

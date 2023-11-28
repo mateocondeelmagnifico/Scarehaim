@@ -65,6 +65,7 @@ public class MouseManager : MonoBehaviour
                     CardSlotHand currentCardHand = hit.collider.gameObject.GetComponent<CardSlotHand>();
                     if (Input.GetMouseButton(0) && !cardGrabbed)
                     {
+                        currentCard = currentCardHand;
                         currentCardHand.followMouse = true;
                         cardGrabbed = true;
                     }
@@ -81,7 +82,10 @@ public class MouseManager : MonoBehaviour
                     if(currentCard.hoverTimer > 0.8f)
                     {
                         display.enabled = true;
-                        display.sprite = hit.collider.GetComponentInChildren<Card>().bigImage;
+                        if(hit.collider.transform.childCount > 0)
+                        {
+                            display.sprite = hit.collider.GetComponentInChildren<Card>().bigImage;
+                        }
                     }
                 }
             }

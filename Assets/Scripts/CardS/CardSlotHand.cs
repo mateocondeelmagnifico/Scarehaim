@@ -77,8 +77,9 @@ public class CardSlotHand: CardSlot
         bool cardPlayed = false;
             if (gameManager.currentState == GameManager.turnState.CheckMovement)
             {
-                //Aqui es donde se aplica el efecto del disfraz
+                //Aqui es donde se aplica el efecto del disfraz y del treat
                 goHome = true;
+                Debug.Log(1);
                 cardPlayed = true;
             }
             
