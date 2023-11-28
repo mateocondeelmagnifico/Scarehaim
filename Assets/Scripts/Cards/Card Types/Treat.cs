@@ -11,6 +11,13 @@ public class Treat: Card
         MoveToHand(card, cardSlot);
     }
 
+    public override void PlayEffect()
+    {
+        GameManager.Instance.powerUpOn = true;
+        GameManager.Instance.player.GetComponent<Movement>().hasTreat = true;
+        Destroy(this.gameObject.transform.parent.gameObject);
+    }
+
     public override int GetCardType()
     {
         return 1;

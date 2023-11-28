@@ -818,11 +818,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 894686014138126463, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.0069456
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 894686014138126463, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.3421507
+      value: -4.3
       objectReference: {fileID: 0}
     - target: {fileID: 894686014138126463, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -964,11 +964,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 894686014138126463, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.006946
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 894686014138126463, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.3421507
+      value: -4.3
       objectReference: {fileID: 0}
     - target: {fileID: 894686014138126463, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2298,7 +2298,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPos: {x: 1, y: 1}
-  isMoving: 0
+  hasTreat: 0
+  hasCostume: 0
 --- !u!114 &688192961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3094,11 +3095,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 894686014138126463, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.006947
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 894686014138126463, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.3421507
+      value: -4.3
       objectReference: {fileID: 0}
     - target: {fileID: 894686014138126463, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5154,11 +5155,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 894686014138126463, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.006946
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 894686014138126463, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.3421507
+      value: -4.3
       objectReference: {fileID: 0}
     - target: {fileID: 894686014138126463, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5969,6 +5970,7 @@ MonoBehaviour:
   State: 0
   playerTurnInProgress: 0
   trapTriggered: 0
+  powerUpOn: 0
   currentState: 0
   cardManager: {fileID: 2012204620}
   enemy: {fileID: 798634176}
@@ -6571,11 +6573,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 894686014138126463, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.0069456
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 894686014138126463, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.3421507
+      value: -4.3
       objectReference: {fileID: 0}
     - target: {fileID: 894686014138126463, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
       propertyPath: m_LocalPosition.z

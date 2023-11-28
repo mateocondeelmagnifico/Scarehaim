@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public int cardDiscarded;
 
     public GameState State;
-    public bool playerTurnInProgress, trapTriggered;
+    public bool playerTurnInProgress, trapTriggered, powerUpOn;
     private bool winCondition, loseCondition;
 
     [HideInInspector]

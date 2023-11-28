@@ -20,6 +20,11 @@ public class Card : MonoBehaviour
     {
 
     }
+
+    public virtual void PlayEffect()
+    {
+
+    }
     public virtual void MoveToHand(GameObject card, GameObject cardSlot) 
     {
         #region Make new cardslot and change variables

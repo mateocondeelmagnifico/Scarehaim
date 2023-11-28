@@ -4,7 +4,8 @@ public class Movement : MonoBehaviour
 {
     public Vector2 myPos;
 
-    [SerializeField] private bool isMoving;
+    private bool isMoving;
+    public bool hasTreat, hasCostume;
 
     private Vector2 destination;
 
@@ -24,6 +25,8 @@ public class Movement : MonoBehaviour
             if (transform.position.x == destination.x && transform.position.y == destination.y)
             {
                 isMoving = false;
+                gameManager.powerUpOn = false;
+                hasTreat = false;
                 gameManager.currentState = GameManager.turnState.CheckCardEffect;
             }
         }
@@ -31,11 +34,31 @@ public class Movement : MonoBehaviour
 
     public void TryMove(Vector2 cardGridPos, Vector2 cardActualPos)
     {
-        if (cardGridPos.x <= myPos.x + 1 && cardGridPos.x >= myPos.x - 1 && cardGridPos.y <= myPos.y + 1 && cardGridPos.y >= myPos.y - 1 && !isMoving)
+        if (!hasTreat && !hasCostume)
         {
-            destination = cardActualPos;
-            myPos = cardGridPos;
-            isMoving = true;
+            //Normal movement
+            if (cardGridPos.x <= myPos.x + 1 && cardGridPos.x >= myPos.x - 1 && cardGridPos.y <= myPos.y + 1 && cardGridPos.y >= myPos.y - 1 && !isMoving)
+            {
+                destination = cardActualPos;
+                myPos = cardGridPos;
+                isMoving = true;
+            }
+        }
+        else
+        {
+            if (cardGridPos.x <= myPos.x + 2 && cardGridPos.x >= myPos.x - 2 && cardGridPos.y <= myPos.y + 2 && cardGridPos.y >= myPos.y - 2 && !isMoving)
+            {
+                if((cardGridPos.x == myPos.x + 2 || cardGridPos.x == myPos.x - 2) && (cardGridPos.y == myPos.y + 1 || cardGridPos.y == myPos.y - 1) || (cardGridPos.y == myPos.y + 2 || cardGridPos.y == myPos.y - 2) && (cardGridPos.x == myPos.x + 1 || cardGridPos.x == myPos.x - 1))
+                {
+                    //This is to check you cant move two spaces in one direction and one in another
+                }
+                else
+                {
+                    destination = cardActualPos;
+                    myPos = cardGridPos;
+                    isMoving = true;
+                }
+            }
         }
     }
     private void Move()
