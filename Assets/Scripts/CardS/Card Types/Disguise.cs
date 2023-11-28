@@ -11,6 +11,13 @@ public class Disguise : Card
         MoveToHand(card, cardSlot);
     }
 
+    public override void PlayEffect()
+    {
+        GameManager.Instance.powerUpOn = true;
+        GameManager.Instance.costumeOn = true;
+        Destroy(this.gameObject.transform.parent.gameObject);
+    }
+
     public override int GetCardType()
     {
         return 1;

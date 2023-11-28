@@ -27,7 +27,16 @@ public class Movement : MonoBehaviour
                 isMoving = false;
                 gameManager.powerUpOn = false;
                 hasTreat = false;
-                gameManager.currentState = GameManager.turnState.CheckCardEffect;
+
+                if(gameManager.costumeOn)
+                {
+                    gameManager.currentState = GameManager.turnState.CheckMovement;
+                    gameManager.costumeOn = false;
+                }
+                else
+                {
+                    gameManager.currentState = GameManager.turnState.CheckCardEffect;
+                }
             }
         }
     }
