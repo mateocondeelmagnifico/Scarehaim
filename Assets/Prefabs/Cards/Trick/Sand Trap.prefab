@@ -45,7 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 67a28e68231d402459018a5aa1b018ff, type: 3}
+  bigImage: {fileID: 0}
   myCost:
+    explanation: Pay 1 costume or get 3 Fear
     mainCostName: Costume
     costAmount: 1
     consequenceName: Fear

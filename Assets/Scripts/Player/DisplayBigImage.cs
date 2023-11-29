@@ -12,6 +12,15 @@ public class DisplayBigImage : MonoBehaviour
 
     private void Update()
     {
+        if (isHovered)
+        {
+            hoverTimer += Time.deltaTime;
+        }
+        else
+        {
+            hoverTimer = 0;
+        }
+
         if (otherTimer > 0)
         {
             otherTimer -= Time.deltaTime;
@@ -21,13 +30,6 @@ public class DisplayBigImage : MonoBehaviour
             isHovered = false;
         }
 
-        if (isHovered)
-        {
-            hoverTimer += Time.deltaTime;
-        }
-        else
-        {
-            hoverTimer = 0;
-        }
+       
     }
 }

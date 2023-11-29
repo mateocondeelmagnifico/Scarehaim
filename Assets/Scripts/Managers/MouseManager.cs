@@ -43,13 +43,14 @@ public class MouseManager : MonoBehaviour
                 if (hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
                 {
                     //Check if it's hitting a player or enemy
-                    hit.collider.GetComponent<DisplayBigImage>().isHovered = true;
+                    hit.collider.gameObject.GetComponent<DisplayBigImage>().isHovered = true;
+                    hit.collider.gameObject.GetComponent<DisplayBigImage>().otherTimer = 0.2f;
+
                     if (hit.collider.GetComponent<DisplayBigImage>().hoverTimer > 0.8f)
                     {
                         display.enabled = true;
                         display.sprite = hit.collider.GetComponent<DisplayBigImage>().bigImage;
                     }
-                    Debug.Log(1);
                 }
                 else
                 {

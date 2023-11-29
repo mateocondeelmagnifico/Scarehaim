@@ -5,6 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class Cost 
 {
+    [TextArea]public string explanation;
+
     public string mainCostName;
     public int costAmount;
 

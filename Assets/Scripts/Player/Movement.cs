@@ -39,6 +39,9 @@ public class Movement : MonoBehaviour
                 }
             }
         }
+
+        //este codigo es muy cutre, luego habría que cambiarlo
+        transform.position = new Vector3(transform.position.x, transform.position.y, -0.13f);
     }
 
     public void TryMove(Vector2 cardGridPos, Vector2 cardActualPos)
@@ -48,9 +51,12 @@ public class Movement : MonoBehaviour
             //Normal movement
             if (cardGridPos.x <= myPos.x + 1 && cardGridPos.x >= myPos.x - 1 && cardGridPos.y <= myPos.y + 1 && cardGridPos.y >= myPos.y - 1 && !isMoving)
             {
-                destination = cardActualPos;
-                myPos = cardGridPos;
-                isMoving = true;
+                if(cardGridPos != myPos)
+                {
+                    destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
+                    myPos = cardGridPos;
+                    isMoving = true;
+                }
             }
         }
         else
@@ -63,9 +69,12 @@ public class Movement : MonoBehaviour
                 }
                 else
                 {
-                    destination = cardActualPos;
-                    myPos = cardGridPos;
-                    isMoving = true;
+                    if (cardGridPos != myPos)
+                    { 
+                        destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
+                        myPos = cardGridPos;
+                        isMoving = true;
+                    }
                 }
             }
         }

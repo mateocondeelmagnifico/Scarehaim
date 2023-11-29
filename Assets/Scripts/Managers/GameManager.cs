@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject player, selectedCardSlot, handSlotPrefab, selectedCard, newCardSlot;
 
-    public Transform deck, discardPile;
+    public Transform deck, discardPile, hand;
     void Awake()
     {
         if(Instance == null)
@@ -232,6 +232,7 @@ public class GameManager : MonoBehaviour
     {
         Vector3 desiredPos = new Vector3(0, -5f, -2);
         card.transform.position = desiredPos;
+        card.transform.parent = hand;
 
         if (card.transform.position == desiredPos)
         {

@@ -17,6 +17,8 @@ public class SoundManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        PlaySound("Music");
     }
 
     //Called by other gameobjects, manages all sounds in the game

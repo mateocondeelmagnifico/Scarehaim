@@ -9,9 +9,12 @@ public class CardEffectManager : MonoBehaviour
     private GameObject newSlot, player;
 
     public Transform[] slotPositions;
+    private Transform hand;
     public static CardEffectManager Instance { get; private set; }
     private GameManager manager;
     private Image displayImage;
+    private TMPro.TextMeshProUGUI explanation;
+
     public bool effectActive;
 
     private string consequenceName;
@@ -27,9 +30,12 @@ public class CardEffectManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
         paymentMenu.SetActive(false);
         blackScreen.SetActive(false);
         displayImage = paymentMenu.transform.GetChild(0).GetComponent<Image>();
+        explanation = paymentMenu.transform.GetChild(3).GetComponent<TMPro.TextMeshProUGUI>();
+        hand = manager.hand;
     }
     private void Start()
     {
@@ -37,10 +43,11 @@ public class CardEffectManager : MonoBehaviour
         player = manager.player;
     }
     // Este script se encarga de los momentos en los que tienes que pagar por enemigos o trampas
-    public void ActivatePayment(Sprite image, int amount, string type)
+    public void ActivatePayment(Sprite image, int amount, string type, string explanationText)
    {
         //This displays the payment Window
         displayImage.sprite = image;
+        explanation.text = explanationText;
 
         paymentMenu.SetActive(true);
         blackScreen.SetActive(true);
@@ -113,6 +120,11 @@ public class CardEffectManager : MonoBehaviour
 
                 DeactivateMenu();
             }
+
+            if(consequenceName == "Treat")
+            {
+                
+            }
         }
     }
 
@@ -137,5 +149,17 @@ public class CardEffectManager : MonoBehaviour
             manager.currentState = GameManager.turnState.Endturn;
         }
         effectActive = false;
+    }
+
+    private void discardCards(string cardType, int amount)
+    {
+        for(int i = 0; i < hand.childCount; i++)
+        {
+            if(hand.GetChild(i).GetChild(0).GetComponent<Card>().name == cardType && amount > 0)
+            {
+                Destroy(hand.GetChild(i));
+                amount--;
+            }
+        }
     }
 }
