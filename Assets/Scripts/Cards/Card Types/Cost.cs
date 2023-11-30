@@ -7,9 +7,9 @@ public class Cost
 {
     [TextArea]public string explanation;
 
-    public string mainCostName;
+    public string CostName;
     public int costAmount;
 
-    public string consequenceName;
-    public int consequenceAmount;
+    public string consequenceName, secondConsequenceName;
+    public int consequenceAmount, secondConsequenceAmount;
 }

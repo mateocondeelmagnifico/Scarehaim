@@ -14,11 +14,9 @@ public class CardEffectManager : MonoBehaviour
     private GameManager manager;
     private Image displayImage;
     private TMPro.TextMeshProUGUI explanation;
+    private Cost currentCost;
 
     public bool effectActive;
-
-    private string consequenceName;
-    private int consequenceAmount;
 
     private void Awake()
     {
@@ -35,50 +33,46 @@ public class CardEffectManager : MonoBehaviour
         blackScreen.SetActive(false);
         displayImage = paymentMenu.transform.GetChild(0).GetComponent<Image>();
         explanation = paymentMenu.transform.GetChild(3).GetComponent<TMPro.TextMeshProUGUI>();
-        hand = manager.hand;
     }
     private void Start()
     {
         manager = GameManager.Instance;
         player = manager.player;
+        hand = manager.hand;
     }
     // Este script se encarga de los momentos en los que tienes que pagar por enemigos o trampas
-    public void ActivatePayment(Sprite image, int amount, string type, string explanationText)
+    public void ActivatePayment(Sprite image, Cost whatCost)
    {
         //This displays the payment Window
         displayImage.sprite = image;
-        explanation.text = explanationText;
+        explanation.text = whatCost.explanation;
 
         paymentMenu.SetActive(true);
         blackScreen.SetActive(true);
 
-        for(int i = 0; i < amount; i++)
+        for(int i = 0; i < whatCost.costAmount; i++)
         {
-            if(type == "Treat")
+            if(whatCost.CostName == "Treat")
             {
                newSlot = Instantiate(treatSlot);
                newSlot.transform.position = slotPositions[i].position;
                newSlot.transform.parent = blackScreen.transform;
             }
 
-            if (type == "Costume")
+            if (whatCost.CostName == "Costume")
             {
                 newSlot = Instantiate(costumeSlot);
                 newSlot.transform.position = slotPositions[i].position;
                 newSlot.transform.parent = blackScreen.transform;
             }
         }
+        currentCost = whatCost;
         effectActive = true;
-    }
-
-    public void setConsequence(int amount, string type)
-    {
-        consequenceAmount = amount;
-        consequenceName = type;
     }
 
     public void Payment(bool wantsToPay)
     {
+        //This checks if you selected pay or don't pay
         if(wantsToPay)
         {
             bool canPay = true;
@@ -114,16 +108,18 @@ public class CardEffectManager : MonoBehaviour
                 }
             }
 
-            if (consequenceName == "Fear")
-            {
-                player.GetComponent<Fear>().fear += consequenceAmount;
+            //This is for discarding cards in your hand
 
+            CheckConsequence(currentCost.consequenceName, currentCost.consequenceAmount);
+
+            if (currentCost.secondConsequenceName != null)
+            {
+                CheckConsequence(currentCost.secondConsequenceName, currentCost.secondConsequenceAmount);
                 DeactivateMenu();
             }
-
-            if(consequenceName == "Treat")
+            else
             {
-                
+                DeactivateMenu();
             }
         }
     }
@@ -155,11 +151,28 @@ public class CardEffectManager : MonoBehaviour
     {
         for(int i = 0; i < hand.childCount; i++)
         {
-            if(hand.GetChild(i).GetChild(0).GetComponent<Card>().name == cardType && amount > 0)
+            if(hand.GetChild(i).GetChild(0).tag == cardType && amount > 0)
             {
-                Destroy(hand.GetChild(i));
+                Destroy(hand.GetChild(i).gameObject);
                 amount--;
             }
+        }
+    }
+    private void CheckConsequence(string name, int howMuch)
+    {
+        if (name == "Fear")
+        {
+            player.GetComponent<Fear>().fear += howMuch;
+        }
+
+        if (name == "Treat")
+        {
+            discardCards(name, howMuch);
+        }
+
+        if (name == "Costume")
+        {
+            discardCards(name, howMuch);
         }
     }
 }

@@ -48,7 +48,9 @@ MonoBehaviour:
   bigImage: {fileID: 0}
   myCost:
     explanation: Pay 1 costume or get 3 Fear
-    mainCostName: Costume
+    CostName: 
     costAmount: 1
     consequenceName: Fear
+    secondConsequenceName: Treat
     consequenceAmount: 3
+    secondConsequenceAmount: 2

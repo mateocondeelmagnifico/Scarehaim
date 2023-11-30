@@ -25,8 +25,7 @@ public class CreatureCard : Card
     public override void Effect(GameObject card, GameObject cardSlot)
     {
         if(isDone) return; 
-        CardEffectManager.Instance.ActivatePayment(image, myCost.costAmount, myCost.mainCostName, myCost.explanation);
-        CardEffectManager.Instance.setConsequence(myCost.consequenceAmount, myCost.consequenceName);
+        CardEffectManager.Instance.ActivatePayment(image, myCost);
         isDone = true;
     }
 

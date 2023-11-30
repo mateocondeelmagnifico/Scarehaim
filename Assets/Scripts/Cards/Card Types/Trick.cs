@@ -29,7 +29,6 @@ public class Trick : Card
     }
     public override void Effect(GameObject card, GameObject cardSlot)
     {
-        CardEffectManager.Instance.ActivatePayment(image, myCost.costAmount, myCost.mainCostName, myCost.explanation);
-        CardEffectManager.Instance.setConsequence(myCost.consequenceAmount, myCost.consequenceName);
+        CardEffectManager.Instance.ActivatePayment(image, myCost);
     }
 }
