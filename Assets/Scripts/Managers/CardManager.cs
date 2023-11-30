@@ -18,6 +18,8 @@ public class CardManager : MonoBehaviour
     private GameManager gameManager;
     private CardSlot cardSlot;
     public TMPro.TextMeshProUGUI doorText;
+
+    private Transform playerPos;
     void Awake()
     {
         if (Instance == null)
@@ -30,6 +32,7 @@ public class CardManager : MonoBehaviour
         }
         
         gameManager = GameManager.Instance;
+        playerPos = gameManager.player.transform;
         doorText.text = cardsUntilExit.ToString();
     }
 
@@ -47,60 +50,32 @@ public class CardManager : MonoBehaviour
         #region Create card
         if (cardsUntilExit == 0 && !exitCardDealt)
         {
-            newCard = Instantiate(exitCard, gameManager.deck);
+            //distance < 4
+            List<GameObject> board = new List<GameObject>();
+             
+            for(int i = 0; i < cardsOnBoard.transform.childCount; i++)
+            {
+                //Get all the cards that are far away from the player
+               if(Vector2.Distance(cardsOnBoard.transform.GetChild(i).position, playerPos.position) >= 4)
+               {
+                   board.Add(cardsOnBoard.transform.GetChild(i).gameObject);
+               }
+            }
+
+            #region Replace Card with Exit Card
+            int randomNum = Random.Range(0, board.Count);
+            Destroy(board[randomNum].transform.GetChild(0).gameObject);
+            newCard = Instantiate(exitCard, board[randomNum].transform);
+            newCard.transform.parent = board[randomNum].transform;
+            board[randomNum].GetComponent<CardSlot>().cardObject = newCard;
+            #endregion
+
+            ReplaceCard();
             exitCardDealt = true;
         }
         else
         {
-            int randomInt = Random.Range(0, cards.Count);
-
-            newCard = Instantiate(cards[randomInt], gameManager.deck);
-
-            #region Check if it has run out of treats or costumes
-            if (cards.Count == 3)
-            {
-                if (randomInt == 2)
-                { 
-                    if (costumeAmount > 0)
-                    {
-                        costumeAmount--;
-                        if (costumeAmount <= 0)
-                        {
-                            cards.RemoveAt(2);
-                        }
-
-                    }
-                    if (treatAmount > 0)
-                    {
-                        treatAmount--;
-                        if (costumeAmount <= 0)
-                        {
-                            cards.RemoveAt(2);
-                        }
-                    }
-                }
-            }
-            if (cards.Count == 4)
-            {
-                if(randomInt == 2)
-                {
-                    treatAmount--;
-                    if(treatAmount <= 0)
-                    {
-                        cards.RemoveAt(2);
-                    }
-                    
-                }
-                if(randomInt == 3)
-                {
-                    costumeAmount--;
-                    if (costumeAmount <= 0)
-                    {
-                        cards.RemoveAt(3);
-                    }
-                }
-            }
-            #endregion
+            ReplaceCard();
         }
         #endregion
 
@@ -113,5 +88,58 @@ public class CardManager : MonoBehaviour
         cardHasToBeReplaced = false;
 
         gameManager.cardDiscarded--;
+    }
+
+    private void ReplaceCard()
+    {
+        int randomInt = Random.Range(0, cards.Count);
+
+        newCard = Instantiate(cards[randomInt], gameManager.deck);
+
+        #region Check if it has run out of treats or costumes
+        if (cards.Count == 3)
+        {
+            if (randomInt == 2)
+            {
+                if (costumeAmount > 0)
+                {
+                    costumeAmount--;
+                    if (costumeAmount <= 0)
+                    {
+                        cards.RemoveAt(2);
+                    }
+
+                }
+                if (treatAmount > 0)
+                {
+                    treatAmount--;
+                    if (costumeAmount <= 0)
+                    {
+                        cards.RemoveAt(2);
+                    }
+                }
+            }
+        }
+        if (cards.Count == 4)
+        {
+            if (randomInt == 2)
+            {
+                treatAmount--;
+                if (treatAmount <= 0)
+                {
+                    cards.RemoveAt(2);
+                }
+
+            }
+            if (randomInt == 3)
+            {
+                costumeAmount--;
+                if (costumeAmount <= 0)
+                {
+                    cards.RemoveAt(3);
+                }
+            }
+        }
+        #endregion
     }
 }

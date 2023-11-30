@@ -40,6 +40,8 @@ public class MouseManager : MonoBehaviour
         {
             if (hit.collider.gameObject.tag.Equals("Card Slot") || hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
             {
+                
+
                 if (hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
                 {
                     //Check if it's hitting a player or enemy
@@ -59,6 +61,7 @@ public class MouseManager : MonoBehaviour
                     currentCard.isHovered = true;
                     currentCard.otherTimer = 0.2f;
                     #endregion
+
 
                     if (Input.GetMouseButtonDown(0))
                     {
