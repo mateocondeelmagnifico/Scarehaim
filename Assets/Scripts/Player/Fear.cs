@@ -10,5 +10,15 @@ public class Fear : MonoBehaviour
     private void Update()
     {
         text.text = fear.ToString();
+
+        if(fear < 0 )
+        {
+            fear = 0;
+        }
+
+        if(fear > 10 )
+        {
+            fear = 10;
+        }
     }
 }

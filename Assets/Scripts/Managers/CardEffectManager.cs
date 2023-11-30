@@ -91,7 +91,8 @@ public class CardEffectManager : MonoBehaviour
                 {
                     Destroy(blackScreen.transform.GetChild(i).gameObject);
                 }
-                
+                CheckConsequence(currentCost.reward, currentCost.rewardAmount);
+
                 DeactivateMenu();
             }
         }

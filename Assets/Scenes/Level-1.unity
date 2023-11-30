@@ -277,7 +277,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &18462971
 Transform:
   m_ObjectHideFlags: 0
@@ -6372,6 +6372,7 @@ MonoBehaviour:
   newCardSlot: {fileID: 0}
   deck: {fileID: 832433590}
   discardPile: {fileID: 1969379264}
+  hand: {fileID: 1571830515}
 --- !u!1001 &1918458163
 PrefabInstance:
   m_ObjectHideFlags: 0
