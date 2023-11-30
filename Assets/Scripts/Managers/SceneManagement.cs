@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagement : MonoBehaviour
 {
+    //Este script es principalmente accedido por botones
     public static SceneManagement Instance { get; private set; }
 
-    public GameObject gameWonMenu;
+    public GameObject gameWonMenu, optionsMenu, blackscreen;
     private void Awake()
     {
         if (Instance == null)
@@ -40,5 +41,18 @@ public class SceneManagement : MonoBehaviour
         //Lo ampliare cuando ya veamos como vamos a organizar las escenas
         gameWonMenu.SetActive(true);
         Time.timeScale = 0;
+    }
+
+    public void DisplayMenu()
+    {
+        optionsMenu.SetActive(true);
+        blackscreen.SetActive(true);
+        Time.timeScale = 0;
+    }
+    public void ExitMenu()
+    {
+        optionsMenu.SetActive(false);
+        blackscreen.SetActive(false);
+        Time.timeScale = 1;
     }
 }
