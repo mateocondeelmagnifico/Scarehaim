@@ -40,8 +40,6 @@ public class MouseManager : MonoBehaviour
         {
             if (hit.collider.gameObject.tag.Equals("Card Slot") || hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
             {
-                
-
                 if (hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
                 {
                     //Check if it's hitting a player or enemy
@@ -62,11 +60,11 @@ public class MouseManager : MonoBehaviour
                     currentCard.otherTimer = 0.2f;
                     #endregion
 
-
                     if (Input.GetMouseButtonDown(0))
                     {
                         if (!currentCard.isInHand)
                         {
+                            SoundManager.Instance.PlaySound("Card Picked");
                             if (manager.currentState == GameManager.turnState.CheckMovement)
                             {
                                 manager.selectedCardSlot = hit.collider.gameObject;

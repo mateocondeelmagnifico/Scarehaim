@@ -140,8 +140,14 @@ public class CardSlotHand: CardSlot
                     #endregion
             }
       
-            if(!cardPlayed)
+        if(!cardPlayed)
+        {
             goHome = true;
+        }
+        else
+        {
+            SoundManager.Instance.PlaySound("Card Played");
+        }
     }
 
     private void Move(Vector3 desiredPos)

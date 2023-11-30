@@ -598,6 +598,18 @@ MonoBehaviour:
     volume: 0.8
     source: 2
     clip: {fileID: 8300000, guid: 0e2cf8131f1e59042ad8e2262ae4f3c7, type: 3}
+  - name: Card Hovered
+    volume: 0.6
+    source: 0
+    clip: {fileID: 8300000, guid: 991dc2d5906118f49b1521a91daa19e7, type: 3}
+  - name: Card Picked
+    volume: 0.8
+    source: 0
+    clip: {fileID: 8300000, guid: 9cdb7b5f0a757c14aa6ec0750bab4f9a, type: 3}
+  - name: Card Played
+    volume: 0.8
+    source: 1
+    clip: {fileID: 8300000, guid: a8c0f49d74eb9dd41812498ac6ebc820, type: 3}
   Sources:
   - {fileID: 18462974}
   - {fileID: 18462973}

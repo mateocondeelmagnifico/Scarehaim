@@ -9,7 +9,7 @@ public class CardSlot : MonoBehaviour
     bool isActivated;
     public Vector2 Location;
     public bool isInHand, isHovered;
-    private bool cardNeeded;
+    private bool cardNeeded, soundPlayed;
 
     public float hoverTimer, otherTimer;
 
@@ -30,11 +30,17 @@ public class CardSlot : MonoBehaviour
         else
         {
             isHovered = false;
+            soundPlayed = false;
         }
 
         if (isHovered)
         {
             hoverTimer += Time.deltaTime;
+            if(!soundPlayed && hoverTimer > 0.8f)
+            {
+                SoundManager.Instance.PlaySound("Card Hovered");
+                soundPlayed = true;
+            }
         }
         else
         {
