@@ -7,6 +7,7 @@ public class SceneManagement : MonoBehaviour
 {
     public static SceneManagement Instance { get; private set; }
 
+    public GameObject gameWonMenu;
     private void Awake()
     {
         if (Instance == null)
@@ -23,9 +24,21 @@ public class SceneManagement : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    public void ReloadScene()
+    {
+        ChangeScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
     public void NextScene()
     {
         //Aqui va código que cambia la escena segun en la que estes
         //Lo ampliare cuando ya veamos como vamos a organizar las escenas
+        gameWonMenu.SetActive(true);
+        Time.timeScale = 0;
     }
 }

@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
     public Transform deck, discardPile, hand;
     void Awake()
     {
+        Time.timeScale = 1.0f;
+
         if(Instance == null)
         {
             Instance = this;
@@ -67,7 +69,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(winCondition)
+        if (enemy.transform.position == player.transform.position)
+            player.GetComponent<Fear>().fear = 10;
+
+        if (winCondition)
             updateGameState(GameState.Victory);
         else if(loseCondition)
             updateGameState(GameState.Defeat);
@@ -160,9 +165,6 @@ public class GameManager : MonoBehaviour
         if (enemy != null)
         {
             enemy.TryMove();
-
-            if (enemy.myPos == playerMove.myPos) 
-                loseCondition = true;
         }
         turnCount++;
         playerTurnInProgress = true;
@@ -176,11 +178,8 @@ public class GameManager : MonoBehaviour
 
         // win cons and lose cons
         // de momento no tenemos la casilla de salida asi que la condicion de victoria es descartar todas las cartas
-        if (cardManager.cardsUntilExit == 0)
-            winCondition = true;
 
         // condicion de derrota por hacer, if(fear >= 10)
-
     }
 
     private void InformCard()

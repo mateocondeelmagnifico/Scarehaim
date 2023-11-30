@@ -17,6 +17,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
+        transform.position = new Vector3(transform.position.x, transform.position.y, -0.13f);
         if(isMoving)
         {
             Move();
