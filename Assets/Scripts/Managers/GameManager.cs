@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
         CheckCardEffect,
         ApplyCardEffect,
         Movecard,
-        ReplaceCard,
+        DiscardCard,
         Endturn
     }
 
@@ -143,7 +143,7 @@ public class GameManager : MonoBehaviour
                 }
                 break;
 
-            case turnState.ReplaceCard:
+            case turnState.DiscardCard:
                 if (cardDiscarded > 0)
                 {
                     cardManager.DistributeCard();
@@ -200,7 +200,7 @@ public class GameManager : MonoBehaviour
             if(desiredPos == discardPile.position)
             {
                 whatCard.transform.parent = discardPile;
-                currentState = turnState.ReplaceCard;
+                currentState = turnState.DiscardCard;
             }
             if (desiredPos == selectedCardSlot.transform.position)
             {
@@ -241,7 +241,7 @@ public class GameManager : MonoBehaviour
                 //The component is disabled until it arrives to avoid bugs
                 card.GetComponent<CardSlotHand>().enabled = true;
             }
-            currentState = turnState.ReplaceCard;
+            currentState = turnState.DiscardCard;
         }
 
         /*
@@ -257,7 +257,7 @@ public class GameManager : MonoBehaviour
     private void MoveToReplaceCard()
     {
         //Esta funcion esta porque no funciona cambiar el state dentro del switch
-        currentState = turnState.ReplaceCard;
+        currentState = turnState.DiscardCard;
     }
 
     public enum GameState

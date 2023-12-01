@@ -20,6 +20,7 @@ public class CardSlot : MonoBehaviour
     {
         cardManager = CardManager.Instance;
         gameManager = GameManager.Instance;
+        cardObject = transform.GetChild(0).gameObject;
     }
     private void Update()
     {
