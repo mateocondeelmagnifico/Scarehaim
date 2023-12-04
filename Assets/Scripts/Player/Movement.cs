@@ -55,13 +55,13 @@ public class Movement : MonoBehaviour
                     if(!hasMoved)
                     {
                         gameManager.currentState = GameManager.turnState.CheckMovement;
+                        turnsWithcostume--;
                         hasMoved = true;
                     }
                     else
                     {
                         gameManager.currentState = GameManager.turnState.ReplaceCard;
                         hasMoved = false;
-                        turnsWithcostume--;
                     }
                 }
                 else
