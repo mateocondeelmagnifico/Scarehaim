@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,10 +8,11 @@ public class CardManager : MonoBehaviour
 {
     public static CardManager Instance {get; set;}
 
-    public List<GameObject> cards = new List<GameObject>();
-    public GameObject exitCard;
-    public GameObject cardsOnBoard, cardPrefab;
+    public List<GameObject[]> cards = new List<GameObject[]>();
+
+    public GameObject cardsOnBoard, cardPrefab, exitCard;
     private GameObject newCard;
+    [SerializeField] private GameObject[] enviroments, enviroments2, treats, costumes;
 
     public int cardsUntilExit, treatAmount, costumeAmount;
 
@@ -34,6 +36,10 @@ public class CardManager : MonoBehaviour
         gameManager = GameManager.Instance;
         playerPos = gameManager.player.transform;
         doorText.text = cardsUntilExit.ToString();
+        cards.Add(enviroments);
+        cards.Add(enviroments2);
+        cards.Add(treats);
+        cards.Add(costumes);
     }
 
     public void CardDiscarded(CardSlot whatSlot)
@@ -92,9 +98,13 @@ public class CardManager : MonoBehaviour
 
     private void ReplaceCard()
     {
+        //this selects an individual card within card arrays
+        //The first array is for enviroments, second for treats, third for costumes
         int randomInt = Random.Range(0, cards.Count);
+        GameObject[] chosenArray = cards[randomInt];
+        int newRandom = Random.Range(0, chosenArray.Length);
 
-        newCard = Instantiate(cards[randomInt], gameManager.deck);
+        newCard = Instantiate(chosenArray[newRandom], gameManager.deck);
 
         #region Check if it has run out of treats or costumes
         if (cards.Count == 3)

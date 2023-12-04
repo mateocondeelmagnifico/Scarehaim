@@ -9264,17 +9264,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aa2ddec24034c14890574fec59359e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cards:
-  - {fileID: 638242032198707708, guid: d32385184c6a48b419c2137da8affdec, type: 3}
-  - {fileID: 638242032198707708, guid: 22c21454f35b55348af2ba91a3a3c76d, type: 3}
-  - {fileID: 638242032198707708, guid: 8ea2ad0331422734e858efeaecb84e4d, type: 3}
-  - {fileID: 638242032198707708, guid: 586fbdec72867df419f6c84721780c93, type: 3}
-  exitCard: {fileID: 638242032198707708, guid: 47cd3a6bc6ebda44ca528a7ede6a955f, type: 3}
   cardsOnBoard: {fileID: 1505720235}
   cardPrefab: {fileID: 8929231805802886072, guid: 02029671aee72844892ff20b614ee6d5, type: 3}
+  exitCard: {fileID: 638242032198707708, guid: 47cd3a6bc6ebda44ca528a7ede6a955f, type: 3}
+  enviroments:
+  - {fileID: 638242032198707708, guid: d32385184c6a48b419c2137da8affdec, type: 3}
+  enviroments2:
+  - {fileID: 638242032198707708, guid: 22c21454f35b55348af2ba91a3a3c76d, type: 3}
+  treats:
+  - {fileID: 638242032198707708, guid: 8ea2ad0331422734e858efeaecb84e4d, type: 3}
+  - {fileID: 638242032198707708, guid: c244b2479b1fb554da78f695ea0d2058, type: 3}
+  - {fileID: 638242032198707708, guid: 151013d12cc251146ab1d474bec862a1, type: 3}
+  costumes:
+  - {fileID: 638242032198707708, guid: 586fbdec72867df419f6c84721780c93, type: 3}
   cardsUntilExit: 12
-  treatAmount: 1
-  costumeAmount: 1
+  treatAmount: 2
+  costumeAmount: 2
   cardHasToBeReplaced: 0
   exitCardDealt: 0
   doorText: {fileID: 279056931}
