@@ -3263,7 +3263,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myPos: {x: 1, y: 1}
   hasTreat: 0
-  hasCostume: 0
   hasMoved: 0
   tempSprite: {fileID: 0}
   turnsWithcostume: 0
@@ -5519,7 +5518,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.673
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
