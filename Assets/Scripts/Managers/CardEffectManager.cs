@@ -87,6 +87,11 @@ public class CardEffectManager : MonoBehaviour
                     }
                 }
 
+                if(blackScreen.transform.childCount == 0)
+                {
+                    canPay = false;
+                }
+
                 if (canPay)
                 {
                     for (int i = 0; i < blackScreen.transform.childCount; i++)

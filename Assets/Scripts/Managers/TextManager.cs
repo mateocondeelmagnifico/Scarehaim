@@ -98,6 +98,7 @@ public class TextManager : MonoBehaviour
 
     public void Talk(EnemyStates state)
     {
+
         currentState = state;
 
         switch (currentState)
@@ -127,5 +128,6 @@ public class TextManager : MonoBehaviour
         textBox.text = currentTexts[Random.Range(0, currentTexts.Length)];
         displayText = false;
         textCooldown = 10;
+        textDuration = 7;
     }
 }

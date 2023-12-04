@@ -5,6 +5,7 @@ using UnityEngine;
 public class CreatureCard : Card
 {
     public Cost myCost;
+    [SerializeField] private string disguiseToIgnore;
 
     private GameManager manager;
     private Transform player;
@@ -31,6 +32,20 @@ public class CreatureCard : Card
 
     public override void Effect(GameObject card, GameObject cardSlot)
     {
+        if (player.GetComponent<Movement>().costumeName == disguiseToIgnore)
+        {
+            if(manager.currentState == GameManager.turnState.CheckCardEffect)
+            {
+                manager.currentState = GameManager.turnState.Movecard;
+                isDone = true;
+                return;
+            }
+            else
+            {
+                return;
+            }
+        }
+
         if (isDone)
         {
             manager.currentState = GameManager.turnState.Movecard;

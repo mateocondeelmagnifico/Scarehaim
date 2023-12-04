@@ -16,6 +16,8 @@ public class Movement : MonoBehaviour
 
     public int turnsWithcostume;
 
+    public string costumeName;
+
     private void Awake()
     {
         gameManager = GameManager.Instance;
@@ -33,10 +35,12 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            if(!resetSprite)
+            if(resetSprite && gameManager.currentState == GameManager.turnState.ReplaceCard)
             {
+                costumeName = "None";
                 rendereador.sprite = startSprite;
                 GetComponent<DisplayBigImage>().ResetImage();
+                resetSprite = false;
             }
         }
         #endregion

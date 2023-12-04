@@ -5,6 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class Disguise : Card
 {
+    public string myName;
+
     public override void Effect(GameObject card, GameObject cardSlot)
     {
         //TurnState is changed in the card script
@@ -17,7 +19,9 @@ public class Disguise : Card
         manager.powerUpOn = true;
         manager.player.GetComponent<Movement>().turnsWithcostume = 3;
         manager.player.GetComponent<Movement>().tempSprite = image;
+        manager.player.GetComponent<Movement>().costumeName = myName;
         manager.player.GetComponent<DisplayBigImage>().ChangeImage(bigImage);
+  
         Destroy(this.gameObject.transform.parent.gameObject);
     }
 

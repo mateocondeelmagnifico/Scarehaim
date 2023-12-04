@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -5481713987991069524}
   - component: {fileID: 5984906273801955380}
   m_Layer: 0
-  m_Name: Candy Treat Card
+  m_Name: Kelp Candy
   m_TagString: Treat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
