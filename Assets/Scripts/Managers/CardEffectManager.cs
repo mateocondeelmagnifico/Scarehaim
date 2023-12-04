@@ -72,55 +72,58 @@ public class CardEffectManager : MonoBehaviour
 
     public void Payment(bool wantsToPay)
     {
-        //This checks if you selected pay or don't pay
-        if(wantsToPay)
+        if(manager.currentState != GameManager.turnState.ReplaceCard)
         {
-            bool canPay = true;
-            //this is to check if you have payed
-            for(int i = 0; i < blackScreen.transform.childCount; i++) 
-            { 
-                if(blackScreen.transform.GetChild(i).childCount < 1)
-                {
-                    canPay = false;
-                }
-            }
-
-            if (canPay)
+            //This checks if you selected pay or don't pay
+            if (wantsToPay)
             {
-                for(int i = 0; i < blackScreen.transform.childCount; i++)
+                bool canPay = true;
+                //this is to check if you have payed
+                for (int i = 0; i < blackScreen.transform.childCount; i++)
                 {
-                    Destroy(blackScreen.transform.GetChild(i).gameObject);
+                    if (blackScreen.transform.GetChild(i).childCount < 1)
+                    {
+                        canPay = false;
+                    }
                 }
-                CheckConsequence(currentCost.reward, currentCost.rewardAmount);
 
-                DeactivateMenu();
-            }
-        }
-        else
-        {
-            //this returns the cards to your hand
-            for (int i = 0; i < blackScreen.transform.childCount; i++)
-            {
-                if (blackScreen.transform.GetChild(i).childCount != 0)
+                if (canPay)
                 {
-                    blackScreen.transform.GetChild(i).transform.GetChild(0).position = blackScreen.transform.GetChild(i).transform.GetChild(0).GetComponent<CardSlotHand>().startingPos;
-                    blackScreen.transform.GetChild(i).transform.GetComponentInChildren<CardSlotHand>().isPayment = false;
-                    blackScreen.transform.GetChild(i).transform.GetChild(0).parent = null;
+                    for (int i = 0; i < blackScreen.transform.childCount; i++)
+                    {
+                        Destroy(blackScreen.transform.GetChild(i).gameObject);
+                    }
+                    CheckConsequence(currentCost.reward, currentCost.rewardAmount);
+
+                    DeactivateMenu();
                 }
-            }
-
-            //This is for discarding cards in your hand
-
-            CheckConsequence(currentCost.consequenceName, currentCost.consequenceAmount);
-
-            if (currentCost.secondConsequenceName != null)
-            {
-                CheckConsequence(currentCost.secondConsequenceName, currentCost.secondConsequenceAmount);
-                DeactivateMenu();
             }
             else
             {
-                DeactivateMenu();
+                //this returns the cards to your hand
+                for (int i = 0; i < blackScreen.transform.childCount; i++)
+                {
+                    if (blackScreen.transform.GetChild(i).childCount != 0)
+                    {
+                        blackScreen.transform.GetChild(i).transform.GetChild(0).position = blackScreen.transform.GetChild(i).transform.GetChild(0).GetComponent<CardSlotHand>().startingPos;
+                        blackScreen.transform.GetChild(i).transform.GetComponentInChildren<CardSlotHand>().isPayment = false;
+                        blackScreen.transform.GetChild(i).transform.GetChild(0).parent = null;
+                    }
+                }
+
+                //This is for discarding cards in your hand
+
+                CheckConsequence(currentCost.consequenceName, currentCost.consequenceAmount);
+
+                if (currentCost.secondConsequenceName != null)
+                {
+                    CheckConsequence(currentCost.secondConsequenceName, currentCost.secondConsequenceAmount);
+                    DeactivateMenu();
+                }
+                else
+                {
+                    DeactivateMenu();
+                }
             }
         }
     }
@@ -143,7 +146,15 @@ public class CardEffectManager : MonoBehaviour
         else
         {
             //If you trigerred a creature
-            manager.currentState = GameManager.turnState.Endturn;
+            if(manager.currentState == GameManager.turnState.CheckMovement)
+            {
+                //This is in case you trigger a creature with a costume on
+                manager.currentState = GameManager.turnState.ReplaceCard;
+            }
+            else
+            {
+                manager.currentState = GameManager.turnState.Endturn;
+            }
         }
         effectActive = false;
     }

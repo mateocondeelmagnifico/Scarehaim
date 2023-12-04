@@ -3264,6 +3264,9 @@ MonoBehaviour:
   myPos: {x: 1, y: 1}
   hasTreat: 0
   hasCostume: 0
+  hasMoved: 0
+  tempSprite: {fileID: 0}
+  turnsWithcostume: 0
 --- !u!114 &688192961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6586,7 +6589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4676084009188673460, guid: 9f3b299b20f5f8d4fa2e979a1881927f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.94694567
+      value: 0.94000006
       objectReference: {fileID: 0}
     - target: {fileID: 4676084009188673460, guid: 9f3b299b20f5f8d4fa2e979a1881927f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9019,7 +9022,6 @@ MonoBehaviour:
   playerTurnInProgress: 0
   trapTriggered: 0
   powerUpOn: 0
-  costumeOn: 0
   currentState: 0
   cardManager: {fileID: 2012204620}
   enemy: {fileID: 798634176}

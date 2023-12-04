@@ -5,19 +5,37 @@ public class Movement : MonoBehaviour
     public Vector2 myPos;
 
     private bool isMoving;
-    public bool hasTreat, hasCostume;
+    public bool hasTreat, hasMoved;
 
     private Vector2 destination;
 
     private GameManager gameManager;
+    private SpriteRenderer renderer;
+    private Sprite startSprite;
+    public Sprite tempSprite;
+
+    public int turnsWithcostume;
 
     private void Awake()
     {
         gameManager = GameManager.Instance;
+        renderer = GetComponent<SpriteRenderer>();
+        startSprite = renderer.sprite;
     }
 
     private void Update()
     {
+        #region Change sprite
+        if (turnsWithcostume > 0)
+        {
+            //renderer.sprite = tempSprite;
+        }
+        else
+        {
+            renderer.sprite = startSprite;
+        }
+        #endregion
+
         if (isMoving)
         {
             Move();
@@ -25,16 +43,30 @@ public class Movement : MonoBehaviour
             if (transform.position.x == destination.x && transform.position.y == destination.y)
             {
                 isMoving = false;
-                gameManager.powerUpOn = false;
-                hasTreat = false;
-
-                if(gameManager.costumeOn)
+                if(hasTreat)
                 {
-                    gameManager.currentState = GameManager.turnState.CheckMovement;
-                    gameManager.costumeOn = false;
+                    gameManager.powerUpOn = false;
+                    hasTreat = false;
+                }
+                
+
+                if(turnsWithcostume > 0)
+                {
+                    if(!hasMoved)
+                    {
+                        gameManager.currentState = GameManager.turnState.CheckMovement;
+                        hasMoved = true;
+                    }
+                    else
+                    {
+                        gameManager.currentState = GameManager.turnState.ReplaceCard;
+                        hasMoved = false;
+                        turnsWithcostume--;
+                    }
                 }
                 else
                 {
+                    gameManager.powerUpOn = false;
                     gameManager.currentState = GameManager.turnState.ReplaceCard;
                 }
             }
@@ -46,7 +78,7 @@ public class Movement : MonoBehaviour
 
     public void TryMove(Vector2 cardGridPos, Vector2 cardActualPos)
     {
-        if (!hasTreat && !hasCostume)
+        if (!hasTreat && turnsWithcostume <= 0)
         {
             //Normal movement
             if (cardGridPos.x <= myPos.x + 1 && cardGridPos.x >= myPos.x - 1 && cardGridPos.y <= myPos.y + 1 && cardGridPos.y >= myPos.y - 1 && !isMoving)

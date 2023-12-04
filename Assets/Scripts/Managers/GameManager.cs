@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public int cardDiscarded;
 
     public GameState State;
-    public bool playerTurnInProgress, trapTriggered, powerUpOn, costumeOn;
+    public bool playerTurnInProgress, trapTriggered, powerUpOn;
     private bool winCondition, loseCondition, mustMove;
 
     [HideInInspector]
@@ -110,6 +110,7 @@ public class GameManager : MonoBehaviour
             //En muchos estados no pasa nada, pero estan ahía para las acciones vayan de estado en estado
             case turnState.CheckMovement:
                 //Player movement is the one that changes to the next state
+                cardInformed = false;
             break;
 
             case turnState.Moving:
@@ -137,7 +138,7 @@ public class GameManager : MonoBehaviour
             case turnState.CheckCardEffect:
                 //This is changed by the card's script
                 emptySlot = selectedCardSlot;
-                if(!trapTriggered)
+                if(!trapTriggered && !cardInformed)
                 {
                     InformCard();
                 }
@@ -196,8 +197,8 @@ public class GameManager : MonoBehaviour
     private void InformCard()
     {
         //This script tells the card that it has to activate
-        selectedCardSlot.transform.GetChild(0).GetComponent<CardObject>().myCard.Effect(selectedCardSlot.transform.GetChild(0).gameObject, handSlotPrefab);
         cardInformed = true;
+        selectedCardSlot.transform.GetChild(0).GetComponent<CardObject>().myCard.Effect(selectedCardSlot.transform.GetChild(0).gameObject, handSlotPrefab);
     }
 
     private void MoveCard( GameObject whatCard, Vector3 desiredPos)

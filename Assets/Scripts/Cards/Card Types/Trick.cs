@@ -17,7 +17,7 @@ public class Trick : Card
     private void Update()
     {
         //Check if player has triggered the trap
-        if (player.position == transform.position)
+        if (player.position.x == transform.position.x && player.position.y == transform.position.y)
         {
             manager.trapTriggered = true;
             if(manager.currentState == GameManager.turnState.CheckCardEffect)

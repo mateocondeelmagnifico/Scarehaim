@@ -13,8 +13,10 @@ public class Disguise : Card
 
     public override void PlayEffect()
     {
-        GameManager.Instance.powerUpOn = true;
-        GameManager.Instance.costumeOn = true;
+        GameManager manager = GameManager.Instance;
+        manager.powerUpOn = true;
+        manager.player.GetComponent<Movement>().turnsWithcostume = 3;
+        manager.player.GetComponent<Movement>().tempSprite = image;
         Destroy(this.gameObject.transform.parent.gameObject);
     }
 
