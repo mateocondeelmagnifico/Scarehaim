@@ -9,6 +9,12 @@ public class DisplayBigImage : MonoBehaviour
     public bool isHovered;
 
     public Sprite bigImage;
+    private Sprite baseImage;
+
+    private void Start()
+    {
+        baseImage = GetComponent<SpriteRenderer>().sprite;
+    }
 
     private void Update()
     {
@@ -29,7 +35,15 @@ public class DisplayBigImage : MonoBehaviour
         {
             isHovered = false;
         }
+    }
 
-       
+    public void ChangeImage(Sprite image)
+    {
+        bigImage = image;
+    }
+
+    public void ResetImage()
+    {
+        bigImage = baseImage;
     }
 }

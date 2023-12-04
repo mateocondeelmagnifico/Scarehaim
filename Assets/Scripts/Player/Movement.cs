@@ -4,13 +4,13 @@ public class Movement : MonoBehaviour
 {
     public Vector2 myPos;
 
-    private bool isMoving;
+    private bool isMoving, resetSprite;
     public bool hasTreat, hasMoved;
 
     private Vector2 destination;
 
     private GameManager gameManager;
-    private SpriteRenderer renderer;
+    private SpriteRenderer rendereador;
     private Sprite startSprite;
     public Sprite tempSprite;
 
@@ -19,8 +19,8 @@ public class Movement : MonoBehaviour
     private void Awake()
     {
         gameManager = GameManager.Instance;
-        renderer = GetComponent<SpriteRenderer>();
-        startSprite = renderer.sprite;
+        rendereador = GetComponent<SpriteRenderer>();
+        startSprite = rendereador.sprite;
     }
 
     private void Update()
@@ -28,11 +28,16 @@ public class Movement : MonoBehaviour
         #region Change sprite
         if (turnsWithcostume > 0)
         {
-            //renderer.sprite = tempSprite;
+            rendereador.sprite = tempSprite;
+            resetSprite = true;
         }
         else
         {
-            renderer.sprite = startSprite;
+            if(!resetSprite)
+            {
+                rendereador.sprite = startSprite;
+                GetComponent<DisplayBigImage>().ResetImage();
+            }
         }
         #endregion
 

@@ -17,6 +17,7 @@ public class Disguise : Card
         manager.powerUpOn = true;
         manager.player.GetComponent<Movement>().turnsWithcostume = 3;
         manager.player.GetComponent<Movement>().tempSprite = image;
+        manager.player.GetComponent<DisplayBigImage>().ChangeImage(bigImage);
         Destroy(this.gameObject.transform.parent.gameObject);
     }
 
