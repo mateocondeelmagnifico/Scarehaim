@@ -16,17 +16,17 @@ public class GameManager : MonoBehaviour
 
     public GameState State;
     public bool playerTurnInProgress, trapTriggered, powerUpOn, costumeOn;
-    private bool winCondition, loseCondition;
+    private bool winCondition, loseCondition, mustMove;
 
     [HideInInspector]
     public enum turnState
     {
         CheckMovement,
         Moving,
+        ReplaceCard,
         CheckCardEffect,
         ApplyCardEffect,
         Movecard,
-        ReplaceCard,
         Endturn
     }
 
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     private List<GameObject> cardsInHand = new List<GameObject>();
 
-    public GameObject player, selectedCardSlot, handSlotPrefab, selectedCard, newCardSlot;
+    public GameObject player, selectedCardSlot, handSlotPrefab, selectedCard, newCardSlot, emptySlot, newCard;
 
     public Transform deck, discardPile, hand;
     void Awake()
@@ -116,8 +116,27 @@ public class GameManager : MonoBehaviour
                 //Also changed in player movement
                 break;
 
+            case turnState.ReplaceCard:
+                if (cardDiscarded > 0)
+                {
+                    cardManager.DistributeCard();
+                    mustMove = true;
+                }
+
+                if(mustMove)
+                {
+                    MoveCard(newCard, emptySlot.transform.position);
+                }
+                else
+                {
+                    ChangeState(turnState.CheckCardEffect);
+                }
+
+                break;
+
             case turnState.CheckCardEffect:
                 //This is changed by the card's script
+                emptySlot = selectedCardSlot;
                 if(!trapTriggered)
                 {
                     InformCard();
@@ -139,16 +158,8 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    MoveToReplaceCard();
+                    ChangeState(turnState.Endturn);
                 }
-                break;
-
-            case turnState.ReplaceCard:
-                if (cardDiscarded > 0)
-                {
-                    cardManager.DistributeCard();
-                }
-                MoveCard(selectedCard, selectedCardSlot.transform.position);
                 break;
 
             case turnState.Endturn:
@@ -200,11 +211,12 @@ public class GameManager : MonoBehaviour
             if(desiredPos == discardPile.position)
             {
                 whatCard.transform.parent = discardPile;
-                currentState = turnState.ReplaceCard;
-            }
-            if (desiredPos == selectedCardSlot.transform.position)
-            {
                 currentState = turnState.Endturn;
+            }
+            if (desiredPos == emptySlot.transform.position)
+            {
+                currentState = turnState.CheckCardEffect;
+                mustMove = false;
             }
         }
     }
@@ -241,7 +253,7 @@ public class GameManager : MonoBehaviour
                 //The component is disabled until it arrives to avoid bugs
                 card.GetComponent<CardSlotHand>().enabled = true;
             }
-            currentState = turnState.ReplaceCard;
+            currentState = turnState.Endturn;
         }
 
         /*
@@ -254,10 +266,10 @@ public class GameManager : MonoBehaviour
         */
     }
 
-    private void MoveToReplaceCard()
+    private void ChangeState(turnState newstate)
     {
         //Esta funcion esta porque no funciona cambiar el state dentro del switch
-        currentState = turnState.ReplaceCard;
+        currentState = newstate;
     }
 
     public enum GameState

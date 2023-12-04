@@ -5516,7 +5516,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.667
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -9029,6 +9029,8 @@ MonoBehaviour:
   handSlotPrefab: {fileID: 5757337979554174078, guid: 215caa4bbbf4e41498cc4f35ea8d78b8, type: 3}
   selectedCard: {fileID: 0}
   newCardSlot: {fileID: 0}
+  emptySlot: {fileID: 0}
+  newCard: {fileID: 0}
   deck: {fileID: 832433590}
   discardPile: {fileID: 1969379264}
   hand: {fileID: 1571830515}

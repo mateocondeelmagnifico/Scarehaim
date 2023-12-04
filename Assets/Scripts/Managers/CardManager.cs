@@ -82,7 +82,7 @@ public class CardManager : MonoBehaviour
         #region Assign card
         cardSlot.cardObject = newCard;
         newCard.transform.parent = cardSlot.gameObject.transform;
-        gameManager.selectedCard = newCard;
+        gameManager.newCard = newCard;
         #endregion
 
         cardHasToBeReplaced = false;

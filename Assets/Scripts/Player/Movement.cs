@@ -35,7 +35,7 @@ public class Movement : MonoBehaviour
                 }
                 else
                 {
-                    gameManager.currentState = GameManager.turnState.CheckCardEffect;
+                    gameManager.currentState = GameManager.turnState.ReplaceCard;
                 }
             }
         }
