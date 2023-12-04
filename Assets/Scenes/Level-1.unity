@@ -4041,10 +4041,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textBox: {fileID: 4159367}
-  phrases:
-  - Ha llegado el Afilador, afilamos todo tipo de trastos viejos, navajas cuchillos...
-  - "Arriba espa\xF1a"
-  - jujujuju
+  greetings:
+  - 'Two little fishes came to play with us, guys!
+
+'
+  - "A kid\u2026 oh, two of them? What a game\u2026"
+  - 'What are you doing here? How old are you?
+
+'
+  basicDialogue:
+  - 'jose maria
+
+'
+  - jose luis
+  - jose jose
+  fearOver7:
+  - "C\u2019mon, girl, your little brother is crying\r\n"
+  - "You are so mean to him! No doubt you\u2019re the older one"
+  - "It has to be so easy to play when the bad guy is not right behind you\u2026
+    but your brother"
+  - "Aw\u2026 your little brother is sobbing! Poor thing"
+  annoyed:
+  - "You are very smart, aren\u2019t you?\r\n"
+  - "My, my, children. Don\u2019t do that again"
+  - You both are starting to be a nuisance
+  - How can your mother stand such an annoying pair of kids?
+  nearPlayer:
+  - "You smell\u2026 good\r\n"
+  - I can almost touch you
+  currentState: 0
 --- !u!1 &914377145 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 638242032198707708, guid: 8ea2ad0331422734e858efeaecb84e4d, type: 3}

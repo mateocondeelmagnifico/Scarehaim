@@ -4,23 +4,51 @@ using UnityEngine.UI;
 public class TextManager : MonoBehaviour
 {
     public TMPro.TextMeshProUGUI textBox;
+    public static TextManager Instance { get; private set; }
 
     [TextArea]
-    [SerializeField] private string[] phrases;
+    [SerializeField] private string[] greetings, basicDialogue, fearOver7, annoyed, nearPlayer;
+    private string[] currentTexts;
 
-    private float textDuration, textCooldown;
-
-    private bool displayText;
-    void Start()
+    [HideInInspector]
+    public enum EnemyStates
     {
+        Greeting,
+        Idle,
+        Annoyed,
+        NearPlayer,
+        FearOver7,
+        HasWon,
+        HasLost
+    }
+
+    [HideInInspector] public EnemyStates currentState;
+
+    public float textCooldown;
+    private float textDuration;
+
+    public bool fearReached, closeToEnemy;
+    private bool displayText;
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         textBox.text = "";
-        textCooldown = 10;
+        textCooldown = 4;
+        currentState = EnemyStates.Greeting;
     }
 
     void Update()
     {
+        #region Auto Talk
         //Display text on a cooldown
-        if(textCooldown > 0)
+        if (textCooldown > 0)
         {
             textCooldown -= Time.deltaTime;
         }
@@ -37,13 +65,67 @@ public class TextManager : MonoBehaviour
 
             if(displayText)
             {
-                textBox.text = phrases[Random.Range(0, phrases.Length)];
-                displayText = false;
+                Talk(currentState);
             }
         }
         else
         {
             textBox.text = "";
         }
+        #endregion
+
+        #region Change State
+        if (currentState != EnemyStates.Greeting)
+        {
+            if (!closeToEnemy)
+            {
+                if (!fearReached)
+                {
+                    currentState = EnemyStates.Idle;
+                }
+                else
+                {
+                    currentState = EnemyStates.NearPlayer;
+                }
+            }
+            else
+            {
+                currentState = EnemyStates.NearPlayer;
+            }
+        }
+        #endregion
+    }
+
+    public void Talk(EnemyStates state)
+    {
+        currentState = state;
+
+        switch (currentState)
+        {
+            case EnemyStates.Greeting:
+                currentTexts = greetings;
+                currentState = EnemyStates.Idle;
+                break;
+
+            case EnemyStates.Idle:
+                currentTexts = basicDialogue;
+                break;
+
+            case EnemyStates.Annoyed:
+                currentTexts = annoyed;
+                break;
+
+            case EnemyStates.NearPlayer:
+                currentTexts = nearPlayer;
+                break;
+
+            case EnemyStates.FearOver7:
+                currentTexts = fearOver7;
+                break;
+        }
+
+        textBox.text = currentTexts[Random.Range(0, currentTexts.Length)];
+        displayText = false;
+        textCooldown = 10;
     }
 }
