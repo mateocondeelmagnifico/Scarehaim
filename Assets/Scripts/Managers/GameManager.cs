@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
 
         currentState = turnState.CheckMovement;
 
-        Camera.main.pixelRect = new Rect(0, 0, 1280, 720);
+        Camera.main.pixelRect = new Rect(0, 0, 1920, 1080);
     }
 
     void Start()
