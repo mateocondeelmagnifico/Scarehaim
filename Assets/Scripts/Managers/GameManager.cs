@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -57,6 +56,7 @@ public class GameManager : MonoBehaviour
 
         currentState = turnState.CheckMovement;
 
+        //This is to force a resolution
         Camera.main.pixelRect = new Rect(0, 0, 1920, 1080);
     }
 
@@ -69,6 +69,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
         if (enemy.transform.position == player.transform.position)
             player.GetComponent<Fear>().fear = 10;
 

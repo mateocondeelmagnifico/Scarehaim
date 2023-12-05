@@ -21,6 +21,7 @@ public class DisplayBigImage : MonoBehaviour
         if(playerIcon != null)
         {
             baseIcon = playerIcon.sprite;
+            DeactivateIcons();
         }
     }
 
@@ -46,17 +47,17 @@ public class DisplayBigImage : MonoBehaviour
         if (otherTimer > 0)
         {
             otherTimer -= Time.deltaTime;
+            if(otherTimer < 0.19f && isHovered)
+            {
+                //Deactivate UI Icons in big display
+                DeactivateIcons();
+            }
         }
         else
-        {
-            //Deactivate UI Icons in big display
-            if (playerIcon != null)
-            {
-                bigText.text = "";
-                bigIcon.enabled = false;
-                bigFear.text = "";
-            }
+        { 
             isHovered = false;
+            //Deactivate UI Icons in big display
+            DeactivateIcons();
         }
     }
 
@@ -72,4 +73,15 @@ public class DisplayBigImage : MonoBehaviour
         playerIcon.sprite = baseIcon;
         playerText.text = "";
     }
+
+    private void DeactivateIcons()
+    {
+        if (playerIcon != null)
+        {
+            bigText.text = "";
+            bigIcon.enabled = false;
+            bigFear.text = "";
+        }
+    }
 }
+

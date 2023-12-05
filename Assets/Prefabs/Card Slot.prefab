@@ -121,4 +121,7 @@ MonoBehaviour:
   cardObject: {fileID: 0}
   Location: {x: 0, y: 0}
   isInHand: 0
+  isHovered: 0
   hoverTimer: 0
+  otherTimer: 0
+  gameManager: {fileID: 0}
