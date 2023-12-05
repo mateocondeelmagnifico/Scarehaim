@@ -12,7 +12,7 @@ public class CardManager : MonoBehaviour
 
     public GameObject cardsOnBoard, cardPrefab, exitCard;
     private GameObject newCard;
-    [SerializeField] private GameObject[] enviroments, enviroments2, enviroments3, enviroments4, treats, costumes;
+    [SerializeField] private GameObject[] enviroments, enviroments2, enviroments3, treats, costumes;
 
     public int cardsUntilExit, treatAmount, costumeAmount;
 
@@ -37,12 +37,14 @@ public class CardManager : MonoBehaviour
         gameManager = GameManager.Instance;
         playerPos = gameManager.player.transform;
         doorText.text = cardsUntilExit.ToString();
+
+        #region Create Cards List
         cards.Add(enviroments);
         cards.Add(enviroments2);
         cards.Add(enviroments3);
-        cards.Add(enviroments4);
         cards.Add(treats);
         cards.Add(costumes);
+        #endregion
     }
 
     public void CardDiscarded(CardSlot whatSlot)
