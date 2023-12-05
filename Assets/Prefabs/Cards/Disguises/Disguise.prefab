@@ -115,3 +115,4 @@ MonoBehaviour:
   image: {fileID: 21300000, guid: 289714f75b6b01447b37180199fae6f0, type: 3}
   bigImage: {fileID: 21300000, guid: d8dc65d14cdc7b447b2c6641466481df, type: 3}
   myName: Ghost Garb
+  icon: {fileID: 21300000, guid: a03fcccdac11753458ffbd190cd13032, type: 3}

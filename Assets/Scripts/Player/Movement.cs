@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour
 
     private GameManager gameManager;
     private SpriteRenderer rendereador;
+    private DisplayBigImage display;
     private Sprite startSprite;
     public Sprite tempSprite;
 
@@ -23,6 +24,7 @@ public class Movement : MonoBehaviour
         gameManager = GameManager.Instance;
         rendereador = GetComponent<SpriteRenderer>();
         startSprite = rendereador.sprite;
+        display = GetComponent<DisplayBigImage>();
     }
 
     private void Update()
@@ -31,6 +33,7 @@ public class Movement : MonoBehaviour
         if (turnsWithcostume > 0)
         {
             rendereador.sprite = tempSprite;
+            display.playerText.text = turnsWithcostume.ToString();
             resetSprite = true;
         }
         else
