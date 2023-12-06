@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4676084009188673460}
   - component: {fileID: -1412659407225101089}
   - component: {fileID: -5481713987991069524}
-  - component: {fileID: 2019230849771319314}
+  - component: {fileID: -853163976463578269}
   m_Layer: 0
-  m_Name: Mystic Lagoon Card
+  m_Name: Kelpie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9757ec7f74b773b4d8d55086e343fdb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myCard: {fileID: 2019230849771319314}
-  rendereador: {fileID: 0}
+  myCard: {fileID: -853163976463578269}
+  rendereador: {fileID: -5481713987991069524}
 --- !u!212 &-5481713987991069524
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -89,7 +89,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: ced711be540de9e44ac415ff7807c7f2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 359fbd18a3f48ad4183d9fa4a4252930, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,7 +100,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2019230849771319314
+--- !u!114 &-853163976463578269
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,8 +109,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 638242032198707708}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bafef3b2da35494f9177b51ec0baaa8, type: 3}
+  m_Script: {fileID: 11500000, guid: d408c0bcb01fae44bb9a824eeb57ef26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: ced711be540de9e44ac415ff7807c7f2, type: 3}
-  bigImage: {fileID: 21300000, guid: 7ccea8b5e1a79564a9fa51890f46105b, type: 3}
+  image: {fileID: 21300000, guid: 359fbd18a3f48ad4183d9fa4a4252930, type: 3}
+  bigImage: {fileID: 21300000, guid: 5d4b21cb18226424ba18506ed5c81f10, type: 3}
+  myCost:
+    explanation: Pay 2 Treats or Get 3 Fear
+    CostName: Treat
+    costAmount: 2
+    reward: 
+    rewardAmount: 0
+    consequenceName: Fear
+    secondConsequenceName: 
+    consequenceAmount: 3
+    secondConsequenceAmount: 0
+  disguiseToIgnore: 

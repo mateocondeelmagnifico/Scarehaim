@@ -8,7 +8,8 @@ public class SceneManagement : MonoBehaviour
     //Este script es principalmente accedido por botones
     public static SceneManagement Instance { get; private set; }
 
-    public GameObject gameWonMenu, optionsMenu, blackscreen;
+    public GameObject gameWonMenu, optionsMenu, pauseMenu, blackscreen;
+    private GameObject currentMenu;
     private void Awake()
     {
         if (Instance == null)
@@ -18,6 +19,21 @@ public class SceneManagement : MonoBehaviour
         else
         {
             Destroy(this);
+        }
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(currentMenu == null)
+            {
+                DisplayMenu(pauseMenu);
+            }
+            else
+            {
+                ExitMenu(currentMenu);
+            }
         }
     }
     public void ChangeScene(string sceneName)
@@ -43,15 +59,17 @@ public class SceneManagement : MonoBehaviour
         Time.timeScale = 0;
     }
 
-    public void DisplayMenu()
+    public void DisplayMenu(GameObject menu)
     {
-        optionsMenu.SetActive(true);
+        currentMenu = menu;
+        menu.SetActive(true);
         blackscreen.SetActive(true);
         Time.timeScale = 0;
     }
-    public void ExitMenu()
+    public void ExitMenu(GameObject menu)
     {
-        optionsMenu.SetActive(false);
+        currentMenu = null;
+        menu.SetActive(false);
         blackscreen.SetActive(false);
         Time.timeScale = 1;
     }

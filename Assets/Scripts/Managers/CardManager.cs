@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,14 +8,16 @@ public class CardManager : MonoBehaviour
 {
     public static CardManager Instance {get; set;}
 
-    public List<GameObject> cards = new List<GameObject>();
-    public GameObject exitCard;
-    public GameObject cardsOnBoard, cardPrefab;
+    public List<GameObject[]> cards = new List<GameObject[]>();
+
+    public GameObject cardsOnBoard, cardPrefab, exitCard;
     private GameObject newCard;
+    [SerializeField] private GameObject[] enviroments, enviroments2, enviroments3, treats, costumes;
 
     public int cardsUntilExit, treatAmount, costumeAmount;
 
     public bool cardHasToBeReplaced, exitCardDealt;
+    private bool powerUpDealt;
     private GameManager gameManager;
     private CardSlot cardSlot;
     public TMPro.TextMeshProUGUI doorText;
@@ -34,6 +37,14 @@ public class CardManager : MonoBehaviour
         gameManager = GameManager.Instance;
         playerPos = gameManager.player.transform;
         doorText.text = cardsUntilExit.ToString();
+
+        #region Create Cards List
+        cards.Add(enviroments);
+        cards.Add(enviroments2);
+        cards.Add(enviroments3);
+        cards.Add(treats);
+        cards.Add(costumes);
+        #endregion
     }
 
     public void CardDiscarded(CardSlot whatSlot)
@@ -82,7 +93,7 @@ public class CardManager : MonoBehaviour
         #region Assign card
         cardSlot.cardObject = newCard;
         newCard.transform.parent = cardSlot.gameObject.transform;
-        gameManager.selectedCard = newCard;
+        gameManager.newCard = newCard;
         #endregion
 
         cardHasToBeReplaced = false;
@@ -92,21 +103,35 @@ public class CardManager : MonoBehaviour
 
     private void ReplaceCard()
     {
-        int randomInt = Random.Range(0, cards.Count);
+        //this selects an individual card within card arrays
+        //The first array is for enviroments, second for treats, third for costumes
+        int randomInt = 0;
+        if (powerUpDealt)
+        {
+            //This is so you don't get two treats or costumes in a row
+            randomInt = Random.Range(0, 3);
+            powerUpDealt = false;
+        }
+        else
+        {
+            randomInt = Random.Range(0, cards.Count);
+        }
+        GameObject[] chosenArray = cards[randomInt];
+        int newRandom = Random.Range(0, chosenArray.Length);
 
-        newCard = Instantiate(cards[randomInt], gameManager.deck);
+        newCard = Instantiate(chosenArray[newRandom], gameManager.deck);
 
         #region Check if it has run out of treats or costumes
-        if (cards.Count == 3)
+        if (cards.Count == 5)
         {
-            if (randomInt == 2)
+            if (randomInt == 4)
             {
                 if (costumeAmount > 0)
                 {
                     costumeAmount--;
                     if (costumeAmount <= 0)
                     {
-                        cards.RemoveAt(2);
+                        cards.RemoveAt(4);
                     }
 
                 }
@@ -115,29 +140,32 @@ public class CardManager : MonoBehaviour
                     treatAmount--;
                     if (costumeAmount <= 0)
                     {
-                        cards.RemoveAt(2);
+                        cards.RemoveAt(4);
                     }
                 }
+
+                powerUpDealt = true;
             }
         }
-        if (cards.Count == 4)
+        if (cards.Count == 6)
         {
-            if (randomInt == 2)
+            if (randomInt == 4)
             {
                 treatAmount--;
                 if (treatAmount <= 0)
                 {
-                    cards.RemoveAt(2);
+                    cards.RemoveAt(4);
                 }
-
+                powerUpDealt = true;
             }
-            if (randomInt == 3)
+            if (randomInt == 5)
             {
                 costumeAmount--;
                 if (costumeAmount <= 0)
                 {
-                    cards.RemoveAt(3);
+                    cards.RemoveAt(5);
                 }
+                powerUpDealt = true;
             }
         }
         #endregion

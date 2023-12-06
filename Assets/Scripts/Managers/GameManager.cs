@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -15,18 +14,18 @@ public class GameManager : MonoBehaviour
     public int cardDiscarded;
 
     public GameState State;
-    public bool playerTurnInProgress, trapTriggered, powerUpOn, costumeOn;
-    private bool winCondition, loseCondition;
+    public bool playerTurnInProgress, trapTriggered, powerUpOn;
+    private bool winCondition, loseCondition, mustMove;
 
     [HideInInspector]
     public enum turnState
     {
         CheckMovement,
         Moving,
+        ReplaceCard,
         CheckCardEffect,
         ApplyCardEffect,
         Movecard,
-        DiscardCard,
         Endturn
     }
 
@@ -39,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     private List<GameObject> cardsInHand = new List<GameObject>();
 
-    public GameObject player, selectedCardSlot, handSlotPrefab, selectedCard, newCardSlot;
+    public GameObject player, selectedCardSlot, handSlotPrefab, selectedCard, newCardSlot, emptySlot, newCard;
 
     public Transform deck, discardPile, hand;
     void Awake()
@@ -57,7 +56,8 @@ public class GameManager : MonoBehaviour
 
         currentState = turnState.CheckMovement;
 
-        
+        //This is to force a resolution
+        Camera.main.pixelRect = new Rect(0, 0, 1920, 1080);
     }
 
     void Start()
@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+
         if (enemy.transform.position == player.transform.position)
             player.GetComponent<Fear>().fear = 10;
 
@@ -110,15 +111,35 @@ public class GameManager : MonoBehaviour
             //En muchos estados no pasa nada, pero estan ahía para las acciones vayan de estado en estado
             case turnState.CheckMovement:
                 //Player movement is the one that changes to the next state
+                cardInformed = false;
             break;
 
             case turnState.Moving:
                 //Also changed in player movement
                 break;
 
+            case turnState.ReplaceCard:
+                if (cardDiscarded > 0)
+                {
+                    cardManager.DistributeCard();
+                    mustMove = true;
+                }
+
+                if(mustMove)
+                {
+                    MoveCard(newCard, emptySlot.transform.position);
+                }
+                else
+                {
+                    ChangeState(turnState.CheckCardEffect);
+                }
+
+                break;
+
             case turnState.CheckCardEffect:
                 //This is changed by the card's script
-                if(!trapTriggered)
+                emptySlot = selectedCardSlot;
+                if(!trapTriggered && !cardInformed)
                 {
                     InformCard();
                 }
@@ -139,16 +160,8 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    MoveToReplaceCard();
+                    ChangeState(turnState.Endturn);
                 }
-                break;
-
-            case turnState.DiscardCard:
-                if (cardDiscarded > 0)
-                {
-                    cardManager.DistributeCard();
-                }
-                MoveCard(selectedCard, selectedCardSlot.transform.position);
                 break;
 
             case turnState.Endturn:
@@ -185,8 +198,8 @@ public class GameManager : MonoBehaviour
     private void InformCard()
     {
         //This script tells the card that it has to activate
-        selectedCardSlot.transform.GetChild(0).GetComponent<CardObject>().myCard.Effect(selectedCardSlot.transform.GetChild(0).gameObject, handSlotPrefab);
         cardInformed = true;
+        selectedCardSlot.transform.GetChild(0).GetComponent<CardObject>().myCard.Effect(selectedCardSlot.transform.GetChild(0).gameObject, handSlotPrefab);
     }
 
     private void MoveCard( GameObject whatCard, Vector3 desiredPos)
@@ -200,11 +213,12 @@ public class GameManager : MonoBehaviour
             if(desiredPos == discardPile.position)
             {
                 whatCard.transform.parent = discardPile;
-                currentState = turnState.DiscardCard;
-            }
-            if (desiredPos == selectedCardSlot.transform.position)
-            {
                 currentState = turnState.Endturn;
+            }
+            if (desiredPos == emptySlot.transform.position)
+            {
+                currentState = turnState.CheckCardEffect;
+                mustMove = false;
             }
         }
     }
@@ -241,7 +255,7 @@ public class GameManager : MonoBehaviour
                 //The component is disabled until it arrives to avoid bugs
                 card.GetComponent<CardSlotHand>().enabled = true;
             }
-            currentState = turnState.DiscardCard;
+            currentState = turnState.Endturn;
         }
 
         /*
@@ -254,10 +268,10 @@ public class GameManager : MonoBehaviour
         */
     }
 
-    private void MoveToReplaceCard()
+    private void ChangeState(turnState newstate)
     {
         //Esta funcion esta porque no funciona cambiar el state dentro del switch
-        currentState = turnState.DiscardCard;
+        currentState = newstate;
     }
 
     public enum GameState
