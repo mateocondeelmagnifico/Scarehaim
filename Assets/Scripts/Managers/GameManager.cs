@@ -69,10 +69,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
 
         if (enemy.transform.position == player.transform.position)
             player.GetComponent<Fear>().fear = 10;
