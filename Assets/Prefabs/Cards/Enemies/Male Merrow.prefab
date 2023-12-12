@@ -89,7 +89,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 7034949fde16336488b258b8a95e7f04, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 797a6973ceecad44687e41b574a0794e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -112,8 +112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d408c0bcb01fae44bb9a824eeb57ef26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: 7034949fde16336488b258b8a95e7f04, type: 3}
-  bigImage: {fileID: 21300000, guid: dba5fc900ab93be469c451d9644e6fea, type: 3}
+  image: {fileID: 21300000, guid: 797a6973ceecad44687e41b574a0794e, type: 3}
+  bigImage: {fileID: 21300000, guid: 7451aed88a72e1e4cbf16233b85b646b, type: 3}
   myCost:
     explanation: A wild merrow appears, receive 3 fear
     CostName: 
