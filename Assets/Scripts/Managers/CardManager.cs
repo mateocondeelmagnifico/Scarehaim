@@ -16,7 +16,7 @@ public class CardManager : MonoBehaviour
 
     public int cardsUntilExit, treatAmount, costumeAmount;
 
-    public bool cardHasToBeReplaced, exitCardDealt;
+    public bool exitCardDealt;
     private bool powerUpDealt;
     private GameManager gameManager;
     private CardSlot cardSlot;
@@ -49,14 +49,14 @@ public class CardManager : MonoBehaviour
 
     public void CardDiscarded(CardSlot whatSlot)
     {
-        cardSlot = whatSlot;
-        cardHasToBeReplaced = true;
-        gameManager.cardDiscarded++;
+        //cardSlot = whatSlot;
+        gameManager.slotToReplaceNew = whatSlot.gameObject;
         doorText.text = cardsUntilExit.ToString();
     }
     public void DistributeCard()
     {
         //Called by gameManager
+        cardSlot = gameManager.slotToReplaceOld.GetComponent<CardSlot>();
 
         #region Create card
         if (cardsUntilExit == 0 && !exitCardDealt)
@@ -96,9 +96,6 @@ public class CardManager : MonoBehaviour
         gameManager.newCard = newCard;
         #endregion
 
-        cardHasToBeReplaced = false;
-
-        gameManager.cardDiscarded--;
     }
 
     private void ReplaceCard()
