@@ -130,7 +130,6 @@ public class GameManager : MonoBehaviour
 
                 if (mustMove)
                 {
-                    Debug.Log(newCard);
                     MoveCard(newCard, slotToReplaceOld.transform.position);
                 }
                 else
