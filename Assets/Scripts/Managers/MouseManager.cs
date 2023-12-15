@@ -65,7 +65,7 @@ public class MouseManager : MonoBehaviour
                         if (!currentCard.isInHand)
                         {
                             SoundManager.Instance.PlaySound("Card Picked");
-                            if (manager.currentState == GameManager.turnState.CheckMovement)
+                            if (manager.currentState == GameManager.turnState.CheckMovement && currentCard.transform.childCount > 0)
                             {
                                 manager.selectedCardSlot = hit.collider.gameObject;
                                 cardInformed = false;

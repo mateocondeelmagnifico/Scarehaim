@@ -55,7 +55,7 @@ public class TextManager : MonoBehaviour
         else
         {
             textDuration = 7;
-            textCooldown = 14;
+            textCooldown = 25;
             displayText = true;
         }
 
@@ -127,7 +127,7 @@ public class TextManager : MonoBehaviour
 
         textBox.text = currentTexts[Random.Range(0, currentTexts.Length)];
         displayText = false;
-        textCooldown = 10;
+        textCooldown = 25;
         textDuration = 7;
     }
 }

@@ -8,14 +8,15 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public Movement playerMove;
-    public bool moveCardToHand, moveCard, cardInformed;
+    [HideInInspector] public Movement playerMove;
+    [HideInInspector] public bool moveCardToHand, moveCard, cardInformed;
 
     public int cardDiscarded;
 
     public GameState State;
-    public bool playerTurnInProgress, trapTriggered, powerUpOn;
-    private bool winCondition, loseCondition, mustMove;
+    [HideInInspector] public bool playerTurnInProgress, trapTriggered, powerUpOn;
+    private bool winCondition, loseCondition;
+    public bool mustMove;
 
     [HideInInspector]
     public enum turnState
@@ -31,15 +32,16 @@ public class GameManager : MonoBehaviour
 
     public turnState currentState;
 
-    public CardManager cardManager;
-    public EnemyMovement enemy;
+    [HideInInspector] public CardManager cardManager;
+    [HideInInspector] public EnemyMovement enemy;
 
     public int turnCount;
 
     private List<GameObject> cardsInHand = new List<GameObject>();
 
-    public GameObject player, selectedCardSlot, handSlotPrefab, selectedCard, newCardSlot, emptySlot, newCard;
+    public GameObject player, selectedCardSlot, handSlotPrefab, selectedCard, newCardSlot, emptySlot, newCard, slotToReplaceOld, slotToReplaceNew;
 
+    [HideInInspector]
     public Transform deck, discardPile, hand;
     void Awake()
     {
@@ -119,15 +121,16 @@ public class GameManager : MonoBehaviour
                 break;
 
             case turnState.ReplaceCard:
-                if (cardDiscarded > 0)
+                
+                if (slotToReplaceOld != null && !mustMove)
                 {
                     cardManager.DistributeCard();
                     mustMove = true;
                 }
 
-                if(mustMove)
+                if (mustMove)
                 {
-                    MoveCard(newCard, emptySlot.transform.position);
+                    MoveCard(newCard, slotToReplaceOld.transform.position);
                 }
                 else
                 {
@@ -138,6 +141,7 @@ public class GameManager : MonoBehaviour
 
             case turnState.CheckCardEffect:
                 //This is changed by the card's script
+                slotToReplaceOld = slotToReplaceNew;
                 emptySlot = selectedCardSlot;
                 if(!trapTriggered && !cardInformed)
                 {
@@ -153,6 +157,7 @@ public class GameManager : MonoBehaviour
                 if (moveCardToHand || moveCard)
                 {
                     if (moveCard)
+                        //MoveCard(selectedCard, discardPile.position);
                         MoveCard(selectedCard, discardPile.position);
 
                     if(moveCardToHand)
@@ -206,6 +211,7 @@ public class GameManager : MonoBehaviour
     {
         //This cript is used to move cards to the deck and discard pile
         whatCard.transform.position = Vector3.MoveTowards(whatCard.transform.position, desiredPos, 8 * Time.deltaTime);
+
         if(whatCard.transform.position == desiredPos)
         {
             moveCard = false;
@@ -215,7 +221,7 @@ public class GameManager : MonoBehaviour
                 whatCard.transform.parent = discardPile;
                 currentState = turnState.Endturn;
             }
-            if (desiredPos == emptySlot.transform.position)
+            else if(slotToReplaceOld != null)
             {
                 currentState = turnState.CheckCardEffect;
                 mustMove = false;
