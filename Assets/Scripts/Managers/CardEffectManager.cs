@@ -9,13 +9,14 @@ public class CardEffectManager : MonoBehaviour
     private GameObject newSlot, player;
 
     public Transform[] slotPositions;
+    private Transform hand;
     public static CardEffectManager Instance { get; private set; }
     private GameManager manager;
     private Image displayImage;
-    public bool effectActive;
+    private TMPro.TextMeshProUGUI explanation;
+    private Cost currentCost;
 
-    private string consequenceName;
-    private int consequenceAmount;
+    public bool effectActive;
 
     private void Awake()
     {
@@ -27,91 +28,107 @@ public class CardEffectManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
         paymentMenu.SetActive(false);
         blackScreen.SetActive(false);
         displayImage = paymentMenu.transform.GetChild(0).GetComponent<Image>();
+        explanation = paymentMenu.transform.GetChild(3).GetComponent<TMPro.TextMeshProUGUI>();
     }
     private void Start()
     {
         manager = GameManager.Instance;
         player = manager.player;
+        hand = manager.hand;
     }
     // Este script se encarga de los momentos en los que tienes que pagar por enemigos o trampas
-    public void ActivatePayment(Sprite image, int amount, string type)
+    public void ActivatePayment(Sprite image, Cost whatCost)
    {
         //This displays the payment Window
         displayImage.sprite = image;
+        explanation.text = whatCost.explanation;
 
         paymentMenu.SetActive(true);
         blackScreen.SetActive(true);
 
-        for(int i = 0; i < amount; i++)
+        for(int i = 0; i < whatCost.costAmount; i++)
         {
-            if(type == "Treat")
+            if(whatCost.CostName == "Treat")
             {
                newSlot = Instantiate(treatSlot);
                newSlot.transform.position = slotPositions[i].position;
                newSlot.transform.parent = blackScreen.transform;
             }
 
-            if (type == "Costume")
+            if (whatCost.CostName == "Costume")
             {
                 newSlot = Instantiate(costumeSlot);
                 newSlot.transform.position = slotPositions[i].position;
                 newSlot.transform.parent = blackScreen.transform;
             }
         }
+        currentCost = whatCost;
         effectActive = true;
-    }
-
-    public void setConsequence(int amount, string type)
-    {
-        consequenceAmount = amount;
-        consequenceName = type;
     }
 
     public void Payment(bool wantsToPay)
     {
-        if(wantsToPay)
+        if(manager.currentState != GameManager.turnState.ReplaceCard)
         {
-            bool canPay = true;
-            //this is to check if you have payed
-            for(int i = 0; i < blackScreen.transform.childCount; i++) 
-            { 
-                if(blackScreen.transform.GetChild(i).childCount < 1)
+            //This checks if you selected pay or don't pay
+            if (wantsToPay)
+            {
+                bool canPay = true;
+                //this is to check if you have payed
+                for (int i = 0; i < blackScreen.transform.childCount; i++)
+                {
+                    if (blackScreen.transform.GetChild(i).childCount < 1)
+                    {
+                        canPay = false;
+                    }
+                }
+
+                if(blackScreen.transform.childCount == 0)
                 {
                     canPay = false;
                 }
-            }
 
-            if (canPay)
-            {
-                for(int i = 0; i < blackScreen.transform.childCount; i++)
+                if (canPay)
                 {
-                    Destroy(blackScreen.transform.GetChild(i).gameObject);
-                }
-                
-                DeactivateMenu();
-            }
-        }
-        else
-        {
-            //this returns the cards to your hand
-            for (int i = 0; i < blackScreen.transform.childCount; i++)
-            {
-                if (blackScreen.transform.GetChild(i).childCount != 0)
-                {
-                    blackScreen.transform.GetChild(i).transform.GetChild(0).position = blackScreen.transform.GetChild(i).transform.GetChild(0).GetComponent<CardSlotHand>().startingPos;
-                    blackScreen.transform.GetChild(i).transform.GetComponentInChildren<CardSlotHand>().isPayment = false;
-                    blackScreen.transform.GetChild(i).transform.GetChild(0).parent = null;
+                    for (int i = 0; i < blackScreen.transform.childCount; i++)
+                    {
+                        Destroy(blackScreen.transform.GetChild(i).gameObject);
+                    }
+                    CheckConsequence(currentCost.reward, currentCost.rewardAmount);
+
+                    DeactivateMenu();
                 }
             }
-
-            if (consequenceName == "Fear")
+            else
             {
-                player.GetComponent<Fear>().fear += consequenceAmount;
+                //this returns the cards to your hand
+                for (int i = 0; i < blackScreen.transform.childCount; i++)
+                {
+                    if (blackScreen.transform.GetChild(i).childCount != 0)
+                    {
+                        blackScreen.transform.GetChild(i).transform.GetChild(0).position = blackScreen.transform.GetChild(i).transform.GetChild(0).GetComponent<CardSlotHand>().startingPos;
+                        blackScreen.transform.GetChild(i).transform.GetComponentInChildren<CardSlotHand>().isPayment = false;
+                        blackScreen.transform.GetChild(i).transform.GetChild(0).parent = null;
+                    }
+                }
 
-                DeactivateMenu();
+                //This is for discarding cards in your hand
+
+                CheckConsequence(currentCost.consequenceName, currentCost.consequenceAmount);
+
+                if (currentCost.secondConsequenceName != null)
+                {
+                    CheckConsequence(currentCost.secondConsequenceName, currentCost.secondConsequenceAmount);
+                    DeactivateMenu();
+                }
+                else
+                {
+                    DeactivateMenu();
+                }
             }
         }
     }
@@ -134,8 +151,45 @@ public class CardEffectManager : MonoBehaviour
         else
         {
             //If you trigerred a creature
-            manager.currentState = GameManager.turnState.Endturn;
+            if(manager.currentState == GameManager.turnState.CheckMovement)
+            {
+                //This is in case you trigger a creature with a costume on
+                manager.currentState = GameManager.turnState.ReplaceCard;
+            }
+            else
+            {
+                manager.currentState = GameManager.turnState.Endturn;
+            }
         }
         effectActive = false;
+    }
+
+    private void discardCards(string cardType, int amount)
+    {
+        for(int i = 0; i < hand.childCount; i++)
+        {
+            if(hand.GetChild(i).GetChild(0).tag == cardType && amount > 0)
+            {
+                Destroy(hand.GetChild(i).gameObject);
+                amount--;
+            }
+        }
+    }
+    private void CheckConsequence(string name, int howMuch)
+    {
+        if (name == "Fear")
+        {
+            player.GetComponent<Fear>().fear += howMuch;
+        }
+
+        if (name == "Treat")
+        {
+            discardCards(name, howMuch);
+        }
+
+        if (name == "Costume")
+        {
+            discardCards(name, howMuch);
+        }
     }
 }

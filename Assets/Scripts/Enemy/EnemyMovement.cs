@@ -8,15 +8,22 @@ public class EnemyMovement : MonoBehaviour
     public Movement playerMove;
     public CardSlot initialSlot;
     public GameObject cardGrid;
+    private TextManager textManager;
 
     [SerializeField] private bool isMoving;
+    private bool hasTalked;
 
     private Vector2 destination;
     private Vector2 cardGridPos;
     private Vector2 cardActualPos;
 
+    private void Start()
+    {
+        textManager = TextManager.Instance;
+    }
     private void Update()
     {
+        transform.position = new Vector3(transform.position.x, transform.position.y, -0.13f);
         if(isMoving)
         {
             Move();
@@ -25,6 +32,21 @@ public class EnemyMovement : MonoBehaviour
             {
                 isMoving = false;
             }
+        }
+
+        if((cardGridPos.x == playerMove.myPos.x && (cardGridPos.y == playerMove.myPos.y + 1 || cardGridPos.y == playerMove.myPos.y - 1)) || (cardGridPos.y == playerMove.myPos.y && (cardGridPos.x == playerMove.myPos.x + 1 || cardGridPos.x == playerMove.myPos.x - 1)))
+        {
+            if(!hasTalked)
+            {
+                textManager.Talk(TextManager.EnemyStates.NearPlayer);
+                hasTalked = true;
+            }
+            textManager.closeToEnemy = true;
+        }
+        else
+        {
+            textManager.closeToEnemy = false;
+            hasTalked = false;
         }
     }
 

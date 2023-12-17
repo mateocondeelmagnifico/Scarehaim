@@ -75,10 +75,11 @@ public class CardSlotHand: CardSlot
     private void TryToPlayCard()
     {
         bool cardPlayed = false;
-            if (gameManager.currentState == GameManager.turnState.CheckMovement)
+            if (gameManager.currentState == GameManager.turnState.CheckMovement && !GameManager.Instance.powerUpOn)
             {
-                //Aqui es donde se aplica el efecto del disfraz
+                //Aqui es donde se aplica el efecto del disfraz y del treat
                 goHome = true;
+                cardObject.GetComponent<Card>().PlayEffect();
                 cardPlayed = true;
             }
             
@@ -100,6 +101,16 @@ public class CardSlotHand: CardSlot
                         //esto es para que si el slot ya tiene dentro una carta no se tenga en cuenta
                         distances[i] = 50000;
                     }
+                }
+
+                if(blackScreen.childCount == 2)
+                {
+                distances[2] = 50000;
+                }
+                if (blackScreen.childCount == 1)
+                {
+                distances[2] = 50000;
+                distances[1] = 50000;
                 }
 
                 if (Mathf.Min(distances[0], distances[1], distances[2]) < 45000)
@@ -129,8 +140,14 @@ public class CardSlotHand: CardSlot
                     #endregion
             }
       
-            if(!cardPlayed)
+        if(!cardPlayed)
+        {
             goHome = true;
+        }
+        else
+        {
+            SoundManager.Instance.PlaySound("Card Played");
+        }
     }
 
     private void Move(Vector3 desiredPos)

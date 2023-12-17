@@ -8,10 +8,10 @@ public class CardSlot : MonoBehaviour
     public GameObject cardObject;
     bool isActivated;
     public Vector2 Location;
-    public bool isInHand;
-    private bool cardNeeded;
+    public bool isInHand, isHovered;
+    private bool cardNeeded, soundPlayed;
 
-    public float hoverTimer;
+    public float hoverTimer, otherTimer;
 
     private CardManager cardManager;
     public GameManager gameManager;
@@ -20,12 +20,32 @@ public class CardSlot : MonoBehaviour
     {
         cardManager = CardManager.Instance;
         gameManager = GameManager.Instance;
+        cardObject = transform.GetChild(0).gameObject;
     }
     private void Update()
     {
-        if (hoverTimer > 0)
+        if(otherTimer > 0)
         {
-            hoverTimer -= Time.deltaTime;
+            otherTimer -= Time.deltaTime;
+        }
+        else
+        {
+            isHovered = false;
+            soundPlayed = false;
+        }
+
+        if (isHovered)
+        {
+            hoverTimer += Time.deltaTime;
+            if(!soundPlayed && hoverTimer > 0.8f)
+            {
+                SoundManager.Instance.PlaySound("Card Hovered");
+                soundPlayed = true;
+            }
+        }
+        else
+        {
+            hoverTimer = 0;
         }
     }
 

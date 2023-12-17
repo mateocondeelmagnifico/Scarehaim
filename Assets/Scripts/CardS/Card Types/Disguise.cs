@@ -5,10 +5,25 @@ using UnityEngine;
 [System.Serializable]
 public class Disguise : Card
 {
+    public string myName;
+    public Sprite icon;
+
     public override void Effect(GameObject card, GameObject cardSlot)
     {
         //TurnState is changed in the card script
         MoveToHand(card, cardSlot);
+    }
+
+    public override void PlayEffect()
+    {
+        GameManager manager = GameManager.Instance;
+        manager.powerUpOn = true;
+        manager.player.GetComponent<Movement>().turnsWithcostume = 3;
+        manager.player.GetComponent<Movement>().tempSprite = image;
+        manager.player.GetComponent<Movement>().costumeName = myName;
+        manager.player.GetComponent<DisplayBigImage>().ChangeImageAndIcon(bigImage, icon);
+
+        Destroy(this.gameObject.transform.parent.gameObject);
     }
 
     public override int GetCardType()

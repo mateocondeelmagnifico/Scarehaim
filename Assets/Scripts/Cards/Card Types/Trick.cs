@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Trick : Card
 {
+    public Cost myCost;
     private Transform player;
     private GameManager manager;
 
@@ -16,7 +17,7 @@ public class Trick : Card
     private void Update()
     {
         //Check if player has triggered the trap
-        if (player.position == transform.position)
+        if (player.position.x == transform.position.x && player.position.y == transform.position.y)
         {
             manager.trapTriggered = true;
             if(manager.currentState == GameManager.turnState.CheckCardEffect)
@@ -28,7 +29,6 @@ public class Trick : Card
     }
     public override void Effect(GameObject card, GameObject cardSlot)
     {
-        CardEffectManager.Instance.ActivatePayment(image, 2, "Costume");
-        CardEffectManager.Instance.setConsequence(3, "Fear");
+        CardEffectManager.Instance.ActivatePayment(image, myCost);
     }
 }

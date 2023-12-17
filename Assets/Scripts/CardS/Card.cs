@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class Card : MonoBehaviour
 {
 
-    public Sprite image;
+    public Sprite image, bigImage;
 
     CardSlot slot;
 
@@ -17,6 +17,11 @@ public class Card : MonoBehaviour
 
 
     public virtual void Effect(GameObject card, GameObject cardSlot)
+    {
+
+    }
+
+    public virtual void PlayEffect()
     {
 
     }

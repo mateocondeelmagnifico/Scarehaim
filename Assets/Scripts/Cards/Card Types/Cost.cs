@@ -5,12 +5,17 @@ using UnityEngine;
 [System.Serializable]
 public class Cost 
 {
-  public string mainCostName;
-    public int howMuch1;
+    [Header("Deja vacíos los campos que no se usen")]
+    [Header("Reward amount tiene que estar en negativo")]
 
-    public string alternateCostName;
-    public int howMuch2;
+    [TextArea]public string explanation;
 
-    public string consequenceName;
-    public int HowMuch3;
+    public string CostName;
+    public int costAmount;
+
+    public string reward;
+    public int rewardAmount;
+
+    public string consequenceName, secondConsequenceName;
+    public int consequenceAmount, secondConsequenceAmount;
 }
