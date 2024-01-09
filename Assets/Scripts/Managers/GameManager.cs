@@ -157,7 +157,6 @@ public class GameManager : MonoBehaviour
                 if (moveCardToHand || moveCard)
                 {
                     if (moveCard)
-                        //MoveCard(selectedCard, discardPile.position);
                         MoveCard(selectedCard, discardPile.position);
 
                     if(moveCardToHand)
