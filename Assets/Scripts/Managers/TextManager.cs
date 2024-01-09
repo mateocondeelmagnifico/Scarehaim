@@ -5,10 +5,13 @@ public class TextManager : MonoBehaviour
 {
     public TMPro.TextMeshProUGUI textBox;
     public static TextManager Instance { get; private set; }
+    public SpriteRenderer enemyRenderer;
 
     [TextArea]
     [SerializeField] private string[] greetings, basicDialogue, fearOver7, annoyed, nearPlayer;
     private string[] currentTexts;
+
+    [SerializeField] private Sprite[] sprites;
 
     [HideInInspector]
     public enum EnemyStates
@@ -22,12 +25,12 @@ public class TextManager : MonoBehaviour
         HasLost
     }
 
-    [HideInInspector] public EnemyStates currentState;
+    public EnemyStates currentState;
 
-    public float textCooldown;
-    private float textDuration;
+    [HideInInspector] public float textCooldown;
+    private float textDuration, annoyedDuration;
 
-    public bool fearReached, closeToEnemy;
+    public bool fearReached, closeToEnemy; //accesed by enemyMovement
     private bool displayText;
     private void Awake()
     {
@@ -82,23 +85,32 @@ public class TextManager : MonoBehaviour
                 if (!fearReached)
                 {
                     currentState = EnemyStates.Idle;
+                    if (annoyedDuration <= 0) enemyRenderer.sprite = sprites[0];
                 }
                 else
                 {
-                    currentState = EnemyStates.NearPlayer;
+                    currentState = EnemyStates.FearOver7;
+                    if (annoyedDuration <= 0) enemyRenderer.sprite = sprites[2];
                 }
             }
             else
             {
+                if (annoyedDuration <= 0) enemyRenderer.sprite = sprites[2];
                 currentState = EnemyStates.NearPlayer;
             }
+        }
+        #endregion
+
+        #region Timer
+        if(annoyedDuration > 0)
+        {
+            annoyedDuration -= Time.deltaTime;
         }
         #endregion
     }
 
     public void Talk(EnemyStates state)
     {
-
         currentState = state;
 
         switch (currentState)
@@ -129,5 +141,11 @@ public class TextManager : MonoBehaviour
         displayText = false;
         textCooldown = 25;
         textDuration = 7;
+    }
+
+    public void SwapSprite()
+    {
+        enemyRenderer.sprite = sprites[1];
+        annoyedDuration = 2;
     }
 }

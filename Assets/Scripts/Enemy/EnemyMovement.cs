@@ -45,7 +45,13 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
-            textManager.closeToEnemy = false;
+            if(textManager.closeToEnemy)
+            {
+                textManager.closeToEnemy = false;
+                textManager.SwapSprite();
+                textManager.Talk(TextManager.EnemyStates.Annoyed);
+            }
+            
             hasTalked = false;
         }
     }

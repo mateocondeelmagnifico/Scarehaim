@@ -28,6 +28,7 @@ public class Fear : MonoBehaviour
             if(!fearReached)
             {
                 textManager.Talk(TextManager.EnemyStates.FearOver7);
+                textManager.fearReached = true;
                 fearReached = true;
             }
             textManager.currentState = TextManager.EnemyStates.FearOver7;
