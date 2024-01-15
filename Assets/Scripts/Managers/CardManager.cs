@@ -95,7 +95,6 @@ public class CardManager : MonoBehaviour
         newCard.transform.parent = cardSlot.gameObject.transform;
         gameManager.newCard = newCard;
         #endregion
-
     }
 
     private void ReplaceCard()

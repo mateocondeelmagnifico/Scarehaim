@@ -6,7 +6,7 @@ public class MouseManager : MonoBehaviour
     private GameManager manager;
     private Camera myCam;
     public Movement playerMove;
-    public Image display;
+    public Image display, blackBox;
 
     private bool cardGrabbed;
     public bool moveCard, cardInformed;
@@ -17,6 +17,7 @@ public class MouseManager : MonoBehaviour
         manager = GameManager.Instance;
         myCam = Camera.main;
         display.enabled = false;
+        blackBox.enabled = false;
 
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
@@ -49,6 +50,7 @@ public class MouseManager : MonoBehaviour
                     if (hit.collider.GetComponent<DisplayBigImage>().hoverTimer > 0.8f)
                     {
                         display.enabled = true;
+                        blackBox.enabled = true;
                         display.sprite = hit.collider.GetComponent<DisplayBigImage>().bigImage;
                     }
                 }
@@ -97,6 +99,7 @@ public class MouseManager : MonoBehaviour
                         if (currentCard.hoverTimer > 0.8f)
                         {
                             display.enabled = true;
+                            blackBox.enabled = true;
                             if (hit.collider.transform.childCount > 0)
                             {
                                 display.sprite = hit.collider.GetComponentInChildren<Card>().bigImage;
@@ -108,6 +111,7 @@ public class MouseManager : MonoBehaviour
             else
             {
                 display.enabled = false;
+                blackBox.enabled = false;
             }
         }
     }
