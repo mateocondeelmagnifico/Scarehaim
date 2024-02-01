@@ -118,16 +118,16 @@ public class CardManager : MonoBehaviour
         newCard = Instantiate(chosenArray[newRandom], gameManager.deck);
 
         #region Check if it has run out of treats or costumes
-        if (cards.Count == 5)
+        if (cards.Count == 4)
         {
-            if (randomInt == 4)
+            if (randomInt == 3)
             {
                 if (costumeAmount > 0)
                 {
                     costumeAmount--;
                     if (costumeAmount <= 0)
                     {
-                        cards.RemoveAt(4);
+                        cards.RemoveAt(3);
                     }
 
                 }
@@ -136,30 +136,30 @@ public class CardManager : MonoBehaviour
                     treatAmount--;
                     if (costumeAmount <= 0)
                     {
-                        cards.RemoveAt(4);
+                        cards.RemoveAt(3);
                     }
                 }
 
                 powerUpDealt = true;
             }
         }
-        if (cards.Count == 6)
+        if (cards.Count == 5)
         {
-            if (randomInt == 4)
+            if (randomInt == 3)
             {
                 treatAmount--;
                 if (treatAmount <= 0)
                 {
-                    cards.RemoveAt(4);
+                    cards.RemoveAt(3);
                 }
                 powerUpDealt = true;
             }
-            if (randomInt == 5)
+            if (randomInt == 4)
             {
                 costumeAmount--;
                 if (costumeAmount <= 0)
                 {
-                    cards.RemoveAt(5);
+                    cards.RemoveAt(4);
                 }
                 powerUpDealt = true;
             }
