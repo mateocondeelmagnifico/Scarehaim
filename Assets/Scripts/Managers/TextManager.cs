@@ -12,7 +12,7 @@ public class TextManager : MonoBehaviour
     private string[] currentTexts;
 
     [SerializeField] private Sprite[] sprites;
-    [SerializeField] private Image box;
+    [SerializeField] private SpriteRenderer box;
 
     [HideInInspector]
     public enum EnemyStates
