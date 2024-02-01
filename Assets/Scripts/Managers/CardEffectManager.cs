@@ -7,6 +7,7 @@ public class CardEffectManager : MonoBehaviour
 {
     public GameObject paymentMenu, blackScreen, treatSlot, costumeSlot;
     private GameObject newSlot, player;
+    [SerializeField] private Transform merrowHand;
 
     public Transform[] slotPositions;
     private Transform hand;
@@ -15,8 +16,11 @@ public class CardEffectManager : MonoBehaviour
     private Image displayImage;
     private TMPro.TextMeshProUGUI explanation;
     private Cost currentCost;
+    private Sprite mySprite;
 
-    public bool effectActive;
+    public bool effectActive, moveHand;
+
+    private Vector3 desiredPos, originalPos;
 
     private void Awake()
     {
@@ -39,34 +43,62 @@ public class CardEffectManager : MonoBehaviour
         manager = GameManager.Instance;
         player = manager.player;
         hand = manager.hand;
+
+        originalPos = merrowHand.transform.position;
+    }
+
+    private void Update()
+    {
+        //Esto esta solo para mover la mano
+
+        if(moveHand)
+        {
+            merrowHand.position = Vector3.MoveTowards(merrowHand.position, desiredPos, 5 * Time.deltaTime);
+
+            if(merrowHand.position == desiredPos)
+            {
+                if (merrowHand.transform.position != originalPos)
+                {
+                    ActivatePayment(mySprite, currentCost);
+                }
+                else
+                {
+                    manager.trapTriggered = false;
+                }
+                moveHand = false;
+            }
+        }
     }
     // Este script se encarga de los momentos en los que tienes que pagar por enemigos o trampas
     public void ActivatePayment(Sprite image, Cost whatCost)
    {
         //This displays the payment Window
-        displayImage.sprite = image;
-        explanation.text = whatCost.explanation;
+
+        mySprite = image;
+        currentCost = whatCost;
+
+        displayImage.sprite = mySprite;
+        explanation.text = currentCost.explanation;
 
         paymentMenu.SetActive(true);
         blackScreen.SetActive(true);
 
-        for(int i = 0; i < whatCost.costAmount; i++)
+        for(int i = 0; i < currentCost.costAmount; i++)
         {
-            if(whatCost.CostName == "Treat")
+            if(currentCost.CostName == "Treat")
             {
                newSlot = Instantiate(treatSlot);
                newSlot.transform.position = slotPositions[i].position;
                newSlot.transform.parent = blackScreen.transform;
             }
 
-            if (whatCost.CostName == "Costume")
+            if (currentCost.CostName == "Costume")
             {
                 newSlot = Instantiate(costumeSlot);
                 newSlot.transform.position = slotPositions[i].position;
                 newSlot.transform.parent = blackScreen.transform;
             }
         }
-        currentCost = whatCost;
         effectActive = true;
     }
 
@@ -146,7 +178,9 @@ public class CardEffectManager : MonoBehaviour
         if(manager.trapTriggered)
         {
             //If you triggered a card
-            manager.trapTriggered = false;
+            //Move hand to original position;
+            moveHand = true;
+            desiredPos = originalPos;
         }
         else
         {
@@ -191,5 +225,16 @@ public class CardEffectManager : MonoBehaviour
         {
             discardCards(name, howMuch);
         }
+    }
+
+    public void InformMoveHand(Vector3 cardPos, Sprite image, Cost whatCost)
+    {
+        moveHand = true;
+
+        desiredPos = cardPos;
+
+        currentCost = whatCost;
+
+        mySprite = image;
     }
 }

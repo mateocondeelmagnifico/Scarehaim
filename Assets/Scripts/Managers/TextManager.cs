@@ -12,6 +12,7 @@ public class TextManager : MonoBehaviour
     private string[] currentTexts;
 
     [SerializeField] private Sprite[] sprites;
+    [SerializeField] private Image box;
 
     [HideInInspector]
     public enum EnemyStates
@@ -73,6 +74,7 @@ public class TextManager : MonoBehaviour
         }
         else
         {
+            box.enabled = false;
             textBox.text = "";
         }
         #endregion
@@ -137,6 +139,7 @@ public class TextManager : MonoBehaviour
                 break;
         }
 
+        box.enabled = true;
         textBox.text = currentTexts[Random.Range(0, currentTexts.Length)];
         displayText = false;
         textCooldown = 25;

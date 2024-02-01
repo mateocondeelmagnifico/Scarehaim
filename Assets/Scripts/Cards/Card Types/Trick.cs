@@ -29,6 +29,6 @@ public class Trick : Card
     }
     public override void Effect(GameObject card, GameObject cardSlot)
     {
-        CardEffectManager.Instance.ActivatePayment(image, myCost);
+        CardEffectManager.Instance.InformMoveHand(new Vector3(transform.position.x, transform.position.y, 0),image, myCost);
     }
 }
