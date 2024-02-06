@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.FilePathAttribute;
 
 public class GameManager : MonoBehaviour
 {
@@ -233,45 +234,57 @@ public class GameManager : MonoBehaviour
     {
         cardsInHand.Add(card);
 
-        SortCardsInHand(card);
-        //Vector3 desiredPos = new Vector3(0, -5f, 0);
-        //card.transform.position = Vector3.MoveTowards(card.transform.position,desiredPos, 5 * Time.deltaTime);
-        //if(card.transform.position == desiredPos)
-        //{
-        //    moveCard = false;
-        //    if(card.GetComponent<CardSlotHand>() != null)
-        //    {
-        //        //The component is disabled until it arrives to avoid bugs
-        //        card.GetComponent<CardSlotHand>().enabled = true;
-        //    }
-        //}
+        SortCardInHand(card);
     }
 
-    public void SortCardsInHand(GameObject card)
+    public void SortCardInHand(GameObject card)
     {
-        Vector3 desiredPos = new Vector3(0, -5f, -2);
-        card.transform.position = desiredPos;
+        Vector3 desiredPos = new Vector3(-3.5f, -5f, 0);
+        Vector3 offset = new Vector3(1.5f, 0, 0);
+        Vector3 rotationOffset = new Vector3(0f, 0f, 10f);
+        Vector3 resetRotation = new Vector3(0, 0, 0);
+
+        card.transform.position = desiredPos + (cardsInHand.Count * offset);
         card.transform.parent = hand;
 
-        if (card.transform.position == desiredPos)
+        switch (cardsInHand.Count)
         {
-            moveCardToHand = false;
-            if (card.GetComponent<CardSlotHand>() != null)
-            {
-                //The component is disabled until it arrives to avoid bugs
-                card.GetComponent<CardSlotHand>().enabled = true;
-            }
-            currentState = turnState.Endturn;
+            case 0: break;
+            
+            case 1:
+                cardsInHand[0].transform.rotation = Quaternion.Euler(resetRotation);
+                break;
+            case 2:
+                cardsInHand[0].transform.rotation = Quaternion.Euler(rotationOffset);
+                cardsInHand[1].transform.rotation = Quaternion.Euler(-rotationOffset);
+                break;
+            case 3:
+                cardsInHand[0].transform.rotation = Quaternion.Euler(rotationOffset);
+                cardsInHand[1].transform.rotation = Quaternion.Euler(resetRotation);
+                cardsInHand[2].transform.rotation = Quaternion.Euler(-rotationOffset);
+                break;
+            case 4:
+                cardsInHand[0].transform.rotation = Quaternion.Euler(2*rotationOffset);
+                cardsInHand[1].transform.rotation = Quaternion.Euler(rotationOffset);
+                cardsInHand[2].transform.rotation = Quaternion.Euler(-rotationOffset);
+                cardsInHand[3].transform.rotation = Quaternion.Euler(-2*rotationOffset);
+                break;
+            case 5:
+                cardsInHand[0].transform.rotation = Quaternion.Euler(2 * rotationOffset);
+                cardsInHand[1].transform.rotation = Quaternion.Euler(rotationOffset);
+                cardsInHand[2].transform.rotation = Quaternion.Euler(resetRotation);
+                cardsInHand[3].transform.rotation = Quaternion.Euler(-rotationOffset);
+                cardsInHand[4].transform.rotation = Quaternion.Euler(-2 * rotationOffset);
+                break;
         }
 
-        /*
-        for(int i = 0; i < cardsInHand.Count; i++)
+        moveCardToHand = false;
+        if (card.GetComponent<CardSlotHand>() != null)
         {
-            
-            //card.transform.position = Vector3.MoveTowards(card.transform.position, desiredPos, 5 * Time.deltaTime);
-            
+            //The component is disabled until it arrives to avoid bugs
+            card.GetComponent<CardSlotHand>().enabled = true;
         }
-        */
+        currentState = turnState.Endturn;
     }
 
     private void ChangeState(turnState newstate)
