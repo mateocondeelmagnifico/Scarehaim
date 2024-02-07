@@ -28,7 +28,7 @@ public class Hand : MonoBehaviour
     private void DeterminePosition()
     {
         cards = new Transform[transform.childCount];
-        Vector3 positionOffset = new Vector3(0.5f, 0, 0);
+        Vector3 positionOffset = new Vector3(1f, 0, 0);
 
         #region Reset position and rotation
         for (int i = 0; i < cards.Length; i++)
@@ -38,7 +38,7 @@ public class Hand : MonoBehaviour
             cards[i].position = startingPos;
             cards[i].rotation = Quaternion.identity;
             cards[i].GetComponent<CardSlotHand>().startingPos = cards[i].position;
-            cards[i].transform.GetChild(0).GetComponent<SpriteRenderer>().rendererPriority = 20 - i;
+            cards[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 20 - i;
         }
         #endregion
 
@@ -51,43 +51,44 @@ public class Hand : MonoBehaviour
             if ((cards.Length == 3 && i == 1) || (cards.Length == 5 && i == 2) || cards.Length == 1)
             {
                 //Do nothing
+                Debug.Log(1);
                 cards[i].position = startingPos;
                 cards[i].rotation = Quaternion.identity;
                 cards[i].GetComponent<CardSlotHand>().startingPos = cards[i].position;
             }
             else
             {
-                if (cards.Length - i + 1 < i || i + 1 == cards.Length)
-                {
-                    //Upper half
-                    cards[i].position += positionOffset;
-                    cards[i].Rotate(0, 0, -10);
-                    cards[i].GetComponent<CardSlotHand>().startingPos = cards[i].position;
+               if (cards.Length / (i + 1) < 2)
+               {
+                        //Upper half
+                        cards[i].position += positionOffset;
+                        cards[i].Rotate(0, 0, -10);
+                        cards[i].GetComponent<CardSlotHand>().startingPos = cards[i].position;
 
-                    if (i + 2 == cards.Length && cards.Length > 3)
-                    {
+                        if (i + 2 == cards.Length && cards.Length > 3)
+                        {
                         //Cards in the extremes are more rotated
                         cards[i + 1].position += positionOffset;
                         cards[i + 1].Rotate(0, 0, -10);
                         cards[i + 1].GetComponent<CardSlotHand>().startingPos = cards[i + 1].position;
-                    }
-                }
-                else
-                {
-                    //Lower Half
-                    cards[i].position -= positionOffset;
-                    cards[i].Rotate(0, 0, 10);
-                    cards[i].GetComponent<CardSlotHand>().startingPos = cards[i].position;
-
-                    if (i - 1 == 0 && cards.Length > 3)
+                        }
+               }
+                    else
                     {
-                        //Cards in the extremes are more rotated
+                        //Lower Half
+                        cards[i].position -= positionOffset;
+                        cards[i].Rotate(0, 0, 10);
+                        cards[i].GetComponent<CardSlotHand>().startingPos = cards[i].position;
 
-                        cards[i - 1].position -= positionOffset;
-                        cards[i - 1].Rotate(0, 0, 10);
-                        cards[i - 1].GetComponent<CardSlotHand>().startingPos = cards[i - 1].position;
+                        if (i - 1 == 0 && cards.Length > 3)
+                        {
+                            //Cards in the extremes are more rotated
+
+                            cards[i - 1].position -= positionOffset;
+                            cards[i - 1].Rotate(0, 0, 10);
+                            cards[i - 1].GetComponent<CardSlotHand>().startingPos = cards[i - 1].position;
+                        }
                     }
-                }
             }
 
         }
