@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public Movement playerMove;
     [HideInInspector] public bool moveCardToHand, moveCard, cardInformed;
 
+    private Hand handScript;
+
     public int cardDiscarded;
 
     public GameState State;
@@ -64,6 +66,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        handScript = Hand.Instance;
         playerTurnInProgress = true;
         turnCount = 1;
         updateGameState(GameState.PlayerTurn);
@@ -233,22 +236,12 @@ public class GameManager : MonoBehaviour
         cardsInHand.Add(card);
 
         SortCardsInHand(card);
-        //Vector3 desiredPos = new Vector3(0, -5f, 0);
-        //card.transform.position = Vector3.MoveTowards(card.transform.position,desiredPos, 5 * Time.deltaTime);
-        //if(card.transform.position == desiredPos)
-        //{
-        //    moveCard = false;
-        //    if(card.GetComponent<CardSlotHand>() != null)
-        //    {
-        //        //The component is disabled until it arrives to avoid bugs
-        //        card.GetComponent<CardSlotHand>().enabled = true;
-        //    }
-        //}
     }
 
     public void SortCardsInHand(GameObject card)
     {
         Vector3 desiredPos = new Vector3(0, -5f, -2);
+        
         card.transform.position = desiredPos;
         card.transform.parent = hand;
 
@@ -263,14 +256,7 @@ public class GameManager : MonoBehaviour
             currentState = turnState.Endturn;
         }
 
-        /*
-        for(int i = 0; i < cardsInHand.Count; i++)
-        {
-            
-            //card.transform.position = Vector3.MoveTowards(card.transform.position, desiredPos, 5 * Time.deltaTime);
-            
-        }
-        */
+        handScript.AddCardToHand(card.transform);
     }
 
     private void ChangeState(turnState newstate)
