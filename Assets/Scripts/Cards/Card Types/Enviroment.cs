@@ -14,9 +14,4 @@ public class Enviroment : Card
         GameManager.Instance.currentState = GameManager.turnState.ApplyCardEffect;
         DiscardCard();
     }
-
-    public override int GetCardType()
-    {
-        return 3;
-    }
 }

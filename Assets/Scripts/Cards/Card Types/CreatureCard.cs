@@ -55,9 +55,4 @@ public class CreatureCard : Card
         player.GetComponent<Movement>().hasMoved = false;
         isDone = true;
     }
-
-    public override int GetCardType()
-    {
-        return 2;
-    }
 }

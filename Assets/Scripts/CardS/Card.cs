@@ -49,11 +49,6 @@ public class Card : MonoBehaviour
         GameManager.Instance.currentState = GameManager.turnState.Movecard;
     }
 
-    public virtual int GetCardType()
-    {
-        return 0;
-    }
-
     public void DiscardCard()
     {
         discardCard.Invoke();

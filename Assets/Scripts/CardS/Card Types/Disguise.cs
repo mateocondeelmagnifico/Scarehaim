@@ -25,10 +25,5 @@ public class Disguise : Card
 
         Destroy(this.gameObject.transform.parent.gameObject);
     }
-
-    public override int GetCardType()
-    {
-        return 1;
-    }
 }
 

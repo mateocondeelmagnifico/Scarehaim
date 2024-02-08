@@ -11,9 +11,4 @@ public class ExitCard: Card
 
         GameManager.Instance.gameObject.GetComponent<SceneManagement>().NextScene();
     }
-
-    public override int GetCardType()
-    {
-        return 4;
-    }
 }
