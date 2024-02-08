@@ -5,7 +5,7 @@ using UnityEngine;
 public class Hand : MonoBehaviour
 {
     private Transform[] cards;
-     private Vector3 startingPos;
+     private Vector3 defaultPos;
 
     public static Hand Instance { get; set;}
 
@@ -16,7 +16,14 @@ public class Hand : MonoBehaviour
         {
             Destroy(this);
         }
-        startingPos = new Vector3(0, -5f, -2);
+        defaultPos = new Vector3(0, -5f, -2);
+    }
+
+    private void Update()
+    {
+        //Check hand size
+        if(transform.childCount != 0)
+        if(transform.childCount != cards.Length) DeterminePosition();
     }
 
     public void AddCardToHand(Transform card)
@@ -25,7 +32,7 @@ public class Hand : MonoBehaviour
         DeterminePosition();
     }
 
-    private void DeterminePosition()
+    public void DeterminePosition()
     {
         cards = new Transform[transform.childCount];
         Vector3 positionOffset = new Vector3(1f, 0, 0);
@@ -35,7 +42,7 @@ public class Hand : MonoBehaviour
         {
             cards[i] = transform.GetChild(i);
 
-            cards[i].position = startingPos;
+            cards[i].position = defaultPos;
             cards[i].rotation = Quaternion.identity;
             cards[i].GetComponent<CardSlotHand>().startingPos = cards[i].position;
             cards[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 20 - i;
@@ -51,8 +58,7 @@ public class Hand : MonoBehaviour
             if ((cards.Length == 3 && i == 1) || (cards.Length == 5 && i == 2) || cards.Length == 1)
             {
                 //Do nothing
-                Debug.Log(1);
-                cards[i].position = startingPos;
+                cards[i].position = defaultPos;
                 cards[i].rotation = Quaternion.identity;
                 cards[i].GetComponent<CardSlotHand>().startingPos = cards[i].position;
             }

@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     public int turnCount;
 
-    private List<GameObject> cardsInHand = new List<GameObject>();
+    //private List<GameObject> cardsInHand = new List<GameObject>();
 
     public GameObject player, selectedCardSlot, handSlotPrefab, selectedCard, newCardSlot, emptySlot, newCard, slotToReplaceOld, slotToReplaceNew;
 
@@ -163,7 +163,17 @@ public class GameManager : MonoBehaviour
                         MoveCard(selectedCard, discardPile.position);
 
                     if(moveCardToHand)
-                    MoveCardToHand(newCardSlot);
+                    {
+                        if(hand.childCount < 5)
+                        {
+                            MoveCardToHand(newCardSlot);
+                        }
+                        else
+                        {
+                            MoveCard(newCardSlot, discardPile.position);
+                        }
+                    }   
+
                 }
                 else
                 {
@@ -220,7 +230,18 @@ public class GameManager : MonoBehaviour
 
             if(desiredPos == discardPile.position)
             {
-                whatCard.transform.parent = discardPile;
+                if(moveCardToHand)
+                {
+                    //put card from hand into graveyard
+                    whatCard.transform.GetChild(0).parent = discardPile;
+                    whatCard.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = -1;
+                    Destroy(whatCard);
+                    moveCardToHand = false;
+                }
+                else
+                {
+                    whatCard.transform.parent = discardPile;
+                }
                 currentState = turnState.Endturn;
             }
             else if(slotToReplaceOld != null)
@@ -233,30 +254,28 @@ public class GameManager : MonoBehaviour
 
     public void MoveCardToHand(GameObject card)
     {
-        cardsInHand.Add(card);
-
-        SortCardsInHand(card);
-    }
-
-    public void SortCardsInHand(GameObject card)
-    {
-        Vector3 desiredPos = new Vector3(0, -5f, -2);
-        
-        card.transform.position = desiredPos;
-        card.transform.parent = hand;
-
-        if (card.transform.position == desiredPos)
+        if(hand.childCount < 5)
         {
-            moveCardToHand = false;
-            if (card.GetComponent<CardSlotHand>() != null)
-            {
-                //The component is disabled until it arrives to avoid bugs
-                card.GetComponent<CardSlotHand>().enabled = true;
-            }
-            currentState = turnState.Endturn;
-        }
+            Vector3 desiredPos = new Vector3(0, -5f, -2);
 
-        handScript.AddCardToHand(card.transform);
+            card.transform.position = Vector3.MoveTowards(card.transform.position, desiredPos, 8 * Time.deltaTime);
+
+
+            if (card.transform.position == desiredPos)
+            {
+                card.transform.parent = hand;
+                moveCardToHand = false;
+                if (card.GetComponent<CardSlotHand>() != null)
+                {
+                    //The component is disabled until it arrives to avoid bugs
+                    card.GetComponent<CardSlotHand>().enabled = true;
+                }
+                handScript.AddCardToHand(card.transform);
+                currentState = turnState.Endturn;
+            }
+        }
+       
+        
     }
 
     private void ChangeState(turnState newstate)
