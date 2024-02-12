@@ -35,8 +35,7 @@ public class Hand : MonoBehaviour
     public void DeterminePosition()
     {
         cards = new Transform[transform.childCount];
-        Vector3 positionOffset = new Vector3(1f, 0, 0);
-
+        
         #region Reset position and rotation
         for (int i = 0; i < cards.Length; i++)
         {
@@ -55,6 +54,22 @@ public class Hand : MonoBehaviour
             //Moves cads in hand
             //This if is so that the card in the middle stays put
 
+            #region Rotation multiplier and offset
+            float rotMultiplier;
+            Vector3 positionOffset;
+
+            if (cards.Length == 2 || cards.Length == 4)
+            {
+                rotMultiplier = 0.6f;
+                positionOffset = new Vector3(0.7f, 0, 0);
+            }
+            else
+            {
+                rotMultiplier = 1;
+                positionOffset = new Vector3(1, 0, 0);
+            }
+            #endregion
+
             if ((cards.Length == 3 && i == 1) || (cards.Length == 5 && i == 2) || cards.Length == 1)
             {
                 //Do nothing
@@ -66,39 +81,37 @@ public class Hand : MonoBehaviour
             {
                if (cards.Length / (i + 1) < 2)
                {
-                        //Upper half
-                        cards[i].position += positionOffset;
-                        cards[i].Rotate(0, 0, -10);
-                        cards[i].GetComponent<CardSlotHand>().startingPos = cards[i].position;
+                    //Upper half
+                    MoveAndRot(i, positionOffset, -rotMultiplier);
 
-                        if (i + 2 == cards.Length && cards.Length > 3)
+                    if (i + 2 == cards.Length && cards.Length > 3)
+                    {
+                        //Cards in the extremes are more rotated
+                        MoveAndRot(i + 1, positionOffset, -rotMultiplier);
+                    }
+               }
+               else
+               {
+                    //Lower Half
+                    MoveAndRot(i, -positionOffset, rotMultiplier);
+
+                    if (i - 1 == 0 && cards.Length > 3)
                         {
                         //Cards in the extremes are more rotated
-                        cards[i + 1].position += positionOffset;
-                        cards[i + 1].Rotate(0, 0, -10);
-                        cards[i + 1].GetComponent<CardSlotHand>().startingPos = cards[i + 1].position;
-                        }
-               }
-                    else
-                    {
-                        //Lower Half
-                        cards[i].position -= positionOffset;
-                        cards[i].Rotate(0, 0, 10);
-                        cards[i].GetComponent<CardSlotHand>().startingPos = cards[i].position;
 
-                        if (i - 1 == 0 && cards.Length > 3)
-                        {
-                            //Cards in the extremes are more rotated
-
-                            cards[i - 1].position -= positionOffset;
-                            cards[i - 1].Rotate(0, 0, 10);
-                            cards[i - 1].GetComponent<CardSlotHand>().startingPos = cards[i - 1].position;
-                        }
+                        MoveAndRot(i - 1, -positionOffset, rotMultiplier);
                     }
+               }
             }
 
         }
         #endregion
+    }
 
+    private void MoveAndRot(int whatcard, Vector3 offset, float multiplier)
+    {
+        cards[whatcard].position += offset;
+        cards[whatcard].Rotate(0, 0, 10 * multiplier);
+        cards[whatcard].GetComponent<CardSlotHand>().startingPos = cards[whatcard].position;
     }
 }
