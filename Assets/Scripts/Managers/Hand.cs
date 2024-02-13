@@ -5,7 +5,7 @@ using UnityEngine;
 public class Hand : MonoBehaviour
 {
     private Transform[] cards;
-     private Vector3 defaultPos;
+    private Vector3 defaultPos;
 
     public static Hand Instance { get; set;}
 
@@ -16,7 +16,7 @@ public class Hand : MonoBehaviour
         {
             Destroy(this);
         }
-        defaultPos = new Vector3(0, -5f, -2);
+        defaultPos = new Vector3(4, -5, -2);
     }
 
     private void Update()
@@ -113,5 +113,27 @@ public class Hand : MonoBehaviour
         cards[whatcard].position += offset;
         cards[whatcard].Rotate(0, 0, 10 * multiplier);
         cards[whatcard].GetComponent<CardSlotHand>().startingPos = cards[whatcard].position;
+    }
+
+    public void ResizeHand(bool makeBig)
+    {
+        Vector3 offset;
+
+        if (makeBig)
+        {
+            offset = new Vector3(0,1,0);
+        }
+        else
+        {
+            offset = new Vector3(0, -1, 0);
+        }
+
+        if (cards != null)
+        {
+            for (int i = 0; i < cards.Length; i++)
+            {
+                cards[i].GetComponent<CardSlotHand>().startingPos += offset;
+            }
+        } 
     }
 }

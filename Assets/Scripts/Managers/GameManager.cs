@@ -256,7 +256,7 @@ public class GameManager : MonoBehaviour
     {
         if(hand.childCount < 5)
         {
-            Vector3 desiredPos = new Vector3(0, -5f, -2);
+            Vector3 desiredPos = new Vector3(4, -5, -2);
 
             card.transform.position = Vector3.MoveTowards(card.transform.position, desiredPos, 8 * Time.deltaTime);
 

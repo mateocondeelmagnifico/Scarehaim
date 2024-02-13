@@ -7,15 +7,19 @@ public class MouseManager : MonoBehaviour
     private Camera myCam;
     public Movement playerMove;
     public Image display, blackBox;
+    private Hand hand;
 
-    private bool cardGrabbed;
+    private bool cardGrabbed, handDisplayed;
     public bool moveCard, cardInformed;
+
+    private float handtimer;
 
     public GameObject selectedCardSlot;
     private void Start()
     {
         manager = GameManager.Instance;
         myCam = Camera.main;
+        hand = Hand.Instance;
         display.enabled = false;
         blackBox.enabled = false;
 
@@ -25,6 +29,12 @@ public class MouseManager : MonoBehaviour
     private void Update()
     {
         Raycast();
+
+        if(handtimer > 0.2f && !handDisplayed && !manager.moveCardToHand)
+        {
+            hand.ResizeHand(true);
+            handDisplayed = true;
+        }
     }
 
     private void Raycast()
@@ -80,6 +90,9 @@ public class MouseManager : MonoBehaviour
                     if (currentCard.isInHand)
                     {
                         CardSlotHand currentCardHand = hit.collider.gameObject.GetComponent<CardSlotHand>();
+
+                        if (handtimer < 1.5f) handtimer += Time.deltaTime; ;
+
                         if (Input.GetMouseButton(0) && !cardGrabbed)
                         {
                             currentCard = currentCardHand;
@@ -93,26 +106,44 @@ public class MouseManager : MonoBehaviour
                             cardGrabbed = false;
                         }
                     }
-                    else if (manager.currentState != GameManager.turnState.CheckCardEffect)
+                    else
                     {
-                        //this is to display the card on the left
-                        if (currentCard.hoverTimer > 0.8f)
+                        #region Display Big image
+                        if (manager.currentState != GameManager.turnState.CheckCardEffect)
                         {
-                            display.enabled = true;
-                            blackBox.enabled = true;
-                            if (hit.collider.transform.childCount > 0)
+                            //this is to display the card on the left
+                            if (currentCard.hoverTimer > 0.8f)
                             {
-                                display.sprite = hit.collider.GetComponentInChildren<Card>().bigImage;
+                                display.enabled = true;
+                                blackBox.enabled = true;
+                                if (hit.collider.transform.childCount > 0)
+                                {
+                                    display.sprite = hit.collider.GetComponentInChildren<Card>().bigImage;
+                                }
                             }
                         }
+                        #endregion
+
+                        ShrinkHand();
                     }
                 }
             }
             else
             {
+                ShrinkHand();
                 display.enabled = false;
                 blackBox.enabled = false;
             }
+        }
+    }
+
+    private void ShrinkHand()
+    {
+        if (handtimer > 0 && handDisplayed)
+        {
+            handtimer = 0;
+            handDisplayed = false;
+            hand.ResizeHand(false);
         }
     }
 }
