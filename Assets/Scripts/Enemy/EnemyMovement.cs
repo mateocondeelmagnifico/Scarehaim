@@ -22,7 +22,7 @@ public class EnemyMovement : MonoBehaviour
     private void Start()
     {
         textManager = TextManager.Instance;
-        turnsUntilStart = 3;
+        turnsUntilStart = 2;
     }
     private void Update()
     {
