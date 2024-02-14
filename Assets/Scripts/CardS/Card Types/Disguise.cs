@@ -6,7 +6,7 @@ using UnityEngine;
 public class Disguise : Card
 {
     public string myName;
-    public Sprite icon;
+    public Sprite icon, onPlayerImage;
 
     public override void Effect(GameObject card, GameObject cardSlot)
     {
@@ -21,7 +21,7 @@ public class Disguise : Card
         manager.player.GetComponent<Movement>().turnsWithcostume = 3;
         manager.player.GetComponent<Movement>().tempSprite = image;
         manager.player.GetComponent<Movement>().costumeName = myName;
-        manager.player.GetComponent<DisplayBigImage>().ChangeImageAndIcon(bigImage, icon);
+        manager.player.GetComponent<DisplayBigImage>().ChangeImageAndIcon(onPlayerImage, icon);
 
         Destroy(this.gameObject.transform.parent.gameObject);
     }
