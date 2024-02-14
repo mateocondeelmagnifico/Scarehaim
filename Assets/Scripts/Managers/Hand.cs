@@ -128,7 +128,7 @@ public class Hand : MonoBehaviour
             offset = new Vector3(0, -1, 0);
         }
 
-        if (cards != null)
+        if (cards != null && transform.childCount > 0)
         {
             for (int i = 0; i < cards.Length; i++)
             {

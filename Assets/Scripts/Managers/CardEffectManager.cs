@@ -16,6 +16,7 @@ public class CardEffectManager : MonoBehaviour
     private Image displayImage;
     private TMPro.TextMeshProUGUI explanation;
     private Cost currentCost;
+    private Hand handScript;
     private Sprite mySprite;
 
     public bool effectActive, moveHand;
@@ -43,6 +44,7 @@ public class CardEffectManager : MonoBehaviour
         manager = GameManager.Instance;
         player = manager.player;
         hand = manager.hand;
+        handScript = hand.GetComponent<Hand>();
 
         originalPos = merrowHand.transform.position;
     }
@@ -198,14 +200,15 @@ public class CardEffectManager : MonoBehaviour
         effectActive = false;
     }
 
-    private void discardCards(string cardType, int amount)
+    private void DiscardCards(string cardType, int amount)
     {
         for(int i = 0; i < hand.childCount; i++)
         {
-            if(hand.GetChild(i).GetChild(0).tag == cardType && amount > 0)
+            if(hand.GetChild(i).GetChild(0).tag == cardType && amount > 0 && hand.childCount > 0)
             {
                 Destroy(hand.GetChild(i).gameObject);
                 amount--;
+                handScript.DeterminePosition();
             }
         }
     }
@@ -218,12 +221,12 @@ public class CardEffectManager : MonoBehaviour
 
         if (name == "Treat")
         {
-            discardCards(name, howMuch);
+            DiscardCards(name, howMuch);
         }
 
         if (name == "Costume")
         {
-            discardCards(name, howMuch);
+            DiscardCards(name, howMuch);
         }
     }
 
