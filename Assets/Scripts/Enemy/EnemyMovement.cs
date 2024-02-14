@@ -17,9 +17,12 @@ public class EnemyMovement : MonoBehaviour
     private Vector2 cardGridPos;
     private Vector2 cardActualPos;
 
+    public float turnsUntilStart;
+
     private void Start()
     {
         textManager = TextManager.Instance;
+        turnsUntilStart = 3;
     }
     private void Update()
     {

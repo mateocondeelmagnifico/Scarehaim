@@ -60,7 +60,6 @@ public class Movement : MonoBehaviour
                     gameManager.powerUpOn = false;
                     hasTreat = false;
                 }
-                
 
                 if(turnsWithcostume > 0)
                 {
@@ -90,6 +89,7 @@ public class Movement : MonoBehaviour
 
     public void TryMove(Vector2 cardGridPos, Vector2 cardActualPos)
     {
+
         if (!hasTreat && turnsWithcostume <= 0)
         {
             //Normal movement

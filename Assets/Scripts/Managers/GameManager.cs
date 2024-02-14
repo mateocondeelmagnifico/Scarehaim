@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
 
-        if (enemy.transform.position == player.transform.position)
+        if (enemy.transform.position == player.transform.position && enemy.turnsUntilStart <= 0)
             player.GetComponent<Fear>().fear = 10;
 
         if (winCondition)
@@ -194,7 +194,14 @@ public class GameManager : MonoBehaviour
         // turno del enemigo
         if (enemy != null)
         {
-            enemy.TryMove();
+            if(enemy.turnsUntilStart <=0)
+            {
+                enemy.TryMove();
+            }
+            else
+            {
+                enemy.turnsUntilStart--;
+            }
         }
         turnCount++;
         playerTurnInProgress = true;
