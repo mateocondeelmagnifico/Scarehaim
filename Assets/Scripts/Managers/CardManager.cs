@@ -70,7 +70,10 @@ public class CardManager : MonoBehaviour
                         if (!chosenCard.GetChild(0).CompareTag("Enemy") && (chosenCard.position.x != playerPos.position.x && chosenCard.position.y != playerPos.position.y))
                         {
                             bool canplace = true;
-                            if (e > 0 && chosenCard.position == assignedPositions[e - 1]) canplace = false;
+                            if ((e == 1 && chosenCard.position == assignedPositions[e - 1]) || (e == 2 && (chosenCard.position == assignedPositions[e - 2] || chosenCard.position == assignedPositions[e - 1])))
+                            {
+                                canplace = false;
+                            }
 
                             //If you were to place two traps in the same position
                             if (canplace)
@@ -80,7 +83,7 @@ public class CardManager : MonoBehaviour
                             }
                         }
                     }
-                    else if (e >= 1)
+                    else if (e == assignedPositions.Length - 1)
                     {
                         canEnd = true;
                     }
