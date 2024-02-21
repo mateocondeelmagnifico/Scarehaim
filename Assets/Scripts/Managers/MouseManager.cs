@@ -10,7 +10,7 @@ public class MouseManager : MonoBehaviour
     private Hand hand;
 
     private bool cardGrabbed, handDisplayed;
-    public bool moveCard, cardInformed;
+    public bool moveCard, cardInformed, canClick;
 
     private float handtimer;
 
@@ -47,7 +47,7 @@ public class MouseManager : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(myCam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
         #endregion
 
-        if(hit.collider != null)
+        if(hit.collider != null && canClick)
         {
             if (hit.collider.gameObject.tag.Equals("Card Slot") || hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
             {

@@ -10,6 +10,8 @@ public class SceneManagement : MonoBehaviour
 
     public GameObject gameWonMenu, optionsMenu, pauseMenu, blackscreen;
     private GameObject currentMenu;
+
+    public bool canPause;
     private void Awake()
     {
         if (Instance == null)
@@ -24,7 +26,7 @@ public class SceneManagement : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Escape) && canPause)
         {
             if(currentMenu == null)
             {
