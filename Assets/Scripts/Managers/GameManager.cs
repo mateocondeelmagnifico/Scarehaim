@@ -39,8 +39,6 @@ public class GameManager : MonoBehaviour
 
     public int turnCount;
 
-    //private List<GameObject> cardsInHand = new List<GameObject>();
-
     public GameObject player, selectedCardSlot, handSlotPrefab, selectedCard, newCardSlot, emptySlot, newCard, slotToReplaceOld, slotToReplaceNew;
 
     [HideInInspector]
@@ -67,9 +65,20 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         handScript = Hand.Instance;
+        hand = handScript.transform;
         playerTurnInProgress = true;
         turnCount = 1;
         updateGameState(GameState.PlayerTurn);
+
+        #region Reset hand variables
+        if(hand.transform.childCount > 0)
+        {
+            for(int i = 0; i < hand.transform.childCount; i++)
+            {
+                hand.transform.GetChild(i).GetComponent<CardSlotHand>().gameManager = this;
+            }
+        }
+        #endregion
     }
 
     private void Update()

@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Hand : MonoBehaviour
 {
@@ -14,8 +13,10 @@ public class Hand : MonoBehaviour
         if (Instance == null) Instance = this;
         else
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
+        DontDestroyOnLoad(this.gameObject);
+
         defaultPos = new Vector3(4, -5, -2);
     }
 
@@ -128,7 +129,7 @@ public class Hand : MonoBehaviour
             offset = new Vector3(0, -1, 0);
         }
 
-        if (cards != null && transform.childCount > 0)
+        if (transform.childCount > 0)
         {
             for (int i = 0; i < cards.Length; i++)
             {

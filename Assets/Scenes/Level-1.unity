@@ -975,7 +975,7 @@ Transform:
   - {fileID: 798634178}
   - {fileID: 688192959}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &132045519
 GameObject:
@@ -1507,7 +1507,7 @@ GameObject:
   - component: {fileID: 197658787}
   - component: {fileID: 197658786}
   m_Layer: 5
-  m_Name: Retry Button
+  m_Name: Next Scene Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1580,14 +1580,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1909411722}
         m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
-        m_MethodName: ReloadScene
-        m_Mode: 1
+        m_MethodName: ChangeScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Level-2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &197658787
@@ -3478,7 +3478,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &546131582
 GameObject:
@@ -4660,12 +4660,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1505720236}
-  - {fileID: 1571830515}
   - {fileID: 832433590}
   - {fileID: 1969379264}
   - {fileID: 2052462755}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &764533264
 GameObject:
@@ -6134,7 +6133,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1090604886
 PrefabInstance:
@@ -6383,7 +6382,7 @@ Transform:
   - {fileID: 397142967}
   - {fileID: 904356216}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1142642551
 PrefabInstance:
@@ -6548,7 +6547,7 @@ RectTransform:
   - {fileID: 151692361}
   - {fileID: 1372966886}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8142,6 +8141,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Basic trap 1
       objectReference: {fileID: 0}
+    - target: {fileID: 638242032198707708, guid: 9f3b299b20f5f8d4fa2e979a1881927f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1654179607625553362, guid: 9f3b299b20f5f8d4fa2e979a1881927f, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -9540,8 +9543,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 763641823}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1571830516
 MonoBehaviour:
@@ -10107,6 +10110,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Basic trap 3
       objectReference: {fileID: 0}
+    - target: {fileID: 638242032198707708, guid: 9f3b299b20f5f8d4fa2e979a1881927f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1654179607625553362, guid: 9f3b299b20f5f8d4fa2e979a1881927f, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -10492,7 +10499,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Retry
+  m_text: 'Next Level
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10751,6 +10760,10 @@ PrefabInstance:
     - target: {fileID: 638242032198707708, guid: 9f3b299b20f5f8d4fa2e979a1881927f, type: 3}
       propertyPath: m_Name
       value: Basic trap 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 638242032198707708, guid: 9f3b299b20f5f8d4fa2e979a1881927f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1654179607625553362, guid: 9f3b299b20f5f8d4fa2e979a1881927f, type: 3}
       propertyPath: m_IsTrigger
@@ -11589,7 +11602,7 @@ MonoBehaviour:
   - {fileID: 638242032198707708, guid: 151013d12cc251146ab1d474bec862a1, type: 3}
   costumes:
   - {fileID: 638242032198707708, guid: 586fbdec72867df419f6c84721780c93, type: 3}
-  cardsUntilExit: 12
+  cardsUntilExit: 1
   treatAmount: 2
   costumeAmount: 2
   exitCardDealt: 0
@@ -12183,7 +12196,7 @@ Transform:
   - {fileID: 18462971}
   - {fileID: 818420429}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &257542641120478619
 PrefabInstance:
