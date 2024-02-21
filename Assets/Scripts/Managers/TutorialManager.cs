@@ -7,7 +7,7 @@ public class TutorialManager : MonoBehaviour
 
     [SerializeField] private TMPro.TextMeshProUGUI textBox;
 
-    [SerializeField] private GameObject blackBox;
+    [SerializeField] private GameObject blackBox, blackScreen;
 
     private GameManager manager;
     [SerializeField] private MouseManager mouseManager;
@@ -18,7 +18,7 @@ public class TutorialManager : MonoBehaviour
 
     public TextAndImage[] tutorialPackages;
 
-    private int currentTutorial, activeMenus, nextMenu;
+    private int activeMenus, nextMenu;
     private float startTimer;
 
     private void Start()
@@ -91,12 +91,14 @@ public class TutorialManager : MonoBehaviour
     private void StopGame(int whichOne)
     {
         tutorialTriggered[whichOne] = true;
+        if (manager.newCardSlot != null) manager.newCardSlot.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 4;
 
         if (Time.timeScale == 1)
         {
             Time.timeScale = 0;
             gamepaused = true;
             blackBox.SetActive(true);
+            blackScreen.SetActive(true);
             activeMenus++;
             pause.canPause = false;
 
@@ -132,7 +134,9 @@ public class TutorialManager : MonoBehaviour
         }
         else
         {
+            if(manager.newCardSlot != null) manager.newCardSlot.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 20;
             blackBox.SetActive(false);
+            blackScreen.SetActive(false);
             displayImage.enabled = false;
             textBox.enabled = false;
             pause.canPause = true;
