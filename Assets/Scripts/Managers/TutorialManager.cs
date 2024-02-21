@@ -1,8 +1,22 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
 {
+    [SerializeField] private Image displayImage;
+
+    [SerializeField] private TMPro.TextMeshProUGUI textBox;
+
+    [SerializeField] private GameObject blackBox;
+
     private bool gamepaused;
+
+    public string[] texts;
+
+    public Sprite[] images;
+
+    private int currentTutorial;
+
 
     void Update()
     {
@@ -19,10 +33,22 @@ public class TutorialManager : MonoBehaviour
     {
         Time.timeScale = 0;
         gamepaused = true;
+        blackBox.SetActive(true);
+    }
+
+    private void DisplayTutorial()
+    {
+        displayImage.enabled = false;
+        textBox.enabled = true;
+        displayImage.sprite = images[currentTutorial];
+        textBox.text = texts[currentTutorial];
+
+        currentTutorial++;
     }
 
     private void Nextmenu()
     {
-
+        displayImage.enabled = false;
+        textBox.enabled = true;
     }
 }
