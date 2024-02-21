@@ -12,6 +12,7 @@ public class SceneManagement : MonoBehaviour
     private GameObject currentMenu;
 
     public bool canPause;
+    private bool wasActive;
     private void Awake()
     {
         if (Instance == null)
@@ -65,14 +66,19 @@ public class SceneManagement : MonoBehaviour
     {
         currentMenu = menu;
         menu.SetActive(true);
-        blackscreen.SetActive(true);
+        if(blackscreen.activeInHierarchy) wasActive = true;
+        else blackscreen.SetActive(true); 
+        
         Time.timeScale = 0;
     }
     public void ExitMenu(GameObject menu)
     {
         currentMenu = null;
         menu.SetActive(false);
-        blackscreen.SetActive(false);
+
+        if(wasActive)  wasActive = false; 
+        else blackscreen.SetActive(false);
+
         Time.timeScale = 1;
     }
 }

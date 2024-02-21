@@ -8,6 +8,9 @@ public class Hand : MonoBehaviour
 
     public static Hand Instance { get; set;}
 
+    //la mano guarda el fear entre escenas
+    public int fear;
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -136,5 +139,11 @@ public class Hand : MonoBehaviour
                 cards[i].GetComponent<CardSlotHand>().startingPos += offset;
             }
         } 
+    }
+
+    public void UpdateFear()
+    {
+        //llamado por botones
+        fear = GameManager.Instance.player.GetComponent<Fear>().fear;
     }
 }

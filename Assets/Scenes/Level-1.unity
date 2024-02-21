@@ -9558,6 +9558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95505da6e0fe14b4bbe98d6c2d4f62dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fear: 0
 --- !u!1 &1574868880
 GameObject:
   m_ObjectHideFlags: 0
@@ -9671,9 +9672,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1475554424}
+  - {fileID: 654700145}
   - {fileID: 1279256824}
   - {fileID: 1567346307}
-  - {fileID: 654700145}
   m_Father: {fileID: 1155759594}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

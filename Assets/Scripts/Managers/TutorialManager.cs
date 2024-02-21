@@ -114,8 +114,8 @@ public class TutorialManager : MonoBehaviour
 
     private void DisplayTutorial(int whichOne)
     {
-        displayImage.enabled = false;
-        textBox.enabled = true;
+        displayImage.enabled = true;
+        textBox.gameObject.SetActive(true);
         displayImage.sprite = tutorialPackages[whichOne].image;
         textBox.text = tutorialPackages[whichOne].text;
     }
@@ -138,7 +138,7 @@ public class TutorialManager : MonoBehaviour
             blackBox.SetActive(false);
             blackScreen.SetActive(false);
             displayImage.enabled = false;
-            textBox.enabled = false;
+            textBox.gameObject.SetActive(false);
             pause.canPause = true;
             gamepaused = false;
             Time.timeScale = 1;

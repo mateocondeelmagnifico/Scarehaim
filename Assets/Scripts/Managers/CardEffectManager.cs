@@ -37,7 +37,7 @@ public class CardEffectManager : MonoBehaviour
         paymentMenu.SetActive(false);
         blackScreen.SetActive(false);
         displayImage = paymentMenu.transform.GetChild(0).GetComponent<Image>();
-        explanation = paymentMenu.transform.GetChild(3).GetComponent<TMPro.TextMeshProUGUI>();
+        explanation = paymentMenu.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>();
     }
     private void Start()
     {

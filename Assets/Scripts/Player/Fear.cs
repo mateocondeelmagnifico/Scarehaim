@@ -13,6 +13,7 @@ public class Fear : MonoBehaviour
     private void Start()
     {
         textManager = TextManager.Instance;
+        fear = Hand.Instance.fear;
     }
     private void Update()
     {
