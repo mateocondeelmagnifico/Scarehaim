@@ -48,7 +48,7 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
-            if(textManager.closeToEnemy && (Mathf.Abs(cardGridPos.x - playerMove.myPos.x) > 1 || Mathf.Abs(cardGridPos.y - playerMove.myPos.y) > 1))
+            if(textManager.closeToEnemy && (Mathf.Abs(cardGridPos.x) - Mathf.Abs(playerMove.myPos.x) > 1 || Mathf.Abs(cardGridPos.y) - Mathf.Abs(playerMove.myPos.y) > 1))
             {
                 textManager.closeToEnemy = false;
                 textManager.SwapSprite();
