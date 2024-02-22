@@ -26,7 +26,7 @@ public class TutorialManager : MonoBehaviour
         manager = GameManager.Instance;
         pause = SceneManagement.Instance;
         startTimer = 2;
-        tutorialTriggered = new bool[5];
+        tutorialTriggered = new bool[6];
         mouseManager.canClick = false;
         pause.canPause = false;
     }
@@ -71,6 +71,11 @@ public class TutorialManager : MonoBehaviour
         if(condition && !manager.moveCardToHand && !tutorialTriggered[4])
         {
             StopGame(4);
+        }
+
+        if(manager.turnCount == 4 && !tutorialTriggered[5])
+        {
+            StopGame(5);
         }
         #endregion
 

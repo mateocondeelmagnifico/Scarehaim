@@ -39,14 +39,14 @@ public class SceneManagement : MonoBehaviour
             }
         }
     }
-    public void ChangeScene(string sceneName)
+    public void ChangeScene(int whatScene)
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(whatScene);
     }
 
     public void ReloadScene()
     {
-        ChangeScene(SceneManager.GetActiveScene().name);
+        ChangeScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void QuitGame()
