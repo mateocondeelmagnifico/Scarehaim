@@ -15,14 +15,16 @@ public class CardManager : MonoBehaviour
     [SerializeField] private GameObject[] enviroments, enviroments2, enviroments3, treats, costumes;
 
     public int cardsUntilExit, treatAmount, costumeAmount;
+    private int resetTimes;
 
     public bool exitCardDealt;
-    private bool powerUpDealt;
+    private bool powerUpDealt, canEnd;
     private GameManager gameManager;
     private CardSlot cardSlot;
     public TMPro.TextMeshProUGUI doorText;
 
     private Transform playerPos;
+    public Transform tricks;
     void Awake()
     {
         if (Instance == null)
@@ -44,6 +46,69 @@ public class CardManager : MonoBehaviour
         cards.Add(enviroments3);
         cards.Add(treats);
         cards.Add(costumes);
+        #endregion
+    }
+    private void Start()
+    {
+        #region Distribute Tricks
+        Vector3[] assignedPositions = new Vector3[tricks.childCount];
+
+        for (int i = 0; i < cardsOnBoard.transform.childCount; i++)
+        {
+            //cada casilla tiene una probabilidad sobre 3 de tener una trampa
+            //reset times esta para evitar bucles infinitos
+            if (Random.Range(0, 7) + resetTimes > 6)
+            {
+                for (int e = 0; e < assignedPositions.Length; e++)
+                {
+                    if (assignedPositions[e] == Vector3.zero)
+                    {
+                        //Chekea si el lugar tiene un enemigo, o si ahi esta el jugador
+                        Transform chosenCard = cardsOnBoard.transform.GetChild(i);
+                        canEnd = false;
+
+                        if (!chosenCard.GetChild(0).CompareTag("Enemy") && (chosenCard.position.x != playerPos.position.x && chosenCard.position.y != playerPos.position.y))
+                        {
+                            bool canplace = true;
+                            if ((e == 1 && chosenCard.position == assignedPositions[e - 1]) || (e == 2 && (chosenCard.position == assignedPositions[e - 2] || chosenCard.position == assignedPositions[e - 1])))
+                            {
+                                canplace = false;
+                            }
+
+                            //If you were to place two traps in the same position
+                            if (canplace)
+                            {
+                                assignedPositions[e] = chosenCard.position;
+                                tricks.GetChild(e).position = assignedPositions[e];
+                            }
+                        }
+                    }
+                    else if (e == assignedPositions.Length - 1)
+                    {
+                        canEnd = true;
+                    }
+                }
+            }
+
+            if (resetTimes > 5)
+            {
+                Debug.Log("infinite");
+                canEnd = true;
+            }
+
+            if (!canEnd)
+            {
+                if (i == cardsOnBoard.transform.childCount - 1)
+                {
+                    i = 0;
+                    resetTimes++;
+                }
+            }
+            else
+            {
+                i = cardsOnBoard.transform.childCount;
+            }
+        }
         #endregion
     }
 
@@ -95,7 +160,6 @@ public class CardManager : MonoBehaviour
         newCard.transform.parent = cardSlot.gameObject.transform;
         gameManager.newCard = newCard;
         #endregion
-
     }
 
     private void ReplaceCard()
@@ -119,16 +183,16 @@ public class CardManager : MonoBehaviour
         newCard = Instantiate(chosenArray[newRandom], gameManager.deck);
 
         #region Check if it has run out of treats or costumes
-        if (cards.Count == 5)
+        if (cards.Count == 4)
         {
-            if (randomInt == 4)
+            if (randomInt == 3)
             {
                 if (costumeAmount > 0)
                 {
                     costumeAmount--;
                     if (costumeAmount <= 0)
                     {
-                        cards.RemoveAt(4);
+                        cards.RemoveAt(3);
                     }
 
                 }
@@ -137,34 +201,35 @@ public class CardManager : MonoBehaviour
                     treatAmount--;
                     if (costumeAmount <= 0)
                     {
-                        cards.RemoveAt(4);
+                        cards.RemoveAt(3);
                     }
                 }
 
                 powerUpDealt = true;
             }
         }
-        if (cards.Count == 6)
+        if (cards.Count == 5)
         {
-            if (randomInt == 4)
+            if (randomInt == 3)
             {
                 treatAmount--;
                 if (treatAmount <= 0)
                 {
-                    cards.RemoveAt(4);
+                    cards.RemoveAt(3);
                 }
                 powerUpDealt = true;
             }
-            if (randomInt == 5)
+            if (randomInt == 4)
             {
                 costumeAmount--;
                 if (costumeAmount <= 0)
                 {
-                    cards.RemoveAt(5);
+                    cards.RemoveAt(4);
                 }
                 powerUpDealt = true;
             }
         }
         #endregion
     }
+
 }

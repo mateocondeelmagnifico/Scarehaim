@@ -17,9 +17,12 @@ public class EnemyMovement : MonoBehaviour
     private Vector2 cardGridPos;
     private Vector2 cardActualPos;
 
+    public float turnsUntilStart;
+
     private void Start()
     {
         textManager = TextManager.Instance;
+        turnsUntilStart = 2;
     }
     private void Update()
     {
@@ -45,7 +48,13 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
-            textManager.closeToEnemy = false;
+            if(textManager.closeToEnemy && (Mathf.Abs(cardGridPos.x - playerMove.myPos.x) > 1 || Mathf.Abs(cardGridPos.y - playerMove.myPos.y) > 1))
+            {
+                textManager.closeToEnemy = false;
+                textManager.SwapSprite();
+                textManager.Talk(TextManager.EnemyStates.Annoyed);
+            }
+            
             hasTalked = false;
         }
     }

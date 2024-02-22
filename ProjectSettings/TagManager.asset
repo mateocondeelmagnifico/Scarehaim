@@ -8,6 +8,7 @@ TagManager:
   - Treat
   - Costume
   - Enemy
+  - Table
   layers:
   - Default
   - TransparentFX

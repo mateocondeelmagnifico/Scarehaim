@@ -10,6 +10,9 @@ public class SceneManagement : MonoBehaviour
 
     public GameObject gameWonMenu, optionsMenu, pauseMenu, blackscreen;
     private GameObject currentMenu;
+
+    public bool canPause;
+    private bool wasActive;
     private void Awake()
     {
         if (Instance == null)
@@ -24,7 +27,7 @@ public class SceneManagement : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Escape) && canPause)
         {
             if(currentMenu == null)
             {
@@ -36,14 +39,14 @@ public class SceneManagement : MonoBehaviour
             }
         }
     }
-    public void ChangeScene(string sceneName)
+    public void ChangeScene(int whatScene)
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(whatScene);
     }
 
     public void ReloadScene()
     {
-        ChangeScene(SceneManager.GetActiveScene().name);
+        ChangeScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void QuitGame()
@@ -63,14 +66,19 @@ public class SceneManagement : MonoBehaviour
     {
         currentMenu = menu;
         menu.SetActive(true);
-        blackscreen.SetActive(true);
+        if(blackscreen.activeInHierarchy) wasActive = true;
+        else blackscreen.SetActive(true); 
+        
         Time.timeScale = 0;
     }
     public void ExitMenu(GameObject menu)
     {
         currentMenu = null;
         menu.SetActive(false);
-        blackscreen.SetActive(false);
+
+        if(wasActive)  wasActive = false; 
+        else blackscreen.SetActive(false);
+
         Time.timeScale = 1;
     }
 }

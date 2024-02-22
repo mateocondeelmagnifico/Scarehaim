@@ -116,3 +116,4 @@ MonoBehaviour:
   bigImage: {fileID: 21300000, guid: 87cbf4fca89557e458e7f07fd104a513, type: 3}
   myName: Ghost Garb
   icon: {fileID: 21300000, guid: a03fcccdac11753458ffbd190cd13032, type: 3}
+  onPlayerImage: {fileID: 21300000, guid: 88642094421fb6a43b50d7ff701646d0, type: 3}

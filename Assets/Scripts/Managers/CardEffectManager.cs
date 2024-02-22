@@ -1,12 +1,16 @@
  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CardEffectManager : MonoBehaviour
 {
+    //this script also manages paying treats at the end of a stage
+
     public GameObject paymentMenu, blackScreen, treatSlot, costumeSlot;
     private GameObject newSlot, player;
+    [SerializeField] private Transform merrowHand;
 
     public Transform[] slotPositions;
     private Transform hand;
@@ -15,8 +19,15 @@ public class CardEffectManager : MonoBehaviour
     private Image displayImage;
     private TMPro.TextMeshProUGUI explanation;
     private Cost currentCost;
+    private Fear playerFear;
+    [SerializeField] private Cost endCost;
+    private Hand handScript;
+    private Sprite mySprite;
+    [SerializeField] private Sprite endSprite;
 
-    public bool effectActive;
+    public bool effectActive, moveHand, isEnding;
+
+    private Vector3 desiredPos, originalPos;
 
     private void Awake()
     {
@@ -32,46 +43,77 @@ public class CardEffectManager : MonoBehaviour
         paymentMenu.SetActive(false);
         blackScreen.SetActive(false);
         displayImage = paymentMenu.transform.GetChild(0).GetComponent<Image>();
-        explanation = paymentMenu.transform.GetChild(3).GetComponent<TMPro.TextMeshProUGUI>();
+        explanation = paymentMenu.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>();
     }
     private void Start()
     {
         manager = GameManager.Instance;
         player = manager.player;
-        hand = manager.hand;
+        hand = Hand.Instance.transform;
+        handScript = hand.GetComponent<Hand>();
+        playerFear = player.GetComponent<Fear>();
+
+        originalPos = merrowHand.transform.position;
+    }
+
+    private void Update()
+    {
+        //Esto esta solo para mover la mano
+
+        if(moveHand)
+        {
+            merrowHand.position = Vector3.MoveTowards(merrowHand.position, desiredPos, 5 * Time.deltaTime);
+
+            if(merrowHand.position == desiredPos)
+            {
+                if (merrowHand.transform.position != originalPos)
+                {
+                    ActivatePayment(mySprite, currentCost);
+                }
+                else
+                {
+                    manager.trapTriggered = false;
+                }
+                moveHand = false;
+            }
+        }
     }
     // Este script se encarga de los momentos en los que tienes que pagar por enemigos o trampas
     public void ActivatePayment(Sprite image, Cost whatCost)
    {
         //This displays the payment Window
-        displayImage.sprite = image;
-        explanation.text = whatCost.explanation;
+
+        mySprite = image;
+        currentCost = whatCost;
+
+        displayImage.sprite = mySprite;
+        explanation.text = currentCost.explanation;
 
         paymentMenu.SetActive(true);
         blackScreen.SetActive(true);
 
-        for(int i = 0; i < whatCost.costAmount; i++)
+        for(int i = 0; i < currentCost.costAmount; i++)
         {
-            if(whatCost.CostName == "Treat")
+            if(currentCost.CostName == "Treat")
             {
                newSlot = Instantiate(treatSlot);
                newSlot.transform.position = slotPositions[i].position;
                newSlot.transform.parent = blackScreen.transform;
             }
 
-            if (whatCost.CostName == "Costume")
+            if (currentCost.CostName == "Costume")
             {
                 newSlot = Instantiate(costumeSlot);
                 newSlot.transform.position = slotPositions[i].position;
                 newSlot.transform.parent = blackScreen.transform;
             }
         }
-        currentCost = whatCost;
         effectActive = true;
     }
 
     public void Payment(bool wantsToPay)
     {
+        //called by buttons
         if(manager.currentState != GameManager.turnState.ReplaceCard)
         {
             //This checks if you selected pay or don't pay
@@ -91,6 +133,21 @@ public class CardEffectManager : MonoBehaviour
                 {
                     canPay = false;
                 }
+
+                #region Ending Screen Check
+                if (isEnding)
+                {
+                    //reduce fear by 2 for each treat payed
+                    //hardcoded but functional
+                    for (int i = 0; i < blackScreen.transform.childCount; i++)
+                    {
+                        if (blackScreen.transform.GetChild(i).childCount > 0)
+                        {
+                            playerFear.fear -= 2;
+                        }
+                    }
+                }
+                #endregion
 
                 if (canPay)
                 {
@@ -130,6 +187,12 @@ public class CardEffectManager : MonoBehaviour
                     DeactivateMenu();
                 }
             }
+
+            if(isEnding)
+            {
+                handScript.UpdateFear();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
         }
     }
 
@@ -146,7 +209,9 @@ public class CardEffectManager : MonoBehaviour
         if(manager.trapTriggered)
         {
             //If you triggered a card
-            manager.trapTriggered = false;
+            //Move hand to original position;
+            moveHand = true;
+            desiredPos = originalPos;
         }
         else
         {
@@ -164,14 +229,18 @@ public class CardEffectManager : MonoBehaviour
         effectActive = false;
     }
 
-    private void discardCards(string cardType, int amount)
+    private void DiscardCards(string cardType, int amount)
     {
-        for(int i = 0; i < hand.childCount; i++)
+        if(hand.childCount > 0)
         {
-            if(hand.GetChild(i).GetChild(0).tag == cardType && amount > 0)
+            for (int i = 0; i < hand.childCount; i++)
             {
-                Destroy(hand.GetChild(i).gameObject);
-                amount--;
+                if (hand.GetChild(i).GetChild(0).tag == cardType && amount > 0 && hand.childCount > 0)
+                {
+                    Destroy(hand.GetChild(i).gameObject);
+                    amount--;
+                    handScript.DeterminePosition();
+                }
             }
         }
     }
@@ -179,17 +248,34 @@ public class CardEffectManager : MonoBehaviour
     {
         if (name == "Fear")
         {
-            player.GetComponent<Fear>().fear += howMuch;
+            playerFear.fear += howMuch;
         }
 
         if (name == "Treat")
         {
-            discardCards(name, howMuch);
+            DiscardCards(name, howMuch);
         }
 
         if (name == "Costume")
         {
-            discardCards(name, howMuch);
+            DiscardCards(name, howMuch);
         }
+    }
+
+    public void InformMoveHand(Vector3 cardPos, Sprite image, Cost whatCost)
+    {
+        moveHand = true;
+
+        desiredPos = cardPos;
+
+        currentCost = whatCost;
+
+        mySprite = image;
+    }
+
+    public void ActivateFinalScreen()
+    {
+        isEnding = true;
+        ActivatePayment(endSprite, endCost);
     }
 }

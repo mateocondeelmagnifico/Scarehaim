@@ -57,6 +57,10 @@ public class CardSlotHand: CardSlot
             {
                 Move(direction);
             }
+            else
+            {
+                transform.rotation = Quaternion.identity;
+            }
         }
     }
 
