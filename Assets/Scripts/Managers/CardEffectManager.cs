@@ -8,7 +8,7 @@ public class CardEffectManager : MonoBehaviour
 {
     //this script also manages paying treats at the end of a stage
 
-    public GameObject paymentMenu, blackScreen, treatSlot, costumeSlot;
+    public GameObject paymentMenu, blackScreen, treatSlot, costumeSlot, paymentButtons, bigButton;
     private GameObject newSlot, player;
     [SerializeField] private Transform merrowHand;
 
@@ -108,6 +108,18 @@ public class CardEffectManager : MonoBehaviour
                 newSlot.transform.parent = blackScreen.transform;
             }
         }
+
+        #region Activate Buttons
+        if (currentCost.costAmount == 0)
+        {
+            bigButton.SetActive(true);
+        }
+        else
+        {
+            paymentButtons.SetActive(true);
+        }
+        #endregion
+
         effectActive = true;
     }
 
@@ -203,10 +215,14 @@ public class CardEffectManager : MonoBehaviour
             Destroy(blackScreen.transform.GetChild(i).gameObject);
         }
 
+        #region Deactivate Stuff
+        bigButton.SetActive(false);
+        paymentButtons.SetActive(false);
         paymentMenu.SetActive(false);
         blackScreen.SetActive(false);
+        #endregion
 
-        if(manager.trapTriggered)
+        if (manager.trapTriggered)
         {
             //If you triggered a card
             //Move hand to original position;
