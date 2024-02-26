@@ -77,6 +77,7 @@ public class Movement : MonoBehaviour
                 }
                 else
                 {
+                    hasMoved = false;
                     gameManager.powerUpOn = false;
                     gameManager.currentState = GameManager.turnState.ReplaceCard;
                 }

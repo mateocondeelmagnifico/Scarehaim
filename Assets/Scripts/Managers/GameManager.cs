@@ -161,7 +161,6 @@ public class GameManager : MonoBehaviour
 
                 if (!selectedCardSlot.transform.GetChild(0).CompareTag("Enemy"))
                 {
-                    Debug.Log(2);
                     emptySlot = selectedCardSlot;
                 }
                 else if(!slotErased)
