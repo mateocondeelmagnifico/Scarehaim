@@ -114,7 +114,6 @@ public class CardManager : MonoBehaviour
 
     public void CardDiscarded(CardSlot whatSlot)
     {
-        //cardSlot = whatSlot;
         gameManager.slotToReplaceNew = whatSlot.gameObject;
         doorText.text = cardsUntilExit.ToString();
     }

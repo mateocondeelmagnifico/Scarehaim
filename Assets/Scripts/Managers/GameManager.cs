@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     public GameState State;
     [HideInInspector] public bool playerTurnInProgress, trapTriggered, powerUpOn;
-    private bool winCondition, loseCondition;
+    private bool winCondition, loseCondition, slotErased;
     public bool mustMove;
 
     [HideInInspector]
@@ -126,6 +126,7 @@ public class GameManager : MonoBehaviour
             case turnState.CheckMovement:
                 //Player movement is the one that changes to the next state
                 cardInformed = false;
+                slotErased = false;
             break;
 
             case turnState.Moving:
@@ -153,8 +154,24 @@ public class GameManager : MonoBehaviour
 
             case turnState.CheckCardEffect:
                 //This is changed by the card's script
-                slotToReplaceOld = slotToReplaceNew;
-                emptySlot = selectedCardSlot;
+                if (!slotErased)
+                {
+                    slotToReplaceOld = slotToReplaceNew;
+                }
+
+                if (!selectedCardSlot.transform.GetChild(0).CompareTag("Enemy"))
+                {
+                    Debug.Log(2);
+                    emptySlot = selectedCardSlot;
+                }
+                else if(!slotErased)
+                {
+                    slotToReplaceNew = null;
+                    slotErased = true;
+                }
+
+                
+                
                 if(!trapTriggered && !cardInformed)
                 {
                     InformCard();

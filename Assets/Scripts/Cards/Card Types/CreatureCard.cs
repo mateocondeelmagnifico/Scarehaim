@@ -51,6 +51,9 @@ public class CreatureCard : Card
             manager.currentState = GameManager.turnState.Movecard;
             return;
         }
+
+        //manager.slotToReplaceOld = manager.slotToReplaceNew;
+        //manager.slotToReplaceNew = null;
         CardEffectManager.Instance.ActivatePayment(image, myCost);
         player.GetComponent<Movement>().hasMoved = false;
         isDone = true;
