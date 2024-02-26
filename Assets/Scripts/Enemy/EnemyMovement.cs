@@ -63,14 +63,57 @@ public class EnemyMovement : MonoBehaviour
     public void EnemyLogic()
     {
         // primero averigua el cardGridPos del CardSlot al que se quiere mover.
-        if (playerMove.myPos.y > myPos.y)
-            cardGridPos = new Vector2(myPos.x , myPos.y + 1);
-        else if(playerMove.myPos.y < myPos.y)
-            cardGridPos = new Vector2(myPos.x, myPos.y - 1);
-        else if(playerMove.myPos.x > myPos.x)
-            cardGridPos = new Vector2(myPos.x + 1, myPos.y);
+        if(playerMove.myPos.y == myPos.y || playerMove.myPos.x == myPos.x)
+        {
+            #region Not random calculation
+            if (playerMove.myPos.y == myPos.y && playerMove.myPos.x > myPos.x)
+            {
+                cardGridPos = new Vector2(myPos.x + 1, myPos.y);
+            }
+            else
+            {
+                cardGridPos = new Vector2(myPos.x - 1, myPos.y);
+            }
+
+            if (playerMove.myPos.x == myPos.x && playerMove.myPos.y > myPos.y)
+            {
+                cardGridPos = new Vector2(myPos.x, myPos.y + 1);
+            }
+            else
+            {
+                cardGridPos = new Vector2(myPos.x, myPos.y - 1);
+            }
+            #endregion
+        }
         else
-            cardGridPos = new Vector2(myPos.x - 1, myPos.y);
+        {
+            #region Random calculation
+            int random = Random.Range(0, 2);
+
+            if(random == 0)
+            {
+                if(playerMove.myPos.x > myPos.x)
+                {
+                    cardGridPos = new Vector2(myPos.x + 1, myPos.y);
+                }
+                else
+                {
+                    cardGridPos = new Vector2(myPos.x - 1, myPos.y);
+                }
+            }
+            else
+            {
+                if (playerMove.myPos.y > myPos.y)
+                {
+                    cardGridPos = new Vector2(myPos.x, myPos.y + 1);
+                }
+                else
+                {
+                    cardGridPos = new Vector2(myPos.x, myPos.y - 1);
+                }
+            }
+            #endregion
+        }
 
         // luego obtiene el cardActualPos de CardSlot al que se quiere mover.
         CardSlot destineCard = FindCardSlot(cardGridPos);
