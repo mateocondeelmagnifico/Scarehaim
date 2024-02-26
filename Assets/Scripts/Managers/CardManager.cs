@@ -52,11 +52,16 @@ public class CardManager : MonoBehaviour
     {
         #region Distribute Tricks
         Vector3[] assignedPositions = new Vector3[tricks.childCount];
+        int cardAdjacent = 0;
 
         for (int i = 0; i < cardsOnBoard.transform.childCount; i++)
         {
             //cada casilla tiene una probabilidad sobre 3 de tener una trampa
             //reset times esta para evitar bucles infinitos
+
+            //Esto separa las tricks
+            cardAdjacent--;
+
             if (Random.Range(0, 7) + resetTimes > 6)
             {
                 for (int e = 0; e < assignedPositions.Length; e++)
@@ -70,7 +75,7 @@ public class CardManager : MonoBehaviour
                         if (!chosenCard.GetChild(0).CompareTag("Enemy") && (chosenCard.position.x != playerPos.position.x && chosenCard.position.y != playerPos.position.y))
                         {
                             bool canplace = true;
-                            if ((e == 1 && chosenCard.position == assignedPositions[e - 1]) || (e == 2 && (chosenCard.position == assignedPositions[e - 2] || chosenCard.position == assignedPositions[e - 1])))
+                            if (cardAdjacent > 0 || (e == 1 && chosenCard.position == assignedPositions[e - 1]) || (e == 2 && (chosenCard.position == assignedPositions[e - 2] || chosenCard.position == assignedPositions[e - 1])))
                             {
                                 canplace = false;
                             }
@@ -80,6 +85,7 @@ public class CardManager : MonoBehaviour
                             {
                                 assignedPositions[e] = chosenCard.position;
                                 tricks.GetChild(e).position = assignedPositions[e];
+                                cardAdjacent = 2;
                             }
                         }
                     }
