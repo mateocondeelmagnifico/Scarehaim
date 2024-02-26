@@ -62,7 +62,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         if(!tutorialTriggered[3])
-        if(manager.trapTriggered)
+        if(manager.trapTriggered && effectManager.paymentMenu.activeInHierarchy)
         {
             StopGame(3);
         }
@@ -90,7 +90,6 @@ public class TutorialManager : MonoBehaviour
         {
             if (effectManager.paymentMenu.activeInHierarchy)
             {
-          
                 StopGame(6);
             }
         }
