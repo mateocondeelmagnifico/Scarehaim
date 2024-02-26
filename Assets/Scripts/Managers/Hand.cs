@@ -8,8 +8,9 @@ public class Hand : MonoBehaviour
 
     public static Hand Instance { get; set;}
 
-    //la mano guarda el fear entre escenas
+    //la mano guarda el fear entre escenas y sabe si has hecho el tutorial
     public int fear;
+    public bool tutorialDone;
 
     private void Awake()
     {
@@ -21,6 +22,8 @@ public class Hand : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
 
         defaultPos = new Vector3(4, -5, -2);
+
+        DeterminePosition();
     }
 
     private void Update()

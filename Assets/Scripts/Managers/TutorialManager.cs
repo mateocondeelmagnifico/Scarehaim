@@ -24,6 +24,8 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
+        if (Hand.Instance.tutorialDone) Destroy(this.gameObject);
+
         manager = GameManager.Instance;
         pause = SceneManagement.Instance;
         effectManager = CardEffectManager.Instance;
@@ -105,7 +107,11 @@ public class TutorialManager : MonoBehaviour
             }
         }
 
-        if (destroy && Time.timeScale == 1) Destroy(this.gameObject);
+        if (destroy && Time.timeScale == 1)
+        {
+            Hand.Instance.tutorialDone = true;
+            Destroy(this.gameObject);
+        }
         #endregion
     }
 

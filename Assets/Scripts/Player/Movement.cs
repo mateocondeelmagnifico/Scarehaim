@@ -90,8 +90,7 @@ public class Movement : MonoBehaviour
 
     public void TryMove(Vector2 cardGridPos, Vector2 cardActualPos)
     {
-
-        if (!hasTreat && turnsWithcostume <= 0)
+        if (!hasTreat)
         {
             //Normal movement
             if (cardGridPos.x <= myPos.x + 1 && cardGridPos.x >= myPos.x - 1 && cardGridPos.y <= myPos.y + 1 && cardGridPos.y >= myPos.y - 1 && !isMoving)

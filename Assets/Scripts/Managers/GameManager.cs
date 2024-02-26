@@ -143,7 +143,7 @@ public class GameManager : MonoBehaviour
 
                 if (mustMove)
                 {
-                    MoveCard(newCard, slotToReplaceOld.transform.position);
+                    MoveCard(newCard, slotToReplaceOld.transform.position, newCard.GetComponent<SpriteRenderer>());
                 }
                 else
                 {
@@ -185,7 +185,7 @@ public class GameManager : MonoBehaviour
                 if (moveCardToHand || moveCard)
                 {
                     if (moveCard)
-                        MoveCard(selectedCard, discardPile.position);
+                        MoveCard(selectedCard, discardPile.position, selectedCard.GetComponent<SpriteRenderer>());
 
                     if(moveCardToHand)
                     {
@@ -195,7 +195,7 @@ public class GameManager : MonoBehaviour
                         }
                         else
                         {
-                            MoveCard(newCardSlot, discardPile.position);
+                            MoveCard(newCardSlot, discardPile.position, newCardSlot.transform.GetChild(0).GetComponent<SpriteRenderer>());
                         }
                     }   
 
@@ -251,10 +251,11 @@ public class GameManager : MonoBehaviour
         selectedCardSlot.transform.GetChild(0).GetComponent<CardObject>().myCard.Effect(selectedCardSlot.transform.GetChild(0).gameObject, handSlotPrefab);
     }
 
-    private void MoveCard( GameObject whatCard, Vector3 desiredPos)
+    private void MoveCard( GameObject whatCard, Vector3 desiredPos, SpriteRenderer renderer)
     {
         //This cript is used to move cards to the deck and discard pile
         whatCard.transform.position = Vector3.MoveTowards(whatCard.transform.position, desiredPos, 8 * Time.deltaTime);
+        renderer.sortingOrder = 0;
 
         if(whatCard.transform.position == desiredPos)
         {
@@ -266,7 +267,6 @@ public class GameManager : MonoBehaviour
                 {
                     //put card from hand into graveyard
                     whatCard.transform.GetChild(0).parent = discardPile;
-                    whatCard.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = -1;
                     Destroy(whatCard);
                     moveCardToHand = false;
                 }
@@ -274,10 +274,12 @@ public class GameManager : MonoBehaviour
                 {
                     whatCard.transform.parent = discardPile;
                 }
+                renderer.sortingOrder = -2;
                 currentState = turnState.Endturn;
             }
             else if(slotToReplaceOld != null)
             {
+                renderer.sortingOrder = -2;
                 currentState = turnState.CheckCardEffect;
                 mustMove = false;
             }
