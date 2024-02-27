@@ -8,7 +8,7 @@ public class CardEffectManager : MonoBehaviour
 {
     //this script also manages paying treats at the end of a stage
 
-    public GameObject paymentMenu, blackScreen, treatSlot, costumeSlot, paymentButtons, bigButton;
+    public GameObject paymentMenu, blackScreen, treatSlot, costumeSlot, paymentButtons, bigButton, hand1, hand2;
     private GameObject newSlot, player;
     [SerializeField] private Transform merrowHand;
 
@@ -72,7 +72,10 @@ public class CardEffectManager : MonoBehaviour
                 }
                 else
                 {
+                    Debug.Log(2);
                     manager.trapTriggered = false;
+                    hand1.SetActive(true);
+                    hand2.SetActive(false);
                 }
                 moveHand = false;
             }
@@ -287,6 +290,9 @@ public class CardEffectManager : MonoBehaviour
         currentCost = whatCost;
 
         mySprite = image;
+
+        hand1.SetActive(false);
+        hand2.SetActive(true);
     }
 
     public void ActivateFinalScreen()
