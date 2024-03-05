@@ -21,7 +21,7 @@ public class CardSlotHand: CardSlot
         gameManager = GameManager.Instance;
         if(effectManager == null) effectManager = CardEffectManager.Instance;
         blackScreen = effectManager.blackScreen.transform;
-        cardObject = transform.GetChild(0).gameObject;
+        if(transform.childCount > 0) cardObject = transform.GetChild(0).gameObject;
     }
 
     private void Update()

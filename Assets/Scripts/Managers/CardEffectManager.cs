@@ -183,7 +183,7 @@ public class CardEffectManager : MonoBehaviour
                     {
                         blackScreen.transform.GetChild(i).transform.GetChild(0).position = blackScreen.transform.GetChild(i).transform.GetChild(0).GetComponent<CardSlotHand>().startingPos;
                         blackScreen.transform.GetChild(i).transform.GetComponentInChildren<CardSlotHand>().isPayment = false;
-                        blackScreen.transform.GetChild(i).transform.GetChild(0).parent = null;
+                        blackScreen.transform.GetChild(i).transform.GetChild(0).parent = hand;
                     }
                 }
 

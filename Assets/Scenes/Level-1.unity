@@ -8588,7 +8588,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -70, y: -138}
-  m_SizeDelta: {x: 80, y: 20}
+  m_SizeDelta: {x: 90, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1279256825
 MonoBehaviour:
@@ -10524,7 +10524,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 70, y: -138}
-  m_SizeDelta: {x: 80, y: 20}
+  m_SizeDelta: {x: 90, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1567346308
 MonoBehaviour:
@@ -12981,7 +12981,7 @@ MonoBehaviour:
   - {fileID: 638242032198707708, guid: 151013d12cc251146ab1d474bec862a1, type: 3}
   costumes:
   - {fileID: 638242032198707708, guid: 586fbdec72867df419f6c84721780c93, type: 3}
-  cardsUntilExit: 10
+  cardsUntilExit: 3
   treatAmount: 2
   costumeAmount: 2
   exitCardDealt: 0

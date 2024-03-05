@@ -22,6 +22,7 @@ public class Hand : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
             DontDestroyOnLoad(cardStorage);
             firstGame = true;
+            DetermineStartCards();
         }
         else
         {
@@ -31,7 +32,6 @@ public class Hand : MonoBehaviour
         defaultPos = new Vector3(4, -5, -2);
 
         DeterminePosition();
-        DetermineStartCards();
     }
 
     private void Update()
@@ -176,19 +176,19 @@ public class Hand : MonoBehaviour
 
         for (int i = 0; i < cardsStart.Length; i++)
         {
-            cardsStart[i].gameObject.SetActive(true);
-            cardsStart[i].transform.parent = this.transform;
+           GameObject currentCard =  GameObject.Instantiate(cardsStart[i].gameObject);
+           currentCard.transform.parent = this.transform;
+            currentCard.SetActive(true);
         }
 
         DeterminePosition();
-        DetermineStartCards();
     }
 
     private void DetermineStartCards()
     {
         cardsStart = new GameObject[transform.childCount];
 
-        for (int i = 0; i < cards.Length; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
             cardsStart[i] = GameObject.Instantiate(transform.GetChild(i).gameObject);
             cardsStart[i].SetActive(false);
