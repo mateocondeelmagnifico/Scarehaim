@@ -128,7 +128,7 @@ public class CardManager : MonoBehaviour
         cardSlot = gameManager.slotToReplaceOld.GetComponent<CardSlot>();
 
         #region Create card
-        if (cardsUntilExit == 0 && !exitCardDealt)
+        if (cardsUntilExit == 1 && !exitCardDealt)
         {
             //distance < 4
             List<GameObject> board = new List<GameObject>();
