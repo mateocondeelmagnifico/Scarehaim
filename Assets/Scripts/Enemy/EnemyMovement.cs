@@ -66,22 +66,16 @@ public class EnemyMovement : MonoBehaviour
         if(playerMove.myPos.y == myPos.y || playerMove.myPos.x == myPos.x)
         {
             #region Not random calculation
-            if (playerMove.myPos.y == myPos.y && playerMove.myPos.x > myPos.x)
+            if (playerMove.myPos.y == myPos.y)
             {
-                cardGridPos = new Vector2(myPos.x + 1, myPos.y);
-            }
-            else
-            {
-                cardGridPos = new Vector2(myPos.x - 1, myPos.y);
+                if(playerMove.myPos.x > myPos.x) cardGridPos = new Vector2(myPos.x + 1, myPos.y);
+                else cardGridPos = new Vector2(myPos.x - 1, myPos.y); ;
             }
 
-            if (playerMove.myPos.x == myPos.x && playerMove.myPos.y > myPos.y)
+            if (playerMove.myPos.x == myPos.x)
             {
-                cardGridPos = new Vector2(myPos.x, myPos.y + 1);
-            }
-            else
-            {
-                cardGridPos = new Vector2(myPos.x, myPos.y - 1);
+                if(playerMove.myPos.y > myPos.y) cardGridPos = new Vector2(myPos.x, myPos.y + 1);
+                else cardGridPos = new Vector2(myPos.x, myPos.y - 1);
             }
             #endregion
         }

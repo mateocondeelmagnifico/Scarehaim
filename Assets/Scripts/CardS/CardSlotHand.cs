@@ -18,9 +18,10 @@ public class CardSlotHand: CardSlot
     {
         isInHand = true;
         startingPos = transform.position;
-        if(gameManager == null) gameManager = GameManager.Instance;
+        gameManager = GameManager.Instance;
         if(effectManager == null) effectManager = CardEffectManager.Instance;
         blackScreen = effectManager.blackScreen.transform;
+        cardObject = transform.GetChild(0).gameObject;
     }
 
     private void Update()

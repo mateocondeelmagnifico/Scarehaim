@@ -72,7 +72,6 @@ public class CardEffectManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log(2);
                     manager.trapTriggered = false;
                     hand1.SetActive(true);
                     hand2.SetActive(false);

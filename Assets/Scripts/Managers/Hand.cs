@@ -5,31 +5,40 @@ public class Hand : MonoBehaviour
 {
     private Transform[] cards;
     private Vector3 defaultPos;
+    public GameObject[] cardsStart;
+    public GameObject cardStorage;
 
     public static Hand Instance { get; set;}
 
     //la mano guarda el fear entre escenas y sabe si has hecho el tutorial
     public int fear;
-    public bool tutorialDone;
+    public bool tutorialDone, firstGame;
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(cardStorage);
+            firstGame = true;
+        }
         else
         {
             Destroy(this.gameObject);
         }
-        DontDestroyOnLoad(this.gameObject);
 
         defaultPos = new Vector3(4, -5, -2);
 
         DeterminePosition();
+        DetermineStartCards();
     }
 
     private void Update()
     {
+
         //Check hand size
-        if(transform.childCount != 0)
+        if (transform.childCount != 0)
         if(transform.childCount != cards.Length) DeterminePosition();
     }
 
@@ -148,5 +157,42 @@ public class Hand : MonoBehaviour
     {
         //llamado por botones
         fear = GameManager.Instance.player.GetComponent<Fear>().fear;
+
+        DetermineStartCards();
+    }
+
+    public void RefreshCards()
+    {
+        if (firstGame)
+        {
+            firstGame = false;
+            return;
+        }
+
+        foreach (Transform child in this.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        for (int i = 0; i < cardsStart.Length; i++)
+        {
+            cardsStart[i].gameObject.SetActive(true);
+            cardsStart[i].transform.parent = this.transform;
+        }
+
+        DeterminePosition();
+        DetermineStartCards();
+    }
+
+    private void DetermineStartCards()
+    {
+        cardsStart = new GameObject[transform.childCount];
+
+        for (int i = 0; i < cards.Length; i++)
+        {
+            cardsStart[i] = GameObject.Instantiate(transform.GetChild(i).gameObject);
+            cardsStart[i].SetActive(false);
+            cardsStart[i].transform.parent = cardStorage.transform;
+        }
     }
 }
