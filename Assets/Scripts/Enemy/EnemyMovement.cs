@@ -9,9 +9,10 @@ public class EnemyMovement : MonoBehaviour
     public CardSlot initialSlot;
     public GameObject cardGrid;
     private TextManager textManager;
+    private Animator animador;
 
     [SerializeField] private bool isMoving;
-    private bool hasTalked;
+    private bool hasTalked, hasMoved;
 
     private Vector2 destination;
     private Vector2 cardGridPos;
@@ -23,6 +24,7 @@ public class EnemyMovement : MonoBehaviour
     {
         textManager = TextManager.Instance;
         turnsUntilStart = 2;
+        animador = GetComponent<Animator>();
     }
     private void Update()
     {
@@ -57,6 +59,10 @@ public class EnemyMovement : MonoBehaviour
             
             hasTalked = false;
         }
+
+        if(turnsUntilStart == 0 && !hasMoved) animador.SetBool("shaking", true);
+        else animador.SetBool("shaking", false);
+
     }
 
     // logica del enemigo
@@ -138,6 +144,7 @@ public class EnemyMovement : MonoBehaviour
             destination = cardActualPos;
             myPos = cardGridPos;
             isMoving = true;
+            hasMoved = true;
         }
     }
 
