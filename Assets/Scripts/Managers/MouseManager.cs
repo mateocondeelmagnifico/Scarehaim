@@ -14,7 +14,8 @@ public class MouseManager : MonoBehaviour
 
     private float handtimer;
 
-    public GameObject selectedCardSlot;
+    public GameObject selectedCardSlot, hoverAesthetics;
+
     private void Start()
     {
         manager = GameManager.Instance;

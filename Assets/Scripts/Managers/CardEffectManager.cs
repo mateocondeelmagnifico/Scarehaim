@@ -8,7 +8,7 @@ public class CardEffectManager : MonoBehaviour
 {
     //this script also manages paying treats at the end of a stage
 
-    public GameObject paymentMenu, blackScreen, treatSlot, costumeSlot, paymentButtons, bigButton, hand1, hand2;
+    public GameObject paymentMenu, blackScreen, treatSlot, costumeSlot, paymentButtons, bigButton, hand1, hand2, gameWonMenu;
     private GameObject newSlot, player;
     [SerializeField] private Transform merrowHand;
 
@@ -296,7 +296,15 @@ public class CardEffectManager : MonoBehaviour
 
     public void ActivateFinalScreen()
     {
-        isEnding = true;
-        ActivatePayment(endSprite, endCost);
+        if(SceneManager.GetActiveScene().buildIndex != 2)
+        {
+            isEnding = true;
+            ActivatePayment(endSprite, endCost);
+        }
+        else
+        {
+            Time.timeScale = 0;
+            gameWonMenu.SetActive(true);
+        }
     }
 }

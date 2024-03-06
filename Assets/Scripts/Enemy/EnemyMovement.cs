@@ -144,12 +144,14 @@ public class EnemyMovement : MonoBehaviour
             destination = cardActualPos;
             myPos = cardGridPos;
             isMoving = true;
-            hasMoved = true;
+            
         }
     }
 
     public void Move()
-    {   
+    {
+        hasMoved = true;
+
         transform.position = Vector2.MoveTowards(transform.position, destination, 4.5f * Time.deltaTime);
     }
 }
