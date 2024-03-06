@@ -52,6 +52,12 @@ public class MouseManager : MonoBehaviour
         {
             if (hit.collider.gameObject.tag.Equals("Card Slot") || hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
             {
+                #region Place Highlight
+                hoverAesthetics.SetActive(true);
+                hoverAesthetics.transform.position = hit.collider.transform.position;
+                hoverAesthetics.transform.rotation = hit.collider.transform.rotation;
+                #endregion
+
                 if (hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
                 {
                     //Check if it's hitting a player or enemy
@@ -134,6 +140,8 @@ public class MouseManager : MonoBehaviour
                 ShrinkHand();
                 display.enabled = false;
                 blackBox.enabled = false;
+
+                hoverAesthetics.SetActive(false);
             }
         }
     }
