@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.PlayerSettings;
 
 public class MouseManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class MouseManager : MonoBehaviour
     public Image display, blackBox;
     private Hand hand;
     private SpriteRenderer hoverRenderer;
+    private Movement pMovement;
+    private EnemyMovement enemyMove;
 
     private bool cardGrabbed, handDisplayed;
     public bool moveCard, cardInformed, canClick;
@@ -17,14 +20,19 @@ public class MouseManager : MonoBehaviour
 
     public GameObject selectedCardSlot, hoverAesthetics;
 
+    private Color startColor;
+
     private void Start()
     {
         manager = GameManager.Instance;
         myCam = Camera.main;
         hand = Hand.Instance;
+        pMovement = manager.playerMove;
+        enemyMove = manager.enemy;
         display.enabled = false;
         blackBox.enabled = false;
         hoverRenderer = hoverAesthetics.GetComponent<SpriteRenderer>();
+        startColor = hoverRenderer.color;
 
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
@@ -63,6 +71,7 @@ public class MouseManager : MonoBehaviour
                     hoverAesthetics.transform.position = cardHit.transform.position;
                     hoverAesthetics.transform.rotation = cardHit.transform.rotation;
                     if(cardHit.transform.GetChild(0).GetComponent<SpriteRenderer>()) hoverRenderer.sortingOrder = cardHit.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder;
+                    if (cardHit.GetComponent<CardSlot>()) CheckDistanceToPlayer(cardHit.GetComponent<CardSlot>());
                 }
                 #endregion
 
@@ -162,5 +171,88 @@ public class MouseManager : MonoBehaviour
             handDisplayed = false;
             hand.ResizeHand(false);
         }
+    }
+
+    private void CheckDistanceToPlayer(CardSlot slotScript)
+    {
+        float playerX = pMovement.myPos.x;
+        float playerY = pMovement.myPos.y;
+
+        float cardX = slotScript.Location.x;
+        float cardY = slotScript.Location.y;
+
+        bool canBasicMove = false;
+
+        if (slotScript.isInHand) hoverRenderer.color = Color.green;
+        else
+        {
+            if (playerX <= cardX + 1 && playerX >= cardX - 1 && playerY <= cardY + 1 && playerY >= cardY - 1)
+            {
+                canBasicMove = true;
+            }
+
+            if (pMovement.hasTreat)
+            {
+                #region Horrible treat Math
+                if(canBasicMove)
+                {
+                    hoverRenderer.color = startColor;
+                }
+                else
+                {
+                    if (cardX <= playerX + 2 && cardX >= playerX - 2 && cardY <= playerY + 2 && cardY >= playerY - 2)
+                    {
+                        if ((cardX == playerX + 2 || cardX == playerX - 2) && (cardY == playerY + 1 || cardY == playerY - 1) || (cardY == playerY + 2 || cardY == playerY - 2) && (cardX == playerX + 1 || cardX == playerX - 1))
+                        {
+                            //This is to check you cant move two spaces in one direction and one in another
+                            hoverRenderer.color = Color.red;
+                        }
+                        else
+                        {
+                            //Check if enemy is in the middle
+                            #region Calculate Enemy Position
+                            float middleX = cardX;
+                            float middleY = cardY;
+
+                            if (cardX == playerX + 2)
+                            {
+                                middleX = cardX - 1;
+                            }
+                            if (cardX == playerX - 2)
+                            {
+                                middleX = cardX + 1;
+                            }
+                            if (cardY == playerY + 2)
+                            {
+                                middleY = cardY - 1;
+                            }
+                            if (cardY == playerY - 2)
+                            {
+                                middleY = cardY + 1;
+                            }
+                            #endregion
+                            if(enemyMove.myPos != new Vector2(middleX,middleY)) hoverRenderer.color = startColor;
+                            else hoverRenderer.color = Color.red;
+                        }
+                    }
+                    else
+                    {
+                        hoverRenderer.color = Color.red;
+                    }
+                }
+                #endregion
+            }
+            else
+            {
+                if(canBasicMove)
+                {
+                    hoverRenderer.color = startColor;
+                }
+                else
+                {
+                    hoverRenderer.color = Color.red;
+                }
+            }
+        }  
     }
 }
