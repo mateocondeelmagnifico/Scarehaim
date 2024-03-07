@@ -8,6 +8,7 @@ public class MouseManager : MonoBehaviour
     public Movement playerMove;
     public Image display, blackBox;
     private Hand hand;
+    private SpriteRenderer hoverRenderer;
 
     private bool cardGrabbed, handDisplayed;
     public bool moveCard, cardInformed, canClick;
@@ -23,6 +24,7 @@ public class MouseManager : MonoBehaviour
         hand = Hand.Instance;
         display.enabled = false;
         blackBox.enabled = false;
+        hoverRenderer = hoverAesthetics.GetComponent<SpriteRenderer>();
 
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
@@ -52,23 +54,29 @@ public class MouseManager : MonoBehaviour
         {
             if (hit.collider.gameObject.tag.Equals("Card Slot") || hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
             {
+                GameObject cardHit = hit.collider.gameObject;
+
                 #region Place Highlight
-                hoverAesthetics.SetActive(true);
-                hoverAesthetics.transform.position = hit.collider.transform.position;
-                hoverAesthetics.transform.rotation = hit.collider.transform.rotation;
+                if(cardHit.transform.childCount > 0)
+                {
+                    hoverAesthetics.SetActive(true);
+                    hoverAesthetics.transform.position = cardHit.transform.position;
+                    hoverAesthetics.transform.rotation = cardHit.transform.rotation;
+                    if(cardHit.transform.GetChild(0).GetComponent<SpriteRenderer>()) hoverRenderer.sortingOrder = cardHit.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder;
+                }
                 #endregion
 
                 if (hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
                 {
                     //Check if it's hitting a player or enemy
-                    hit.collider.gameObject.GetComponent<DisplayBigImage>().isHovered = true;
-                    hit.collider.gameObject.GetComponent<DisplayBigImage>().otherTimer = 0.2f;
+                    cardHit.GetComponent<DisplayBigImage>().isHovered = true;
+                    cardHit.GetComponent<DisplayBigImage>().otherTimer = 0.2f;
 
-                    if (hit.collider.GetComponent<DisplayBigImage>().hoverTimer > 0.8f)
+                    if (cardHit.GetComponent<DisplayBigImage>().hoverTimer > 0.8f)
                     {
                         display.enabled = true;
                         blackBox.enabled = true;
-                        display.sprite = hit.collider.GetComponent<DisplayBigImage>().bigImage;
+                        display.sprite = cardHit.GetComponent<DisplayBigImage>().bigImage;
                     }
                 }
                 else
@@ -86,7 +94,7 @@ public class MouseManager : MonoBehaviour
                             SoundManager.Instance.PlaySound("Card Picked");
                             if (manager.currentState == GameManager.turnState.CheckMovement && currentCard.transform.childCount > 0)
                             {
-                                manager.selectedCardSlot = hit.collider.gameObject;
+                                manager.selectedCardSlot = cardHit;
                                 cardInformed = false;
                                 playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
                             }
@@ -96,7 +104,7 @@ public class MouseManager : MonoBehaviour
                     //This code is for cards in your hand
                     if (currentCard.isInHand)
                     {
-                        CardSlotHand currentCardHand = hit.collider.gameObject.GetComponent<CardSlotHand>();
+                        CardSlotHand currentCardHand = cardHit.GetComponent<CardSlotHand>();
 
                         if (handtimer < 1.5f) handtimer += Time.deltaTime; ;
 
@@ -123,9 +131,9 @@ public class MouseManager : MonoBehaviour
                             {
                                 display.enabled = true;
                                 blackBox.enabled = true;
-                                if (hit.collider.transform.childCount > 0)
+                                if (cardHit.transform.childCount > 0)
                                 {
-                                    display.sprite = hit.collider.GetComponentInChildren<Card>().bigImage;
+                                    display.sprite = cardHit.GetComponentInChildren<Card>().bigImage;
                                 }
                             }
                         }
