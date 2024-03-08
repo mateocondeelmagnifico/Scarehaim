@@ -36,6 +36,7 @@ public class Hand : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyUp(KeyCode.Q)) DeterminePosition();
 
         //Check hand size
         if (transform.childCount != 0)
@@ -55,12 +56,15 @@ public class Hand : MonoBehaviour
         #region Reset position and rotation
         for (int i = 0; i < cards.Length; i++)
         {
+           
             cards[i] = transform.GetChild(i);
 
             cards[i].position = defaultPos;
             cards[i].rotation = Quaternion.identity;
             cards[i].GetComponent<CardSlotHand>().startingPos = cards[i].position;
+            Debug.Log(cards[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder);
             cards[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 20 - i;
+            Debug.Log(cards[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder);
         }
         #endregion
 

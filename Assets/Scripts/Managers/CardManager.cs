@@ -148,6 +148,7 @@ public class CardManager : MonoBehaviour
             newCard = Instantiate(exitCard, board[randomNum].transform);
             newCard.transform.parent = board[randomNum].transform;
             board[randomNum].GetComponent<CardSlot>().cardObject = newCard;
+            tricks.gameObject.SetActive(false);
             #endregion
 
             ReplaceCard();

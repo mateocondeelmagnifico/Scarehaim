@@ -170,7 +170,6 @@ public class TutorialManager : MonoBehaviour
         }
         else
         {
-            if(manager.newCardSlot != null) manager.newCardSlot.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 20;
             blackBox.SetActive(false);
             if(!wasActive)
             {

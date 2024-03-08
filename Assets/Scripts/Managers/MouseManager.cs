@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.PlayerSettings;
+
 
 public class MouseManager : MonoBehaviour
 {

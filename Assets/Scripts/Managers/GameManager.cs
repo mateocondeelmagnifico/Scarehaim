@@ -210,9 +210,6 @@ public class GameManager : MonoBehaviour
                 EndPlayerTurn();
             break;
         }
-
-       
-
     }
     private void HandleEnemyTurn()
     {
