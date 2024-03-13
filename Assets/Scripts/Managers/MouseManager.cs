@@ -86,7 +86,7 @@ public class MouseManager : MonoBehaviour
                     cardHit.GetComponent<DisplayBigImage>().isHovered = true;
                     cardHit.GetComponent<DisplayBigImage>().otherTimer = 0.2f;
 
-                    if (cardHit.GetComponent<DisplayBigImage>().hoverTimer > 0.8f)
+                    if (cardHit.GetComponent<DisplayBigImage>().hoverTimer > 0.4f)
                     {
                         display.enabled = true;
                         blackBox.enabled = true;
@@ -141,7 +141,7 @@ public class MouseManager : MonoBehaviour
                         if (manager.currentState != GameManager.turnState.CheckCardEffect)
                         {
                             //this is to display the card on the left
-                            if (currentCard.hoverTimer > 0.8f)
+                            if (currentCard.hoverTimer > 0.4f)
                             {
                                 display.enabled = true;
                                 blackBox.enabled = true;

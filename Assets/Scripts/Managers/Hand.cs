@@ -12,6 +12,7 @@ public class Hand : MonoBehaviour
 
     //la mano guarda el fear entre escenas y sabe si has hecho el tutorial
     public int fear;
+    public float volume;
     public bool tutorialDone, firstGame;
 
     private void Awake()
@@ -28,6 +29,7 @@ public class Hand : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        volume = 1;
 
         defaultPos = new Vector3(4, -5, -2);
 
@@ -161,6 +163,7 @@ public class Hand : MonoBehaviour
     {
         //llamado por botones
         fear = GameManager.Instance.player.GetComponent<Fear>().fear;
+        volume = SoundManager.Instance.volumeSetting;
 
         DetermineStartCards();
     }

@@ -10,6 +10,7 @@ public class EnemyMovement : MonoBehaviour
     public GameObject cardGrid;
     private TextManager textManager;
     private Animator animador;
+    private GameManager gameManager;
 
     [SerializeField] private bool isMoving;
     private bool hasTalked, hasMoved;
@@ -25,10 +26,12 @@ public class EnemyMovement : MonoBehaviour
         textManager = TextManager.Instance;
         turnsUntilStart = 2;
         animador = GetComponent<Animator>();
+        gameManager = GameManager.Instance;
     }
     private void Update()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, -0.13f);
+
         if(isMoving)
         {
             Move();
@@ -39,7 +42,8 @@ public class EnemyMovement : MonoBehaviour
             }
         }
 
-        if((cardGridPos.x == playerMove.myPos.x && (cardGridPos.y == playerMove.myPos.y + 1 || cardGridPos.y == playerMove.myPos.y - 1)) || (cardGridPos.y == playerMove.myPos.y && (cardGridPos.x == playerMove.myPos.x + 1 || cardGridPos.x == playerMove.myPos.x - 1)))
+        #region Talking
+        if ((cardGridPos.x == playerMove.myPos.x && (cardGridPos.y == playerMove.myPos.y + 1 || cardGridPos.y == playerMove.myPos.y - 1)) || (cardGridPos.y == playerMove.myPos.y && (cardGridPos.x == playerMove.myPos.x + 1 || cardGridPos.x == playerMove.myPos.x - 1)))
         {
             if(!hasTalked)
             {
@@ -59,8 +63,9 @@ public class EnemyMovement : MonoBehaviour
             
             hasTalked = false;
         }
+        #endregion
 
-        if(turnsUntilStart == 0 && !hasMoved) animador.SetBool("shaking", true);
+        if (turnsUntilStart == 0 && !hasMoved) animador.SetBool("shaking", true);
         else animador.SetBool("shaking", false);
 
     }
@@ -137,14 +142,14 @@ public class EnemyMovement : MonoBehaviour
 
     public void TryMove()
     {
+        Debug.Log(1);
         // EnemyLogic establece cual es el destination del enemigo
         EnemyLogic();
         if (cardGridPos.x <= myPos.x + 1 && cardGridPos.x >= myPos.x - 1 && cardGridPos.y <= myPos.y + 1 && cardGridPos.y >= myPos.y - 1 && !isMoving)
         {
             destination = cardActualPos;
             myPos = cardGridPos;
-            isMoving = true;
-            
+            isMoving = true; 
         }
     }
 
@@ -152,6 +157,17 @@ public class EnemyMovement : MonoBehaviour
     {
         hasMoved = true;
 
-        transform.position = Vector2.MoveTowards(transform.position, destination, 4.5f * Time.deltaTime);
+        Vector2 pos = new Vector2(transform.position.x, transform.position.y);
+        if(pos != destination)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, destination, 4.5f * Time.deltaTime);
+        }
+        else
+        {
+            if(gameManager.currentState == GameManager.turnState.Endturn)
+            {
+                gameManager.currentState = GameManager.turnState.CheckMovement;
+            }
+        }
     }
 }

@@ -213,21 +213,21 @@ public class GameManager : MonoBehaviour
     }
     private void HandleEnemyTurn()
     {
-        // turno del enemigo
-        if (enemy != null)
-        {
-            if(enemy.turnsUntilStart <=0)
+            // turno del enemigo
+            if (enemy != null)
             {
-                enemy.TryMove();
+                if (enemy.turnsUntilStart <= 0)
+                {
+                    enemy.TryMove();
+                }
+                else
+                {
+                    enemy.turnsUntilStart--;
+                    currentState = turnState.CheckMovement;
+                }
             }
-            else
-            {
-                enemy.turnsUntilStart--;
-            }
-        }
-        turnCount++;
-        playerTurnInProgress = true;
-        currentState = turnState.CheckMovement;
+            turnCount++;
+            playerTurnInProgress = true;
     }
     
     public void EndPlayerTurn()
