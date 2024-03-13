@@ -35,11 +35,6 @@ public class EnemyMovement : MonoBehaviour
         if(isMoving)
         {
             Move();
-    
-            if(transform.position.x == destination.x && transform.position.y == destination.y)
-            {
-                isMoving = false;
-            }
         }
 
         #region Talking
@@ -142,7 +137,6 @@ public class EnemyMovement : MonoBehaviour
 
     public void TryMove()
     {
-        Debug.Log(1);
         // EnemyLogic establece cual es el destination del enemigo
         EnemyLogic();
         if (cardGridPos.x <= myPos.x + 1 && cardGridPos.x >= myPos.x - 1 && cardGridPos.y <= myPos.y + 1 && cardGridPos.y >= myPos.y - 1 && !isMoving)
@@ -158,15 +152,17 @@ public class EnemyMovement : MonoBehaviour
         hasMoved = true;
 
         Vector2 pos = new Vector2(transform.position.x, transform.position.y);
+
         if(pos != destination)
         {
             transform.position = Vector3.MoveTowards(transform.position, destination, 4.5f * Time.deltaTime);
         }
         else
         {
-            if(gameManager.currentState == GameManager.turnState.Endturn)
+            if(gameManager.currentState == GameManager.turnState.Endturn && isMoving)
             {
                 gameManager.currentState = GameManager.turnState.CheckMovement;
+                isMoving = false;
             }
         }
     }
