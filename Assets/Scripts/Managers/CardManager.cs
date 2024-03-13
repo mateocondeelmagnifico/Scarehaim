@@ -22,6 +22,7 @@ public class CardManager : MonoBehaviour
     private GameManager gameManager;
     private CardSlot cardSlot;
     public TMPro.TextMeshProUGUI doorText;
+    private List<GameObject> board;
 
     private Transform playerPos;
     public Transform tricks;
@@ -115,6 +116,34 @@ public class CardManager : MonoBehaviour
             }
         }
         #endregion
+
+        board = new List<GameObject>();
+
+        for (int i = 0; i < cardsOnBoard.transform.childCount; i++)
+        {
+            //Get all the cards that are far away from the player
+            if (Vector2.Distance(cardsOnBoard.transform.GetChild(i).position, playerPos.position) >= 4)
+            {
+                board.Add(cardsOnBoard.transform.GetChild(i).gameObject);
+            }
+        }
+    }
+
+    private void Update()
+    {
+        if (cardsUntilExit == 0 && !exitCardDealt)
+        {
+            #region Replace Card with Exit Card
+            int randomNum = Random.Range(0, board.Count);
+            Destroy(board[randomNum].transform.GetChild(0).gameObject);
+            newCard = Instantiate(exitCard, board[randomNum].transform);
+            newCard.transform.parent = board[randomNum].transform;
+            board[randomNum].GetComponent<CardSlot>().cardObject = newCard;
+            tricks.gameObject.SetActive(false);
+            #endregion
+
+            exitCardDealt = true;
+        }
     }
 
     public void CardDiscarded(CardSlot whatSlot)
@@ -126,40 +155,8 @@ public class CardManager : MonoBehaviour
     {
         //Called by gameManager
         cardSlot = gameManager.slotToReplaceOld.GetComponent<CardSlot>();
-
-        #region Create card
-        if (cardsUntilExit == 1 && !exitCardDealt)
-        {
-            //distance < 4
-            List<GameObject> board = new List<GameObject>();
-             
-            for(int i = 0; i < cardsOnBoard.transform.childCount; i++)
-            {
-                //Get all the cards that are far away from the player
-               if(Vector2.Distance(cardsOnBoard.transform.GetChild(i).position, playerPos.position) >= 4)
-               {
-                   board.Add(cardsOnBoard.transform.GetChild(i).gameObject);
-               }
-            }
-
-            #region Replace Card with Exit Card
-            int randomNum = Random.Range(0, board.Count);
-            Destroy(board[randomNum].transform.GetChild(0).gameObject);
-            newCard = Instantiate(exitCard, board[randomNum].transform);
-            newCard.transform.parent = board[randomNum].transform;
-            board[randomNum].GetComponent<CardSlot>().cardObject = newCard;
-            tricks.gameObject.SetActive(false);
-            #endregion
-
-            ReplaceCard();
-            exitCardDealt = true;
-        }
-        else
-        {
-            ReplaceCard();
-        }
-        #endregion
-
+        ReplaceCard();
+       
         #region Assign card
         cardSlot.cardObject = newCard;
         newCard.transform.parent = cardSlot.gameObject.transform;
