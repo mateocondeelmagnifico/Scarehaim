@@ -5,28 +5,43 @@ public class Hand : MonoBehaviour
 {
     private Transform[] cards;
     private Vector3 defaultPos;
+    public GameObject[] cardsStart;
+    public GameObject cardStorage;
 
     public static Hand Instance { get; set;}
 
-    //la mano guarda el fear entre escenas
+    //la mano guarda el fear entre escenas y sabe si has hecho el tutorial
     public int fear;
+    public float volume;
+    public bool tutorialDone, firstGame;
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(cardStorage);
+            firstGame = true;
+            DetermineStartCards();
+        }
         else
         {
             Destroy(this.gameObject);
         }
-        DontDestroyOnLoad(this.gameObject);
+        volume = 1;
 
         defaultPos = new Vector3(4, -5, -2);
+
+        DeterminePosition();
     }
 
     private void Update()
     {
+        if (Input.GetKeyUp(KeyCode.Q)) DeterminePosition();
+
         //Check hand size
-        if(transform.childCount != 0)
+        if (transform.childCount != 0)
         if(transform.childCount != cards.Length) DeterminePosition();
     }
 
@@ -39,10 +54,11 @@ public class Hand : MonoBehaviour
     public void DeterminePosition()
     {
         cards = new Transform[transform.childCount];
-        
+
         #region Reset position and rotation
         for (int i = 0; i < cards.Length; i++)
         {
+
             cards[i] = transform.GetChild(i);
 
             cards[i].position = defaultPos;
@@ -121,6 +137,8 @@ public class Hand : MonoBehaviour
 
     public void ResizeHand(bool makeBig)
     {
+        DeterminePosition();
+
         Vector3 offset;
 
         if (makeBig)
@@ -145,5 +163,43 @@ public class Hand : MonoBehaviour
     {
         //llamado por botones
         fear = GameManager.Instance.player.GetComponent<Fear>().fear;
+        volume = SoundManager.Instance.volumeSetting;
+
+        DetermineStartCards();
+    }
+
+    public void RefreshCards()
+    {
+        if (firstGame)
+        {
+            firstGame = false;
+            return;
+        }
+
+        foreach (Transform child in this.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        for (int i = 0; i < cardsStart.Length; i++)
+        {
+           GameObject currentCard =  GameObject.Instantiate(cardsStart[i].gameObject);
+           currentCard.transform.parent = this.transform;
+            currentCard.SetActive(true);
+        }
+
+        DeterminePosition();
+    }
+
+    private void DetermineStartCards()
+    {
+        cardsStart = new GameObject[transform.childCount];
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            cardsStart[i] = GameObject.Instantiate(transform.GetChild(i).gameObject);
+            cardsStart[i].SetActive(false);
+            cardsStart[i].transform.parent = cardStorage.transform;
+        }
     }
 }

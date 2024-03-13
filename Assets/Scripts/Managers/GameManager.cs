@@ -15,9 +15,8 @@ public class GameManager : MonoBehaviour
 
     public int cardDiscarded;
 
-    public GameState State;
     [HideInInspector] public bool playerTurnInProgress, trapTriggered, powerUpOn;
-    private bool winCondition, loseCondition;
+    private bool slotErased, enemyInformed;
     public bool mustMove;
 
     [HideInInspector]
@@ -68,7 +67,6 @@ public class GameManager : MonoBehaviour
         hand = handScript.transform;
         playerTurnInProgress = true;
         turnCount = 1;
-        updateGameState(GameState.PlayerTurn);
 
         #region Reset hand variables
         if(hand.transform.childCount > 0)
@@ -83,57 +81,27 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-
         if (enemy.transform.position == player.transform.position && enemy.turnsUntilStart <= 0)
             player.GetComponent<Fear>().fear = 10;
 
-        if (winCondition)
-            updateGameState(GameState.Victory);
-        else if(loseCondition)
-            updateGameState(GameState.Defeat);
-        else if (playerTurnInProgress)
-            updateGameState(GameState.PlayerTurn);
-        else
-            updateGameState(GameState.EnemyTurn);
-    }
-    public void updateGameState(GameState newState)
-    {
-        State = newState;
-        switch (newState)
-        {
-            case GameState.PlayerTurn:
-                HandlePlayerTurn(currentState);
-                break;
-            case GameState.EnemyTurn:
-                HandleEnemyTurn();
-                break;
-            case GameState.Victory:
-                break;
-            case GameState.Defeat:
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
-        }
-    }
-
-    private void HandlePlayerTurn(turnState currentState)
-    {
-        // turno del jugador
-
+        #region Check Turn State
         switch (currentState)
         {
             //En muchos estados no pasa nada, pero estan ahía para las acciones vayan de estado en estado
+
             case turnState.CheckMovement:
                 //Player movement is the one that changes to the next state
                 cardInformed = false;
-            break;
+                slotErased = false;
+                enemyInformed = false;
+                break;
 
             case turnState.Moving:
                 //Also changed in player movement
                 break;
 
             case turnState.ReplaceCard:
-                
+
                 if (slotToReplaceOld != null && !mustMove)
                 {
                     cardManager.DistributeCard();
@@ -142,7 +110,7 @@ public class GameManager : MonoBehaviour
 
                 if (mustMove)
                 {
-                    MoveCard(newCard, slotToReplaceOld.transform.position);
+                    MoveCard(newCard, slotToReplaceOld.transform.position, newCard.GetComponent<SpriteRenderer>());
                 }
                 else
                 {
@@ -153,9 +121,24 @@ public class GameManager : MonoBehaviour
 
             case turnState.CheckCardEffect:
                 //This is changed by the card's script
-                slotToReplaceOld = slotToReplaceNew;
-                emptySlot = selectedCardSlot;
-                if(!trapTriggered && !cardInformed)
+                if (!slotErased)
+                {
+                    slotToReplaceOld = slotToReplaceNew;
+                }
+
+                if (!selectedCardSlot.transform.GetChild(0).CompareTag("Enemy"))
+                {
+                    emptySlot = selectedCardSlot;
+                }
+                else if (!slotErased)
+                {
+                    slotToReplaceNew = null;
+                    slotErased = true;
+                }
+
+
+
+                if (!trapTriggered && !cardInformed)
                 {
                     InformCard();
                 }
@@ -163,25 +146,25 @@ public class GameManager : MonoBehaviour
 
             case turnState.ApplyCardEffect:
                 //Changed by the cardSlot
-            break;
+                break;
 
             case turnState.Movecard:
                 if (moveCardToHand || moveCard)
                 {
                     if (moveCard)
-                        MoveCard(selectedCard, discardPile.position);
+                        MoveCard(selectedCard, discardPile.position, selectedCard.GetComponent<SpriteRenderer>());
 
-                    if(moveCardToHand)
+                    if (moveCardToHand)
                     {
-                        if(hand.childCount < 5)
+                        if (hand.childCount < 5)
                         {
                             MoveCardToHand(newCardSlot);
                         }
                         else
                         {
-                            MoveCard(newCardSlot, discardPile.position);
+                            MoveCard(newCardSlot, discardPile.position, newCardSlot.transform.GetChild(0).GetComponent<SpriteRenderer>());
                         }
-                    }   
+                    }
 
                 }
                 else
@@ -191,41 +174,31 @@ public class GameManager : MonoBehaviour
                 break;
 
             case turnState.Endturn:
-                EndPlayerTurn();
-            break;
+                //This moves the enemy too
+                if(!enemyInformed) EndPlayerTurn();
+                break;
         }
-
-       
-
+        #endregion
     }
-    private void HandleEnemyTurn()
+    
+    public void EndPlayerTurn()
     {
         // turno del enemigo
         if (enemy != null)
         {
-            if(enemy.turnsUntilStart <=0)
+            if (enemy.turnsUntilStart <= 0)
             {
                 enemy.TryMove();
             }
             else
             {
                 enemy.turnsUntilStart--;
+                currentState = turnState.CheckMovement;
+                
             }
+
+            enemyInformed = true;
         }
-        turnCount++;
-        playerTurnInProgress = true;
-        currentState = turnState.CheckMovement;
-    }
-    
-    public void EndPlayerTurn()
-    {
-        turnCount++;
-        playerTurnInProgress = false;
-
-        // win cons and lose cons
-        // de momento no tenemos la casilla de salida asi que la condicion de victoria es descartar todas las cartas
-
-        // condicion de derrota por hacer, if(fear >= 10)
     }
 
     private void InformCard()
@@ -235,10 +208,11 @@ public class GameManager : MonoBehaviour
         selectedCardSlot.transform.GetChild(0).GetComponent<CardObject>().myCard.Effect(selectedCardSlot.transform.GetChild(0).gameObject, handSlotPrefab);
     }
 
-    private void MoveCard( GameObject whatCard, Vector3 desiredPos)
+    private void MoveCard( GameObject whatCard, Vector3 desiredPos, SpriteRenderer renderer)
     {
         //This cript is used to move cards to the deck and discard pile
         whatCard.transform.position = Vector3.MoveTowards(whatCard.transform.position, desiredPos, 8 * Time.deltaTime);
+        renderer.sortingOrder = 0;
 
         if(whatCard.transform.position == desiredPos)
         {
@@ -250,7 +224,6 @@ public class GameManager : MonoBehaviour
                 {
                     //put card from hand into graveyard
                     whatCard.transform.GetChild(0).parent = discardPile;
-                    whatCard.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = -1;
                     Destroy(whatCard);
                     moveCardToHand = false;
                 }
@@ -258,10 +231,12 @@ public class GameManager : MonoBehaviour
                 {
                     whatCard.transform.parent = discardPile;
                 }
+                renderer.sortingOrder = -2;
                 currentState = turnState.Endturn;
             }
             else if(slotToReplaceOld != null)
             {
+                renderer.sortingOrder = -2;
                 currentState = turnState.CheckCardEffect;
                 mustMove = false;
             }
@@ -290,24 +265,11 @@ public class GameManager : MonoBehaviour
                 currentState = turnState.Endturn;
             }
         }
-       
-        
     }
 
     private void ChangeState(turnState newstate)
     {
         //Esta funcion esta porque no funciona cambiar el state dentro del switch
         currentState = newstate;
-    }
-
-    public enum GameState
-    {
-        PlayerTurn,
-            MonsterCardEffect,
-            CardToHandEffect,
-            CardToDiscardPileEffect,
-        EnemyTurn,
-        Victory,
-        Defeat
     }
 }

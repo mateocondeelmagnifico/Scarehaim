@@ -52,11 +52,13 @@ public class CardManager : MonoBehaviour
     {
         #region Distribute Tricks
         Vector3[] assignedPositions = new Vector3[tricks.childCount];
+        int[] cardAdjacent = new int[3];
 
         for (int i = 0; i < cardsOnBoard.transform.childCount; i++)
         {
             //cada casilla tiene una probabilidad sobre 3 de tener una trampa
             //reset times esta para evitar bucles infinitos
+
             if (Random.Range(0, 7) + resetTimes > 6)
             {
                 for (int e = 0; e < assignedPositions.Length; e++)
@@ -70,9 +72,11 @@ public class CardManager : MonoBehaviour
                         if (!chosenCard.GetChild(0).CompareTag("Enemy") && (chosenCard.position.x != playerPos.position.x && chosenCard.position.y != playerPos.position.y))
                         {
                             bool canplace = true;
-                            if ((e == 1 && chosenCard.position == assignedPositions[e - 1]) || (e == 2 && (chosenCard.position == assignedPositions[e - 2] || chosenCard.position == assignedPositions[e - 1])))
+
+                            //Check if there are any adjacent cards
+                            for(int u = 0; u < cardAdjacent.Length; u++)
                             {
-                                canplace = false;
+                                if (i <= cardAdjacent[u] + 1 && i >= cardAdjacent[u] - 1) canplace = false;
                             }
 
                             //If you were to place two traps in the same position
@@ -80,6 +84,7 @@ public class CardManager : MonoBehaviour
                             {
                                 assignedPositions[e] = chosenCard.position;
                                 tricks.GetChild(e).position = assignedPositions[e];
+                                cardAdjacent[e] = i;
                             }
                         }
                     }
@@ -114,7 +119,6 @@ public class CardManager : MonoBehaviour
 
     public void CardDiscarded(CardSlot whatSlot)
     {
-        //cardSlot = whatSlot;
         gameManager.slotToReplaceNew = whatSlot.gameObject;
         doorText.text = cardsUntilExit.ToString();
     }
@@ -124,7 +128,7 @@ public class CardManager : MonoBehaviour
         cardSlot = gameManager.slotToReplaceOld.GetComponent<CardSlot>();
 
         #region Create card
-        if (cardsUntilExit == 0 && !exitCardDealt)
+        if (cardsUntilExit == 1 && !exitCardDealt)
         {
             //distance < 4
             List<GameObject> board = new List<GameObject>();
@@ -144,6 +148,7 @@ public class CardManager : MonoBehaviour
             newCard = Instantiate(exitCard, board[randomNum].transform);
             newCard.transform.parent = board[randomNum].transform;
             board[randomNum].GetComponent<CardSlot>().cardObject = newCard;
+            tricks.gameObject.SetActive(false);
             #endregion
 
             ReplaceCard();

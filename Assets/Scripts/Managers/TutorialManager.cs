@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
 {
+
     [SerializeField] private Image displayImage;
 
     [SerializeField] private TMPro.TextMeshProUGUI textBox;
@@ -12,8 +13,9 @@ public class TutorialManager : MonoBehaviour
     private GameManager manager;
     [SerializeField] private MouseManager mouseManager;
     private SceneManagement pause;
+    private CardEffectManager effectManager;
 
-    private bool gamepaused, condition;
+    private bool gamepaused, condition, wasActive;
     private bool[] tutorialTriggered;
 
     public TextAndImage[] tutorialPackages;
@@ -23,12 +25,24 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
-        manager = GameManager.Instance;
-        pause = SceneManagement.Instance;
-        startTimer = 2;
-        tutorialTriggered = new bool[6];
-        mouseManager.canClick = false;
-        pause.canPause = false;
+        if (Hand.Instance.tutorialDone)
+        {
+            Destroy(displayImage.gameObject);
+            Destroy(textBox.gameObject);
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            manager = GameManager.Instance;
+            pause = SceneManagement.Instance;
+            effectManager = CardEffectManager.Instance;
+            startTimer = 2;
+            tutorialTriggered = new bool[7];
+            mouseManager.canClick = false;
+            pause.canPause = false;
+            mouseManager.canClick = false;
+            pause.canPause = false;
+        }
     }
 
     void Update()
@@ -52,13 +66,15 @@ public class TutorialManager : MonoBehaviour
         }
 
         #region Tutorial Triggers
-        if (manager.currentState == GameManager.turnState.Movecard && !tutorialTriggered[1])
+        if(!tutorialTriggered[1])
+        if (manager.currentState == GameManager.turnState.Movecard)
         {
             StopGame(1);
             StopGame(2);
         }
 
-        if(manager.trapTriggered && !tutorialTriggered[3])
+        if(!tutorialTriggered[3])
+        if(manager.trapTriggered && effectManager.paymentMenu.activeInHierarchy)
         {
             StopGame(3);
         }
@@ -68,14 +84,26 @@ public class TutorialManager : MonoBehaviour
             condition = true;
         }
 
-        if(condition && !manager.moveCardToHand && !tutorialTriggered[4])
+        if(!tutorialTriggered[4])
+        if(condition && !manager.moveCardToHand)
         {
             StopGame(4);
         }
 
-        if(manager.turnCount == 4 && !tutorialTriggered[5])
+        if (!tutorialTriggered[5])
         {
-            StopGame(5);
+            if (manager.turnCount == 4)
+            {
+                StopGame(5);
+            }
+        }
+
+        if (!tutorialTriggered[6])
+        {
+            if (effectManager.paymentMenu.activeInHierarchy)
+            {
+                StopGame(6);
+            }
         }
         #endregion
 
@@ -89,7 +117,11 @@ public class TutorialManager : MonoBehaviour
             }
         }
 
-        if (destroy && Time.timeScale == 1) Destroy(this.gameObject);
+        if (destroy && Time.timeScale == 1)
+        {
+            Hand.Instance.tutorialDone = true;
+            Destroy(this.gameObject);
+        }
         #endregion
     }
 
@@ -103,7 +135,16 @@ public class TutorialManager : MonoBehaviour
             Time.timeScale = 0;
             gamepaused = true;
             blackBox.SetActive(true);
-            blackScreen.SetActive(true);
+            if(blackScreen.activeInHierarchy)
+            {
+                wasActive = true;
+            }
+            else
+            {
+                blackScreen.SetActive(true);
+                wasActive = false;
+            }
+            
             activeMenus++;
             pause.canPause = false;
 
@@ -139,9 +180,11 @@ public class TutorialManager : MonoBehaviour
         }
         else
         {
-            if(manager.newCardSlot != null) manager.newCardSlot.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 20;
             blackBox.SetActive(false);
-            blackScreen.SetActive(false);
+            if(!wasActive)
+            {
+                blackScreen.SetActive(false);
+            }
             displayImage.enabled = false;
             textBox.gameObject.SetActive(false);
             pause.canPause = true;

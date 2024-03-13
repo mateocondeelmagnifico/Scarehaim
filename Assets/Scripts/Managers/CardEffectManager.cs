@@ -8,7 +8,7 @@ public class CardEffectManager : MonoBehaviour
 {
     //this script also manages paying treats at the end of a stage
 
-    public GameObject paymentMenu, blackScreen, treatSlot, costumeSlot;
+    public GameObject paymentMenu, blackScreen, treatSlot, costumeSlot, paymentButtons, bigButton, hand1, hand2, gameWonMenu;
     private GameObject newSlot, player;
     [SerializeField] private Transform merrowHand;
 
@@ -73,6 +73,8 @@ public class CardEffectManager : MonoBehaviour
                 else
                 {
                     manager.trapTriggered = false;
+                    hand1.SetActive(true);
+                    hand2.SetActive(false);
                 }
                 moveHand = false;
             }
@@ -108,6 +110,18 @@ public class CardEffectManager : MonoBehaviour
                 newSlot.transform.parent = blackScreen.transform;
             }
         }
+
+        #region Activate Buttons
+        if (currentCost.costAmount == 0)
+        {
+            bigButton.SetActive(true);
+        }
+        else
+        {
+            paymentButtons.SetActive(true);
+        }
+        #endregion
+
         effectActive = true;
     }
 
@@ -169,7 +183,7 @@ public class CardEffectManager : MonoBehaviour
                     {
                         blackScreen.transform.GetChild(i).transform.GetChild(0).position = blackScreen.transform.GetChild(i).transform.GetChild(0).GetComponent<CardSlotHand>().startingPos;
                         blackScreen.transform.GetChild(i).transform.GetComponentInChildren<CardSlotHand>().isPayment = false;
-                        blackScreen.transform.GetChild(i).transform.GetChild(0).parent = null;
+                        blackScreen.transform.GetChild(i).transform.GetChild(0).parent = hand;
                     }
                 }
 
@@ -203,10 +217,14 @@ public class CardEffectManager : MonoBehaviour
             Destroy(blackScreen.transform.GetChild(i).gameObject);
         }
 
+        #region Deactivate Stuff
+        bigButton.SetActive(false);
+        paymentButtons.SetActive(false);
         paymentMenu.SetActive(false);
         blackScreen.SetActive(false);
+        #endregion
 
-        if(manager.trapTriggered)
+        if (manager.trapTriggered)
         {
             //If you triggered a card
             //Move hand to original position;
@@ -271,11 +289,22 @@ public class CardEffectManager : MonoBehaviour
         currentCost = whatCost;
 
         mySprite = image;
+
+        hand1.SetActive(false);
+        hand2.SetActive(true);
     }
 
     public void ActivateFinalScreen()
     {
-        isEnding = true;
-        ActivatePayment(endSprite, endCost);
+        if(SceneManager.GetActiveScene().buildIndex != 2)
+        {
+            isEnding = true;
+            ActivatePayment(endSprite, endCost);
+        }
+        else
+        {
+            Time.timeScale = 0;
+            gameWonMenu.SetActive(true);
+        }
     }
 }

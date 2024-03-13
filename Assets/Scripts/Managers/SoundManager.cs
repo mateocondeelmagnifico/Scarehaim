@@ -10,7 +10,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource[] Sources;
     [SerializeField]private Slider volumeSlider;
 
-    private float volumeSetting;
+    public float volumeSetting;
     void Awake()
     {
         if(Instance == null)
@@ -22,8 +22,13 @@ public class SoundManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        volumeSetting = volumeSlider.value;
         PlaySound("Music");
+    }
+
+    private void Start()
+    {
+        volumeSlider.value = Hand.Instance.volume;
+        volumeSetting = volumeSlider.value;
     }
 
     private void Update()

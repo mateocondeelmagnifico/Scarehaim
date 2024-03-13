@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class MouseManager : MonoBehaviour
 {
     private GameManager manager;
@@ -8,20 +9,31 @@ public class MouseManager : MonoBehaviour
     public Movement playerMove;
     public Image display, blackBox;
     private Hand hand;
+    private SpriteRenderer hoverRenderer;
+    private Movement pMovement;
+    private EnemyMovement enemyMove;
 
     private bool cardGrabbed, handDisplayed;
     public bool moveCard, cardInformed, canClick;
 
     private float handtimer;
 
-    public GameObject selectedCardSlot;
+    public GameObject selectedCardSlot, hoverAesthetics;
+
+    private Color startColor;
+
     private void Start()
     {
+
         manager = GameManager.Instance;
         myCam = Camera.main;
         hand = Hand.Instance;
+        pMovement = manager.playerMove;
+        enemyMove = manager.enemy;
         display.enabled = false;
         blackBox.enabled = false;
+        hoverRenderer = hoverAesthetics.GetComponent<SpriteRenderer>();
+        startColor = hoverRenderer.color;
 
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
@@ -51,17 +63,34 @@ public class MouseManager : MonoBehaviour
         {
             if (hit.collider.gameObject.tag.Equals("Card Slot") || hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
             {
+                GameObject cardHit = hit.collider.gameObject;
+
+                #region Place Highlight
+                if(cardHit.transform.childCount > 0)
+                {
+                    hoverAesthetics.SetActive(true);
+                    hoverAesthetics.transform.position = cardHit.transform.position;
+                    hoverAesthetics.transform.rotation = cardHit.transform.rotation;
+                    if(cardHit.transform.GetChild(0).GetComponent<SpriteRenderer>()) hoverRenderer.sortingOrder = cardHit.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder;
+                    if (cardHit.GetComponent<CardSlot>()) CheckDistanceToPlayer(cardHit.GetComponent<CardSlot>());
+                }
+                else
+                {
+                    hoverAesthetics.SetActive(false);
+                }
+                #endregion
+
                 if (hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
                 {
                     //Check if it's hitting a player or enemy
-                    hit.collider.gameObject.GetComponent<DisplayBigImage>().isHovered = true;
-                    hit.collider.gameObject.GetComponent<DisplayBigImage>().otherTimer = 0.2f;
+                    cardHit.GetComponent<DisplayBigImage>().isHovered = true;
+                    cardHit.GetComponent<DisplayBigImage>().otherTimer = 0.2f;
 
-                    if (hit.collider.GetComponent<DisplayBigImage>().hoverTimer > 0.8f)
+                    if (cardHit.GetComponent<DisplayBigImage>().hoverTimer > 0.4f)
                     {
                         display.enabled = true;
                         blackBox.enabled = true;
-                        display.sprite = hit.collider.GetComponent<DisplayBigImage>().bigImage;
+                        display.sprite = cardHit.GetComponent<DisplayBigImage>().bigImage;
                     }
                 }
                 else
@@ -79,7 +108,7 @@ public class MouseManager : MonoBehaviour
                             SoundManager.Instance.PlaySound("Card Picked");
                             if (manager.currentState == GameManager.turnState.CheckMovement && currentCard.transform.childCount > 0)
                             {
-                                manager.selectedCardSlot = hit.collider.gameObject;
+                                manager.selectedCardSlot = cardHit;
                                 cardInformed = false;
                                 playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
                             }
@@ -89,9 +118,9 @@ public class MouseManager : MonoBehaviour
                     //This code is for cards in your hand
                     if (currentCard.isInHand)
                     {
-                        CardSlotHand currentCardHand = hit.collider.gameObject.GetComponent<CardSlotHand>();
+                        CardSlotHand currentCardHand = cardHit.GetComponent<CardSlotHand>();
 
-                        if (handtimer < 1.5f) handtimer += Time.deltaTime; ;
+                        if (handtimer < 1.5f) handtimer += Time.deltaTime; 
 
                         if (Input.GetMouseButton(0) && !cardGrabbed)
                         {
@@ -112,13 +141,13 @@ public class MouseManager : MonoBehaviour
                         if (manager.currentState != GameManager.turnState.CheckCardEffect)
                         {
                             //this is to display the card on the left
-                            if (currentCard.hoverTimer > 0.8f)
+                            if (currentCard.hoverTimer > 0.4f)
                             {
                                 display.enabled = true;
                                 blackBox.enabled = true;
-                                if (hit.collider.transform.childCount > 0)
+                                if (cardHit.transform.childCount > 0)
                                 {
-                                    display.sprite = hit.collider.GetComponentInChildren<Card>().bigImage;
+                                    display.sprite = cardHit.GetComponentInChildren<Card>().bigImage;
                                 }
                             }
                         }
@@ -130,9 +159,13 @@ public class MouseManager : MonoBehaviour
             }
             else
             {
-                ShrinkHand();
+                if(hit.collider.gameObject.tag.Equals("Hand")) handtimer += Time.deltaTime;
+                else ShrinkHand();
+
                 display.enabled = false;
                 blackBox.enabled = false;
+
+                hoverAesthetics.SetActive(false);
             }
         }
     }
@@ -145,5 +178,88 @@ public class MouseManager : MonoBehaviour
             handDisplayed = false;
             hand.ResizeHand(false);
         }
+    }
+
+    private void CheckDistanceToPlayer(CardSlot slotScript)
+    {
+        float playerX = pMovement.myPos.x;
+        float playerY = pMovement.myPos.y;
+
+        float cardX = slotScript.Location.x;
+        float cardY = slotScript.Location.y;
+
+        bool canBasicMove = false;
+
+        if (slotScript.isInHand) hoverRenderer.color = Color.green;
+        else
+        {
+            if (playerX <= cardX + 1 && playerX >= cardX - 1 && playerY <= cardY + 1 && playerY >= cardY - 1)
+            {
+                canBasicMove = true;
+            }
+
+            if (pMovement.hasTreat)
+            {
+                #region Horrible treat Math
+                if(canBasicMove)
+                {
+                    hoverRenderer.color = startColor;
+                }
+                else
+                {
+                    if (cardX <= playerX + 2 && cardX >= playerX - 2 && cardY <= playerY + 2 && cardY >= playerY - 2)
+                    {
+                        if ((cardX == playerX + 2 || cardX == playerX - 2) && (cardY == playerY + 1 || cardY == playerY - 1) || (cardY == playerY + 2 || cardY == playerY - 2) && (cardX == playerX + 1 || cardX == playerX - 1))
+                        {
+                            //This is to check you cant move two spaces in one direction and one in another
+                            hoverRenderer.color = Color.red;
+                        }
+                        else
+                        {
+                            //Check if enemy is in the middle
+                            #region Calculate Enemy Position
+                            float middleX = cardX;
+                            float middleY = cardY;
+
+                            if (cardX == playerX + 2)
+                            {
+                                middleX = cardX - 1;
+                            }
+                            if (cardX == playerX - 2)
+                            {
+                                middleX = cardX + 1;
+                            }
+                            if (cardY == playerY + 2)
+                            {
+                                middleY = cardY - 1;
+                            }
+                            if (cardY == playerY - 2)
+                            {
+                                middleY = cardY + 1;
+                            }
+                            #endregion
+                            if(enemyMove.myPos != new Vector2(middleX,middleY)) hoverRenderer.color = startColor;
+                            else hoverRenderer.color = Color.red;
+                        }
+                    }
+                    else
+                    {
+                        hoverRenderer.color = Color.red;
+                    }
+                }
+                #endregion
+            }
+            else
+            {
+                if(canBasicMove)
+                {
+                    hoverRenderer.color = startColor;
+                }
+                else
+                {
+                    hoverRenderer.color = Color.red;
+                }
+            }
+        }  
     }
 }

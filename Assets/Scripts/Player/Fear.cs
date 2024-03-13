@@ -14,6 +14,7 @@ public class Fear : MonoBehaviour
     {
         textManager = TextManager.Instance;
         fear = Hand.Instance.fear;
+        Hand.Instance.RefreshCards();
     }
     private void Update()
     {

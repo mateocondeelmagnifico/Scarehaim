@@ -9,7 +9,7 @@ public class CardSlotHand: CardSlot
 
     public bool goHome, followMouse, isPayment;
 
-    private CardEffectManager effectManager;
+    public CardEffectManager effectManager;
     private Transform blackScreen;
 
     private int chosenSlot;
@@ -19,8 +19,9 @@ public class CardSlotHand: CardSlot
         isInHand = true;
         startingPos = transform.position;
         gameManager = GameManager.Instance;
-        effectManager = CardEffectManager.Instance;
+        if(effectManager == null) effectManager = CardEffectManager.Instance;
         blackScreen = effectManager.blackScreen.transform;
+        if(transform.childCount > 0) cardObject = transform.GetChild(0).gameObject;
     }
 
     private void Update()
