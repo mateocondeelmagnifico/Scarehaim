@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
 {
+
     [SerializeField] private Image displayImage;
 
     [SerializeField] private TMPro.TextMeshProUGUI textBox;
@@ -24,15 +25,24 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
-        if (Hand.Instance.tutorialDone) Destroy(this.gameObject);
-
-        manager = GameManager.Instance;
-        pause = SceneManagement.Instance;
-        effectManager = CardEffectManager.Instance;
-        startTimer = 2;
-        tutorialTriggered = new bool[7];
-        mouseManager.canClick = false;
-        pause.canPause = false;
+        if (Hand.Instance.tutorialDone)
+        {
+            Destroy(displayImage.gameObject);
+            Destroy(textBox.gameObject);
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            manager = GameManager.Instance;
+            pause = SceneManagement.Instance;
+            effectManager = CardEffectManager.Instance;
+            startTimer = 2;
+            tutorialTriggered = new bool[7];
+            mouseManager.canClick = false;
+            pause.canPause = false;
+            mouseManager.canClick = false;
+            pause.canPause = false;
+        }
     }
 
     void Update()

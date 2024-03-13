@@ -12769,7 +12769,7 @@ MonoBehaviour:
   optionsMenu: {fileID: 1244177771}
   pauseMenu: {fileID: 1903664242}
   blackscreen: {fileID: 1259167734}
-  canPause: 0
+  canPause: 1
 --- !u!1 &1936492281
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,6 +24,7 @@ public class MouseManager : MonoBehaviour
 
     private void Start()
     {
+
         manager = GameManager.Instance;
         myCam = Camera.main;
         hand = Hand.Instance;

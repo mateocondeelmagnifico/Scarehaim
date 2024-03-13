@@ -62,9 +62,7 @@ public class Hand : MonoBehaviour
             cards[i].position = defaultPos;
             cards[i].rotation = Quaternion.identity;
             cards[i].GetComponent<CardSlotHand>().startingPos = cards[i].position;
-            Debug.Log(cards[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder);
             cards[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 20 - i;
-            Debug.Log(cards[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder);
         }
         #endregion
 
