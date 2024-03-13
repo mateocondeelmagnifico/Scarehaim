@@ -200,58 +200,38 @@ public class MouseManager : MonoBehaviour
 
             if (pMovement.hasTreat)
             {
-                #region Horrible treat Math
-                if(canBasicMove)
+                if(!canBasicMove && playerX != cardX -1 && playerX != cardX + 1 && playerY != cardY - 1 && playerY != cardY + 1)
                 {
-                    hoverRenderer.color = startColor;
-                }
-                else
-                {
-                    if (cardX <= playerX + 2 && cardX >= playerX - 2 && cardY <= playerY + 2 && cardY >= playerY - 2)
+                    #region Calculate Enemy position
+                    float xposition = cardX;
+                    float yposition = cardY;
+                    if (cardX == playerX + 2)
                     {
-                        if ((cardX == playerX + 2 || cardX == playerX - 2) && (cardY == playerY + 1 || cardY == playerY - 1) || (cardY == playerY + 2 || cardY == playerY - 2) && (cardX == playerX + 1 || cardX == playerX - 1))
-                        {
-                            //This is to check you cant move two spaces in one direction and one in another
-                            hoverRenderer.color = Color.red;
-                        }
-                        else
-                        {
-                            //Check if enemy is in the middle
-                            #region Calculate Enemy Position
-                            float middleX = cardX;
-                            float middleY = cardY;
+                        xposition = cardX - 1;
+                    }
+                    if (cardX == playerX - 2)
+                    {
+                        xposition = cardX + 1;
+                    }
+                    if (cardY == playerY + 2)
+                    {
+                        yposition = cardY - 1;
+                    }
+                    if (cardY == playerY - 2)
+                    {
+                        yposition = cardY + 1;
+                    }
+                    Vector2 middlePos = new Vector2(xposition, yposition);
+                    #endregion
 
-                            if (cardX == playerX + 2)
-                            {
-                                middleX = cardX - 1;
-                            }
-                            if (cardX == playerX - 2)
-                            {
-                                middleX = cardX + 1;
-                            }
-                            if (cardY == playerY + 2)
-                            {
-                                middleY = cardY - 1;
-                            }
-                            if (cardY == playerY - 2)
-                            {
-                                middleY = cardY + 1;
-                            }
-                            #endregion
-                            if(enemyMove.myPos != new Vector2(middleX,middleY)) hoverRenderer.color = startColor;
-                            else hoverRenderer.color = Color.red;
-                        }
-                    }
-                    else
-                    {
-                        hoverRenderer.color = Color.red;
-                    }
+                    if(manager.enemy.myPos != middlePos) hoverRenderer.color = startColor;
+                    else hoverRenderer.color = Color.red;
                 }
-                #endregion
+                else hoverRenderer.color = Color.red;
             }
             else
             {
-                if(canBasicMove)
+                if (canBasicMove)
                 {
                     hoverRenderer.color = startColor;
                 }

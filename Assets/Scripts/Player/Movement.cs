@@ -105,43 +105,36 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            if (cardGridPos.x <= myPos.x + 2 && cardGridPos.x >= myPos.x - 2 && cardGridPos.y <= myPos.y + 2 && cardGridPos.y >= myPos.y - 2 && !isMoving)
+            if ((cardGridPos.x == myPos.x + 2 || cardGridPos.x == myPos.x - 2 || cardGridPos.x == myPos.x) && (cardGridPos.y == myPos.y || cardGridPos.y == myPos.y + 2 || cardGridPos.y == myPos.y - 2))
             {
-                if((cardGridPos.x == myPos.x + 2 || cardGridPos.x == myPos.x - 2) && (cardGridPos.y == myPos.y + 1 || cardGridPos.y == myPos.y - 1) || (cardGridPos.y == myPos.y + 2 || cardGridPos.y == myPos.y - 2) && (cardGridPos.x == myPos.x + 1 || cardGridPos.x == myPos.x - 1))
+                #region Calculate Enemy position
+                float xposition = cardGridPos.x;
+                float yposition = cardGridPos.y;
+                if (cardGridPos.x == myPos.x + 2)
                 {
-                    //This is to check you cant move two spaces in one direction and one in another
+                    xposition = cardGridPos.x - 1;
                 }
-                else
+                if (cardGridPos.x == myPos.x - 2)
                 {
-                    #region Calculate Enemy position
-                    float xposition = cardGridPos.x;
-                    float yposition = cardGridPos.y;
-                    if(cardGridPos.x == myPos.x +2)
-                    {
-                        xposition = cardGridPos.x - 1;
-                    }
-                    if(cardGridPos.x == myPos.x - 2)
-                    {
-                        xposition = cardGridPos.x + 1;
-                    }
-                    if (cardGridPos.y == myPos.y + 2)
-                    {
-                        yposition = cardGridPos.y - 1;
-                    }
-                    if (cardGridPos.y == myPos.y - 2)
-                    {
-                        yposition = cardGridPos.y + 1;
-                    }
+                    xposition = cardGridPos.x + 1;
+                }
+                if (cardGridPos.y == myPos.y + 2)
+                {
+                    yposition = cardGridPos.y - 1;
+                }
+                if (cardGridPos.y == myPos.y - 2)
+                {
+                    yposition = cardGridPos.y + 1;
+                }
 
-                    Vector2 middlePos = new Vector2(xposition,yposition);
-                    #endregion
+                Vector2 middlePos = new Vector2(xposition, yposition);
+                #endregion
 
-                    if (cardGridPos != myPos && gameManager.enemy.myPos != middlePos)
-                    { 
-                        destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
-                        myPos = cardGridPos;
-                        isMoving = true;
-                    }
+                if (cardGridPos != myPos && gameManager.enemy.myPos != middlePos)
+                {
+                    destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
+                    myPos = cardGridPos;
+                    isMoving = true;
                 }
             }
         }
