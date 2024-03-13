@@ -52,11 +52,11 @@ public class Hand : MonoBehaviour
     public void DeterminePosition()
     {
         cards = new Transform[transform.childCount];
-        
+
         #region Reset position and rotation
         for (int i = 0; i < cards.Length; i++)
         {
-           
+
             cards[i] = transform.GetChild(i);
 
             cards[i].position = defaultPos;
@@ -135,6 +135,8 @@ public class Hand : MonoBehaviour
 
     public void ResizeHand(bool makeBig)
     {
+        DeterminePosition();
+
         Vector3 offset;
 
         if (makeBig)
