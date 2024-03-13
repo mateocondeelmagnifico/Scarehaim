@@ -9,6 +9,7 @@ TagManager:
   - Costume
   - Enemy
   - Table
+  - Hand
   layers:
   - Default
   - TransparentFX

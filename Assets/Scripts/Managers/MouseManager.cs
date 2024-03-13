@@ -115,7 +115,7 @@ public class MouseManager : MonoBehaviour
                     {
                         CardSlotHand currentCardHand = cardHit.GetComponent<CardSlotHand>();
 
-                        if (handtimer < 1.5f) handtimer += Time.deltaTime; ;
+                        if (handtimer < 1.5f) handtimer += Time.deltaTime; 
 
                         if (Input.GetMouseButton(0) && !cardGrabbed)
                         {
@@ -154,7 +154,9 @@ public class MouseManager : MonoBehaviour
             }
             else
             {
-                ShrinkHand();
+                if(hit.collider.gameObject.tag.Equals("Hand")) handtimer += Time.deltaTime;
+                else ShrinkHand();
+
                 display.enabled = false;
                 blackBox.enabled = false;
 
