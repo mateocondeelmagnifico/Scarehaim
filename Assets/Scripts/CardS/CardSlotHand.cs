@@ -133,10 +133,13 @@ public class CardSlotHand: CardSlot
                         chosenSlot = 2;
                     }
 
-                    direction = blackScreen.GetChild(chosenSlot).position;
-                    isPayment = true;
-                    transform.parent = effectManager.blackScreen.transform.GetChild(chosenSlot);
-                    cardPlayed = true;
+                    if (blackScreen.childCount > 0)
+                    {
+                        direction = blackScreen.GetChild(chosenSlot).position;
+                        isPayment = true;
+                        transform.parent = effectManager.blackScreen.transform.GetChild(chosenSlot);
+                        cardPlayed = true;
+                    }
                 }
                 else
                 {

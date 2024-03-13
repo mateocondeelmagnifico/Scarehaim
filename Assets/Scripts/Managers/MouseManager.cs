@@ -122,7 +122,7 @@ public class MouseManager : MonoBehaviour
 
                         if (handtimer < 1.5f) handtimer += Time.deltaTime; 
 
-                        if (Input.GetMouseButton(0) && !cardGrabbed)
+                        if (Input.GetMouseButton(0) && !cardGrabbed && (manager.currentState == GameManager.turnState.CheckMovement || manager.currentState == GameManager.turnState.CheckCardEffect))
                         {
                             currentCard = currentCardHand;
                             currentCardHand.followMouse = true;

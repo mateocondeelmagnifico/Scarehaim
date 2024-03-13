@@ -604,6 +604,7 @@ MonoBehaviour:
   - {fileID: 18462973}
   - {fileID: 18462972}
   volumeSlider: {fileID: 1174422624}
+  volumeSetting: 0
 --- !u!4 &33455836 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4676084009188673460, guid: 8409c89c945ee724a9cfa7cf36e1924e, type: 3}
@@ -10753,7 +10754,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1571830514}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: -5, z: 0}
+  m_LocalPosition: {x: 4, y: -5, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10778,6 +10779,7 @@ MonoBehaviour:
   cardsStart: []
   cardStorage: {fileID: 739360602}
   fear: 5
+  volume: 0
   tutorialDone: 0
   firstGame: 0
 --- !u!61 &1571830517
@@ -12732,7 +12734,6 @@ MonoBehaviour:
   moveCard: 0
   cardInformed: 0
   cardDiscarded: 0
-  State: 0
   playerTurnInProgress: 0
   trapTriggered: 0
   powerUpOn: 0

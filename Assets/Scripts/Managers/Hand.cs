@@ -131,6 +131,7 @@ public class Hand : MonoBehaviour
     private void MoveAndRot(int whatcard, Vector3 offset, float multiplier)
     {
         cards[whatcard].position += offset;
+        cards[whatcard].position = new Vector3(cards[whatcard].position.x, cards[whatcard].position.y, -3);
         cards[whatcard].Rotate(0, 0, 10 * multiplier);
         cards[whatcard].GetComponent<CardSlotHand>().startingPos = cards[whatcard].position;
     }
