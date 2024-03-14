@@ -134,6 +134,22 @@ public class MouseManager : MonoBehaviour
                             currentCardHand.followMouse = false;
                             cardGrabbed = false;
                         }
+
+                        #region Display Big image
+                        if (manager.currentState != GameManager.turnState.CheckCardEffect)
+                        {
+                            //this is to display the card on the left
+                            if (currentCard.hoverTimer > 0.4f)
+                            {
+                                display.enabled = true;
+                                blackBox.enabled = true;
+                                if (cardHit.transform.childCount > 0)
+                                {
+                                    display.sprite = cardHit.GetComponentInChildren<Card>().bigImage;
+                                }
+                            }
+                        }
+                        #endregion
                     }
                     else
                     {

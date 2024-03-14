@@ -10,6 +10,7 @@ public class StartScreen : MonoBehaviour
     private TMPro.TextMeshProUGUI textBox;
     private Image background;
     private SpriteRenderer screenRenderer;
+    private SceneManagement sceneManagement;
 
     private void Start()
     {
@@ -18,6 +19,7 @@ public class StartScreen : MonoBehaviour
         screenRenderer = blackScreen.GetComponent<SpriteRenderer>();
         timer = 4;
         blackScreen.SetActive(true);
+        sceneManagement = SceneManagement.Instance; 
     }
     private void Update()
     {
@@ -31,6 +33,7 @@ public class StartScreen : MonoBehaviour
         }
         else
         {
+            sceneManagement.canPause = true;
             blackScreen.SetActive(false);
             screenRenderer.color = new Color(0, 0, 0, 0.9f);
             Destroy(gameObject);

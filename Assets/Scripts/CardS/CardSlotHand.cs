@@ -63,6 +63,32 @@ public class CardSlotHand: CardSlot
                 transform.rotation = Quaternion.identity;
             }
         }
+
+        #region Hover Code
+        if (otherTimer > 0)
+        {
+            otherTimer -= Time.deltaTime;
+        }
+        else
+        {
+            isHovered = false;
+            soundPlayed = false;
+        }
+
+        if (isHovered)
+        {
+            hoverTimer += Time.deltaTime;
+            if (!soundPlayed && hoverTimer > 0.8f)
+            {
+                SoundManager.Instance.PlaySound("Card Hovered");
+                soundPlayed = true;
+            }
+        }
+        else
+        {
+            hoverTimer = 0;
+        }
+        #endregion
     }
 
     public void Relocate()

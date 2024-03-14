@@ -6,10 +6,9 @@ using UnityEngine;
 public class CardSlot : MonoBehaviour
 {
     public GameObject cardObject;
-    bool isActivated;
     public Vector2 Location;
     public bool isInHand, isHovered;
-    private bool cardNeeded, soundPlayed;
+    protected bool cardNeeded, soundPlayed;
 
     public float hoverTimer, otherTimer;
 
