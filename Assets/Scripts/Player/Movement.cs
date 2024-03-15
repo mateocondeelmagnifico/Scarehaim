@@ -14,6 +14,8 @@ public class Movement : MonoBehaviour
     private DisplayBigImage display;
     private Sprite startSprite;
     public Sprite tempSprite;
+    [SerializeField] private GameObject highlight;
+    private GameObject[] myHighlights;
 
     public int turnsWithcostume;
 
@@ -25,6 +27,7 @@ public class Movement : MonoBehaviour
         rendereador = GetComponent<SpriteRenderer>();
         startSprite = rendereador.sprite;
         display = GetComponent<DisplayBigImage>();
+        myHighlights = new GameObject[2];
     }
 
     private void Update()
@@ -72,21 +75,7 @@ public class Movement : MonoBehaviour
             }
             else
             {
-    
-                    #region Check if reach position costume
-                    /*
-                    if(!hasMoved)
-                    {
-                        gameManager.currentState = GameManager.turnState.CheckMovement;
-                        turnsWithcostume--;
-                        hasMoved = true;
-                    }
-                    else
-                    {
-                        gameManager.currentState = GameManager.turnState.ReplaceCard;
-                        hasMoved = false;
-                    }
-                    */
+                #region Check if reach position costume
                     if (!hasMoved)
                     {
                         if (transform.position.x == tempDestination.x && transform.position.y == tempDestination.y)
@@ -104,7 +93,10 @@ public class Movement : MonoBehaviour
                         {
                             gameManager.powerUpOn = false;
                         }
-                    }
+
+                        myHighlights[0].SetActive(false);
+                        myHighlights[1].SetActive(false);
+                     }
                     #endregion
             }
         }
@@ -124,20 +116,26 @@ public class Movement : MonoBehaviour
             {
                 if (cardGridPos.x <= myPos.x + 1 && cardGridPos.x >= myPos.x - 1 && cardGridPos.y <= myPos.y + 1 && cardGridPos.y >= myPos.y - 1  && cardGridPos != myPos)
                 {
+
                     tempVector = cardGridPos;
                     tempDestination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
                     moveSelected = true;
                     hasMoved = false;
+
+                    SpawnHighlight();
                 }
             }
             else
             {
                 if (cardGridPos.x <= tempVector.x + 1 && cardGridPos.x >= tempVector.x - 1 && cardGridPos.y <= tempVector.y + 1 && cardGridPos.y >= tempVector.y - 1  && cardGridPos != tempVector)
                 {
+
                     destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
                     myPos = cardGridPos;
                     moveSelected = false;
                     isMoving = true;
+
+                    SpawnHighlight();
                 }
             }
             #endregion
@@ -217,5 +215,29 @@ public class Movement : MonoBehaviour
         }
 
         gameManager.currentState = GameManager.turnState.Moving;
+    }
+
+    private void SpawnHighlight()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            Vector3 myDestination = Vector3.zero;
+            if (i == 0) myDestination = tempDestination;
+            else myDestination = destination;
+
+            if (myHighlights[i] == null)
+            { 
+
+                myHighlights[i] = GameObject.Instantiate(highlight, myDestination, Quaternion.identity);
+                myHighlights[i].SetActive(true);
+                i = 2;
+            }
+            else if (!myHighlights[i].activeInHierarchy)
+            {
+                myHighlights[i].transform.position = myDestination;
+                myHighlights[i].SetActive(true);
+                i = 2;
+            }
+        }
     }
 }
