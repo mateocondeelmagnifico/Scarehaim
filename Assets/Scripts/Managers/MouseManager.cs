@@ -24,7 +24,6 @@ public class MouseManager : MonoBehaviour
 
     private void Start()
     {
-
         manager = GameManager.Instance;
         myCam = Camera.main;
         hand = Hand.Instance;
@@ -108,9 +107,19 @@ public class MouseManager : MonoBehaviour
                             SoundManager.Instance.PlaySound("Card Picked");
                             if (manager.currentState == GameManager.turnState.CheckMovement && currentCard.transform.childCount > 0)
                             {
-                                manager.selectedCardSlot = cardHit;
+                                if (playerMove.turnsWithcostume <= 0)
+                                {
+                                    manager.selectedCardSlot = cardHit;
+                                }
+                                else
+                                {
+                                    if(playerMove.moveSelected)
+                                    {
+                                        manager.selectedCardSlot = cardHit;
+                                    }
+                                }
                                 cardInformed = false;
-                                playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
+                                playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y), cardHit);
                             }
                         }
                     }

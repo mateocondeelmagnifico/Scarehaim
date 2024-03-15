@@ -136,8 +136,6 @@ public class GameManager : MonoBehaviour
                     slotErased = true;
                 }
 
-
-
                 if (!trapTriggered && !cardInformed)
                 {
                     InformCard();

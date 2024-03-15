@@ -4,10 +4,10 @@ public class Movement : MonoBehaviour
 {
     public Vector2 myPos;
 
-    private bool isMoving, resetSprite;
-    public bool hasTreat, hasMoved;
+    private bool resetSprite;
+    public bool hasTreat, hasMoved, moveSelected, isMoving;
 
-    private Vector2 destination;
+    public Vector2 destination, tempDestination, tempVector;
 
     private GameManager gameManager;
     private SpriteRenderer rendereador;
@@ -52,17 +52,29 @@ public class Movement : MonoBehaviour
         {
             Move();
 
-            if (transform.position.x == destination.x && transform.position.y == destination.y)
+            if(turnsWithcostume <= 0)
             {
-                isMoving = false;
-                if(hasTreat)
+                if (transform.position.x == destination.x && transform.position.y == destination.y)
                 {
-                    gameManager.powerUpOn = false;
-                    hasTreat = false;
-                }
+                    #region Check if reach Position
+                    isMoving = false;
+                    if (hasTreat)
+                    {
+                        gameManager.powerUpOn = false;
+                        hasTreat = false;
+                    }
 
-                if(turnsWithcostume > 0)
-                {
+                    hasMoved = false;
+                    gameManager.powerUpOn = false;
+                    gameManager.currentState = GameManager.turnState.ReplaceCard;
+                    #endregion
+                }
+            }
+            else
+            {
+    
+                    #region Check if reach position costume
+                    /*
                     if(!hasMoved)
                     {
                         gameManager.currentState = GameManager.turnState.CheckMovement;
@@ -74,13 +86,26 @@ public class Movement : MonoBehaviour
                         gameManager.currentState = GameManager.turnState.ReplaceCard;
                         hasMoved = false;
                     }
-                }
-                else
-                {
-                    hasMoved = false;
-                    gameManager.powerUpOn = false;
-                    gameManager.currentState = GameManager.turnState.ReplaceCard;
-                }
+                    */
+                    if (!hasMoved)
+                    {
+                        if (transform.position.x == tempDestination.x && transform.position.y == tempDestination.y)
+                        {
+                            hasMoved = true;
+                        }
+                    }
+                    else if(transform.position.x == destination.x && transform.position.y == destination.y)
+                    {
+                        isMoving = false;
+                        
+                        gameManager.currentState = GameManager.turnState.ReplaceCard;
+                        turnsWithcostume--;
+                        if(turnsWithcostume <= 0)
+                        {
+                            gameManager.powerUpOn = false;
+                        }
+                    }
+                    #endregion
             }
         }
 
@@ -88,60 +113,109 @@ public class Movement : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y, -0.13f);
     }
 
-    public void TryMove(Vector2 cardGridPos, Vector2 cardActualPos)
+    public void TryMove(Vector2 cardGridPos, Vector2 cardActualPos, GameObject selectedSlot)
     {
-        if (!hasTreat)
+        if (isMoving) return;
+
+        if(turnsWithcostume > 0)
         {
-            //Normal movement
-            if (cardGridPos.x <= myPos.x + 1 && cardGridPos.x >= myPos.x - 1 && cardGridPos.y <= myPos.y + 1 && cardGridPos.y >= myPos.y - 1 && !isMoving)
+            #region Costume Movement
+            if (!moveSelected)
             {
-                if(cardGridPos != myPos)
+                if (cardGridPos.x <= myPos.x + 1 && cardGridPos.x >= myPos.x - 1 && cardGridPos.y <= myPos.y + 1 && cardGridPos.y >= myPos.y - 1  && cardGridPos != myPos)
+                {
+                    tempVector = cardGridPos;
+                    tempDestination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
+                    moveSelected = true;
+                    hasMoved = false;
+                }
+            }
+            else
+            {
+                if (cardGridPos.x <= tempVector.x + 1 && cardGridPos.x >= tempVector.x - 1 && cardGridPos.y <= tempVector.y + 1 && cardGridPos.y >= tempVector.y - 1  && cardGridPos != tempVector)
                 {
                     destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
                     myPos = cardGridPos;
+                    moveSelected = false;
                     isMoving = true;
                 }
+            }
+            #endregion
+        }
+        else
+        {
+            if (!hasTreat)
+            {
+                #region treat Movement
+                //Normal movement
+                if (cardGridPos.x <= myPos.x + 1 && cardGridPos.x >= myPos.x - 1 && cardGridPos.y <= myPos.y + 1 && cardGridPos.y >= myPos.y - 1)
+                {
+                    if (cardGridPos != myPos)
+                    {
+                        destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
+                        myPos = cardGridPos;
+                        isMoving = true;
+                    }
+                }
+                #endregion
+            }
+            else
+            {
+                if ((cardGridPos.x == myPos.x + 2 || cardGridPos.x == myPos.x - 2 || cardGridPos.x == myPos.x) && (cardGridPos.y == myPos.y || cardGridPos.y == myPos.y + 2 || cardGridPos.y == myPos.y - 2))
+                {
+                    #region Calculate Enemy position
+                    float xposition = cardGridPos.x;
+                    float yposition = cardGridPos.y;
+                    if (cardGridPos.x == myPos.x + 2)
+                    {
+                        xposition = cardGridPos.x - 1;
+                    }
+                    if (cardGridPos.x == myPos.x - 2)
+                    {
+                        xposition = cardGridPos.x + 1;
+                    }
+                    if (cardGridPos.y == myPos.y + 2)
+                    {
+                        yposition = cardGridPos.y - 1;
+                    }
+                    if (cardGridPos.y == myPos.y - 2)
+                    {
+                        yposition = cardGridPos.y + 1;
+                    }
+
+                    Vector2 middlePos = new Vector2(xposition, yposition);
+                    #endregion
+
+                    if (cardGridPos != myPos && gameManager.enemy.myPos != middlePos)
+                    {
+                        destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
+                        myPos = cardGridPos;
+                        isMoving = true;
+                    }
+                }
+            }
+        }
+       
+    }
+    private void Move()
+    {
+        
+        if (turnsWithcostume > 0)
+        {
+            if (!hasMoved)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, tempDestination, 4.5f * Time.deltaTime);
+            }
+            else
+            {
+                transform.position = Vector2.MoveTowards(transform.position, destination, 4.5f * Time.deltaTime);
             }
         }
         else
         {
-            if ((cardGridPos.x == myPos.x + 2 || cardGridPos.x == myPos.x - 2 || cardGridPos.x == myPos.x) && (cardGridPos.y == myPos.y || cardGridPos.y == myPos.y + 2 || cardGridPos.y == myPos.y - 2))
-            {
-                #region Calculate Enemy position
-                float xposition = cardGridPos.x;
-                float yposition = cardGridPos.y;
-                if (cardGridPos.x == myPos.x + 2)
-                {
-                    xposition = cardGridPos.x - 1;
-                }
-                if (cardGridPos.x == myPos.x - 2)
-                {
-                    xposition = cardGridPos.x + 1;
-                }
-                if (cardGridPos.y == myPos.y + 2)
-                {
-                    yposition = cardGridPos.y - 1;
-                }
-                if (cardGridPos.y == myPos.y - 2)
-                {
-                    yposition = cardGridPos.y + 1;
-                }
-
-                Vector2 middlePos = new Vector2(xposition, yposition);
-                #endregion
-
-                if (cardGridPos != myPos && gameManager.enemy.myPos != middlePos)
-                {
-                    destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
-                    myPos = cardGridPos;
-                    isMoving = true;
-                }
-            }
+            transform.position = Vector2.MoveTowards(transform.position, destination, 4.5f * Time.deltaTime);
         }
-    }
-    private void Move()
-    {
-        transform.position = Vector2.MoveTowards(transform.position, destination, 4.5f * Time.deltaTime);
+
         gameManager.currentState = GameManager.turnState.Moving;
     }
 }
