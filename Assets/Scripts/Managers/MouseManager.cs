@@ -119,7 +119,7 @@ public class MouseManager : MonoBehaviour
                                     }
                                 }
                                 cardInformed = false;
-                                playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y), cardHit);
+                                playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
                             }
                         }
                     }
@@ -218,45 +218,10 @@ public class MouseManager : MonoBehaviour
         if (slotScript.isInHand) hoverRenderer.color = Color.green;
         else
         {
-            if (playerX <= cardX + 1 && playerX >= cardX - 1 && playerY <= cardY + 1 && playerY >= cardY - 1)
+            if(pMovement.turnsWithcostume > 0 && pMovement.moveSelected)
             {
-                canBasicMove = true;
-            }
-
-            if (pMovement.hasTreat)
-            {
-                if(!canBasicMove && playerX != cardX -1 && playerX != cardX + 1 && playerY != cardY - 1 && playerY != cardY + 1)
-                {
-                    #region Calculate Enemy position
-                    float xposition = cardX;
-                    float yposition = cardY;
-                    if (cardX == playerX + 2)
-                    {
-                        xposition = cardX - 1;
-                    }
-                    if (cardX == playerX - 2)
-                    {
-                        xposition = cardX + 1;
-                    }
-                    if (cardY == playerY + 2)
-                    {
-                        yposition = cardY - 1;
-                    }
-                    if (cardY == playerY - 2)
-                    {
-                        yposition = cardY + 1;
-                    }
-                    Vector2 middlePos = new Vector2(xposition, yposition);
-                    #endregion
-
-                    if(manager.enemy.myPos != middlePos) hoverRenderer.color = startColor;
-                    else hoverRenderer.color = Color.red;
-                }
-                else hoverRenderer.color = Color.red;
-            }
-            else
-            {
-                if (canBasicMove)
+                #region Second turn costume check
+                if (pMovement.tempVector.x <= cardX + 1 && pMovement.tempVector.x >= cardX - 1 && pMovement.tempVector.y <= cardY + 1 && pMovement.tempVector.y >= cardY - 1)
                 {
                     hoverRenderer.color = startColor;
                 }
@@ -264,7 +229,59 @@ public class MouseManager : MonoBehaviour
                 {
                     hoverRenderer.color = Color.red;
                 }
+                #endregion
             }
+            else
+            {
+                if (playerX <= cardX + 1 && playerX >= cardX - 1 && playerY <= cardY + 1 && playerY >= cardY - 1)
+                {
+                    canBasicMove = true;
+                }
+
+                if (pMovement.hasTreat)
+                {
+                    if (!canBasicMove && playerX != cardX - 1 && playerX != cardX + 1 && playerY != cardY - 1 && playerY != cardY + 1)
+                    {
+                        #region Calculate Enemy position
+                        float xposition = cardX;
+                        float yposition = cardY;
+                        if (cardX == playerX + 2)
+                        {
+                            xposition = cardX - 1;
+                        }
+                        if (cardX == playerX - 2)
+                        {
+                            xposition = cardX + 1;
+                        }
+                        if (cardY == playerY + 2)
+                        {
+                            yposition = cardY - 1;
+                        }
+                        if (cardY == playerY - 2)
+                        {
+                            yposition = cardY + 1;
+                        }
+                        Vector2 middlePos = new Vector2(xposition, yposition);
+                        #endregion
+
+                        if (manager.enemy.myPos != middlePos) hoverRenderer.color = startColor;
+                        else hoverRenderer.color = Color.red;
+                    }
+                    else hoverRenderer.color = Color.red;
+                }
+                else
+                {
+                    if (canBasicMove)
+                    {
+                        hoverRenderer.color = startColor;
+                    }
+                    else
+                    {
+                        hoverRenderer.color = Color.red;
+                    }
+                }
+            }
+           
         }  
     }
 }

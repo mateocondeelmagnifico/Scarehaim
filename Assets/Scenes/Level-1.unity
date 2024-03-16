@@ -13258,7 +13258,7 @@ MonoBehaviour:
   - {fileID: 638242032198707708, guid: 151013d12cc251146ab1d474bec862a1, type: 3}
   costumes:
   - {fileID: 638242032198707708, guid: 586fbdec72867df419f6c84721780c93, type: 3}
-  cardsUntilExit: 4
+  cardsUntilExit: 10
   treatAmount: 2
   costumeAmount: 2
   exitCardDealt: 0
@@ -13344,7 +13344,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2052462755
 Transform:
   m_ObjectHideFlags: 0

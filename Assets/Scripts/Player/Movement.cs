@@ -105,7 +105,7 @@ public class Movement : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y, -0.13f);
     }
 
-    public void TryMove(Vector2 cardGridPos, Vector2 cardActualPos, GameObject selectedSlot)
+    public void TryMove(Vector2 cardGridPos, Vector2 cardActualPos)
     {
         if (isMoving) return;
 
@@ -230,6 +230,7 @@ public class Movement : MonoBehaviour
 
                 myHighlights[i] = GameObject.Instantiate(highlight, myDestination, Quaternion.identity);
                 myHighlights[i].SetActive(true);
+                myHighlights[i].GetComponent<SpriteRenderer>().sortingOrder = 0;
                 i = 2;
             }
             else if (!myHighlights[i].activeInHierarchy)
