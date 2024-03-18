@@ -10,14 +10,14 @@ public class CardEffectManager : MonoBehaviour
 
     public GameObject paymentMenu, blackScreen, treatSlot, costumeSlot, paymentButtons, bigButton, hand1, hand2, gameWonMenu;
     private GameObject newSlot, player;
-    [SerializeField] private Transform merrowHand;
+    [SerializeField] private Transform merrowHand, fearCounter;
 
     public Transform[] slotPositions;
     private Transform hand;
     public static CardEffectManager Instance { get; private set; }
     private GameManager manager;
     private Image displayImage;
-    private TMPro.TextMeshProUGUI explanation;
+    private TMPro.TextMeshProUGUI explanation, fearText;
     private Cost currentCost;
     private Fear playerFear;
     [SerializeField] private Cost endCost;
@@ -52,6 +52,7 @@ public class CardEffectManager : MonoBehaviour
         hand = Hand.Instance.transform;
         handScript = hand.GetComponent<Hand>();
         playerFear = player.GetComponent<Fear>();
+        fearText = fearCounter.GetComponent<TMPro.TextMeshProUGUI>();
 
         originalPos = merrowHand.transform.position;
     }
@@ -84,17 +85,20 @@ public class CardEffectManager : MonoBehaviour
     public void ActivatePayment(Sprite image, Cost whatCost)
    {
         //This displays the payment Window
-
+        #region Set variables and activate things
         mySprite = image;
         currentCost = whatCost;
 
         displayImage.sprite = mySprite;
         explanation.text = currentCost.explanation;
 
+
         paymentMenu.SetActive(true);
         blackScreen.SetActive(true);
+        DisplayFear();
+        #endregion
 
-        for(int i = 0; i < currentCost.costAmount; i++)
+        for (int i = 0; i < currentCost.costAmount; i++)
         {
             if(currentCost.CostName == "Treat")
             {
@@ -222,6 +226,7 @@ public class CardEffectManager : MonoBehaviour
         paymentButtons.SetActive(false);
         paymentMenu.SetActive(false);
         blackScreen.SetActive(false);
+        fearCounter.gameObject.SetActive(false);
         #endregion
 
         if (manager.trapTriggered)
@@ -306,5 +311,10 @@ public class CardEffectManager : MonoBehaviour
             Time.timeScale = 0;
             gameWonMenu.SetActive(true);
         }
+    }
+    private void DisplayFear()
+    {
+        fearCounter.gameObject.SetActive(true);
+        fearText.text = "Fear = " + playerFear.fear.ToString();
     }
 }
