@@ -96,6 +96,7 @@ public class CardEffectManager : MonoBehaviour
         paymentMenu.SetActive(true);
         blackScreen.SetActive(true);
         DisplayFear();
+        handScript.MoveHand(0);
         #endregion
 
         for (int i = 0; i < currentCost.costAmount; i++)
@@ -227,6 +228,7 @@ public class CardEffectManager : MonoBehaviour
         paymentMenu.SetActive(false);
         blackScreen.SetActive(false);
         fearCounter.gameObject.SetActive(false);
+        handScript.MoveHand(4);
         #endregion
 
         if (manager.trapTriggered)

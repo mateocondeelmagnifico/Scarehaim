@@ -31,7 +31,7 @@ public class Hand : MonoBehaviour
         }
         volume = 1;
 
-        defaultPos = new Vector3(4, -5, -2);
+        defaultPos = new Vector3(transform.position.x, transform.position.y, -2);
 
         DeterminePosition();
     }
@@ -58,7 +58,6 @@ public class Hand : MonoBehaviour
         #region Reset position and rotation
         for (int i = 0; i < cards.Length; i++)
         {
-
             cards[i] = transform.GetChild(i);
 
             cards[i].position = defaultPos;
@@ -202,5 +201,12 @@ public class Hand : MonoBehaviour
             cardsStart[i].SetActive(false);
             cardsStart[i].transform.parent = cardStorage.transform;
         }
+    }
+
+    public void MoveHand(int x)
+    {
+        //esto manda a la mano al centro durante los pagos y luego la devuelve
+        defaultPos = new Vector3(x, transform.position.y, -2);
+        DeterminePosition();
     }
 }
