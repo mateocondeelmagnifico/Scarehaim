@@ -148,7 +148,7 @@ public class Hand : MonoBehaviour
         }
         else
         {
-            offset = new Vector3(0, -1, 0);
+            offset = new Vector3(0, 0, 0);
         }
 
         if (transform.childCount > 0)
