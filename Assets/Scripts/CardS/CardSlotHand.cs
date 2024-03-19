@@ -123,7 +123,7 @@ public class CardSlotHand: CardSlot
                 //This loop gets the position of the payment spots
                 for (int i = 0; i < blackScreen.childCount; i++)
                 {
-                    if (blackScreen.GetChild(i).childCount < 2 && blackScreen.GetChild(i).tag == cardObject.tag)
+                    if (blackScreen.GetChild(i).childCount < 1 && blackScreen.GetChild(i).tag == cardObject.tag)
                     {
                         distances[i] = Vector3.Distance(blackScreen.GetChild(i).transform.position, transform.position);
                     }
