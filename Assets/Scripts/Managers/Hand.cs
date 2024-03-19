@@ -207,6 +207,8 @@ public class Hand : MonoBehaviour
     {
         //esto manda a la mano al centro durante los pagos y luego la devuelve
         defaultPos = new Vector3(x, transform.position.y, -2);
+
+        transform.position = new Vector3(x, transform.position.y, transform.position.z);
         DeterminePosition();
     }
 }
