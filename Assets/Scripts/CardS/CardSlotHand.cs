@@ -136,12 +136,12 @@ public class CardSlotHand: CardSlot
 
                 if(blackScreen.childCount == 2)
                 {
-                distances[2] = 50000;
+                    distances[2] = 50000;
                 }
                 if (blackScreen.childCount == 1)
                 {
-                distances[2] = 50000;
-                distances[1] = 50000;
+                    distances[2] = 50000;
+                    distances[1] = 50000;
                 }
 
                 if (Mathf.Min(distances[0], distances[1], distances[2]) < 45000)
