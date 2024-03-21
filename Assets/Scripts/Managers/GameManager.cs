@@ -9,13 +9,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     [HideInInspector] public Movement playerMove;
-    [HideInInspector] public bool moveCardToHand, moveCard, cardInformed;
+    public bool moveCardToHand, moveCard, cardInformed;
 
     private Hand handScript;
 
     public int cardDiscarded;
 
-    [HideInInspector] public bool playerTurnInProgress, trapTriggered, powerUpOn;
+    public bool playerTurnInProgress, trapTriggered, powerUpOn;
     private bool slotErased, enemyInformed;
     public bool mustMove;
 

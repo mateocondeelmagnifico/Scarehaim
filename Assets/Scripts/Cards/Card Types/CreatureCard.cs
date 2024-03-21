@@ -29,12 +29,15 @@ public class CreatureCard : Card
 
         if(player.position.x == transform.position.x && player.position.y == transform.position.y && !isDone && !pMovement.hasTreat && manager.currentState == GameManager.turnState.Moving)
         {
-            pMovement.destination = transform.position;
-            pMovement.myPos = transform.parent.GetComponent<CardSlot>().Location;
-            manager.selectedCardSlot = transform.parent.gameObject;
-            manager.ChangeState(GameManager.turnState.CheckCardEffect);
-            manager.cardInformed = true;
-            Effect(null, null);
+            if (player.GetComponent<Movement>().costumeName != disguiseToIgnore)
+            {
+                pMovement.destination = transform.position;
+                pMovement.myPos = transform.parent.GetComponent<CardSlot>().Location;
+                manager.selectedCardSlot = transform.parent.gameObject;
+                manager.ChangeState(GameManager.turnState.CheckCardEffect);
+                manager.cardInformed = true;
+                Effect(null, null);
+            }
         }
     }
 
