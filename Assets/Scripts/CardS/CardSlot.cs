@@ -55,7 +55,7 @@ public class CardSlot : MonoBehaviour
 
         cardManager.CardDiscarded(this);
 
-        gameManager.currentState = GameManager.turnState.Movecard;
+        gameManager.ChangeState(GameManager.turnState.Movecard);
     }
 
 }

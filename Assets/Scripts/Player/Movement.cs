@@ -69,7 +69,7 @@ public class Movement : MonoBehaviour
 
                     hasMoved = false;
                     gameManager.powerUpOn = false;
-                    gameManager.currentState = GameManager.turnState.ReplaceCard;
+                    gameManager.ChangeState(GameManager.turnState.ReplaceCard);
                     #endregion
                 }
             }
@@ -87,7 +87,7 @@ public class Movement : MonoBehaviour
                     {
                         isMoving = false;
                         
-                        gameManager.currentState = GameManager.turnState.ReplaceCard;
+                        gameManager.ChangeState(GameManager.turnState.ReplaceCard);
                         turnsWithcostume--;
                         if(turnsWithcostume <= 0)
                         {
@@ -214,7 +214,7 @@ public class Movement : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, destination, 4.5f * Time.deltaTime);
         }
 
-        gameManager.currentState = GameManager.turnState.Moving;
+        gameManager.ChangeState(GameManager.turnState.Moving);
     }
 
     private void SpawnHighlight()

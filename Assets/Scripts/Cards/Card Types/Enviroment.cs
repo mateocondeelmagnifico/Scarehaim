@@ -11,7 +11,7 @@ public class Enviroment : Card
         {
             CardManager.Instance.cardsUntilExit--;
         }
-        GameManager.Instance.currentState = GameManager.turnState.ApplyCardEffect;
+        GameManager.Instance.ChangeState(GameManager.turnState.ApplyCardEffect);
         DiscardCard();
     }
 }

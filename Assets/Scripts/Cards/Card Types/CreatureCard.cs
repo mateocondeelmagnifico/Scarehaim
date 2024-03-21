@@ -18,6 +18,7 @@ public class CreatureCard : Card
         manager = GameManager.Instance;
         player = manager.player.transform;
         pMovement = player.GetComponent<Movement>();
+        isDone = false;
     }
     private void Update()
     {
@@ -31,6 +32,8 @@ public class CreatureCard : Card
             pMovement.destination = transform.position;
             pMovement.myPos = transform.parent.GetComponent<CardSlot>().Location;
             manager.selectedCardSlot = transform.parent.gameObject;
+            manager.ChangeState(GameManager.turnState.CheckCardEffect);
+            manager.cardInformed = true;
             Effect(null, null);
         }
     }
@@ -41,7 +44,7 @@ public class CreatureCard : Card
         {
             if(manager.currentState == GameManager.turnState.CheckCardEffect)
             {
-                manager.currentState = GameManager.turnState.Movecard;
+                manager.ChangeState(GameManager.turnState.Movecard);
                 isDone = true;
                 return;
             }
@@ -53,7 +56,7 @@ public class CreatureCard : Card
 
         if (isDone)
         {
-            manager.currentState = GameManager.turnState.Movecard;
+            manager.ChangeState(GameManager.turnState.Movecard);
             return;
         }
 

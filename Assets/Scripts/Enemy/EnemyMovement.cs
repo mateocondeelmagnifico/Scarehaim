@@ -161,7 +161,7 @@ public class EnemyMovement : MonoBehaviour
         {
             if(gameManager.currentState == GameManager.turnState.Endturn && isMoving)
             {
-                gameManager.currentState = GameManager.turnState.CheckMovement;
+                gameManager.ChangeState(GameManager.turnState.CheckMovement);
                 isMoving = false;
             }
         }

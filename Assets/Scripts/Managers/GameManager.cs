@@ -191,8 +191,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 enemy.turnsUntilStart--;
-                currentState = turnState.CheckMovement;
-                
+                ChangeState(turnState.CheckMovement);
             }
 
             enemyInformed = true;
@@ -265,7 +264,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void ChangeState(turnState newstate)
+    public void ChangeState(turnState newstate)
     {
         //Esta funcion esta porque no funciona cambiar el state dentro del switch
         currentState = newstate;

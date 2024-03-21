@@ -46,7 +46,7 @@ public class Card : MonoBehaviour
 
         #endregion
 
-        GameManager.Instance.currentState = GameManager.turnState.Movecard;
+        GameManager.Instance.ChangeState(GameManager.turnState.Movecard);
     }
 
     public void DiscardCard()

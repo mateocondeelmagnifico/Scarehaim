@@ -244,11 +244,11 @@ public class CardEffectManager : MonoBehaviour
             if(manager.currentState == GameManager.turnState.CheckMovement)
             {
                 //This is in case you trigger a creature with a costume on
-                manager.currentState = GameManager.turnState.ReplaceCard;
+                manager.ChangeState(GameManager.turnState.ReplaceCard);
             }
             else
             {
-                manager.currentState = GameManager.turnState.Endturn;
+                manager.ChangeState(GameManager.turnState.Endturn);
             }
         }
         effectActive = false;
