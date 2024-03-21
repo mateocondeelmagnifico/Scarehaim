@@ -267,7 +267,7 @@ public class MouseManager : MonoBehaviour
                             Vector2 middlePos = new Vector2(xposition, yposition);
                             #endregion
 
-                            if (manager.enemy.myPos != middlePos) hoverRenderer.color = startColor;
+                            if (enemyMove.myPos != middlePos) hoverRenderer.color = startColor;
                             else hoverRenderer.color = Color.red;
                         }
                         else hoverRenderer.color = Color.red;
