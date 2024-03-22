@@ -5202,6 +5202,7 @@ MonoBehaviour:
   tempVector: {x: 0, y: 0}
   tempSprite: {fileID: 0}
   highlight: {fileID: 3693071763250408614, guid: de00b975d3c2df24d8a70e845998dbc1, type: 3}
+  cards: {fileID: 1505720235}
   turnsWithcostume: 0
   costumeName: None
 --- !u!114 &688192961

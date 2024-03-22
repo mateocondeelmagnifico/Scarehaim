@@ -14,8 +14,9 @@ public class Movement : MonoBehaviour
     private DisplayBigImage display;
     private Sprite startSprite;
     public Sprite tempSprite;
-    [SerializeField] private GameObject highlight;
+    [SerializeField] private GameObject highlight, cards;
     private GameObject[] myHighlights;
+    private Transform[] cardGrid;
 
     public int turnsWithcostume;
 
@@ -28,6 +29,11 @@ public class Movement : MonoBehaviour
         startSprite = rendereador.sprite;
         display = GetComponent<DisplayBigImage>();
         myHighlights = new GameObject[2];
+        cardGrid = new Transform[15];
+        for(int i = 0; i < 15; i++)
+        {
+            cardGrid[i] = cards.transform.GetChild(i);
+        }
     }
 
     private void Update()
@@ -220,39 +226,49 @@ public class Movement : MonoBehaviour
                         cardGridPos = originalPosGrid;
                         cardActualPos = originalActualPos;
                     }
+                    else
+                    {
+                        for (int i = 0; i < 15; i++)
+                        {
+                            if (cardGrid[i].position.x == cardActualPos.x && cardGrid[i].position.y == cardActualPos.y)
+                            {
+                                gameManager.selectedCardSlot = cardGrid[i].gameObject;
+                            }
+                        }
                     #endregion
                 }
 
-                if ((cardGridPos.x == myPos.x + 2 || cardGridPos.x == myPos.x - 2 || cardGridPos.x == myPos.x) && (cardGridPos.y == myPos.y || cardGridPos.y == myPos.y + 2 || cardGridPos.y == myPos.y - 2))
-                {
-                    #region Calculate Enemy position
-                    float xposition = cardGridPos.x;
-                    float yposition = cardGridPos.y;
-                    if (cardGridPos.x == myPos.x + 2)
+                    if ((cardGridPos.x == myPos.x + 2 || cardGridPos.x == myPos.x - 2 || cardGridPos.x == myPos.x) && (cardGridPos.y == myPos.y || cardGridPos.y == myPos.y + 2 || cardGridPos.y == myPos.y - 2))
                     {
-                        xposition = cardGridPos.x - 1;
-                    }
-                    if (cardGridPos.x == myPos.x - 2)
-                    {
-                        xposition = cardGridPos.x + 1;
-                    }
-                    if (cardGridPos.y == myPos.y + 2)
-                    {
-                        yposition = cardGridPos.y - 1;
-                    }
-                    if (cardGridPos.y == myPos.y - 2)
-                    {
-                        yposition = cardGridPos.y + 1;
-                    }
+                        #region Calculate Enemy position
+                        float xposition = cardGridPos.x;
+                        float yposition = cardGridPos.y;
+                        if (cardGridPos.x == myPos.x + 2)
+                        {
+                            xposition = cardGridPos.x - 1;
+                        }
+                        if (cardGridPos.x == myPos.x - 2)
+                        {
+                            xposition = cardGridPos.x + 1;
+                        }
+                        if (cardGridPos.y == myPos.y + 2)
+                        {
+                            yposition = cardGridPos.y - 1;
+                        }
+                        if (cardGridPos.y == myPos.y - 2)
+                        {
+                            yposition = cardGridPos.y + 1;
+                        }
 
-                    Vector2 middlePos = new Vector2(xposition, yposition);
-                    #endregion
+                        Vector2 middlePos = new Vector2(xposition, yposition);
+                        #endregion
 
-                    if (cardGridPos != myPos && gameManager.enemy.myPos != middlePos)
-                    {
-                        destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
-                        myPos = cardGridPos;
-                        isMoving = true;
+                        if (cardGridPos != myPos && gameManager.enemy.myPos != middlePos)
+                        {
+                            destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
+                            myPos = cardGridPos;
+                            isMoving = true;
+                        }
                     }
                 }
             }
