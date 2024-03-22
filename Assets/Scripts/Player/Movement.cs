@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -100,9 +101,8 @@ public class Movement : MonoBehaviour
                             gameManager.powerUpOn = false;
                         }
 
-                        myHighlights[0].SetActive(false);
-                        myHighlights[1].SetActive(false);
-                     }
+                        DespawnHighlights();
+                    }
                     #endregion
             }
         }
@@ -136,7 +136,8 @@ public class Movement : MonoBehaviour
                     moveSelected = true;
                     hasMoved = false;
 
-                    SpawnHighlight();
+                    SpawnHighlight(2);
+                    MoveHighlights(0, tempDestination);
                 }
             }
             else
@@ -149,7 +150,7 @@ public class Movement : MonoBehaviour
                     moveSelected = false;
                     isMoving = true;
 
-                    SpawnHighlight();
+                    MoveHighlights(1, destination);
                 }
             }
             #endregion
@@ -235,6 +236,7 @@ public class Movement : MonoBehaviour
                                 gameManager.selectedCardSlot = cardGrid[i].gameObject;
                             }
                         }
+
                     #endregion
                 }
 
@@ -297,28 +299,29 @@ public class Movement : MonoBehaviour
         gameManager.ChangeState(GameManager.turnState.Moving);
     }
 
-    private void SpawnHighlight()
+    private void SpawnHighlight(int howMany)
     {
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < howMany; i++)
         {
-            Vector3 myDestination = Vector3.zero;
-            if (i == 0) myDestination = tempDestination;
-            else myDestination = destination;
-
             if (myHighlights[i] == null)
             { 
-
-                myHighlights[i] = GameObject.Instantiate(highlight, myDestination, Quaternion.identity);
-                myHighlights[i].SetActive(true);
+                myHighlights[i] = GameObject.Instantiate(highlight, transform.position, Quaternion.identity);
                 myHighlights[i].GetComponent<SpriteRenderer>().sortingOrder = 0;
-                i = 2;
-            }
-            else if (!myHighlights[i].activeInHierarchy)
-            {
-                myHighlights[i].transform.position = myDestination;
-                myHighlights[i].SetActive(true);
-                i = 2;
             }
         }
+    }
+
+    private void DespawnHighlights()
+    {
+        for (int i = 0; i < myHighlights.Length; i++)
+        {
+            myHighlights[i].SetActive(false);
+        }
+    }
+
+    private void MoveHighlights(int whichOne, Vector2 pos)
+    {
+        myHighlights[whichOne].SetActive(true);
+        myHighlights[whichOne].transform.position = pos;  
     }
 }
