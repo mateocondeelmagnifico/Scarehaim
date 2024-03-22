@@ -109,12 +109,20 @@ public class Movement : MonoBehaviour
     {
         if (isMoving) return;
 
-        if(turnsWithcostume > 0)
+        #region Check if can Basic move
+        bool canBasicMove = false;
+        if (cardGridPos.x <= myPos.x + 1 && cardGridPos.x >= myPos.x - 1 && cardGridPos.y <= myPos.y + 1 && cardGridPos.y >= myPos.y - 1 && cardGridPos != myPos)
+        {
+           canBasicMove = true;
+        }
+        #endregion
+
+        if (turnsWithcostume > 0)
         {
             #region Costume Movement
             if (!moveSelected)
             {
-                if (cardGridPos.x <= myPos.x + 1 && cardGridPos.x >= myPos.x - 1 && cardGridPos.y <= myPos.y + 1 && cardGridPos.y >= myPos.y - 1  && cardGridPos != myPos)
+                if (canBasicMove)
                 {
 
                     tempVector = cardGridPos;
@@ -144,21 +152,77 @@ public class Movement : MonoBehaviour
         {
             if (!hasTreat)
             {
-                #region treat Movement
-                //Normal movement
-                if (cardGridPos.x <= myPos.x + 1 && cardGridPos.x >= myPos.x - 1 && cardGridPos.y <= myPos.y + 1 && cardGridPos.y >= myPos.y - 1)
-                {
-                    if (cardGridPos != myPos)
-                    {
+                #region Normal movement
+                if (canBasicMove)
+                { 
                         destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
                         myPos = cardGridPos;
                         isMoving = true;
-                    }
+                    
                 }
                 #endregion
             }
             else
             {
+                if(canBasicMove)
+                {
+                    #region Change card grid pos
+                    //This makes you move 2 squares when you use the treat
+
+                    float x = myPos.x - cardGridPos.x;
+                    float y = myPos.y - cardGridPos.y;
+                    Vector2 originalPosGrid = cardGridPos;
+                    Vector2 originalActualPos = cardActualPos;
+                    bool cantMove = false;
+
+                    //adjust x position
+                    if (x == -1)
+                    {
+                        if(cardGridPos.x != 3)
+                        {
+                            cardGridPos.x += 1;
+                            cardActualPos.y += 2.7f;
+                        }
+                        else cantMove = true;
+                    }
+                    else if (x != 0)
+                    {
+                        if (cardGridPos.x != 1)
+                        {
+                            cardGridPos.x -= 1;
+                            cardActualPos.y -= 2.7f;
+                        }
+                        else cantMove = true; 
+                    }
+
+                    //adjust y position
+                    if (y == -1)
+                    {
+                        if (cardGridPos.y != 5)
+                        {
+                            cardGridPos.y += 1;
+                            cardActualPos.x += 2;
+                        }
+                        else cantMove = true;
+                    }
+                    else if (y != 0)
+                    {
+                        if (cardGridPos.y != 1)
+                        {
+                            cardGridPos.y -= 1;
+                            cardActualPos.x -= 2;
+                        }
+                        else cantMove = true;
+                    }
+
+                    if(cantMove)
+                    {
+                        cardGridPos = originalPosGrid;
+                        cardActualPos = originalActualPos;
+                    }
+                    #endregion
+                }
+
                 if ((cardGridPos.x == myPos.x + 2 || cardGridPos.x == myPos.x - 2 || cardGridPos.x == myPos.x) && (cardGridPos.y == myPos.y || cardGridPos.y == myPos.y + 2 || cardGridPos.y == myPos.y - 2))
                 {
                     #region Calculate Enemy position
