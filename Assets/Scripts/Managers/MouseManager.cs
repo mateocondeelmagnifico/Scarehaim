@@ -273,6 +273,9 @@ public class MouseManager : MonoBehaviour
                         else hoverRenderer.color = Color.red;
                     }
                     else hoverRenderer.color = Color.red;
+
+                    if (canBasicMove) playerMove.DisplayTreatHighlight(slotScript.Location);
+                    else playerMove.DespawnHighlights(true);
                     #endregion
                 }
                 else

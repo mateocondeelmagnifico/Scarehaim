@@ -119,7 +119,7 @@ public class Movement : MonoBehaviour
         bool canBasicMove = false;
         if (cardGridPos.x <= myPos.x + 1 && cardGridPos.x >= myPos.x - 1 && cardGridPos.y <= myPos.y + 1 && cardGridPos.y >= myPos.y - 1 && cardGridPos != myPos)
         {
-           canBasicMove = true;
+            canBasicMove = true;
         }
         #endregion
 
@@ -138,21 +138,21 @@ public class Movement : MonoBehaviour
 
                     #region Spawn and move highlights
                     SpawnHighlight(9);
-                    MoveHighlights(0, tempDestination,"yellow");
+                    MoveHighlights(0, tempDestination, "yellow");
                     MoveHighlights(1, SeekSlot(new Vector2(tempVector.x, tempVector.y - 1)), "brown");
-                    MoveHighlights(2, SeekSlot(new Vector2(tempVector.x +1, tempVector.y -1)), "brown");
-                    MoveHighlights(3, SeekSlot(new Vector2(tempVector.x +1, tempVector.y )), "brown");
-                    MoveHighlights(4, SeekSlot(new Vector2(tempVector.x +1, tempVector.y +1)), "brown");
-                    MoveHighlights(5, SeekSlot(new Vector2(tempVector.x, tempVector.y +1)), "brown");
-                    MoveHighlights(6, SeekSlot(new Vector2(tempVector.x -1, tempVector.y +1)), "brown");
-                    MoveHighlights(7, SeekSlot(new Vector2(tempVector.x -1, tempVector.y)), "brown");
-                    MoveHighlights(8, SeekSlot(new Vector2(tempVector.x -1, tempVector.y -1)), "brown");
+                    MoveHighlights(2, SeekSlot(new Vector2(tempVector.x + 1, tempVector.y - 1)), "brown");
+                    MoveHighlights(3, SeekSlot(new Vector2(tempVector.x + 1, tempVector.y)), "brown");
+                    MoveHighlights(4, SeekSlot(new Vector2(tempVector.x + 1, tempVector.y + 1)), "brown");
+                    MoveHighlights(5, SeekSlot(new Vector2(tempVector.x, tempVector.y + 1)), "brown");
+                    MoveHighlights(6, SeekSlot(new Vector2(tempVector.x - 1, tempVector.y + 1)), "brown");
+                    MoveHighlights(7, SeekSlot(new Vector2(tempVector.x - 1, tempVector.y)), "brown");
+                    MoveHighlights(8, SeekSlot(new Vector2(tempVector.x - 1, tempVector.y - 1)), "brown");
                     #endregion
                 }
             }
             else
             {
-                if (cardGridPos.x <= tempVector.x + 1 && cardGridPos.x >= tempVector.x - 1 && cardGridPos.y <= tempVector.y + 1 && cardGridPos.y >= tempVector.y - 1  && cardGridPos != tempVector)
+                if (cardGridPos.x <= tempVector.x + 1 && cardGridPos.x >= tempVector.x - 1 && cardGridPos.y <= tempVector.y + 1 && cardGridPos.y >= tempVector.y - 1 && cardGridPos != tempVector)
                 {
 
                     destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
@@ -172,17 +172,17 @@ public class Movement : MonoBehaviour
             {
                 #region Normal movement
                 if (canBasicMove)
-                { 
-                        destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
-                        myPos = cardGridPos;
-                        isMoving = true;
-                    
+                {
+                    destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
+                    myPos = cardGridPos;
+                    isMoving = true;
+
                 }
                 #endregion
             }
             else
             {
-                if(canBasicMove)
+                if (canBasicMove)
                 {
                     #region Change card grid pos
                     //This makes you move 2 squares when you use the treat
@@ -196,7 +196,7 @@ public class Movement : MonoBehaviour
                     //adjust x position
                     if (x == -1)
                     {
-                        if(cardGridPos.x != 3)
+                        if (cardGridPos.x != 3)
                         {
                             cardGridPos.x += 1;
                             cardActualPos.y += 2.7f;
@@ -210,7 +210,7 @@ public class Movement : MonoBehaviour
                             cardGridPos.x -= 1;
                             cardActualPos.y -= 2.7f;
                         }
-                        else cantMove = true; 
+                        else cantMove = true;
                     }
 
                     //adjust y position
@@ -233,7 +233,7 @@ public class Movement : MonoBehaviour
                         else cantMove = true;
                     }
 
-                    if(cantMove)
+                    if (cantMove)
                     {
                         cardGridPos = originalPosGrid;
                         cardActualPos = originalActualPos;
@@ -247,47 +247,49 @@ public class Movement : MonoBehaviour
                                 gameManager.selectedCardSlot = cardGrid[i].gameObject;
                             }
                         }
+                    }
 
                     #endregion
                 }
 
-                    if ((cardGridPos.x == myPos.x + 2 || cardGridPos.x == myPos.x - 2 || cardGridPos.x == myPos.x) && (cardGridPos.y == myPos.y || cardGridPos.y == myPos.y + 2 || cardGridPos.y == myPos.y - 2))
+                if ((cardGridPos.x == myPos.x + 2 || cardGridPos.x == myPos.x - 2 || cardGridPos.x == myPos.x) && (cardGridPos.y == myPos.y || cardGridPos.y == myPos.y + 2 || cardGridPos.y == myPos.y - 2))
+                {
+                    #region Calculate Enemy position
+                    float xposition = cardGridPos.x;
+                    float yposition = cardGridPos.y;
+                    if (cardGridPos.x == myPos.x + 2)
                     {
-                        #region Calculate Enemy position
-                        float xposition = cardGridPos.x;
-                        float yposition = cardGridPos.y;
-                        if (cardGridPos.x == myPos.x + 2)
-                        {
-                            xposition = cardGridPos.x - 1;
-                        }
-                        if (cardGridPos.x == myPos.x - 2)
-                        {
-                            xposition = cardGridPos.x + 1;
-                        }
-                        if (cardGridPos.y == myPos.y + 2)
-                        {
-                            yposition = cardGridPos.y - 1;
-                        }
-                        if (cardGridPos.y == myPos.y - 2)
-                        {
-                            yposition = cardGridPos.y + 1;
-                        }
-
-                        Vector2 middlePos = new Vector2(xposition, yposition);
-                        #endregion
-
-                        if (cardGridPos != myPos && gameManager.enemy.myPos != middlePos)
-                        {
-                            destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
-                            myPos = cardGridPos;
-                            isMoving = true;
-                        }
+                        xposition = cardGridPos.x - 1;
                     }
+                    if (cardGridPos.x == myPos.x - 2)
+                    {
+                        xposition = cardGridPos.x + 1;
+                    }
+                    if (cardGridPos.y == myPos.y + 2)
+                    {
+                        yposition = cardGridPos.y - 1;
+                    }
+                    if (cardGridPos.y == myPos.y - 2)
+                    {
+                        yposition = cardGridPos.y + 1;
+                    }
+
+                    Vector2 middlePos = new Vector2(xposition, yposition);
+                    #endregion
+
+                    if (cardGridPos != myPos && gameManager.enemy.myPos != middlePos)
+                    {
+                        destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
+                        myPos = cardGridPos;
+                        isMoving = true;
+                    }
+
                 }
             }
         }
-       
     }
+       
+    
     private void Move()
     {
         
@@ -322,7 +324,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void DespawnHighlights(bool isTotal)
+    public void DespawnHighlights(bool isTotal)
     {
         for (int i = 0; i < myHighlights.Length; i++)
         {
@@ -358,5 +360,54 @@ public class Movement : MonoBehaviour
             }
         }
         return wantedpos;
+    }
+
+    public void DisplayTreatHighlight(Vector2 pos)
+    {
+        float x = myPos.x - pos.x;
+        float y = myPos.y - pos.y;
+        bool cantMove = false;
+
+        //adjust x position
+        if (x == -1)
+        {
+            if (pos.x != 3)
+            {
+                pos.x += 1;
+            }
+            else cantMove = true;
+        }
+        else if (x != 0)
+        {
+            if (pos.x != 1)
+            {
+                pos.x -= 1;
+            }
+            else cantMove = true;
+        }
+
+        //adjust y position
+        if (y == -1)
+        {
+            if (pos.y != 5)
+            {
+                pos.y += 1;
+            }
+            else cantMove = true;
+        }
+        else if (y != 0)
+        {
+            if (pos.y != 1)
+            {
+                pos.y -= 1;
+            }
+            else cantMove = true;
+        }
+
+        if (!cantMove)
+        {
+            SpawnHighlight(1);
+            MoveHighlights(0, SeekSlot(pos), "yellow");
+        }
     }
 }
