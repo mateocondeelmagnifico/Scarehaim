@@ -29,7 +29,7 @@ public class Movement : MonoBehaviour
         rendereador = GetComponent<SpriteRenderer>();
         startSprite = rendereador.sprite;
         display = GetComponent<DisplayBigImage>();
-        myHighlights = new GameObject[2];
+        myHighlights = new GameObject[9];
         cardGrid = new Transform[15];
         for(int i = 0; i < 15; i++)
         {
@@ -101,7 +101,7 @@ public class Movement : MonoBehaviour
                             gameManager.powerUpOn = false;
                         }
 
-                        DespawnHighlights();
+                        DespawnHighlights(true);
                     }
                     #endregion
             }
@@ -136,8 +136,18 @@ public class Movement : MonoBehaviour
                     moveSelected = true;
                     hasMoved = false;
 
-                    SpawnHighlight(2);
-                    MoveHighlights(0, tempDestination);
+                    #region Spawn and move highlights
+                    SpawnHighlight(9);
+                    MoveHighlights(0, tempDestination,"yellow");
+                    MoveHighlights(1, SeekSlot(new Vector2(tempVector.x, tempVector.y - 1)), "brown");
+                    MoveHighlights(2, SeekSlot(new Vector2(tempVector.x +1, tempVector.y -1)), "brown");
+                    MoveHighlights(3, SeekSlot(new Vector2(tempVector.x +1, tempVector.y )), "brown");
+                    MoveHighlights(4, SeekSlot(new Vector2(tempVector.x +1, tempVector.y +1)), "brown");
+                    MoveHighlights(5, SeekSlot(new Vector2(tempVector.x, tempVector.y +1)), "brown");
+                    MoveHighlights(6, SeekSlot(new Vector2(tempVector.x -1, tempVector.y +1)), "brown");
+                    MoveHighlights(7, SeekSlot(new Vector2(tempVector.x -1, tempVector.y)), "brown");
+                    MoveHighlights(8, SeekSlot(new Vector2(tempVector.x -1, tempVector.y -1)), "brown");
+                    #endregion
                 }
             }
             else
@@ -150,7 +160,8 @@ public class Movement : MonoBehaviour
                     moveSelected = false;
                     isMoving = true;
 
-                    MoveHighlights(1, destination);
+                    MoveHighlights(1, destination, "yellow");
+                    DespawnHighlights(false);
                 }
             }
             #endregion
@@ -311,17 +322,41 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void DespawnHighlights()
+    private void DespawnHighlights(bool isTotal)
     {
         for (int i = 0; i < myHighlights.Length; i++)
         {
-            myHighlights[i].SetActive(false);
+            if(!isTotal && i < 2) { }
+                else myHighlights[i].SetActive(false);
         }
     }
-
-    private void MoveHighlights(int whichOne, Vector2 pos)
+    private void MoveHighlights(int whichOne, Vector2 pos, string myColor)
     {
+        if (pos == new Vector2(20, 20)) return;
+        
+        //If the position wanted does not exist, object is not set active
         myHighlights[whichOne].SetActive(true);
-        myHighlights[whichOne].transform.position = pos;  
+        myHighlights[whichOne].transform.position = pos;
+        SpriteRenderer renderer = myHighlights[whichOne].GetComponent<SpriteRenderer>();
+
+        if (myColor == "yellow") renderer.color = Color.yellow;
+        if (myColor == "brown") renderer.color = new Color(1, 1, 1, 0.4f);
+        if (myColor == "red") renderer.color = Color.red;
+    }
+    private Vector2 SeekSlot(Vector2 slotPos)
+    {
+        //Get the transform of an element in the cardgrid
+        Vector2 wantedpos = new Vector2(20,20);
+
+        for (int i= 0; i < cardGrid.Length; i++)
+        {
+           CardSlot currentSlot = cardGrid[i].GetComponent<CardSlot>();
+
+            if (currentSlot.Location.x == slotPos.x && currentSlot.Location.y == slotPos.y)
+            {
+                wantedpos = new Vector2(cardGrid[i].position.x, cardGrid[i].position.y);
+            }
+        }
+        return wantedpos;
     }
 }
