@@ -30,8 +30,6 @@ public class Card : MonoBehaviour
         #region Make new cardslot and change variables
         transform.parent.GetComponent<CardSlot>().cardObject = null;
 
-        GetComponent<SpriteRenderer>().sortingOrder = 20;
-
         GameManager manager = GameManager.Instance;
         GameObject newSlot = GameObject.Instantiate(cardSlot);
 

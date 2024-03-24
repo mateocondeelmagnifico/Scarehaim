@@ -14,6 +14,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private MouseManager mouseManager;
     private SceneManagement pause;
     private CardEffectManager effectManager;
+    private Hand hand;
 
     private bool gamepaused, condition, wasActive;
     private bool[] tutorialTriggered;
@@ -25,7 +26,9 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
-        if (Hand.Instance.tutorialDone)
+        hand = Hand.Instance;
+
+        if (hand.tutorialDone)
         {
             Destroy(displayImage.gameObject);
             Destroy(textBox.gameObject);
@@ -168,7 +171,6 @@ public class TutorialManager : MonoBehaviour
 
     private void Nextmenu()
     {
-
         if(activeMenus > 0)
         {
             activeMenus--;
@@ -189,6 +191,7 @@ public class TutorialManager : MonoBehaviour
             textBox.gameObject.SetActive(false);
             pause.canPause = true;
             gamepaused = false;
+            hand.DeterminePosition();
             Time.timeScale = 1;
         }
     }
