@@ -269,4 +269,12 @@ public class GameManager : MonoBehaviour
         //Esta funcion esta porque no funciona cambiar el state dentro del switch
         currentState = newstate;
     }
+
+    public bool CheckIsInCheckMovement()
+    {
+        bool istrue = false;
+        if (currentState == turnState.CheckMovement) istrue = true;
+
+        return istrue;
+    }
 }

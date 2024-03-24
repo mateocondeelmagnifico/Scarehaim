@@ -91,6 +91,11 @@ public class MouseManager : MonoBehaviour
                         blackBox.enabled = true;
                         display.sprite = cardHit.GetComponent<DisplayBigImage>().bigImage;
                     }
+
+                    if (hit.collider.gameObject.tag.Equals("Enemy") && manager.CheckIsInCheckMovement())
+                    {
+                        playerMove.DespawnHighlights(0);
+                    }
                 }
                 else
                 {
@@ -105,7 +110,7 @@ public class MouseManager : MonoBehaviour
                         if (!currentCard.isInHand)
                         {
                             SoundManager.Instance.PlaySound("Card Picked");
-                            if (manager.currentState == GameManager.turnState.CheckMovement && currentCard.transform.childCount > 0)
+                            if (manager.CheckIsInCheckMovement() && currentCard.transform.childCount > 0)
                             {
                                 if (playerMove.turnsWithcostume <= 0)
                                 {
@@ -131,7 +136,7 @@ public class MouseManager : MonoBehaviour
 
                         if (handtimer < 1.5f) handtimer += Time.deltaTime; 
 
-                        if (Input.GetMouseButton(0) && !cardGrabbed && (manager.currentState == GameManager.turnState.CheckMovement || manager.currentState == GameManager.turnState.CheckCardEffect))
+                        if (Input.GetMouseButton(0) && !cardGrabbed && (manager.CheckIsInCheckMovement() || manager.currentState == GameManager.turnState.CheckCardEffect))
                         {
                             currentCard = currentCardHand;
                             currentCardHand.followMouse = true;
@@ -187,6 +192,7 @@ public class MouseManager : MonoBehaviour
                 if(hit.collider.gameObject.tag.Equals("Hand")) handtimer += Time.deltaTime;
                 else ShrinkHand();
 
+                if(manager.CheckIsInCheckMovement()) playerMove.DespawnHighlights(0);
                 display.enabled = false;
                 blackBox.enabled = false;
 
@@ -238,7 +244,7 @@ public class MouseManager : MonoBehaviour
                     canBasicMove = true;
                 }
 
-                if (pMovement.hasTreat)
+                if (pMovement.hasTreat && manager.CheckIsInCheckMovement())
                 {
                     #region Horrible treat math
                     if (!canBasicMove && playerX != cardX - 1 && playerX != cardX + 1 && playerY != cardY - 1 && playerY != cardY + 1)
@@ -275,7 +281,7 @@ public class MouseManager : MonoBehaviour
                     else hoverRenderer.color = Color.red;
 
                     if (canBasicMove) playerMove.DisplayTreatHighlight(slotScript.Location);
-                    else playerMove.DespawnHighlights(true);
+                    else playerMove.DespawnHighlights(0);
                     #endregion
                 }
                 else

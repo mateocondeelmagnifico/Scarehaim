@@ -1,5 +1,7 @@
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class Movement : MonoBehaviour
 {
@@ -16,8 +18,8 @@ public class Movement : MonoBehaviour
     private Sprite startSprite;
     public Sprite tempSprite;
     [SerializeField] private GameObject highlight, cards;
-    private GameObject[] myHighlights;
     private Transform[] cardGrid;
+    private List<GameObject> myHighlights;
 
     public int turnsWithcostume;
 
@@ -29,12 +31,12 @@ public class Movement : MonoBehaviour
         rendereador = GetComponent<SpriteRenderer>();
         startSprite = rendereador.sprite;
         display = GetComponent<DisplayBigImage>();
-        myHighlights = new GameObject[9];
         cardGrid = new Transform[15];
         for(int i = 0; i < 15; i++)
         {
             cardGrid[i] = cards.transform.GetChild(i);
         }
+        myHighlights = new List<GameObject>();
     }
 
     private void Update()
@@ -72,6 +74,7 @@ public class Movement : MonoBehaviour
                     {
                         gameManager.powerUpOn = false;
                         hasTreat = false;
+                        DespawnHighlights(0);
                     }
 
                     hasMoved = false;
@@ -101,7 +104,7 @@ public class Movement : MonoBehaviour
                             gameManager.powerUpOn = false;
                         }
 
-                        DespawnHighlights(true);
+                        DespawnHighlights(0);
                     }
                     #endregion
             }
@@ -161,7 +164,7 @@ public class Movement : MonoBehaviour
                     isMoving = true;
 
                     MoveHighlights(1, destination, "yellow");
-                    DespawnHighlights(false);
+                    DespawnHighlights(2);
                 }
             }
             #endregion
@@ -241,10 +244,15 @@ public class Movement : MonoBehaviour
                     else
                     {
                         for (int i = 0; i < 15; i++)
-                        {
+                        { 
                             if (cardGrid[i].position.x == cardActualPos.x && cardGrid[i].position.y == cardActualPos.y)
                             {
-                                gameManager.selectedCardSlot = cardGrid[i].gameObject;
+                                if(cardGrid[i].childCount > 0) gameManager.selectedCardSlot = cardGrid[i].gameObject;
+                                else
+                                {
+                                    cardGridPos = originalPosGrid;
+                                    cardActualPos = originalActualPos;
+                                }
                             }
                         }
                     }
@@ -292,7 +300,6 @@ public class Movement : MonoBehaviour
     
     private void Move()
     {
-        
         if (turnsWithcostume > 0)
         {
             if (!hasMoved)
@@ -316,20 +323,22 @@ public class Movement : MonoBehaviour
     {
         for (int i = 0; i < howMany; i++)
         {
-            if (myHighlights[i] == null)
-            { 
-                myHighlights[i] = GameObject.Instantiate(highlight, transform.position, Quaternion.identity);
+            if (i >= myHighlights.Count)
+            {
+                myHighlights.Add(GameObject.Instantiate(highlight, transform.position, Quaternion.identity));
                 myHighlights[i].GetComponent<SpriteRenderer>().sortingOrder = 0;
             }
         }
     }
 
-    public void DespawnHighlights(bool isTotal)
+    public void DespawnHighlights(int exceptions)
     {
-        for (int i = 0; i < myHighlights.Length; i++)
+        for (int i = 0; i < myHighlights.Count; i++)
         {
-            if(!isTotal && i < 2) { }
-                else myHighlights[i].SetActive(false);
+            if(i >= exceptions)
+            {
+                myHighlights[i].SetActive(false);
+            }
         }
     }
     private void MoveHighlights(int whichOne, Vector2 pos, string myColor)
@@ -356,7 +365,7 @@ public class Movement : MonoBehaviour
 
             if (currentSlot.Location.x == slotPos.x && currentSlot.Location.y == slotPos.y)
             {
-                wantedpos = new Vector2(cardGrid[i].position.x, cardGrid[i].position.y);
+                if(cardGrid[i].childCount > 0) wantedpos = new Vector2(cardGrid[i].position.x, cardGrid[i].position.y);
             }
         }
         return wantedpos;
@@ -364,6 +373,8 @@ public class Movement : MonoBehaviour
 
     public void DisplayTreatHighlight(Vector2 pos)
     {
+        if (isMoving) return;
+
         float x = myPos.x - pos.x;
         float y = myPos.y - pos.y;
         bool cantMove = false;
@@ -408,6 +419,10 @@ public class Movement : MonoBehaviour
         {
             SpawnHighlight(1);
             MoveHighlights(0, SeekSlot(pos), "yellow");
+        }
+        else
+        {
+            DespawnHighlights(0);
         }
     }
 }
