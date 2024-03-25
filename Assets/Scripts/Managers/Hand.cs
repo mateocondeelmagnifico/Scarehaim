@@ -11,7 +11,7 @@ public class Hand : MonoBehaviour
     public static Hand Instance { get; set;}
 
     //la mano guarda el fear entre escenas y sabe si has hecho el tutorial
-    public int fear;
+    public int hope;
     public float volume;
     public bool tutorialDone, firstGame;
 
@@ -24,6 +24,7 @@ public class Hand : MonoBehaviour
             DontDestroyOnLoad(cardStorage);
             firstGame = true;
             DetermineStartCards();
+            hope = 5;
         }
         else
         {
@@ -162,7 +163,7 @@ public class Hand : MonoBehaviour
     public void UpdateFear()
     {
         //llamado por botones
-        fear = GameManager.Instance.player.GetComponent<Fear>().fear;
+        hope = GameManager.Instance.player.GetComponent<Fear>().hope;
         volume = SoundManager.Instance.volumeSetting;
 
         DetermineStartCards();

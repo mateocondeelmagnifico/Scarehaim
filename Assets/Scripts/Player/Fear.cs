@@ -7,27 +7,31 @@ public class Fear : MonoBehaviour
     public TMPro.TextMeshProUGUI text;
     private TextManager textManager;
     public GameObject gameOverMenu;
-    public int fear;
+    public int hope;
     private bool fearReached;
 
     private void Start()
     {
         textManager = TextManager.Instance;
-        fear = Hand.Instance.fear;
+        hope = Hand.Instance.hope;
         Hand.Instance.RefreshCards();
+        text.text = hope.ToString();
     }
-    private void Update()
-    {
-        text.text = fear.ToString();
 
-        if(fear < 0 )
+    public void UpdateFear(int howMuch)
+    {
+        hope += howMuch;
+
+        text.text = hope.ToString();
+
+        if (hope > 10)
         {
-            fear = 0;
+            hope = 10;
         }
 
-        if(fear >= 7)
+        if (hope <= 3)
         {
-            if(!fearReached)
+            if (!fearReached)
             {
                 textManager.Talk(TextManager.EnemyStates.FearOver7);
                 textManager.fearReached = true;
@@ -40,9 +44,9 @@ public class Fear : MonoBehaviour
             fearReached = false;
         }
 
-        if(fear >= 10 )
+        if (hope <= 0)
         {
-            fear = 10;
+            hope = 0;
             Time.timeScale = 0;
             gameOverMenu.SetActive(true);
         }

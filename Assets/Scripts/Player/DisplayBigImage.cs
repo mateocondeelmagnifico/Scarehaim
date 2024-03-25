@@ -34,7 +34,7 @@ public class DisplayBigImage : MonoBehaviour
             {
                 //activate Ui icons in big display
                 bigText.text = playerText.text;
-                bigFear.text = GetComponent<Fear>().fear.ToString();
+                bigFear.text = GetComponent<Fear>().hope.ToString();
                 bigIcon.sprite = playerIcon.sprite;
                 bigIcon.enabled = true;
             }

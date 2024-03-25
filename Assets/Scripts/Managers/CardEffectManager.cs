@@ -162,7 +162,7 @@ public class CardEffectManager : MonoBehaviour
                     {
                         if (blackScreen.transform.GetChild(i).childCount > 0)
                         {
-                            playerFear.fear -= 2;
+                            playerFear.UpdateFear(2);
                         }
                     }
                 }
@@ -273,7 +273,7 @@ public class CardEffectManager : MonoBehaviour
     {
         if (name == "Fear")
         {
-            playerFear.fear += howMuch;
+            playerFear.UpdateFear(howMuch);
         }
 
         if (name == "Treat")
@@ -317,6 +317,6 @@ public class CardEffectManager : MonoBehaviour
     private void DisplayFear()
     {
         fearCounter.gameObject.SetActive(true);
-        fearText.text = "Fear = " + playerFear.fear.ToString();
+        fearText.text = "Hope = " + playerFear.hope.ToString();
     }
 }

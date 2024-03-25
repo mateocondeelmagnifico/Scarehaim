@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (enemy.transform.position == player.transform.position && enemy.turnsUntilStart <= 0)
-            player.GetComponent<Fear>().fear = 10;
+            player.GetComponent<Fear>().hope = 10;
 
         #region Check Turn State
         switch (currentState)
