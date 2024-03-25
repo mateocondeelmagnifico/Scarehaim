@@ -8,6 +8,7 @@ public class Trick : Card
     private Transform player;
     private Movement playerMovement;
     private GameManager manager;
+    public GameObject myIndicator;
 
     private void Start()
     {
@@ -37,5 +38,6 @@ public class Trick : Card
     public override void Effect(GameObject card, GameObject cardSlot)
     {
         CardEffectManager.Instance.InformMoveHand(new Vector3(transform.position.x, transform.position.y, 0),image, myCost);
+        if(myIndicator != null) Destroy(myIndicator);
     }
 }

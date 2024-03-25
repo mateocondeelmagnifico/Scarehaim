@@ -14,6 +14,7 @@ public class MouseManager : MonoBehaviour
     private SpriteRenderer hoverRenderer;
     private Movement pMovement;
     private EnemyMovement enemyMove;
+    private BoardOverlay boardOverlay;
     [SerializeField] private Transform board, tricks;
 
     private bool cardGrabbed, handDisplayed, radarActive, highlightsSpawned;
@@ -23,7 +24,7 @@ public class MouseManager : MonoBehaviour
 
     private Vector2[] radarPositions;
 
-    public GameObject selectedCardSlot, hoverAesthetics;
+    public GameObject selectedCardSlot, hoverAesthetics, trapIndicator;
 
     private Color startColor;
 
@@ -32,6 +33,7 @@ public class MouseManager : MonoBehaviour
         manager = GameManager.Instance;
         myCam = Camera.main;
         hand = Hand.Instance;
+        boardOverlay = BoardOverlay.instance;
         pMovement = manager.playerMove;
         enemyMove = manager.enemy;
         trickRadar = pMovement.GetComponent<TrickRadar>();
@@ -204,8 +206,13 @@ public class MouseManager : MonoBehaviour
                             radarActive = false;
                             trickRadar.numberOfScans++;
                             pMovement.DespawnHighlights(0);
+                            boardOverlay.DeactivatOverlay();
                         }
-                        else if (trickRadar.CanUseScan()) radarActive = true;
+                        else if (trickRadar.CanUseScan())
+                        {
+                            radarActive = true;
+                            boardOverlay.ACtivateOverlay("Green");
+                        }
                     }
 
                     if (radarActive)
@@ -406,7 +413,7 @@ public class MouseManager : MonoBehaviour
                 {
                     if (radarPositions[e].x == tricks.GetChild(i).transform.position.x && radarPositions[e].y == tricks.GetChild(i).transform.position.y)
                     {
-                        Debug.Log(tricks.GetChild(i).position);
+                        tricks.GetChild(i).GetComponent<Trick>().myIndicator = GameObject.Instantiate(trapIndicator, tricks.GetChild(i).transform.position, Quaternion.identity);
                     }
                 }
             }
