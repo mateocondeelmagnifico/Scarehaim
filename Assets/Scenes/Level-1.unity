@@ -5085,6 +5085,7 @@ MonoBehaviour:
   playerMove: {fileID: 688192960}
   display: {fileID: 1204713695}
   blackBox: {fileID: 1936492283}
+  board: {fileID: 1505720236}
   moveCard: 0
   cardInformed: 0
   canClick: 1
@@ -5105,6 +5106,7 @@ GameObject:
   - component: {fileID: 688192962}
   - component: {fileID: 688192963}
   - component: {fileID: 688192964}
+  - component: {fileID: 688192965}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5219,7 +5221,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1737461620}
   gameOverMenu: {fileID: 5622813}
-  hope: 0
+  blackscreen: {fileID: 1259167734}
+  hope: 5
 --- !u!50 &688192962
 Rigidbody2D:
   serializedVersion: 4
@@ -5313,6 +5316,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.65, y: 2.34}
   m_EdgeRadius: 0
+--- !u!114 &688192965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688192956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62dcb744e14412f4eb05091972313daf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfScans: 2
 --- !u!1 &699301404 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5757337979554174078, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}

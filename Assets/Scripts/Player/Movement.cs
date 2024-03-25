@@ -319,8 +319,10 @@ public class Movement : MonoBehaviour
         gameManager.ChangeState(GameManager.turnState.Moving);
     }
 
-    private void SpawnHighlight(int howMany)
+    public void SpawnHighlight(int howMany)
     {
+        if (howMany <= myHighlights.Count) return;
+
         for (int i = 0; i < howMany; i++)
         {
             if (i >= myHighlights.Count)
@@ -341,7 +343,7 @@ public class Movement : MonoBehaviour
             }
         }
     }
-    private void MoveHighlights(int whichOne, Vector2 pos, string myColor)
+    public void MoveHighlights(int whichOne, Vector2 pos, string myColor)
     {
         if (pos == new Vector2(20, 20)) return;
         
@@ -353,8 +355,9 @@ public class Movement : MonoBehaviour
         if (myColor == "yellow") renderer.color = Color.yellow;
         if (myColor == "brown") renderer.color = new Color(1, 1, 1, 0.4f);
         if (myColor == "red") renderer.color = Color.red;
+        if (myColor == "blue") renderer.color = Color.green;
     }
-    private Vector2 SeekSlot(Vector2 slotPos)
+    public Vector2 SeekSlot(Vector2 slotPos)
     {
         //Get the transform of an element in the cardgrid
         Vector2 wantedpos = new Vector2(20,20);

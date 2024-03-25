@@ -7,8 +7,10 @@ public class Fear : MonoBehaviour
     public TMPro.TextMeshProUGUI text;
     private TextManager textManager;
     public GameObject gameOverMenu;
+    [SerializeField] private GameObject blackscreen;  
     public int hope;
     private bool fearReached;
+
 
     private void Start()
     {
@@ -49,6 +51,7 @@ public class Fear : MonoBehaviour
             hope = 0;
             Time.timeScale = 0;
             gameOverMenu.SetActive(true);
+            blackscreen.SetActive(true);
         }
     }
 }

@@ -5172,6 +5172,7 @@ MonoBehaviour:
   tempVector: {x: 0, y: 0}
   tempSprite: {fileID: 0}
   highlight: {fileID: 3693071763250408614, guid: de00b975d3c2df24d8a70e845998dbc1, type: 3}
+  cards: {fileID: 0}
   turnsWithcostume: 0
   costumeName: None
 --- !u!114 &688192961
@@ -5188,7 +5189,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1737461620}
   gameOverMenu: {fileID: 5622813}
-  fear: 0
+  blackscreen: {fileID: 688192956}
+  hope: 0
 --- !u!50 &688192962
 Rigidbody2D:
   serializedVersion: 4
@@ -10034,7 +10036,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardsStart: []
   cardStorage: {fileID: 0}
-  fear: 0
+  hope: 0
   volume: 0
   tutorialDone: 0
   firstGame: 0

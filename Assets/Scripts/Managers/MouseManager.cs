@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,11 +10,13 @@ public class MouseManager : MonoBehaviour
     public Movement playerMove;
     public Image display, blackBox;
     private Hand hand;
+    private TrickRadar trickRadar;
     private SpriteRenderer hoverRenderer;
     private Movement pMovement;
     private EnemyMovement enemyMove;
+    [SerializeField] private Transform board;
 
-    private bool cardGrabbed, handDisplayed;
+    private bool cardGrabbed, handDisplayed, radarActive, highlightsSpawned;
     public bool moveCard, cardInformed, canClick;
 
     private float handtimer;
@@ -29,6 +32,7 @@ public class MouseManager : MonoBehaviour
         hand = Hand.Instance;
         pMovement = manager.playerMove;
         enemyMove = manager.enemy;
+        trickRadar = pMovement.GetComponent<TrickRadar>();
         display.enabled = false;
         blackBox.enabled = false;
         hoverRenderer = hoverAesthetics.GetComponent<SpriteRenderer>();
@@ -65,12 +69,12 @@ public class MouseManager : MonoBehaviour
                 GameObject cardHit = hit.collider.gameObject;
 
                 #region Place Highlight
-                if(cardHit.transform.childCount > 0)
+                if (cardHit.transform.childCount > 0)
                 {
                     hoverAesthetics.SetActive(true);
                     hoverAesthetics.transform.position = cardHit.transform.position;
                     hoverAesthetics.transform.rotation = cardHit.transform.rotation;
-                    if(cardHit.transform.GetChild(0).GetComponent<SpriteRenderer>()) hoverRenderer.sortingOrder = cardHit.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder;
+                    if (cardHit.transform.GetChild(0).GetComponent<SpriteRenderer>()) hoverRenderer.sortingOrder = cardHit.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder;
                     if (cardHit.GetComponent<CardSlot>()) CheckDistanceToPlayer(cardHit.GetComponent<CardSlot>());
                 }
                 else
@@ -118,7 +122,7 @@ public class MouseManager : MonoBehaviour
                                 }
                                 else
                                 {
-                                    if(playerMove.moveSelected)
+                                    if (playerMove.moveSelected)
                                     {
                                         manager.selectedCardSlot = cardHit;
                                     }
@@ -134,7 +138,7 @@ public class MouseManager : MonoBehaviour
                     {
                         CardSlotHand currentCardHand = cardHit.GetComponent<CardSlotHand>();
 
-                        if (handtimer < 1.5f) handtimer += Time.deltaTime; 
+                        if (handtimer < 1.5f) handtimer += Time.deltaTime;
 
                         if (Input.GetMouseButton(0) && !cardGrabbed && (manager.CheckIsInCheckMovement() || manager.currentState == GameManager.turnState.CheckCardEffect))
                         {
@@ -186,6 +190,49 @@ public class MouseManager : MonoBehaviour
                         ShrinkHand();
                     }
                 }
+
+                if(!hit.collider.gameObject.tag.Equals("Player") && manager.CheckIsInCheckMovement())
+                {
+                    #region Check Radar
+                    if (Input.GetMouseButtonDown(1))
+                    {
+                        if (radarActive)
+                        {
+                            radarActive = false;
+                            trickRadar.numberOfScans++;
+                            pMovement.DespawnHighlights(0);
+                        }
+                        else if (trickRadar.CanUseScan()) radarActive = true;
+                    }
+
+                    if (radarActive)
+                    {
+                        if (!highlightsSpawned)
+                        {
+                            pMovement.SpawnHighlight(3);
+                            highlightsSpawned = true;
+                        }
+
+                        Vector2 cardVector = new Vector2(cardHit.transform.position.x, cardHit.transform.position.y);
+                        float playerY = pMovement.transform.position.y;
+
+                        if (cardHit.transform.position.x != playerMove.gameObject.transform.position.x)
+                        {
+                            pMovement.MoveHighlights(0, new Vector2(cardVector.x, playerY), "blue");
+                            if(playerY > 0) pMovement.MoveHighlights(1, new Vector2(cardVector.x, playerY - 2.7f), "blue");
+                            if(playerY < 0.5f) pMovement.MoveHighlights(2, new Vector2(cardVector.x, playerY + 2.7f), "blue");
+                        }
+                        else
+                        {
+                            pMovement.MoveHighlights(0, cardVector, "blue");
+                            if (FindBoardPos(cardVector + new Vector2(-2, 0))) pMovement.MoveHighlights(1, cardVector + new Vector2(-2, 0), "blue");
+                            if (FindBoardPos(cardVector + new Vector2(2, 0))) pMovement.MoveHighlights(2, cardVector + new Vector2(2, 0), "blue");
+                        }
+                    }
+
+                    #endregion
+                }
+
             }
             else
             {
@@ -298,5 +345,21 @@ public class MouseManager : MonoBehaviour
             }
            
         }  
+    }
+
+    private bool FindBoardPos(Vector2 pos)
+    {
+        bool isTrue = false;
+
+        for(int i = 0; i < board.childCount; i++)
+        {
+            if(board.GetChild(i).transform.position.x == pos.x && board.GetChild(i).transform.position.y == pos.y)
+            {
+                isTrue = true;
+                i = board.childCount;
+            }
+        }
+
+        return isTrue;
     }
 }
