@@ -101,7 +101,7 @@ public class MouseManager : MonoBehaviour
                         display.sprite = cardHit.GetComponent<DisplayBigImage>().bigImage;
                     }
 
-                    if (hit.collider.gameObject.tag.Equals("Enemy") && manager.CheckIsInCheckMovement())
+                    if (hit.collider.gameObject.tag.Equals("Enemy") && manager.CheckIsInCheckMovement() && playerMove.turnsWithcostume <= 0)
                     {
                         playerMove.DespawnHighlights(0);
                     }
@@ -279,7 +279,7 @@ public class MouseManager : MonoBehaviour
                 if(hit.collider.gameObject.tag.Equals("Hand")) handtimer += Time.deltaTime;
                 else ShrinkHand();
 
-                if(manager.CheckIsInCheckMovement()) playerMove.DespawnHighlights(0);
+                if(manager.CheckIsInCheckMovement() && playerMove.turnsWithcostume <= 0) playerMove.DespawnHighlights(0);
                 display.enabled = false;
                 blackBox.enabled = false;
 

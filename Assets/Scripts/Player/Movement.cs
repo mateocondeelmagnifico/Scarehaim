@@ -15,6 +15,7 @@ public class Movement : MonoBehaviour
     private GameManager gameManager;
     private SpriteRenderer rendereador;
     private DisplayBigImage display;
+    private BoardOverlay overlay;
     private Sprite startSprite;
     public Sprite tempSprite;
     [SerializeField] private GameObject highlight, cards;
@@ -37,6 +38,11 @@ public class Movement : MonoBehaviour
             cardGrid[i] = cards.transform.GetChild(i);
         }
         myHighlights = new List<GameObject>();
+    }
+
+    private void Start()
+    {
+        overlay = BoardOverlay.instance;
     }
 
     private void Update()
@@ -75,6 +81,7 @@ public class Movement : MonoBehaviour
                         gameManager.powerUpOn = false;
                         hasTreat = false;
                         DespawnHighlights(0);
+                        overlay.DeactivatOverlay();
                     }
 
                     hasMoved = false;
@@ -102,6 +109,7 @@ public class Movement : MonoBehaviour
                         if(turnsWithcostume <= 0)
                         {
                             gameManager.powerUpOn = false;
+                            overlay.DeactivatOverlay();
                         }
 
                         DespawnHighlights(0);
@@ -112,6 +120,15 @@ public class Movement : MonoBehaviour
 
         //este codigo es muy cutre, luego habría que cambiarlo
         transform.position = new Vector3(transform.position.x, transform.position.y, -0.13f);
+
+        if(gameManager.trapTriggered)
+        {
+            overlay.ACtivateOverlay("Red");
+        }
+        else if(turnsWithcostume > 0)
+        {
+            overlay.ACtivateOverlay("Yellow");
+        }
     }
 
     public void TryMove(Vector2 cardGridPos, Vector2 cardActualPos)

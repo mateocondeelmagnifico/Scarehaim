@@ -15,6 +15,7 @@ public class Treat: Card
     {
         GameManager.Instance.powerUpOn = true;
         GameManager.Instance.player.GetComponent<Movement>().hasTreat = true;
+        BoardOverlay.instance.ACtivateOverlay("Blue");
         Destroy(this.gameObject.transform.parent.gameObject);
     }
 }
