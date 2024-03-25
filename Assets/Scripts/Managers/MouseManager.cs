@@ -14,12 +14,14 @@ public class MouseManager : MonoBehaviour
     private SpriteRenderer hoverRenderer;
     private Movement pMovement;
     private EnemyMovement enemyMove;
-    [SerializeField] private Transform board;
+    [SerializeField] private Transform board, tricks;
 
     private bool cardGrabbed, handDisplayed, radarActive, highlightsSpawned;
     public bool moveCard, cardInformed, canClick;
 
     private float handtimer;
+
+    private Vector2[] radarPositions;
 
     public GameObject selectedCardSlot, hoverAesthetics;
 
@@ -37,6 +39,7 @@ public class MouseManager : MonoBehaviour
         blackBox.enabled = false;
         hoverRenderer = hoverAesthetics.GetComponent<SpriteRenderer>();
         startColor = hoverRenderer.color;
+        radarPositions = new Vector2[3];
 
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
@@ -109,7 +112,7 @@ public class MouseManager : MonoBehaviour
                     currentCard.otherTimer = 0.2f;
                     #endregion
 
-                    if (Input.GetMouseButtonDown(0))
+                    if (Input.GetMouseButtonDown(0) && !radarActive)
                     {
                         if (!currentCard.isInHand)
                         {
@@ -213,23 +216,53 @@ public class MouseManager : MonoBehaviour
                             highlightsSpawned = true;
                         }
 
+                        #region Define Variables
+                        radarPositions[0] = Vector2.zero;
+                        radarPositions[1] = Vector2.zero;
+                        radarPositions[2] = Vector2.zero;
                         Vector2 cardVector = new Vector2(cardHit.transform.position.x, cardHit.transform.position.y);
                         float playerY = pMovement.transform.position.y;
+                        #endregion
 
                         if (cardHit.transform.position.x != playerMove.gameObject.transform.position.x)
                         {
                             pMovement.MoveHighlights(0, new Vector2(cardVector.x, playerY), "blue");
-                            if(playerY > 0) pMovement.MoveHighlights(1, new Vector2(cardVector.x, playerY - 2.7f), "blue");
-                            if(playerY < 0.5f) pMovement.MoveHighlights(2, new Vector2(cardVector.x, playerY + 2.7f), "blue");
+                            radarPositions[0]= new Vector2(cardVector.x, playerY);
+
+                            if (playerY < -2f){ }
+                            else
+                            {
+                                pMovement.MoveHighlights(1, new Vector2(cardVector.x, playerY - 2.7f), "blue");
+                                radarPositions[1] = new Vector2(cardVector.x, playerY - 2.7f);
+                            }
+
+                            if (playerY! > 0.2f) { }
+                            else
+                            {
+                                pMovement.MoveHighlights(2, new Vector2(cardVector.x, playerY + 2.7f), "blue");
+                                radarPositions[2] = new Vector2(cardVector.x, playerY + 2.7f);
+                            }
                         }
                         else
                         {
                             pMovement.MoveHighlights(0, cardVector, "blue");
-                            if (FindBoardPos(cardVector + new Vector2(-2, 0))) pMovement.MoveHighlights(1, cardVector + new Vector2(-2, 0), "blue");
-                            if (FindBoardPos(cardVector + new Vector2(2, 0))) pMovement.MoveHighlights(2, cardVector + new Vector2(2, 0), "blue");
+                            radarPositions[0] = cardVector;
+
+                            if (FindBoardPos(cardVector + new Vector2(-2, 0)))
+                            {
+                                pMovement.MoveHighlights(1, cardVector + new Vector2(-2, 0), "blue");
+                                radarPositions[1] = cardVector + new Vector2(-2, 0);
+                            }
+
+                            if (FindBoardPos(cardVector + new Vector2(2, 0)))
+                            {
+                                pMovement.MoveHighlights(2, cardVector + new Vector2(2, 0), "blue");
+                                radarPositions[2] = cardVector + new Vector2(2, 0);
+                            }
                         }
                     }
 
+                    if(Input.GetMouseButtonDown(0) && radarActive) FireRadar();
                     #endregion
                 }
 
@@ -361,5 +394,24 @@ public class MouseManager : MonoBehaviour
         }
 
         return isTrue;
+    }
+
+    private void FireRadar()
+    {
+        for(int i = 0;i < tricks.childCount;i++)
+        {
+            for(int e = 0;e < radarPositions.Length;e++)
+            {
+                if (radarPositions[e] != Vector2.zero)
+                {
+                    if (radarPositions[e].x == tricks.GetChild(i).transform.position.x && radarPositions[e].y == tricks.GetChild(i).transform.position.y)
+                    {
+                        Debug.Log(tricks.GetChild(i).position);
+                    }
+                }
+            }
+        }
+        radarActive = false;
+        pMovement.DespawnHighlights(0);
     }
 }

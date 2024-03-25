@@ -5086,6 +5086,7 @@ MonoBehaviour:
   display: {fileID: 1204713695}
   blackBox: {fileID: 1936492283}
   board: {fileID: 1505720236}
+  tricks: {fileID: 2052462755}
   moveCard: 0
   cardInformed: 0
   canClick: 1
