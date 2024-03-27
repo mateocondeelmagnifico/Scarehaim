@@ -5176,7 +5176,7 @@ MonoBehaviour:
   tempVector: {x: 0, y: 0}
   tempSprite: {fileID: 0}
   highlight: {fileID: 3693071763250408614, guid: de00b975d3c2df24d8a70e845998dbc1, type: 3}
-  cards: {fileID: 0}
+  cards: {fileID: 1505720235}
   turnsWithcostume: 0
   costumeName: None
 --- !u!114 &688192961
@@ -12589,8 +12589,12 @@ MonoBehaviour:
   cardsUntilExit: 10
   treatAmount: 2
   costumeAmount: 2
+  startTimer: 3
   exitCardDealt: 0
+  mouseManager: {fileID: 679540269}
   doorText: {fileID: 2097598765}
+  deck: {fileID: 832433590}
+  enemyPos: {fileID: 798634178}
   tricks: {fileID: 2052462755}
 --- !u!1001 &2048404605
 PrefabInstance:

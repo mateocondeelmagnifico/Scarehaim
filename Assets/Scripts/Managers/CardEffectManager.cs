@@ -22,6 +22,7 @@ public class CardEffectManager : MonoBehaviour
     private Fear playerFear;
     [SerializeField] private Cost endCost;
     private Hand handScript;
+    private BoardOverlay overlay;
     private Sprite mySprite;
     [SerializeField] private Sprite endSprite;
 
@@ -53,6 +54,7 @@ public class CardEffectManager : MonoBehaviour
         handScript = hand.GetComponent<Hand>();
         playerFear = player.GetComponent<Fear>();
         fearText = fearCounter.GetComponent<TMPro.TextMeshProUGUI>();
+        overlay = BoardOverlay.instance;
 
         originalPos = merrowHand.transform.position;
     }
@@ -76,6 +78,7 @@ public class CardEffectManager : MonoBehaviour
                     manager.trapTriggered = false;
                     hand1.SetActive(true);
                     hand2.SetActive(false);
+                    overlay.DeactivatOverlay();
                 }
                 moveHand = false;
             }

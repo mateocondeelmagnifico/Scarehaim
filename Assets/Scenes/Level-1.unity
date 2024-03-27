@@ -13445,6 +13445,7 @@ MonoBehaviour:
   mouseManager: {fileID: 679540269}
   doorText: {fileID: 2097598765}
   deck: {fileID: 832433590}
+  enemyPos: {fileID: 798634178}
   tricks: {fileID: 2052462755}
 --- !u!1001 &2048404605
 PrefabInstance:
