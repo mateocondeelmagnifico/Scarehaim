@@ -25,6 +25,7 @@ public class BoardOverlay : MonoBehaviour
         if(isActive)
         {
             if (overlay.color.a < 0.3f) overlay.color = new Color(myColor.r, myColor.g, myColor.b, overlay.color.a + Time.deltaTime);
+            else if (overlay.color.r != myColor.r || overlay.color.g != myColor.g || overlay.color.b != myColor.b) overlay.color = new Color(myColor.r, myColor.g, myColor.b, overlay.color.a);
         }
         else
         {

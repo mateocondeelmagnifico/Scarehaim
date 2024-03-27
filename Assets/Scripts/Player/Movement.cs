@@ -315,7 +315,6 @@ public class Movement : MonoBehaviour
         }
     }
        
-    
     private void Move()
     {
         if (turnsWithcostume > 0)
