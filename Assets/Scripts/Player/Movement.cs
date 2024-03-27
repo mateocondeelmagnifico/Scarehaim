@@ -10,7 +10,8 @@ public class Movement : MonoBehaviour
     private bool resetSprite;
     public bool hasTreat, hasMoved, moveSelected, isMoving;
 
-    public Vector2 destination, tempDestination, tempVector;
+    public Vector3 destination, tempDestination;
+    public Vector2 tempVector;
 
     private GameManager gameManager;
     private SpriteRenderer rendereador;
@@ -118,9 +119,6 @@ public class Movement : MonoBehaviour
             }
         }
 
-        //este codigo es muy cutre, luego habría que cambiarlo
-        transform.position = new Vector3(transform.position.x, transform.position.y, -0.13f);
-
         if(gameManager.trapTriggered)
         {
             overlay.ACtivateOverlay("Red");
@@ -152,7 +150,7 @@ public class Movement : MonoBehaviour
                 {
 
                     tempVector = cardGridPos;
-                    tempDestination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
+                    tempDestination = new Vector3(cardActualPos.x, cardActualPos.y, -0.15f);
                     moveSelected = true;
                     hasMoved = false;
 
@@ -175,7 +173,7 @@ public class Movement : MonoBehaviour
                 if (cardGridPos.x <= tempVector.x + 1 && cardGridPos.x >= tempVector.x - 1 && cardGridPos.y <= tempVector.y + 1 && cardGridPos.y >= tempVector.y - 1 && cardGridPos != tempVector)
                 {
 
-                    destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
+                    destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.15f);
                     myPos = cardGridPos;
                     moveSelected = false;
                     isMoving = true;
@@ -321,16 +319,16 @@ public class Movement : MonoBehaviour
         {
             if (!hasMoved)
             {
-                transform.position = Vector2.MoveTowards(transform.position, tempDestination, 4.5f * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, tempDestination, 4.5f * Time.deltaTime);
             }
             else
             {
-                transform.position = Vector2.MoveTowards(transform.position, destination, 4.5f * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, destination, 4.5f * Time.deltaTime);
             }
         }
         else
         {
-            transform.position = Vector2.MoveTowards(transform.position, destination, 4.5f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, destination, 4.5f * Time.deltaTime);
         }
 
         gameManager.ChangeState(GameManager.turnState.Moving);

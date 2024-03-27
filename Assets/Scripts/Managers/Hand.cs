@@ -6,7 +6,7 @@ public class Hand : MonoBehaviour
     private Transform[] cards;
     private Vector3 defaultPos;
     public GameObject[] cardsStart;
-    public GameObject cardStorage;
+    public GameObject cardStorage, zPrompt;
     private GameObject cardInLimbo;
     private BoardOverlay overlay;
 
@@ -223,6 +223,7 @@ public class Hand : MonoBehaviour
         cardInLimbo = Slot;
         cardInLimbo.SetActive(false);
         cardInLimbo.transform.parent = cardStorage.transform;
+        zPrompt.SetActive(true);
         DeterminePosition();
     }
     private void UndoLimbo()
@@ -233,10 +234,15 @@ public class Hand : MonoBehaviour
         overlay.DeactivatOverlay();
 
         cardInLimbo.transform.parent = transform;
+        zPrompt.SetActive(false);
         DeterminePosition();
     }
     public void DestroyLimbo()
     {
-        if (cardInLimbo != null) Destroy(cardInLimbo);
+        if (cardInLimbo != null)
+        {
+            zPrompt.SetActive(false);
+            Destroy(cardInLimbo);
+        }
     }
 }

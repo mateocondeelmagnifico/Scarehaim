@@ -229,42 +229,47 @@ public class MouseManager : MonoBehaviour
                         radarPositions[2] = Vector2.zero;
                         Vector2 cardVector = new Vector2(cardHit.transform.position.x, cardHit.transform.position.y);
                         float playerY = pMovement.transform.position.y;
+                        float playerX = pMovement.transform.position.x;
                         #endregion
 
-                        if (cardHit.transform.position.x != playerMove.gameObject.transform.position.x)
+                        if(Mathf.Abs(playerX - cardHit.transform.position.x) <= 2 && Mathf.Abs(playerY - cardHit.transform.position.y) <= 2.7f)
                         {
-                            pMovement.MoveHighlights(0, new Vector2(cardVector.x, playerY), "blue");
-                            radarPositions[0]= new Vector2(cardVector.x, playerY);
+                            //if scanner is in range
+                            if (cardHit.transform.position.x != playerX)
+                            {
+                                pMovement.MoveHighlights(0, new Vector2(cardVector.x, playerY), "blue");
+                                radarPositions[0] = new Vector2(cardVector.x, playerY);
 
-                            if (playerY < -2f){ }
+                                if (playerY < -2f) { }
+                                else
+                                {
+                                    pMovement.MoveHighlights(1, new Vector2(cardVector.x, playerY - 2.7f), "blue");
+                                    radarPositions[1] = new Vector2(cardVector.x, playerY - 2.7f);
+                                }
+
+                                if (playerY! > 0.2f) { }
+                                else
+                                {
+                                    pMovement.MoveHighlights(2, new Vector2(cardVector.x, playerY + 2.7f), "blue");
+                                    radarPositions[2] = new Vector2(cardVector.x, playerY + 2.7f);
+                                }
+                            }
                             else
                             {
-                                pMovement.MoveHighlights(1, new Vector2(cardVector.x, playerY - 2.7f), "blue");
-                                radarPositions[1] = new Vector2(cardVector.x, playerY - 2.7f);
-                            }
+                                pMovement.MoveHighlights(0, cardVector, "blue");
+                                radarPositions[0] = cardVector;
 
-                            if (playerY! > 0.2f) { }
-                            else
-                            {
-                                pMovement.MoveHighlights(2, new Vector2(cardVector.x, playerY + 2.7f), "blue");
-                                radarPositions[2] = new Vector2(cardVector.x, playerY + 2.7f);
-                            }
-                        }
-                        else
-                        {
-                            pMovement.MoveHighlights(0, cardVector, "blue");
-                            radarPositions[0] = cardVector;
+                                if (FindBoardPos(cardVector + new Vector2(-2, 0)))
+                                {
+                                    pMovement.MoveHighlights(1, cardVector + new Vector2(-2, 0), "blue");
+                                    radarPositions[1] = cardVector + new Vector2(-2, 0);
+                                }
 
-                            if (FindBoardPos(cardVector + new Vector2(-2, 0)))
-                            {
-                                pMovement.MoveHighlights(1, cardVector + new Vector2(-2, 0), "blue");
-                                radarPositions[1] = cardVector + new Vector2(-2, 0);
-                            }
-
-                            if (FindBoardPos(cardVector + new Vector2(2, 0)))
-                            {
-                                pMovement.MoveHighlights(2, cardVector + new Vector2(2, 0), "blue");
-                                radarPositions[2] = cardVector + new Vector2(2, 0);
+                                if (FindBoardPos(cardVector + new Vector2(2, 0)))
+                                {
+                                    pMovement.MoveHighlights(2, cardVector + new Vector2(2, 0), "blue");
+                                    radarPositions[2] = cardVector + new Vector2(2, 0);
+                                }
                             }
                         }
                     }
@@ -276,7 +281,6 @@ public class MouseManager : MonoBehaviour
                     }
                     #endregion
                 }
-
             }
             else
             {
