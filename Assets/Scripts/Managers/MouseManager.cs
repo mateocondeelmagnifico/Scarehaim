@@ -269,7 +269,11 @@ public class MouseManager : MonoBehaviour
                         }
                     }
 
-                    if(Input.GetMouseButtonDown(0) && radarActive) FireRadar();
+                    if (Input.GetMouseButtonDown(0) && radarActive)
+                    {
+                        FireRadar();
+                        boardOverlay.DeactivatOverlay();
+                    }
                     #endregion
                 }
 

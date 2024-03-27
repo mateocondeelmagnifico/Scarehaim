@@ -7,6 +7,8 @@ public class Hand : MonoBehaviour
     private Vector3 defaultPos;
     public GameObject[] cardsStart;
     public GameObject cardStorage;
+    private GameObject cardInLimbo;
+    private BoardOverlay overlay;
 
     public static Hand Instance { get; set;}
 
@@ -44,6 +46,9 @@ public class Hand : MonoBehaviour
         //Check hand size
         if (transform.childCount != 0)
         if(transform.childCount != cards.Length) DeterminePosition();
+
+        //Undo play card
+        if(Input.GetKeyDown(KeyCode.Z) && cardInLimbo != null) UndoLimbo();
     }
 
     public void AddCardToHand(Transform card)
@@ -211,5 +216,27 @@ public class Hand : MonoBehaviour
 
         transform.position = new Vector3(x, transform.position.y, transform.position.z);
         DeterminePosition();
+    }
+
+    public void PutCardInLimbo(GameObject Slot)
+    {
+        cardInLimbo = Slot;
+        cardInLimbo.SetActive(false);
+        cardInLimbo.transform.parent = cardStorage.transform;
+        DeterminePosition();
+    }
+    private void UndoLimbo()
+    {
+        cardInLimbo.SetActive(true);
+        cardInLimbo.transform.GetChild(0).GetComponent<Card>().UndoEffect();
+        if (overlay == null) overlay = BoardOverlay.instance;
+        overlay.DeactivatOverlay();
+
+        cardInLimbo.transform.parent = transform;
+        DeterminePosition();
+    }
+    public void DestroyLimbo()
+    {
+        if (cardInLimbo != null) Destroy(cardInLimbo);
     }
 }

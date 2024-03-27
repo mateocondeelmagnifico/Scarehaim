@@ -7,6 +7,8 @@ public class Disguise : Card
 {
     public string myName;
     public Sprite icon, onPlayerImage;
+    GameManager manager;
+    private Movement pMovement;
 
     public override void Effect(GameObject card, GameObject cardSlot)
     {
@@ -16,14 +18,23 @@ public class Disguise : Card
 
     public override void PlayEffect()
     {
-        GameManager manager = GameManager.Instance;
+        manager = GameManager.Instance;
+        pMovement = manager.player.GetComponent<Movement>();
         manager.powerUpOn = true;
-        manager.player.GetComponent<Movement>().turnsWithcostume = 3;
-        manager.player.GetComponent<Movement>().tempSprite = image;
-        manager.player.GetComponent<Movement>().costumeName = myName;
-        manager.player.GetComponent<DisplayBigImage>().ChangeImageAndIcon(onPlayerImage, icon);
+        pMovement.turnsWithcostume = 3;
+        pMovement.tempSprite = image;
+        pMovement.costumeName = myName;
+        pMovement.GetComponent<DisplayBigImage>().ChangeImageAndIcon(onPlayerImage, icon);
 
-        Destroy(this.gameObject.transform.parent.gameObject);
+        Hand.Instance.PutCardInLimbo(transform.parent.gameObject);
+    }
+
+    public override void UndoEffect()
+    {
+        manager.powerUpOn = true;
+        pMovement.turnsWithcostume = 0;
+        pMovement.TakeOffCostume();
+        manager.powerUpOn = false;
     }
 }
 

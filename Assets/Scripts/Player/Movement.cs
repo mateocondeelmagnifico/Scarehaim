@@ -21,6 +21,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private GameObject highlight, cards;
     private Transform[] cardGrid;
     private List<GameObject> myHighlights;
+    private Hand hand;
 
     public int turnsWithcostume;
 
@@ -43,6 +44,7 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         overlay = BoardOverlay.instance;
+        hand = Hand.Instance;
     }
 
     private void Update()
@@ -58,9 +60,7 @@ public class Movement : MonoBehaviour
         {
             if(resetSprite && gameManager.currentState == GameManager.turnState.ReplaceCard)
             {
-                costumeName = "None";
-                rendereador.sprite = startSprite;
-                GetComponent<DisplayBigImage>().ResetImage();
+                TakeOffCostume();
                 resetSprite = false;
             }
         }
@@ -182,6 +182,7 @@ public class Movement : MonoBehaviour
 
                     MoveHighlights(1, destination, "yellow");
                     DespawnHighlights(2);
+                    hand.DestroyLimbo();
                 }
             }
             #endregion
@@ -196,7 +197,6 @@ public class Movement : MonoBehaviour
                     destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
                     myPos = cardGridPos;
                     isMoving = true;
-
                 }
                 #endregion
             }
@@ -307,6 +307,7 @@ public class Movement : MonoBehaviour
                         destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
                         myPos = cardGridPos;
                         isMoving = true;
+                        hand.DestroyLimbo();
                     }
 
                 }
@@ -444,5 +445,11 @@ public class Movement : MonoBehaviour
         {
             DespawnHighlights(0);
         }
+    }
+    public void TakeOffCostume()
+    {
+        costumeName = "None";
+        rendereador.sprite = startSprite;
+        display.ResetImage();
     }
 }
