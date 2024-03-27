@@ -15,6 +15,8 @@ public class MouseManager : MonoBehaviour
     private Movement pMovement;
     private EnemyMovement enemyMove;
     private BoardOverlay boardOverlay;
+    [SerializeField] private TMPro.TextMeshProUGUI radarText;
+
     [SerializeField] private Transform board, tricks;
 
     private bool cardGrabbed, handDisplayed, radarActive, highlightsSpawned;
@@ -207,11 +209,13 @@ public class MouseManager : MonoBehaviour
                             trickRadar.numberOfScans++;
                             pMovement.DespawnHighlights(0);
                             boardOverlay.DeactivatOverlay();
+                            radarText.text = "";
                         }
                         else if (trickRadar.CanUseScan())
                         {
                             radarActive = true;
                             boardOverlay.ACtivateOverlay("Green");
+                            radarText.text = "Radars left: " + (trickRadar.numberOfScans + 1);
                         }
                     }
 
@@ -232,8 +236,9 @@ public class MouseManager : MonoBehaviour
                         float playerX = pMovement.transform.position.x;
                         #endregion
 
-                        if(Mathf.Abs(playerX - cardHit.transform.position.x) <= 2 && Mathf.Abs(playerY - cardHit.transform.position.y) <= 2.7f)
+                        if (Mathf.Abs(playerX - cardHit.transform.position.x) <= 2 && Mathf.Abs(playerY - cardHit.transform.position.y) <= 2.7f)
                         {
+                            
                             //if scanner is in range
                             if (cardHit.transform.position.x != playerX)
                             {
@@ -278,6 +283,7 @@ public class MouseManager : MonoBehaviour
                     {
                         FireRadar();
                         boardOverlay.DeactivatOverlay();
+                        radarText.text = "";
                     }
                     #endregion
                 }
