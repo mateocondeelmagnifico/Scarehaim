@@ -5179,7 +5179,7 @@ MonoBehaviour:
   tricks: {fileID: 2052462755}
   moveCard: 0
   cardInformed: 0
-  canClick: 1
+  canClick: 0
   selectedCardSlot: {fileID: 0}
   hoverAesthetics: {fileID: 1479909012}
   trapIndicator: {fileID: 1580633170274835095, guid: cb3b4e220841985458cf374c11277c40, type: 3}
@@ -6564,7 +6564,6 @@ MonoBehaviour:
   textBox: {fileID: 1372966887}
   blackBox: {fileID: 1786705866}
   blackScreen: {fileID: 1259167734}
-  mouseManager: {fileID: 679540269}
   tutorialPackages:
   - image: {fileID: 21300000, guid: 5617a74f651cc164584fe7f9d1fef24f, type: 3}
     text: Click on an adjacent card to move to it
@@ -13441,8 +13440,11 @@ MonoBehaviour:
   cardsUntilExit: 10
   treatAmount: 2
   costumeAmount: 2
+  startTimer: 1.5
   exitCardDealt: 0
+  mouseManager: {fileID: 679540269}
   doorText: {fileID: 2097598765}
+  deck: {fileID: 832433590}
   tricks: {fileID: 2052462755}
 --- !u!1001 &2048404605
 PrefabInstance:

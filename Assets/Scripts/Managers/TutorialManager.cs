@@ -11,7 +11,6 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameObject blackBox, blackScreen;
 
     private GameManager manager;
-    [SerializeField] private MouseManager mouseManager;
     private SceneManagement pause;
     private CardEffectManager effectManager;
     private Hand hand;
@@ -41,9 +40,6 @@ public class TutorialManager : MonoBehaviour
             effectManager = CardEffectManager.Instance;
             startTimer = 2;
             tutorialTriggered = new bool[7];
-            mouseManager.canClick = false;
-            pause.canPause = false;
-            mouseManager.canClick = false;
             pause.canPause = false;
         }
     }
@@ -56,7 +52,6 @@ public class TutorialManager : MonoBehaviour
             if(startTimer <= 0)
             {
                 StopGame(0);
-                mouseManager.canClick = true;
             }
         }
 

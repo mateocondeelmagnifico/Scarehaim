@@ -13,17 +13,21 @@ public class CardManager : MonoBehaviour
     public GameObject cardsOnBoard, cardPrefab, exitCard;
     private GameObject newCard;
     [SerializeField] private GameObject[] enviroments, enviroments2, enviroments3, treats, costumes;
+    private Transform[] cardObjects;
 
     public int cardsUntilExit, treatAmount, costumeAmount;
-    private int resetTimes;
+    private int resetTimes, cardsDealtAmount;
+    [SerializeField] private float startTimer;
 
     public bool exitCardDealt;
-    private bool powerUpDealt, canEnd;
+    private bool powerUpDealt, cardsDealt, canEnd;
     private GameManager gameManager;
+    [SerializeField] private MouseManager mouseManager;
     private CardSlot cardSlot;
     public TMPro.TextMeshProUGUI doorText;
     private List<GameObject> board;
 
+    [SerializeField] private Transform deck;
     private Transform playerPos;
     public Transform tricks;
     void Awake()
@@ -51,6 +55,7 @@ public class CardManager : MonoBehaviour
     }
     private void Start()
     {
+
         #region Distribute Tricks
         Vector3[] assignedPositions = new Vector3[tricks.childCount];
         int[] cardAdjacent = new int[3];
@@ -127,10 +132,47 @@ public class CardManager : MonoBehaviour
                 board.Add(cardsOnBoard.transform.GetChild(i).gameObject);
             }
         }
+
+        #region Hide Cards at Start
+        cardObjects = new Transform[cardsOnBoard.transform.childCount];
+
+        for(int i = 0; i < cardsOnBoard.transform.childCount; i++)
+        {
+            cardObjects[i] = cardsOnBoard.transform.GetChild(i).GetChild(0);
+            cardObjects[i].position = deck.position;
+            cardObjects[i].gameObject.SetActive(false);
+        }
+        #endregion
     }
 
     private void Update()
     {
+        #region Deals cards at the start
+        if (startTimer > 0) startTimer -= Time.deltaTime;
+        else if (!cardsDealt)
+        {
+            Vector3 currentPos = cardObjects[cardsDealtAmount].position;
+            Vector3 desiredPos = cardsOnBoard.transform.GetChild(cardsDealtAmount).position;
+
+            if (currentPos != desiredPos)
+            {
+                cardObjects[cardsDealtAmount].gameObject.SetActive(true);
+                cardObjects[cardsDealtAmount].position = Vector3.MoveTowards(currentPos, desiredPos, (9 * Time.deltaTime) + (Vector2.Distance(currentPos, desiredPos)/45));
+            }
+            else
+            {
+                cardsDealtAmount++;
+                if (cardsDealtAmount >= cardsOnBoard.transform.childCount)
+                {
+                    mouseManager.canClick = true;
+                    cardsDealt = true;
+                }
+            }
+        }
+
+        #endregion
+    
+        
         if (cardsUntilExit == 0 && !exitCardDealt)
         {
             #region Replace Card with Exit Card
@@ -182,7 +224,7 @@ public class CardManager : MonoBehaviour
         GameObject[] chosenArray = cards[randomInt];
         int newRandom = Random.Range(0, chosenArray.Length);
 
-        newCard = Instantiate(chosenArray[newRandom], gameManager.deck);
+        newCard = Instantiate(chosenArray[newRandom], deck);
 
         #region Check if it has run out of treats or costumes
         if (cards.Count == 4)
