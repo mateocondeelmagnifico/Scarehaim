@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class SceneManagement : MonoBehaviour
 {
     //Este script es principalmente accedido por botones
     public static SceneManagement Instance { get; private set; }
+    private AsyncOperation operation;
 
-    public GameObject gameWonMenu, optionsMenu, pauseMenu, blackscreen;
+    public GameObject gameWonMenu, optionsMenu, pauseMenu, blackscreen, loadingIcon, loadingMenu;
     private GameObject currentMenu;
 
     public bool canPause;
@@ -80,5 +82,27 @@ public class SceneManagement : MonoBehaviour
         else blackscreen.SetActive(false);
 
         Time.timeScale = 1;
+    }
+
+    public void CallLoadScene()
+    {
+        //Called by buttons
+        loadingMenu.SetActive(true);
+        StartCoroutine(LoadSceneAsync(1));
+    }
+
+    IEnumerator LoadSceneAsync(int sceneId)
+    {
+        operation = SceneManager.LoadSceneAsync(sceneId);
+        operation.allowSceneActivation = false;
+
+        while (!operation.isDone)
+        {
+            loadingIcon.transform.Rotate(0, 0, 3);
+
+            if (operation.progress >= 0.8f) operation.allowSceneActivation = true;
+
+            yield return null;
+        }
     }
 }

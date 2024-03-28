@@ -56,9 +56,6 @@ public class GameManager : MonoBehaviour
         }
 
         currentState = turnState.CheckMovement;
-
-        //This is to force a resolution
-        Camera.main.pixelRect = new Rect(0, 0, 1920, 1080);
     }
 
     void Start()
