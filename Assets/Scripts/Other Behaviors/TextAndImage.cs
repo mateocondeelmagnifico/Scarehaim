@@ -8,5 +8,5 @@ public class TextAndImage
     public Sprite image;
 
     [TextArea]
-    public string text;
+    public string text, title;
 }
