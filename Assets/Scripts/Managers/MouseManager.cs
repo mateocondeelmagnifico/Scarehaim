@@ -25,6 +25,7 @@ public class MouseManager : MonoBehaviour
     private float handtimer;
 
     private Vector2[] radarPositions;
+    [SerializeField] private Vector2[] dummyPositions;
 
     public GameObject selectedCardSlot, hoverAesthetics, trapIndicator;
 
@@ -374,15 +375,55 @@ public class MouseManager : MonoBehaviour
                             Vector2 middlePos = new Vector2(xposition, yposition);
                             #endregion
 
-                            if (enemyMove.myPos != middlePos) hoverRenderer.color = startColor;
-                            else hoverRenderer.color = Color.red;
+                            if(dummyPositions == null)
+                            {
+                                if (enemyMove.myPos != middlePos) hoverRenderer.color = startColor;
+                                else hoverRenderer.color = Color.red;
+                            }
+                            else
+                            {
+                                #region Check for Dummies
+                                bool canplace = true;
+                                for (int i = 0; i < dummyPositions.Length; i++)
+                                {
+                                    if (dummyPositions[i] == middlePos)
+                                    {
+                                        canplace = false;
+                                        break;
+                                    }
+                                }
+
+                                if (enemyMove.myPos != middlePos && canplace) hoverRenderer.color = startColor;
+                                else hoverRenderer.color = Color.red;
+                                #endregion
+                            }
                         }
                         else hoverRenderer.color = Color.red;
                     }
                     else hoverRenderer.color = Color.red;
 
-                    if (canBasicMove) playerMove.DisplayTreatHighlight(slotScript.Location);
-                    else playerMove.DespawnHighlights(0);
+                    if(dummyPositions == null)
+                    {
+                        if (canBasicMove) playerMove.DisplayTreatHighlight(slotScript.Location);
+                        else playerMove.DespawnHighlights(0);
+                    }
+                    else
+                    {
+                        #region Check Dummy Position
+                        bool canplace = true;
+                        for (int i = 0; i < dummyPositions.Length; i++)
+                        {
+                            if (dummyPositions[i].x == cardX && dummyPositions[i].y == cardY)
+                            {
+                                canplace = false;
+                                break;
+                            }
+                        }
+
+                        if(canBasicMove && canplace) playerMove.DisplayTreatHighlight(slotScript.Location);
+                        else playerMove.DespawnHighlights(0);
+                        #endregion
+                    }
                     #endregion
                 }
                 else

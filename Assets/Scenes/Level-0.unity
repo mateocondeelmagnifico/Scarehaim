@@ -5265,6 +5265,9 @@ MonoBehaviour:
   moveCard: 0
   cardInformed: 0
   canClick: 0
+  dummyPositions:
+  - {x: 3, y: 2}
+  - {x: 2, y: 4}
   selectedCardSlot: {fileID: 0}
   hoverAesthetics: {fileID: 1479909012}
   trapIndicator: {fileID: 1580633170274835095, guid: cb3b4e220841985458cf374c11277c40, type: 3}
@@ -5371,7 +5374,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f42648a28eacd4640956eb512a83e277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myPos: {x: 3, y: 1}
   hasTreat: 0
   hasMoved: 0
   moveSelected: 0
@@ -5379,6 +5381,10 @@ MonoBehaviour:
   destination: {x: 0, y: 0, z: 0}
   tempDestination: {x: 0, y: 0, z: 0}
   tempVector: {x: 0, y: 0}
+  myPos: {x: 3, y: 1}
+  dummyPositions:
+  - {x: 3, y: 2}
+  - {x: 2, y: 4}
   tempSprite: {fileID: 0}
   highlight: {fileID: 3693071763250408614, guid: de00b975d3c2df24d8a70e845998dbc1, type: 3}
   cards: {fileID: 1505720235}
@@ -13403,6 +13409,8 @@ MonoBehaviour:
   optionsMenu: {fileID: 1244177771}
   pauseMenu: {fileID: 1903664242}
   blackscreen: {fileID: 1259167734}
+  loadingIcon: {fileID: 0}
+  loadingMenu: {fileID: 0}
   canPause: 1
 --- !u!1 &1936492281
 GameObject:

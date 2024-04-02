@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 public class Movement : MonoBehaviour
 {
-    public Vector2 myPos;
 
     private bool resetSprite;
     public bool hasTreat, hasMoved, moveSelected, isMoving;
 
     public Vector3 destination, tempDestination;
-    public Vector2 tempVector;
+    public Vector2 tempVector, myPos;
+    [SerializeField] private Vector2[] dummyPositions;
 
     private GameManager gameManager;
     private SpriteRenderer rendereador;
@@ -299,14 +299,38 @@ public class Movement : MonoBehaviour
                     Vector2 middlePos = new Vector2(xposition, yposition);
                     #endregion
 
-                    if (cardGridPos != myPos && gameManager.enemy.myPos != middlePos)
+                    if(dummyPositions == null)
                     {
-                        destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
-                        myPos = cardGridPos;
-                        isMoving = true;
-                        hand.DestroyLimbo();
+                        if (cardGridPos != myPos && gameManager.enemy.myPos != middlePos)
+                        {
+                            destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
+                            myPos = cardGridPos;
+                            isMoving = true;
+                            hand.DestroyLimbo();
+                        }
                     }
+                    else if (cardGridPos != myPos && gameManager.enemy.myPos != middlePos)
+                    {
+                        #region Check dummies
+                        bool canMove = true;
+                        for(int i = 0; i < dummyPositions.Length; i++)
+                        {
+                            if(middlePos == dummyPositions[i])
+                            {
+                                canMove = false;
+                                break;
+                            }
+                        }
 
+                        if (canMove)
+                        {
+                            destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
+                            myPos = cardGridPos;
+                            isMoving = true;
+                            hand.DestroyLimbo();
+                        }
+                        #endregion
+                    }
                 }
             }
         }
