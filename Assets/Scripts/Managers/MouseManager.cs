@@ -430,7 +430,22 @@ public class MouseManager : MonoBehaviour
                 {
                     if (canBasicMove)
                     {
-                        hoverRenderer.color = startColor;
+                        if(dummyPositions != null)
+                        {
+                            bool canplace = true;
+                            for (int i = 0; i < dummyPositions.Length; i++)
+                            {
+                                if (dummyPositions[i] == new Vector2(cardX,cardY))
+                                {
+                                    canplace = false;
+                                    break;
+                                }
+                            }
+
+                            if(canplace) hoverRenderer.color = startColor;
+                            else hoverRenderer.color = Color.red;
+                        }
+                        else hoverRenderer.color = startColor;
                     }
                     else
                     {

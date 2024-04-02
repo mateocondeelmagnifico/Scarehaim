@@ -131,6 +131,20 @@ public class Movement : MonoBehaviour
     public void TryMove(Vector2 cardGridPos, Vector2 cardActualPos)
     {
         if (isMoving) return;
+        if(dummyPositions != null)
+        {
+            bool canMove = true;
+            for (int i = 0; i < dummyPositions.Length; i++)
+            {
+                if (cardGridPos == dummyPositions[i])
+                {
+                    canMove = false;
+                    break;
+                }
+            }
+
+            if (!canMove) return;
+        }
 
         #region Check if can Basic move
         bool canBasicMove = false;
