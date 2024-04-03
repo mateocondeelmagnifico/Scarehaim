@@ -19,8 +19,8 @@ public class CardManager : MonoBehaviour
     private int resetTimes, cardsDealtAmount;
     [SerializeField] private float startTimer;
 
-    public bool exitCardDealt;
-    private bool powerUpDealt, cardsDealt, canEnd;
+    public bool exitCardDealt, cardsDealt;
+    private bool powerUpDealt, canEnd;
     private GameManager gameManager;
     [SerializeField] private MouseManager mouseManager;
     private CardSlot cardSlot;

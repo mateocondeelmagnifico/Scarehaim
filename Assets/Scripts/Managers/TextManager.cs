@@ -32,7 +32,7 @@ public class TextManager : MonoBehaviour
     private float textDuration, annoyedDuration;
 
     public bool fearReached, closeToEnemy; //accesed by enemyMovement
-    private bool displayText;
+    private bool displayText, inTutorial;
     private void Awake()
     {
         if(Instance == null)
@@ -56,7 +56,7 @@ public class TextManager : MonoBehaviour
         {
             textCooldown -= Time.deltaTime;
         }
-        else
+        else if(!inTutorial)
         {
             textDuration = 7;
             textCooldown = 25;
@@ -72,7 +72,7 @@ public class TextManager : MonoBehaviour
                 Talk(currentState);
             }
         }
-        else
+        else if(!inTutorial)
         {
             box.enabled = false;
             textBox.text = "";
@@ -113,6 +113,8 @@ public class TextManager : MonoBehaviour
 
     public void Talk(EnemyStates state)
     {
+        if (inTutorial) return;
+
         currentState = state;
 
         switch (currentState)
@@ -144,6 +146,20 @@ public class TextManager : MonoBehaviour
         displayText = false;
         textCooldown = 30;
         textDuration = 7;
+    }
+
+    public void TutorialTalk(string myText)
+    {
+        inTutorial = true;
+        box.enabled = true;
+        textBox.text = myText;
+        displayText = false;
+    }
+
+    public void StopTalk()
+    {
+        box.enabled = false;
+        textBox.text = "";
     }
 
     public void SwapSprite()

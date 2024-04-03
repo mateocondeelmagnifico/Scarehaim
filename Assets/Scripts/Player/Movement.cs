@@ -10,7 +10,6 @@ public class Movement : MonoBehaviour
 
     public Vector3 destination, tempDestination;
     public Vector2 tempVector, myPos;
-    [SerializeField] private Vector2[] dummyPositions;
 
     private GameManager gameManager;
     private SpriteRenderer rendereador;
@@ -131,20 +130,6 @@ public class Movement : MonoBehaviour
     public void TryMove(Vector2 cardGridPos, Vector2 cardActualPos)
     {
         if (isMoving) return;
-        if(dummyPositions != null)
-        {
-            bool canMove = true;
-            for (int i = 0; i < dummyPositions.Length; i++)
-            {
-                if (cardGridPos == dummyPositions[i])
-                {
-                    canMove = false;
-                    break;
-                }
-            }
-
-            if (!canMove) return;
-        }
 
         #region Check if can Basic move
         bool canBasicMove = false;
@@ -313,37 +298,13 @@ public class Movement : MonoBehaviour
                     Vector2 middlePos = new Vector2(xposition, yposition);
                     #endregion
 
-                    if(dummyPositions == null)
-                    {
-                        if (cardGridPos != myPos && gameManager.enemy.myPos != middlePos)
-                        {
-                            destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
-                            myPos = cardGridPos;
-                            isMoving = true;
-                            hand.DestroyLimbo();
-                        }
-                    }
-                    else if (cardGridPos != myPos && gameManager.enemy.myPos != middlePos)
-                    {
-                        #region Check dummies
-                        bool canMove = true;
-                        for(int i = 0; i < dummyPositions.Length; i++)
-                        {
-                            if(middlePos == dummyPositions[i])
-                            {
-                                canMove = false;
-                                break;
-                            }
-                        }
 
-                        if (canMove)
-                        {
-                            destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
-                            myPos = cardGridPos;
-                            isMoving = true;
-                            hand.DestroyLimbo();
-                        }
-                        #endregion
+                    if (cardGridPos != myPos && gameManager.enemy.myPos != middlePos)
+                    {
+                        destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
+                        myPos = cardGridPos;
+                        isMoving = true;
+                        hand.DestroyLimbo();
                     }
                 }
             }

@@ -6009,9 +6009,6 @@ MonoBehaviour:
   moveCard: 0
   cardInformed: 0
   canClick: 0
-  dummyPositions:
-  - {x: 3, y: 2}
-  - {x: 2, y: 4}
   selectedCardSlot: {fileID: 0}
   hoverAesthetics: {fileID: 1479909012}
   trapIndicator: {fileID: 1580633170274835095, guid: cb3b4e220841985458cf374c11277c40, type: 3}
@@ -6126,9 +6123,6 @@ MonoBehaviour:
   tempDestination: {x: 0, y: 0, z: 0}
   tempVector: {x: 0, y: 0}
   myPos: {x: 3, y: 1}
-  dummyPositions:
-  - {x: 3, y: 2}
-  - {x: 2, y: 4}
   tempSprite: {fileID: 0}
   highlight: {fileID: 3693071763250408614, guid: de00b975d3c2df24d8a70e845998dbc1, type: 3}
   cards: {fileID: 1505720235}
@@ -7619,10 +7613,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8032665d9ca40a4987808efb7867635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayImage: {fileID: 151692362}
+  displayImage: {fileID: 181182900}
   textBox: {fileID: 1372966887}
-  blackBox: {fileID: 1786705866}
-  blackScreen: {fileID: 1259167734}
+  screenPositions:
+  - {fileID: 1268490557}
+  - {fileID: 1843906225}
   tutorialPackages:
   - image: {fileID: 21300000, guid: 5617a74f651cc164584fe7f9d1fef24f, type: 3}
     text: Click on an adjacent card to move to it
@@ -15348,6 +15343,7 @@ MonoBehaviour:
   costumeAmount: 2
   startTimer: 1.5
   exitCardDealt: 0
+  cardsDealt: 0
   mouseManager: {fileID: 679540269}
   doorText: {fileID: 2097598765}
   deck: {fileID: 832433590}

@@ -4,15 +4,19 @@ using UnityEngine.UI;
 public class TutorialManager : MonoBehaviour
 {
 
-    [SerializeField] private Image displayImage;
+    [SerializeField] private GameObject displayImage;
 
     [SerializeField] private TMPro.TextMeshProUGUI textBox;
 
-    [SerializeField] private GameObject blackBox, blackScreen;
+    //[SerializeField] private GameObject blackBox, blackScreen;
+
+    [SerializeField] private Transform[] screenPositions;
 
     private GameManager manager;
     private SceneManagement pause;
     private CardEffectManager effectManager;
+    private CardManager cardManager;
+    private TextManager textManager;
     private Hand hand;
 
     private bool gamepaused, condition, wasActive;
@@ -21,7 +25,6 @@ public class TutorialManager : MonoBehaviour
     public TextAndImage[] tutorialPackages;
 
     private int activeMenus, nextMenu;
-    private float startTimer;
 
     private void Start()
     {
@@ -38,7 +41,8 @@ public class TutorialManager : MonoBehaviour
             manager = GameManager.Instance;
             pause = SceneManagement.Instance;
             effectManager = CardEffectManager.Instance;
-            startTimer = 2;
+            cardManager = CardManager.Instance;
+            textManager = TextManager.Instance;
             tutorialTriggered = new bool[7];
             pause.canPause = false;
         }
@@ -46,25 +50,24 @@ public class TutorialManager : MonoBehaviour
 
     void Update()
     {
-        if(startTimer > 0)
-        {
-            startTimer -= Time.deltaTime;
-            if(startTimer <= 0)
-            {
-                StopGame(0);
-            }
-        }
+       
 
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (gamepaused)
             {
-                Nextmenu();
+                //Nextmenu();
             }
         }
 
         #region Tutorial Triggers
-        if(!tutorialTriggered[1])
+        if (!tutorialTriggered[0])
+            if (cardManager.cardsDealt)
+            {
+                StopGame(0);
+            }
+
+        if (!tutorialTriggered[1])
         if (manager.currentState == GameManager.turnState.Movecard)
         {
             StopGame(1);
@@ -132,7 +135,7 @@ public class TutorialManager : MonoBehaviour
         {
             Time.timeScale = 0;
             gamepaused = true;
-            blackBox.SetActive(true);
+            /*
             if(blackScreen.activeInHierarchy)
             {
                 wasActive = true;
@@ -142,7 +145,7 @@ public class TutorialManager : MonoBehaviour
                 blackScreen.SetActive(true);
                 wasActive = false;
             }
-            
+            */
             activeMenus++;
             pause.canPause = false;
 
@@ -158,10 +161,11 @@ public class TutorialManager : MonoBehaviour
 
     private void DisplayTutorial(int whichOne)
     {
-        displayImage.enabled = true;
+        displayImage.SetActive(true);
+        displayImage.transform.position = screenPositions[whichOne].position;
         textBox.gameObject.SetActive(true);
-        displayImage.sprite = tutorialPackages[whichOne].image;
-        textBox.text = tutorialPackages[whichOne].text;
+        //displayImage.sprite = tutorialPackages[whichOne].image;
+        textManager.TutorialTalk(tutorialPackages[whichOne].text);
     }
 
     private void Nextmenu()
@@ -177,16 +181,19 @@ public class TutorialManager : MonoBehaviour
         }
         else
         {
+            /*
             blackBox.SetActive(false);
             if(!wasActive)
             {
                 blackScreen.SetActive(false);
             }
-            displayImage.enabled = false;
+            */
+            displayImage.SetActive(false);
             textBox.gameObject.SetActive(false);
             pause.canPause = true;
             gamepaused = false;
             hand.DeterminePosition();
+            textManager.StopTalk();
             Time.timeScale = 1;
         }
     }
