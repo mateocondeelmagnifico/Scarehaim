@@ -25,6 +25,7 @@ public class TutorialManager : MonoBehaviour
     public TextAndImage[] tutorialPackages;
 
     private int activeMenus, nextMenu;
+    [SerializeField] private float[] sizes;
 
     private void Start()
     {
@@ -163,6 +164,7 @@ public class TutorialManager : MonoBehaviour
     {
         displayImage.SetActive(true);
         displayImage.transform.position = screenPositions[whichOne].position;
+        displayImage.transform.localScale = displayImage.transform.localScale * sizes[whichOne];
         textBox.gameObject.SetActive(true);
         //displayImage.sprite = tutorialPackages[whichOne].image;
         textManager.TutorialTalk(tutorialPackages[whichOne].text);

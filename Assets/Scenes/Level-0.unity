@@ -1722,7 +1722,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &151692361
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4890,8 +4890,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22
-  m_fontSizeBase: 22
+  m_fontSize: 21
+  m_fontSizeBase: 21
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7658,6 +7658,14 @@ MonoBehaviour:
       At
       the end of the stage you can trade treats to increase hope.'
     title: 
+  sizes:
+  - 4
+  - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!1001 &828118661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11140,7 +11148,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1372966886
 RectTransform:
   m_ObjectHideFlags: 0
