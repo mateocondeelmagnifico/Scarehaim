@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class SceneManagement : MonoBehaviour
 {
@@ -98,7 +98,9 @@ public class SceneManagement : MonoBehaviour
 
         while (!operation.isDone)
         {
-            loadingIcon.transform.Rotate(0, 0, 3);
+            Debug.Log(operation.progress);
+
+            loadingIcon.GetComponent<Image>().fillAmount = operation.progress / 0.9f;
 
             if (operation.progress >= 0.8f) operation.allowSceneActivation = true;
 
