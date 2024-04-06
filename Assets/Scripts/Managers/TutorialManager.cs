@@ -25,22 +25,13 @@ public class TutorialManager : MonoBehaviour
     private void Start()
     {
         hand = Hand.Instance;
-
-        if (hand.tutorialDone)
-        {
-            Destroy(displayImage.gameObject);
-            Destroy(textBox.gameObject);
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            manager = GameManager.Instance;
-            pause = SceneManagement.Instance;
-            cardManager = CardManager.Instance;
-            textManager = TextManager.Instance;
-            mouseManager.tutorialManager = this;
-            pause.canPause = false;
-        }
+        manager = GameManager.Instance;
+        pause = SceneManagement.Instance;
+        cardManager = CardManager.Instance;
+        textManager = TextManager.Instance;
+        mouseManager.tutorialManager = this;
+        pause.canPause = false;
+        
     }
 
     void Update()
@@ -126,6 +117,8 @@ public class TutorialManager : MonoBehaviour
     {
         textBox.gameObject.SetActive(true);
         textManager.TutorialTalk(tutorialTexts[currentTutorial]);
+        mouseManager.DeactivateDisplay();
+        mouseManager.hoverAesthetics.SetActive(false);
         tutorialPlayed = true;
 
         if (currentTutorial != 0)
@@ -143,7 +136,6 @@ public class TutorialManager : MonoBehaviour
         if (currentTutorial == 11)
         {
             //Destroy tutorial manager
-            Hand.Instance.tutorialDone = true;
             RemoveTutorial();
             nextTutorialButton.SetActive(false);
             Destroy(this.gameObject);

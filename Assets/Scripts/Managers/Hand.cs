@@ -15,7 +15,7 @@ public class Hand : MonoBehaviour
     //la mano guarda el fear entre escenas y sabe si has hecho el tutorial
     public int hope;
     public float volume;
-    public bool tutorialDone, firstGame;
+    public bool firstGame;
 
     private void Awake()
     {

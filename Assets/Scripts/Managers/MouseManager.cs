@@ -314,8 +314,7 @@ public class MouseManager : MonoBehaviour
                 else ShrinkHand();
 
                 if(manager.CheckIsInCheckMovement() && playerMove.turnsWithcostume <= 0) playerMove.DespawnHighlights(0);
-                display.enabled = false;
-                blackBox.enabled = false;
+                DeactivateDisplay();
 
                 hoverAesthetics.SetActive(false);
             }
@@ -455,5 +454,11 @@ public class MouseManager : MonoBehaviour
         }
         radarActive = false;
         pMovement.DespawnHighlights(0);
+    }
+
+    public void DeactivateDisplay()
+    {
+        display.enabled = false;
+        blackBox.enabled = false;
     }
 }

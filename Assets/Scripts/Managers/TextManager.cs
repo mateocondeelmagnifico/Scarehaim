@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class TextManager : MonoBehaviour
     [TextArea]
     [SerializeField] private string[] greetings, basicDialogue, fearOver7, annoyed, nearPlayer;
     private string[] currentTexts;
+    private string tempText;
 
     [SerializeField] private Sprite[] sprites;
     [SerializeField] private SpriteRenderer box;
@@ -31,8 +33,8 @@ public class TextManager : MonoBehaviour
     [HideInInspector] public float textCooldown;
     private float textDuration, annoyedDuration;
 
-    public bool fearReached, closeToEnemy; //accesed by enemyMovement
-    private bool displayText, inTutorial;
+    public bool fearReached, closeToEnemy, inTutorial; //accesed by enemyMovement
+    private bool displayText;
     private void Awake()
     {
         if(Instance == null)
@@ -50,13 +52,15 @@ public class TextManager : MonoBehaviour
 
     void Update()
     {
+        if (inTutorial) return;
+
         #region Auto Talk
         //Display text on a cooldown
         if (textCooldown > 0)
         {
             textCooldown -= Time.deltaTime;
         }
-        else if(!inTutorial)
+        else
         {
             textDuration = 7;
             textCooldown = 25;
@@ -72,7 +76,7 @@ public class TextManager : MonoBehaviour
                 Talk(currentState);
             }
         }
-        else if(!inTutorial)
+        else 
         {
             box.enabled = false;
             textBox.text = "";
@@ -142,7 +146,7 @@ public class TextManager : MonoBehaviour
         }
 
         box.enabled = true;
-        textBox.text = currentTexts[Random.Range(0, currentTexts.Length)];
+        StartCoroutine(ProduceLetters(currentTexts[Random.Range(0, currentTexts.Length)]));
         displayText = false;
         textCooldown = 30;
         textDuration = 7;
@@ -150,10 +154,13 @@ public class TextManager : MonoBehaviour
 
     public void TutorialTalk(string myText)
     {
+        Debug.Log(1);
+
         inTutorial = true;
         box.enabled = true;
-        textBox.text = myText;
         displayText = false;
+
+        StartCoroutine(ProduceLetters(myText));
     }
 
     public void StopTalk()
@@ -166,5 +173,15 @@ public class TextManager : MonoBehaviour
     {
         enemyRenderer.sprite = sprites[1];
         annoyedDuration = 2;
+    }
+
+    private IEnumerator ProduceLetters(string whatToSay)
+    {
+        for(int i = 0; i < whatToSay.Length + 1; i++)
+        {
+            tempText = whatToSay.Substring(0,i);
+            textBox.text = tempText;    
+            yield return new WaitForSeconds(0.05f);
+        }
     }
 }
