@@ -8,24 +8,17 @@ public class TutorialManager : MonoBehaviour
 
     [SerializeField] private TMPro.TextMeshProUGUI textBox;
 
-    //[SerializeField] private GameObject blackBox, blackScreen;
-
-    [SerializeField] private Transform[] screenPositions;
-
     private GameManager manager;
     private SceneManagement pause;
-    private CardEffectManager effectManager;
     private CardManager cardManager;
     private TextManager textManager;
     private Hand hand;
 
-    private bool gamepaused, condition, wasActive;
-    private bool[] tutorialTriggered;
+    private bool tutorialPlayed;
 
-    public TextAndImage[] tutorialPackages;
+    [TextArea, SerializeField] private string[] tutorialTexts;
 
-    private int activeMenus, nextMenu;
-    [SerializeField] private float[] sizes;
+    public int currentTutorial;
 
     private void Start()
     {
@@ -41,162 +34,152 @@ public class TutorialManager : MonoBehaviour
         {
             manager = GameManager.Instance;
             pause = SceneManagement.Instance;
-            effectManager = CardEffectManager.Instance;
             cardManager = CardManager.Instance;
             textManager = TextManager.Instance;
-            tutorialTriggered = new bool[7];
             pause.canPause = false;
         }
     }
 
     void Update()
     {
-       
+        if(manager.currentState == GameManager.turnState.Endturn) tutorialPlayed = false;
 
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        if (!tutorialPlayed)
         {
-            if (gamepaused)
+            #region Tutorial Triggers
+
+            switch(currentTutorial)
             {
-                //Nextmenu();
+                case 0:
+                    if (cardManager.cardsDealt)
+                    {
+                        StopGame();
+                    }
+                    break;
+
+                 case 1:
+                    if (manager.CheckIsInCheckMovement())
+                    {
+                        StopGame();             
+                    }
+                    break;
+
+                case 3:
+                    if (manager.CheckIsInCheckMovement())
+                    {
+                        StopGame();
+                        Debug.Log(1);
+                    }
+                    break;
+
+                case 5:
+                    if (manager.CheckIsInCheckMovement())
+                    {
+                        StopGame();
+                        Debug.Log(2);
+                    }
+                    break;
+
+
+                case 7:
+                    if (manager.CheckIsInCheckMovement())
+                    {
+                        StopGame();
+                        Debug.Log(3);
+                    }
+                    break;
+
+                case 9:
+                    if (manager.currentState == GameManager.turnState.Endturn)
+                    {
+                        StopGame();
+                    }
+                    break;
+
+                case 10:
+                    if (manager.CheckIsInCheckMovement())
+                    {
+                        StopGame();
+                    }
+                    break;
             }
+            #endregion
         }
-
-        #region Tutorial Triggers
-        if (!tutorialTriggered[0])
-            if (cardManager.cardsDealt)
-            {
-                StopGame(0);
-            }
-
-        if (!tutorialTriggered[1])
-        if (manager.currentState == GameManager.turnState.Movecard)
-        {
-            StopGame(1);
-            StopGame(2);
-        }
-
-        if(!tutorialTriggered[3])
-        if(manager.trapTriggered && effectManager.paymentMenu.activeInHierarchy)
-        {
-            StopGame(3);
-        }
-
-        if(manager.moveCardToHand)
-        {
-            condition = true;
-        }
-
-        if(!tutorialTriggered[4])
-        if(condition && !manager.moveCardToHand)
-        {
-            StopGame(4);
-        }
-
-        if (!tutorialTriggered[5])
-        {
-            if (manager.turnCount == 4)
-            {
-                StopGame(5);
-            }
-        }
-
-        if (!tutorialTriggered[6])
-        {
-            if (effectManager.paymentMenu.activeInHierarchy)
-            {
-                StopGame(6);
-            }
-        }
-        #endregion
 
         #region Check if destroy
-        bool destroy = true;
-        for (int i = 0; i < tutorialTriggered.Length; i++) 
-        { 
-            if(!tutorialTriggered[i])
-            {
-                destroy = false;
-            }
-        }
 
-        if (destroy && Time.timeScale == 1)
-        {
-            Hand.Instance.tutorialDone = true;
-            Destroy(this.gameObject);
-        }
+            if (currentTutorial == 10 && Time.timeScale == 1)
+            {
+                Hand.Instance.tutorialDone = true;
+                Destroy(this.gameObject);
+            }
+        
+        
         #endregion
     }
 
-    private void StopGame(int whichOne)
+    private void StopGame()
     {
-        tutorialTriggered[whichOne] = true;
         if (manager.newCardSlot != null) manager.newCardSlot.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 4;
 
-        if (Time.timeScale == 1)
-        {
-            Time.timeScale = 0;
-            gamepaused = true;
-            /*
-            if(blackScreen.activeInHierarchy)
-            {
-                wasActive = true;
-            }
-            else
-            {
-                blackScreen.SetActive(true);
-                wasActive = false;
-            }
-            */
-            activeMenus++;
-            pause.canPause = false;
+        Time.timeScale = 0;
+        pause.canPause = false;
 
-            DisplayTutorial(whichOne);
-        }
-        else
-        {
-            //Mirar si ya estas con un tutorial
-            nextMenu = whichOne;
-            activeMenus++;
-        }
+        DisplayTutorial();
     }
 
-    private void DisplayTutorial(int whichOne)
+    private void DisplayTutorial()
     {
-        displayImage.SetActive(true);
-        displayImage.transform.position = screenPositions[whichOne].position;
-        displayImage.transform.localScale = displayImage.transform.localScale * sizes[whichOne];
         textBox.gameObject.SetActive(true);
-        //displayImage.sprite = tutorialPackages[whichOne].image;
-        textManager.TutorialTalk(tutorialPackages[whichOne].text);
+        textManager.TutorialTalk(tutorialTexts[currentTutorial]);
+        tutorialPlayed = true;
     }
 
-    private void Nextmenu()
+    public void Nextmenu()
     {
-        if(activeMenus > 0)
-        {
-            activeMenus--;
-        }
+        //Called by buttons
 
-        if (activeMenus > 0)
+        currentTutorial++;
+        textManager.TutorialTalk(tutorialTexts[currentTutorial]);
+
+        switch (currentTutorial)
         {
-            DisplayTutorial(nextMenu);
+            case 1:
+                RemoveTutorial();
+                break;
+
+            case 3:
+                RemoveTutorial();
+                break;
+
+            case 5:
+                RemoveTutorial();
+                break;
+
+            case 7:
+                RemoveTutorial();
+                break;
+
+            case 8:
+                RemoveTutorial();
+                break;
+
+            case 9:
+                RemoveTutorial();
+                break;
+
+            case 10:
+                RemoveTutorial();
+                break;
         }
-        else
-        {
-            /*
-            blackBox.SetActive(false);
-            if(!wasActive)
-            {
-                blackScreen.SetActive(false);
-            }
-            */
-            displayImage.SetActive(false);
-            textBox.gameObject.SetActive(false);
-            pause.canPause = true;
-            gamepaused = false;
-            hand.DeterminePosition();
-            textManager.StopTalk();
-            Time.timeScale = 1;
-        }
+    }
+
+    private void RemoveTutorial()
+    {
+        textBox.gameObject.SetActive(false);
+        pause.canPause = true;
+        hand.DeterminePosition();
+        textManager.StopTalk();
+        Time.timeScale = 1;
     }
 }
