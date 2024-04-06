@@ -1566,6 +1566,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 894686014138126463, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
   m_PrefabInstance: {fileID: 144886497}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &150453012 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5757337979554174078, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
+  m_PrefabInstance: {fileID: 301111690}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &166142913
 GameObject:
   m_ObjectHideFlags: 0
@@ -3104,6 +3109,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 331708349}
   m_CullTransparentMesh: 1
+--- !u!1 &332225209 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5757337979554174078, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
+  m_PrefabInstance: {fileID: 144886497}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &339998999
 GameObject:
   m_ObjectHideFlags: 0
@@ -5398,6 +5408,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 610522974}
   m_CullTransparentMesh: 1
+--- !u!1 &618815116 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5757337979554174078, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
+  m_PrefabInstance: {fileID: 810784770}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &622904126
 GameObject:
   m_ObjectHideFlags: 0
@@ -5828,6 +5843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e18ba7a1868fcd44a7429b8b476c713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialManager: {fileID: 0}
   playerMove: {fileID: 688192960}
   display: {fileID: 1204713695}
   blackBox: {fileID: 1936492283}
@@ -5837,9 +5853,16 @@ MonoBehaviour:
   moveCard: 0
   cardInformed: 0
   canClick: 0
+  isInTutorial: 0
+  needsTreat: 0
   selectedCardSlot: {fileID: 0}
   hoverAesthetics: {fileID: 1479909012}
   trapIndicator: {fileID: 1580633170274835095, guid: cb3b4e220841985458cf374c11277c40, type: 3}
+--- !u!1 &685545275 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5757337979554174078, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
+  m_PrefabInstance: {fileID: 1587065652}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &688192956
 GameObject:
   m_ObjectHideFlags: 0
@@ -7572,7 +7595,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayImage: {fileID: 0}
+  nextTutorialButton: {fileID: 1884403230}
   textBox: {fileID: 132045521}
+  mouseManager: {fileID: 679540269}
   tutorialTexts:
   - Click on an adjacent card to move to it
   - That was an enviroment card, discard 10 and you will win
@@ -7581,11 +7606,20 @@ MonoBehaviour:
     one, try using one
   - But be careful, there are things that can block your way
   - Good job, if you regret playing a treat you can press z to get it back
-  - Now it's my turn, i will try to catch you, unlike you i can't move diagonally
   - Step into that card, see what happens
   - Hehehe, that was an enemy, try to avoid them or you will be forced to pay a price
   - If you don't remember what a a card does you can hover over it and it will appear
     over me
+  - Now it's my turn, i will try to catch you, unlike you i can't move diagonally
+  - You can move freely now
+  chosenSlots:
+  - {fileID: 150453012}
+  - {fileID: 332225209}
+  - {fileID: 332225209}
+  - {fileID: 685545275}
+  - {fileID: 685545275}
+  - {fileID: 0}
+  - {fileID: 618815116}
   currentTutorial: 0
 --- !u!1001 &828118661
 PrefabInstance:
@@ -14246,7 +14280,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1884403231
 RectTransform:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class MouseManager : MonoBehaviour
 {
     private GameManager manager;
+    [HideInInspector] public TutorialManager tutorialManager;
     private Camera myCam;
     public Movement playerMove;
     public Image display, blackBox;
@@ -20,7 +21,7 @@ public class MouseManager : MonoBehaviour
     [SerializeField] private Transform board, tricks;
 
     private bool cardGrabbed, handDisplayed, radarActive, highlightsSpawned;
-    public bool moveCard, cardInformed, canClick;
+    public bool moveCard, cardInformed, canClick, isInTutorial, needsTreat;
 
     private float handtimer;
 
@@ -125,17 +126,36 @@ public class MouseManager : MonoBehaviour
                             {
                                 if (playerMove.turnsWithcostume <= 0)
                                 {
+                                    selectedCardSlot = cardHit;
                                     manager.selectedCardSlot = cardHit;
                                 }
                                 else
                                 {
                                     if (playerMove.moveSelected)
                                     {
+                                        selectedCardSlot = cardHit;
                                         manager.selectedCardSlot = cardHit;
                                     }
                                 }
                                 cardInformed = false;
-                                playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
+
+                                #region Inform Player to move and tutorial to progress
+                                if (tutorialManager == null) playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
+                                else if(tutorialManager.IsCorrectCard(selectedCardSlot) == true)
+                                {
+                                    if(!needsTreat)
+                                    {
+                                        tutorialManager.Nextmenu();
+                                        playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
+                                    }
+                                    else if(pMovement.hasTreat)
+                                    {
+                                        tutorialManager.Nextmenu();
+                                        playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
+                                        needsTreat = false;
+                                    }
+                                }
+                                #endregion
                             }
                         }
                     }

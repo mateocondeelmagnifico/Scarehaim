@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class TutorialManager : MonoBehaviour
 {
 
-    [SerializeField] private GameObject displayImage;
+    [SerializeField] private GameObject displayImage, nextTutorialButton;
 
     [SerializeField] private TMPro.TextMeshProUGUI textBox;
 
@@ -12,11 +12,13 @@ public class TutorialManager : MonoBehaviour
     private SceneManagement pause;
     private CardManager cardManager;
     private TextManager textManager;
+    [SerializeField] private MouseManager mouseManager;
     private Hand hand;
 
     private bool tutorialPlayed;
 
     [TextArea, SerializeField] private string[] tutorialTexts;
+    [SerializeField] private GameObject[] chosenSlots;
 
     public int currentTutorial;
 
@@ -36,6 +38,7 @@ public class TutorialManager : MonoBehaviour
             pause = SceneManagement.Instance;
             cardManager = CardManager.Instance;
             textManager = TextManager.Instance;
+            mouseManager.tutorialManager = this;
             pause.canPause = false;
         }
     }
@@ -53,6 +56,7 @@ public class TutorialManager : MonoBehaviour
                 case 0:
                     if (cardManager.cardsDealt)
                     {
+                        //Move down tutorial
                         StopGame();
                     }
                     break;
@@ -60,6 +64,7 @@ public class TutorialManager : MonoBehaviour
                  case 1:
                     if (manager.CheckIsInCheckMovement())
                     {
+                        //go to treat tutorial
                         StopGame();             
                     }
                     break;
@@ -67,16 +72,17 @@ public class TutorialManager : MonoBehaviour
                 case 3:
                     if (manager.CheckIsInCheckMovement())
                     {
+                        //use treat tutorial
+                        mouseManager.needsTreat = true;
                         StopGame();
-                        Debug.Log(1);
                     }
                     break;
 
                 case 5:
                     if (manager.CheckIsInCheckMovement())
                     {
+                        //Go to enemy tutorial
                         StopGame();
-                        Debug.Log(2);
                     }
                     break;
 
@@ -84,8 +90,8 @@ public class TutorialManager : MonoBehaviour
                 case 7:
                     if (manager.CheckIsInCheckMovement())
                     {
+                        //Explain enemy tutorial
                         StopGame();
-                        Debug.Log(3);
                     }
                     break;
 
@@ -105,24 +111,12 @@ public class TutorialManager : MonoBehaviour
             }
             #endregion
         }
-
-        #region Check if destroy
-
-            if (currentTutorial == 10 && Time.timeScale == 1)
-            {
-                Hand.Instance.tutorialDone = true;
-                Destroy(this.gameObject);
-            }
-        
-        
-        #endregion
     }
 
     private void StopGame()
     {
         if (manager.newCardSlot != null) manager.newCardSlot.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 4;
 
-        Time.timeScale = 0;
         pause.canPause = false;
 
         DisplayTutorial();
@@ -133,6 +127,12 @@ public class TutorialManager : MonoBehaviour
         textBox.gameObject.SetActive(true);
         textManager.TutorialTalk(tutorialTexts[currentTutorial]);
         tutorialPlayed = true;
+
+        if (currentTutorial != 0)
+        {
+            mouseManager.canClick = false;
+            nextTutorialButton.SetActive(true);
+        }
     }
 
     public void Nextmenu()
@@ -140,7 +140,19 @@ public class TutorialManager : MonoBehaviour
         //Called by buttons
 
         currentTutorial++;
+        if (currentTutorial == 11)
+        {
+            //Destroy tutorial manager
+            Hand.Instance.tutorialDone = true;
+            RemoveTutorial();
+            nextTutorialButton.SetActive(false);
+            Destroy(this.gameObject);
+            return;
+        }
         textManager.TutorialTalk(tutorialTexts[currentTutorial]);
+
+        if(currentTutorial != 8 && currentTutorial != 9 && currentTutorial != 10) nextTutorialButton.SetActive(false);
+        mouseManager.canClick = true;
 
         switch (currentTutorial)
         {
@@ -160,15 +172,7 @@ public class TutorialManager : MonoBehaviour
                 RemoveTutorial();
                 break;
 
-            case 8:
-                RemoveTutorial();
-                break;
-
-            case 9:
-                RemoveTutorial();
-                break;
-
-            case 10:
+            case 11:
                 RemoveTutorial();
                 break;
         }
@@ -180,6 +184,13 @@ public class TutorialManager : MonoBehaviour
         pause.canPause = true;
         hand.DeterminePosition();
         textManager.StopTalk();
-        Time.timeScale = 1;
+    }
+
+    public bool IsCorrectCard(GameObject mySlot)
+    {
+        bool istrue = false;
+        if(mySlot == chosenSlots[currentTutorial]) istrue = true;
+
+        return istrue;
     }
 }
