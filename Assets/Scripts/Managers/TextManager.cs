@@ -7,6 +7,7 @@ public class TextManager : MonoBehaviour
     public TMPro.TextMeshProUGUI textBox;
     public static TextManager Instance { get; private set; }
     public SpriteRenderer enemyRenderer;
+    [HideInInspector] public TutorialManager tutorialManager;
 
     [TextArea]
     [SerializeField] private string[] greetings, basicDialogue, fearOver7, annoyed, nearPlayer;
@@ -33,7 +34,7 @@ public class TextManager : MonoBehaviour
     [HideInInspector] public float textCooldown;
     private float textDuration, annoyedDuration;
 
-    public bool fearReached, closeToEnemy, inTutorial; //accesed by enemyMovement
+    public bool fearReached, closeToEnemy, inTutorial, displayButton; //accesed by enemyMovement
     private bool displayText;
     private void Awake()
     {
@@ -154,12 +155,10 @@ public class TextManager : MonoBehaviour
 
     public void TutorialTalk(string myText)
     {
-        Debug.Log(1);
-
         inTutorial = true;
         box.enabled = true;
         displayText = false;
-
+        
         StartCoroutine(ProduceLetters(myText));
     }
 
@@ -182,6 +181,13 @@ public class TextManager : MonoBehaviour
             tempText = whatToSay.Substring(0,i);
             textBox.text = tempText;    
             yield return new WaitForSeconds(0.05f);
+        }
+
+        if (inTutorial && displayButton)
+        {
+            //Activates button in tutorial
+            tutorialManager.nextTutorialButton.SetActive(true);
+            displayButton = false;
         }
     }
 }

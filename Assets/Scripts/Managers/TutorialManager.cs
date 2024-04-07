@@ -4,37 +4,35 @@ using UnityEngine.UI;
 public class TutorialManager : MonoBehaviour
 {
 
-    [SerializeField] private GameObject displayImage, nextTutorialButton;
+    [SerializeField] protected GameObject displayImage;
+    public GameObject nextTutorialButton;
 
-    [SerializeField] private TMPro.TextMeshProUGUI textBox;
+    [SerializeField] protected TMPro.TextMeshProUGUI textBox;
 
-    private GameManager manager;
-    private SceneManagement pause;
-    private CardManager cardManager;
-    private TextManager textManager;
-    [SerializeField] private MouseManager mouseManager;
-    private Hand hand;
+    protected GameManager manager;
+    protected CardManager cardManager;
+    protected TextManager textManager;
+    [SerializeField] protected MouseManager mouseManager;
+    protected Hand hand;
 
-    private bool tutorialPlayed;
+    protected bool tutorialPlayed;
 
-    [TextArea, SerializeField] private string[] tutorialTexts;
-    [SerializeField] private GameObject[] chosenSlots;
+    [TextArea, SerializeField] protected string[] tutorialTexts;
+    [SerializeField] protected GameObject[] chosenSlots;
 
     public int currentTutorial;
 
-    private void Start()
+    public void Start()
     {
         hand = Hand.Instance;
         manager = GameManager.Instance;
-        pause = SceneManagement.Instance;
         cardManager = CardManager.Instance;
         textManager = TextManager.Instance;
         mouseManager.tutorialManager = this;
-        pause.canPause = false;
-        
+        textManager.tutorialManager = this;
     }
 
-    void Update()
+    public virtual void Update()
     {
         if(manager.currentState == GameManager.turnState.Endturn) tutorialPlayed = false;
 
@@ -104,17 +102,16 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    private void StopGame()
+    public void StopGame()
     {
         if (manager.newCardSlot != null) manager.newCardSlot.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 4;
-
-        pause.canPause = false;
 
         DisplayTutorial();
     }
 
     private void DisplayTutorial()
     {
+
         textBox.gameObject.SetActive(true);
         textManager.TutorialTalk(tutorialTexts[currentTutorial]);
         mouseManager.DeactivateDisplay();
@@ -124,11 +121,11 @@ public class TutorialManager : MonoBehaviour
         if (currentTutorial != 0)
         {
             mouseManager.canClick = false;
-            nextTutorialButton.SetActive(true);
+            textManager.displayButton = true;
         }
     }
 
-    public void Nextmenu()
+    public virtual void Nextmenu()
     {
         //Called by buttons
 
@@ -140,8 +137,7 @@ public class TutorialManager : MonoBehaviour
             nextTutorialButton.SetActive(false);
             Destroy(this.gameObject);
             return;
-        }
-        textManager.TutorialTalk(tutorialTexts[currentTutorial]);
+        } 
 
         if(currentTutorial != 8 && currentTutorial != 9 && currentTutorial != 10) nextTutorialButton.SetActive(false);
         mouseManager.canClick = true;
@@ -168,20 +164,22 @@ public class TutorialManager : MonoBehaviour
                 RemoveTutorial();
                 break;
         }
+
+        if(textBox.gameObject.activeInHierarchy) textManager.TutorialTalk(tutorialTexts[currentTutorial]);
     }
 
-    private void RemoveTutorial()
+    public void RemoveTutorial()
     {
         textBox.gameObject.SetActive(false);
-        pause.canPause = true;
         hand.DeterminePosition();
         textManager.StopTalk();
     }
-
-    public bool IsCorrectCard(GameObject mySlot)
+    public virtual bool IsCorrectCard(GameObject mySlot)
     {
         bool istrue = false;
         if(mySlot == chosenSlots[currentTutorial]) istrue = true;
+
+        if ((currentTutorial == 4 && mySlot == chosenSlots[currentTutorial - 1])) istrue = true;
 
         return istrue;
     }

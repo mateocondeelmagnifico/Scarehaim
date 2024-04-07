@@ -19,7 +19,7 @@ public class CardManager : MonoBehaviour
     private int resetTimes, cardsDealtAmount;
     [SerializeField] private float startTimer;
 
-    public bool exitCardDealt, cardsDealt;
+    public bool exitCardDealt, cardsDealt, tricksNotRandom;
     private bool powerUpDealt, canEnd;
     private GameManager gameManager;
     [SerializeField] private MouseManager mouseManager;
@@ -59,67 +59,70 @@ public class CardManager : MonoBehaviour
     {
 
         #region Distribute Tricks
-        Vector3[] assignedPositions = new Vector3[tricks.childCount];
-        int[] cardAdjacent = new int[3];
+        if (!tricksNotRandom)
+        { 
+            Vector3[] assignedPositions = new Vector3[tricks.childCount];
+            int[] cardAdjacent = new int[3];
 
-        for (int i = 0; i < cardsOnBoard.transform.childCount; i++)
-        {
-            //cada casilla tiene una probabilidad sobre 3 de tener una trampa
-            //reset times esta para evitar bucles infinitos
-
-            if (Random.Range(0, 7) + resetTimes > 6)
+            for (int i = 0; i < cardsOnBoard.transform.childCount; i++)
             {
-                for (int e = 0; e < assignedPositions.Length; e++)
+                //cada casilla tiene una probabilidad sobre 3 de tener una trampa
+                //reset times esta para evitar bucles infinitos
+
+                if (Random.Range(0, 7) + resetTimes > 6)
                 {
-                    if (assignedPositions[e] == Vector3.zero)
+                    for (int e = 0; e < assignedPositions.Length; e++)
                     {
-                        //Chekea si el lugar tiene un enemigo, o si ahi esta el jugador
-                        Transform chosenCard = cardsOnBoard.transform.GetChild(i);
-                        canEnd = false;
-
-                        if (!chosenCard.GetChild(0).CompareTag("Enemy") && (chosenCard.position.x != playerPos.position.x && chosenCard.position.y != playerPos.position.y))
+                        if (assignedPositions[e] == Vector3.zero)
                         {
-                            bool canplace = true;
+                            //Chekea si el lugar tiene un enemigo, o si ahi esta el jugador
+                            Transform chosenCard = cardsOnBoard.transform.GetChild(i);
+                            canEnd = false;
 
-                            //Check if there are any adjacent cards
-                            for(int u = 0; u < cardAdjacent.Length; u++)
+                            if (!chosenCard.GetChild(0).CompareTag("Enemy") && (chosenCard.position.x != playerPos.position.x && chosenCard.position.y != playerPos.position.y))
                             {
-                                if (i <= cardAdjacent[u] + 1 && i >= cardAdjacent[u] - 1) canplace = false;
-                            }
+                                bool canplace = true;
 
-                            //If you were to place two traps in the same position
-                            if (canplace)
-                            {
-                                assignedPositions[e] = chosenCard.position;
-                                tricks.GetChild(e).position = assignedPositions[e];
-                                cardAdjacent[e] = i;
+                                //Check if there are any adjacent cards
+                                for (int u = 0; u < cardAdjacent.Length; u++)
+                                {
+                                    if (i <= cardAdjacent[u] + 1 && i >= cardAdjacent[u] - 1) canplace = false;
+                                }
+
+                                //If you were to place two traps in the same position
+                                if (canplace)
+                                {
+                                    assignedPositions[e] = chosenCard.position;
+                                    tricks.GetChild(e).position = assignedPositions[e];
+                                    cardAdjacent[e] = i;
+                                }
                             }
                         }
-                    }
-                    else if (e == assignedPositions.Length - 1)
-                    {
-                        canEnd = true;
+                        else if (e == assignedPositions.Length - 1)
+                        {
+                            canEnd = true;
+                        }
                     }
                 }
-            }
 
-            if (resetTimes > 5)
-            {
-                Debug.Log("infinite");
-                canEnd = true;
-            }
-
-            if (!canEnd)
-            {
-                if (i == cardsOnBoard.transform.childCount - 1)
+                if (resetTimes > 5)
                 {
-                    i = 0;
-                    resetTimes++;
+                    Debug.Log("infinite");
+                    canEnd = true;
                 }
-            }
-            else
-            {
-                i = cardsOnBoard.transform.childCount;
+
+                if (!canEnd)
+                {
+                    if (i == cardsOnBoard.transform.childCount - 1)
+                    {
+                        i = 0;
+                        resetTimes++;
+                    }
+                }
+                else
+                {
+                    i = cardsOnBoard.transform.childCount;
+                }
             }
         }
         #endregion

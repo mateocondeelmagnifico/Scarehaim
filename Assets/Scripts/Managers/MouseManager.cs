@@ -20,8 +20,8 @@ public class MouseManager : MonoBehaviour
 
     [SerializeField] private Transform board, tricks;
 
-    private bool cardGrabbed, handDisplayed, radarActive, highlightsSpawned;
-    public bool moveCard, cardInformed, canClick, isInTutorial, needsTreat;
+    private bool cardGrabbed, handDisplayed, highlightsSpawned;
+    public bool moveCard, cardInformed, canClick, isInTutorial, needsTreat, radarActive;
 
     private float handtimer;
 
