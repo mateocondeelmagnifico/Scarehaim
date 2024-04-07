@@ -98,7 +98,6 @@ public class SceneManagement : MonoBehaviour
 
         while (!operation.isDone)
         {
-            Debug.Log(operation.progress);
 
             loadingIcon.GetComponent<Image>().fillAmount = operation.progress / 0.9f;
 

@@ -274,4 +274,10 @@ public class GameManager : MonoBehaviour
 
         return istrue;
     }
+
+    public void DestroyHand()
+    {
+        //Void is called by buttons
+        Hand.Instance.NukeSelf();
+    }
 }

@@ -180,7 +180,7 @@ public class TextManager : MonoBehaviour
         {
             tempText = whatToSay.Substring(0,i);
             textBox.text = tempText;    
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.03f);
         }
 
         if (inTutorial && displayButton)

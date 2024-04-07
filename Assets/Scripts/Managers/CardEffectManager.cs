@@ -306,15 +306,15 @@ public class CardEffectManager : MonoBehaviour
 
     public void ActivateFinalScreen()
     {
-        if(SceneManager.GetActiveScene().buildIndex != 2)
-        {
-            isEnding = true;
-            ActivatePayment(endSprite, endCost);
-        }
-        else
+        if(SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 4)
         {
             Time.timeScale = 0;
             gameWonMenu.SetActive(true);
+        }
+        else
+        {
+            isEnding = true;
+            ActivatePayment(endSprite, endCost);
         }
     }
     private void DisplayFear()

@@ -57,7 +57,6 @@ public class CardManager : MonoBehaviour
     }
     private void Start()
     {
-
         #region Distribute Tricks
         if (!tricksNotRandom)
         { 
@@ -107,7 +106,6 @@ public class CardManager : MonoBehaviour
 
                 if (resetTimes > 5)
                 {
-                    Debug.Log("infinite");
                     canEnd = true;
                 }
 
@@ -196,19 +194,19 @@ public class CardManager : MonoBehaviour
                 if(cardsDealtAmount < cardsOnBoard.transform.childCount)
                 {
                     cardObjects[cardsDealtAmount].gameObject.SetActive(true);
-                    cardObjects[cardsDealtAmount].position = Vector3.MoveTowards(currentPos, desiredPos, (9 * Time.deltaTime) + (Vector2.Distance(currentPos, desiredPos) / 45));
+                    cardObjects[cardsDealtAmount].position = Vector3.MoveTowards(currentPos, desiredPos, (11 * Time.deltaTime) + (Vector2.Distance(currentPos, desiredPos) / 45));
                 }
                 else
                 {
                     if (cardsDealtAmount == cardsOnBoard.transform.childCount)
                     {
                         enemyPos.gameObject.SetActive(true);
-                        enemyPos.position = Vector3.MoveTowards(enemyPos.position, originalEnemyPos, 8 * Time.deltaTime);
+                        enemyPos.position = Vector3.MoveTowards(enemyPos.position, originalEnemyPos, 9 * Time.deltaTime);
                     }
                     else
                     {
                         playerPos.gameObject.SetActive(true);
-                        playerPos.position = Vector3.MoveTowards(playerPos.position, originalPlayerPos, 8 * Time.deltaTime);
+                        playerPos.position = Vector3.MoveTowards(playerPos.position, originalPlayerPos, 9 * Time.deltaTime);
                     }
                 }
             }
@@ -224,20 +222,30 @@ public class CardManager : MonoBehaviour
         }
 
         #endregion
-    
-        
-        if (cardsUntilExit == 0 && !exitCardDealt)
+
+        if (cardsUntilExit == 0 && !exitCardDealt && gameManager.currentState == GameManager.turnState.CheckMovement)
         {
             #region Replace Card with Exit Card
-            int randomNum = Random.Range(0, board.Count);
-            Destroy(board[randomNum].transform.GetChild(0).gameObject);
-            newCard = Instantiate(exitCard, board[randomNum].transform);
-            newCard.transform.parent = board[randomNum].transform;
-            board[randomNum].GetComponent<CardSlot>().cardObject = newCard;
-            tricks.gameObject.SetActive(false);
-            #endregion
+            int randomNum = Random.Range(0, cardsOnBoard.transform.childCount);
+            
+            for (int i = randomNum; i < cardsOnBoard.transform.childCount; i++)
+            {
+                Transform chosenCard = board[i].transform;
 
-            exitCardDealt = true;
+                if (!chosenCard.GetChild(0).CompareTag("Enemy") && (chosenCard.position.x != playerPos.position.x && chosenCard.position.y != playerPos.position.y))
+                {
+                    if (board[randomNum].transform.childCount > 0) Destroy(board[randomNum].transform.GetChild(0).gameObject);
+                    newCard = Instantiate(exitCard, board[randomNum].transform);
+                    newCard.transform.parent = board[randomNum].transform;
+                    board[randomNum].GetComponent<CardSlot>().cardObject = newCard;
+                    exitCardDealt = true;
+                    i = board.Count;
+                }
+
+                //Reset if spot not found
+                if (i == cardsOnBoard.transform.childCount - 1) i = 0;
+            }
+            #endregion
         }
     }
 

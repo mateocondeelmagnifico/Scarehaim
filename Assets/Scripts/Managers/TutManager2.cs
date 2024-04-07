@@ -51,7 +51,6 @@ public class TutManager2 : TutorialManager
                 case 5:
                     if (manager.CheckIsInCheckMovement() && doOnce)
                     {
-                        Debug.Log(1);
                         //Go to Costume tutorial
                         StopGame();
                         doOnce = false;

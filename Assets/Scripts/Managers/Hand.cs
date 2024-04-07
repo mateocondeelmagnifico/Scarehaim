@@ -24,9 +24,12 @@ public class Hand : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
             DontDestroyOnLoad(cardStorage);
+            DontDestroyOnLoad(zPrompt);
             firstGame = true;
             DetermineStartCards();
             hope = 5;
+
+            if (SceneManager.GetActiveScene().buildIndex == 1) hope = 8;
         }
         else
         {
@@ -244,5 +247,12 @@ public class Hand : MonoBehaviour
             zPrompt.SetActive(false);
             Destroy(cardInLimbo);
         }
+    }
+
+    public void NukeSelf()
+    {
+        //Called by buttons
+        Destroy(cardStorage.gameObject);
+        Destroy(this.gameObject);
     }
 }
