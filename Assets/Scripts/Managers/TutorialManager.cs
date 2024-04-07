@@ -137,10 +137,13 @@ public class TutorialManager : MonoBehaviour
             nextTutorialButton.SetActive(false);
             Destroy(this.gameObject);
             return;
-        } 
+        }
 
-        if(currentTutorial != 8 && currentTutorial != 9 && currentTutorial != 10) nextTutorialButton.SetActive(false);
-        mouseManager.canClick = true;
+        nextTutorialButton.SetActive(false);
+        if (currentTutorial != 8 && currentTutorial != 9 && currentTutorial != 10) mouseManager.canClick = false;
+        else textManager.displayButton = true;
+
+            mouseManager.canClick = true;
 
         switch (currentTutorial)
         {

@@ -76,11 +76,10 @@ public class TutManager2 : TutorialManager
             return;
         }
 
-        if (currentTutorial != 6 && currentTutorial != 7)
-        {
-            nextTutorialButton.SetActive(false);
-            mouseManager.canClick = true;
-        }
+        nextTutorialButton.SetActive(false);
+
+        if (currentTutorial != 6 && currentTutorial != 7) mouseManager.canClick = true;
+        else textManager.displayButton = true;
 
         switch (currentTutorial)
         {

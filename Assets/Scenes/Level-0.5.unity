@@ -14468,7 +14468,7 @@ MonoBehaviour:
   cardsUntilExit: 8
   treatAmount: 2
   costumeAmount: 2
-  startTimer: 1.5
+  startTimer: 3
   exitCardDealt: 0
   cardsDealt: 0
   tricksNotRandom: 1
