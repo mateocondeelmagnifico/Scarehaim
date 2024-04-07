@@ -97,6 +97,13 @@ public class TutorialManager : MonoBehaviour
                         StopGame();
                     }
                     break;
+
+                case 11:
+                    if (manager.CheckIsInCheckMovement() && cardManager.exitCardDealt)
+                    {
+                        StopGame();
+                    }
+                    break;
             }
             #endregion
         }
@@ -130,11 +137,12 @@ public class TutorialManager : MonoBehaviour
         //Called by buttons
 
         currentTutorial++;
-        if (currentTutorial == 11)
+        if (currentTutorial == 12)
         {
             //Destroy tutorial manager
             RemoveTutorial();
             nextTutorialButton.SetActive(false);
+            mouseManager.canClick = true;
             Destroy(this.gameObject);
             return;
         }
@@ -165,6 +173,7 @@ public class TutorialManager : MonoBehaviour
 
             case 11:
                 RemoveTutorial();
+                mouseManager.tutorialManager = null;
                 break;
         }
 

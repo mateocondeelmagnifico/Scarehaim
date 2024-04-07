@@ -7407,6 +7407,7 @@ MonoBehaviour:
     over me
   - Now it's my turn, i will try to catch you, unlike you i can't move diagonally
   - You can move freely now
+  - There is the exit card, once you pass you can spend treats to gain courage
   chosenSlots:
   - {fileID: 150453012}
   - {fileID: 332225209}
