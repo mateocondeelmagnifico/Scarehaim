@@ -1236,8 +1236,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6.48, y: -3.95}
-  m_SizeDelta: {x: 4, y: 1.2894}
+  m_AnchoredPosition: {x: -6.7458, y: -3.8718}
+  m_SizeDelta: {x: 4.5316, y: 1.6959}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &132045521
 MonoBehaviour:
@@ -1322,7 +1322,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -0.15501022, z: 0.02226162, w: 0}
+  m_margin: {x: 0, y: -0.15501022, z: -0.0871892, w: -0.015635014}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -7607,7 +7607,8 @@ MonoBehaviour:
   - Down to your right is a treat card, go grab it
   - If you use a treat you will be able to skip one card and go directly to the next
     one
-  - Try using one, you can skip over normal enemies but not me
+  - Try using one, you can skip over normal enemies but not me. You can play it by
+    dragging it onto the screen
   - Good job, if you regret playing a treat you can press z to get it back
   - Step into that card, see what happens
   - Hehehe, that was an enemy, try to avoid them or you will be forced to pay a price

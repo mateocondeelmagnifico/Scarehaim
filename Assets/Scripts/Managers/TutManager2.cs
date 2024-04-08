@@ -56,6 +56,15 @@ public class TutManager2 : TutorialManager
                         doOnce = false;
                     }
                     break;
+
+                case 7:
+                    if (manager.CheckIsInCheckMovement() && manager.playerMove.turnsWithcostume > 0 && !doOnce)
+                    {
+                        //Go to Costume tutorial
+                        Nextmenu();
+                        doOnce = true;
+                    }
+                    break;
             }
             #endregion
         }
@@ -66,7 +75,7 @@ public class TutManager2 : TutorialManager
         //Called by buttons
 
         currentTutorial++;
-        if (currentTutorial == 8)
+        if (currentTutorial == 9)
         {
             //Destroy tutorial manager
             RemoveTutorial();
@@ -78,7 +87,7 @@ public class TutManager2 : TutorialManager
 
         nextTutorialButton.SetActive(false);
 
-        if (currentTutorial != 6 && currentTutorial != 7) mouseManager.canClick = true;
+        if (currentTutorial != 6 && currentTutorial != 8) mouseManager.canClick = true;
         else textManager.displayButton = true;
 
         switch (currentTutorial)
