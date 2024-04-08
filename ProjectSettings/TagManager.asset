@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - Table
   - Hand
+  - Undo Button
   layers:
   - Default
   - TransparentFX

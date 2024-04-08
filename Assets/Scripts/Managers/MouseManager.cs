@@ -313,6 +313,12 @@ public class MouseManager : MonoBehaviour
                 if(hit.collider.gameObject.tag.Equals("Hand")) handtimer += Time.deltaTime;
                 else ShrinkHand();
 
+                if(hit.collider.gameObject.tag.Equals("Undo Button") && Input.GetMouseButtonDown(0))
+                {
+                    //Press Undo Button
+                    hand.UndoLimbo();
+                }
+
                 if(manager.CheckIsInCheckMovement() && playerMove.turnsWithcostume <= 0) playerMove.DespawnHighlights(0);
                 DeactivateDisplay();
 

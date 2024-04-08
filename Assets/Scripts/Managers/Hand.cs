@@ -229,7 +229,7 @@ public class Hand : MonoBehaviour
         zPrompt.SetActive(true);
         DeterminePosition();
     }
-    private void UndoLimbo()
+    public void UndoLimbo()
     {
         cardInLimbo.SetActive(true);
         cardInLimbo.transform.GetChild(0).GetComponent<Card>().UndoEffect();
