@@ -12,7 +12,7 @@ public class CardManager : MonoBehaviour
 
     public GameObject cardsOnBoard, cardPrefab, exitCard;
     private GameObject newCard;
-    [SerializeField] private GameObject[] enviroments, enviroments2, enviroments3, treats, costumes;
+    [SerializeField] private GameObject[] enviroments, enviroments2, enviroments3, treats, costumes, allCards;
     private Transform[] cardObjects;
 
     public int cardsUntilExit, treatAmount, costumeAmount;
@@ -53,6 +53,8 @@ public class CardManager : MonoBehaviour
         cards.Add(enviroments3);
         cards.Add(treats);
         cards.Add(costumes);
+
+        allCards = new GameObject[cardsOnBoard.transform.childCount];
         #endregion
     }
     private void Start()
@@ -134,6 +136,9 @@ public class CardManager : MonoBehaviour
             {
                 board.Add(cardsOnBoard.transform.GetChild(i).gameObject);
             }
+
+            //Array de las cartas del tablero
+            allCards[i] = cardsOnBoard.transform.GetChild(i).gameObject;
         }
 
         #region Hide Cards at Start
@@ -230,16 +235,16 @@ public class CardManager : MonoBehaviour
             
             for (int i = randomNum; i < cardsOnBoard.transform.childCount; i++)
             {
-                Transform chosenCard = board[i].transform;
+                Transform chosenCard = allCards[i].transform;
 
                 if (!chosenCard.GetChild(0).CompareTag("Enemy") && (chosenCard.position.x != playerPos.position.x && chosenCard.position.y != playerPos.position.y))
                 {
-                    if (board[randomNum].transform.childCount > 0) Destroy(board[randomNum].transform.GetChild(0).gameObject);
-                    newCard = Instantiate(exitCard, board[randomNum].transform);
-                    newCard.transform.parent = board[randomNum].transform;
-                    board[randomNum].GetComponent<CardSlot>().cardObject = newCard;
+                    if (allCards[randomNum].transform.childCount > 0) Destroy(allCards[randomNum].transform.GetChild(0).gameObject);
+                    newCard = Instantiate(exitCard, allCards[randomNum].transform);
+                    newCard.transform.parent = allCards[randomNum].transform;
+                    allCards[randomNum].GetComponent<CardSlot>().cardObject = newCard;
                     exitCardDealt = true;
-                    i = board.Count;
+                    i = cardsOnBoard.transform.childCount;
                 }
 
                 //Reset if spot not found
