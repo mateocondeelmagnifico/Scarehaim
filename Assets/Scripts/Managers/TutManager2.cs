@@ -40,7 +40,7 @@ public class TutManager2 : TutorialManager
 
                     if(mouseManager.radarActive) radarOn = true;
 
-                    if (radarOn && !mouseManager.radarActive && !doOnce)
+                    if (radarOn && radarDone && !doOnce)
                     {
                         textManager.displayButton = true;
                         Nextmenu();

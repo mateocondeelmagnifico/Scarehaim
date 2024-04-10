@@ -6741,7 +6741,8 @@ MonoBehaviour:
   initialSlot: {fileID: 0}
   cardGrid: {fileID: 1505720235}
   isMoving: 0
-  turnsUntilStart: 0
+  isSlow: 0
+  turnsUntilStart: 2
 --- !u!212 &798634177
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14216,6 +14217,7 @@ MonoBehaviour:
   - {fileID: 638242032198707708, guid: 151013d12cc251146ab1d474bec862a1, type: 3}
   costumes:
   - {fileID: 638242032198707708, guid: 586fbdec72867df419f6c84721780c93, type: 3}
+  allCards: []
   cardsUntilExit: 10
   treatAmount: 2
   costumeAmount: 2

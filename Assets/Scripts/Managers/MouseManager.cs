@@ -458,6 +458,8 @@ public class MouseManager : MonoBehaviour
                 }
             }
         }
+
+        if(tutorialManager != null) tutorialManager.radarDone = true;
         radarActive = false;
         pMovement.DespawnHighlights(0);
     }

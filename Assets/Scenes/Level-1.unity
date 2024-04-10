@@ -7296,7 +7296,8 @@ MonoBehaviour:
   initialSlot: {fileID: 0}
   cardGrid: {fileID: 1505720235}
   isMoving: 0
-  turnsUntilStart: 0
+  isSlow: 0
+  turnsUntilStart: 2
 --- !u!212 &798634177
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -6905,7 +6905,8 @@ MonoBehaviour:
   initialSlot: {fileID: 0}
   cardGrid: {fileID: 1505720235}
   isMoving: 0
-  turnsUntilStart: 0
+  isSlow: 1
+  turnsUntilStart: 2
 --- !u!212 &798634177
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7406,17 +7407,16 @@ MonoBehaviour:
   textBox: {fileID: 132045521}
   mouseManager: {fileID: 679540269}
   tutorialTexts:
-  - Move here please
-  - Hehe, that was a trick, you can't see them but there are two in each board
-  - In order to detect them use the radar with the right mouse click
-  - When you detect a trick this icon will appear
+  - Move here please.
+  - Hehe, that was a trick, you can't see them but there are two in each board.
+  - In order to detect them use the radar with the right mouse click.
+  - When you detect a trick this icon will appear.
   - Go get this thing won't you darling?
   - That is a costume, it will allow you to move two times instead of once for three
-    turns
-  - Some monsters will ignore you while you wear it
-  - Come on don't be shy, put it on by dragging it to the screen
-  - That's all you need to know! if you don't remember something click here and i'll
-    explain
+    turns.
+  - Some monsters will ignore you while you wear it.
+  - Come on don't be shy, put it on by dragging it to the screen.
+  - That's all you need to know! You can click here if you forget anything.
   chosenSlots:
   - {fileID: 2070088355}
   - {fileID: 0}

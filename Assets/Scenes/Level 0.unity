@@ -7101,7 +7101,8 @@ MonoBehaviour:
   initialSlot: {fileID: 0}
   cardGrid: {fileID: 1505720235}
   isMoving: 0
-  turnsUntilStart: 0
+  isSlow: 1
+  turnsUntilStart: 4
 --- !u!212 &798634177
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7602,21 +7603,22 @@ MonoBehaviour:
   textBox: {fileID: 132045521}
   mouseManager: {fileID: 679540269}
   tutorialTexts:
-  - Click on an adjacent card to move to it
-  - That was an enviroment card, discard 10 and you will win
-  - Down to your right is a treat card, go grab it
+  - Click on an adjacent card to move to it.
+  - That was an enviroment card, discard 10 and you will win.
+  - Down to your right is a treat card, go grab it.
   - If you use a treat you will be able to skip one card and go directly to the next
-    one
-  - Try using one, you can skip over normal enemies but not me. You can play it by
-    dragging it onto the screen
-  - Good job, if you regret playing a treat you can press z to get it back
-  - Step into that card, see what happens
-  - Hehehe, that was an enemy, try to avoid them or you will be forced to pay a price
+    one.
+  - Try using one, you can skip over all enemies except me. You can play it by dragging
+    it onto the screen.
+  - Good job, if you regret playing a treat you can press the undo button to get
+    it back.
+  - Step into that card, see what happens.
+  - Hehehe, that was an enemy, try to avoid them or you will be forced to pay a price.
   - If you don't remember what a a card does you can hover over it and it will appear
-    over me
-  - Now it's my turn, i will try to catch you, unlike you i can't move diagonally
-  - You can move freely now
-  - There is the exit card, once you pass you can spend treats to gain courage
+    over me.
+  - Now it's my turn, i will try to catch you, unlike you i can't move diagonally.
+  - You can move freely now.
+  - There is the exit card, once you pass you can spend treats to gain courage.
   chosenSlots:
   - {fileID: 150453012}
   - {fileID: 332225209}

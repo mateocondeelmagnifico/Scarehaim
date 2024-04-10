@@ -16,6 +16,7 @@ public class TutorialManager : MonoBehaviour
     protected Hand hand;
 
     protected bool tutorialPlayed;
+    public bool radarDone; //Used by inherited member
 
     [TextArea, SerializeField] protected string[] tutorialTexts;
     [SerializeField] protected GameObject[] chosenSlots;

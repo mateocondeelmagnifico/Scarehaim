@@ -12,7 +12,7 @@ public class EnemyMovement : MonoBehaviour
     private Animator animador;
     private GameManager gameManager;
 
-    [SerializeField] private bool isMoving;
+    [SerializeField] private bool isMoving, isSlow;
     private bool hasTalked, hasMoved;
 
     private Vector2 destination;
@@ -24,7 +24,6 @@ public class EnemyMovement : MonoBehaviour
     private void Start()
     {
         textManager = TextManager.Instance;
-        turnsUntilStart = 2;
         animador = GetComponent<Animator>();
         gameManager = GameManager.Instance;
     }
@@ -163,6 +162,8 @@ public class EnemyMovement : MonoBehaviour
             {
                 gameManager.ChangeState(GameManager.turnState.CheckMovement);
                 isMoving = false;
+
+                if (isSlow) turnsUntilStart++;
             }
         }
     }
