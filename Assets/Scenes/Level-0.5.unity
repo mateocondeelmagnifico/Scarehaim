@@ -3417,7 +3417,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &361242325
 Transform:
   m_ObjectHideFlags: 0
@@ -6749,6 +6749,7 @@ MonoBehaviour:
   playerMove: {fileID: 688192960}
   initialSlot: {fileID: 0}
   cardGrid: {fileID: 1505720235}
+  turnsCounter: {fileID: 349588073}
   isMoving: 0
   isSlow: 1
   turnsUntilStart: 2
@@ -8897,7 +8898,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1156338549
 RectTransform:
   m_ObjectHideFlags: 0

@@ -7295,6 +7295,7 @@ MonoBehaviour:
   playerMove: {fileID: 688192960}
   initialSlot: {fileID: 0}
   cardGrid: {fileID: 1505720235}
+  turnsCounter: {fileID: 349588073}
   isMoving: 0
   isSlow: 0
   turnsUntilStart: 2

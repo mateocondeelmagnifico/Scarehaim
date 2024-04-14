@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class EnemyMovement : MonoBehaviour
     private TextManager textManager;
     private Animator animador;
     private GameManager gameManager;
+    [SerializeField] private TMPro.TextMeshProUGUI turnsCounter;
 
     [SerializeField] private bool isMoving, isSlow;
     private bool hasTalked, hasMoved;
@@ -26,6 +28,7 @@ public class EnemyMovement : MonoBehaviour
         textManager = TextManager.Instance;
         animador = GetComponent<Animator>();
         gameManager = GameManager.Instance;
+        TurnInStasis(0);
     }
     private void Update()
     {
@@ -59,7 +62,17 @@ public class EnemyMovement : MonoBehaviour
         }
         #endregion
 
-        if (turnsUntilStart == 0 && !hasMoved) animador.SetBool("shaking", true);
+        if (turnsUntilStart == 0)
+        {
+            if(isSlow)
+            {
+                animador.SetBool("shaking", true);
+            }
+            else if(!hasMoved)
+            {
+                animador.SetBool("shaking", true);
+            }
+        }
         else animador.SetBool("shaking", false);
 
     }
@@ -163,8 +176,15 @@ public class EnemyMovement : MonoBehaviour
                 gameManager.ChangeState(GameManager.turnState.CheckMovement);
                 isMoving = false;
 
-                if (isSlow) turnsUntilStart++;
+                if (isSlow) TurnInStasis(1);
             }
         }
+    }
+
+    public void TurnInStasis(int amount)
+    {
+        turnsUntilStart += amount;
+        if (turnsUntilStart > 0) turnsCounter.text = turnsUntilStart.ToString();
+        else turnsCounter.text = "";
     }
 }

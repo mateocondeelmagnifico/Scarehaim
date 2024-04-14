@@ -165,7 +165,7 @@ public class CardManager : MonoBehaviour
         #endregion
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         #region Deals cards at the start
         if (startTimer > 0) startTimer -= Time.deltaTime;
@@ -199,7 +199,7 @@ public class CardManager : MonoBehaviour
                 if(cardsDealtAmount < cardsOnBoard.transform.childCount)
                 {
                     cardObjects[cardsDealtAmount].gameObject.SetActive(true);
-                    cardObjects[cardsDealtAmount].position = Vector3.MoveTowards(currentPos, desiredPos, (11 * Time.deltaTime) + (Vector2.Distance(currentPos, desiredPos) / 45));
+                    cardObjects[cardsDealtAmount].position = Vector3.MoveTowards(currentPos, desiredPos, (14 * Time.deltaTime) + (Vector2.Distance(currentPos, desiredPos)/7));
                 }
                 else
                 {

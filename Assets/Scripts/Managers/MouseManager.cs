@@ -25,6 +25,8 @@ public class MouseManager : MonoBehaviour
 
     private float handtimer;
 
+    private string prevString;
+
     private Vector2[] radarPositions;
 
     public GameObject selectedCardSlot, hoverAesthetics, trapIndicator;
@@ -229,12 +231,13 @@ public class MouseManager : MonoBehaviour
                             trickRadar.numberOfScans++;
                             pMovement.DespawnHighlights(0);
                             boardOverlay.DeactivatOverlay();
-                            radarText.text = "";
+                            radarText.text = prevString;
                         }
                         else if (trickRadar.CanUseScan())
                         {
                             radarActive = true;
                             boardOverlay.ACtivateOverlay("Green");
+                            prevString = radarText.text;
                             radarText.text = "Radars left: " + (trickRadar.numberOfScans + 1);
                         }
                     }
@@ -303,7 +306,7 @@ public class MouseManager : MonoBehaviour
                     {
                         FireRadar();
                         boardOverlay.DeactivatOverlay();
-                        radarText.text = "";
+                        radarText.text = prevString;
                     }
                     #endregion
                 }

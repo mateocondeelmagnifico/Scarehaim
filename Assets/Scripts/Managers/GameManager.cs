@@ -187,7 +187,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                enemy.turnsUntilStart--;
+                enemy.TurnInStasis(-1);
                 ChangeState(turnState.CheckMovement);
             }
 
