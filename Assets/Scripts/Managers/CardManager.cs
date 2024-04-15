@@ -141,6 +141,8 @@ public class CardManager : MonoBehaviour
             allCards[i] = cardsOnBoard.transform.GetChild(i).gameObject;
         }
 
+        if(costumeAmount <= 0) cards.RemoveAt(4);
+
         #region Hide Cards at Start
         cardObjects = new Transform[cardsOnBoard.transform.childCount];
 
