@@ -7511,8 +7511,8 @@ MonoBehaviour:
   mouseManager: {fileID: 679540269}
   radarDone: 0
   tutorialTexts:
-  - Click on an adjacent card to move to it.
-  - That was an enviroment card, discard 10 and you will win.
+  - "Try to move downwards. You\u2019ll step on an Environment card.\r\n"
+  - "That was an enviroment card, \r\nDiscard 10 Environment cards and you will win!."
   - Down to your right is a treat card, go grab it.
   - If you use a treat you will be able to skip one card and go directly to the next
     one.
