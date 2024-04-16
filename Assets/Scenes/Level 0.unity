@@ -6789,7 +6789,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 6cdef88cf2e81ed40b08c95ec5f70855, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ac244dee2893d17448b2823183348da4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7956,9 +7956,9 @@ MonoBehaviour:
   - "You smell\u2026 good\r\n"
   - I can almost touch you
   sprites:
-  - {fileID: 21300000, guid: cf61d8a7eb624e648950910e5c976b06, type: 3}
-  - {fileID: 21300000, guid: 0469d431bf165e143ae0deb6732c55df, type: 3}
-  - {fileID: 21300000, guid: 7ef15486f07652c40be5c02f70b12f11, type: 3}
+  - {fileID: 21300000, guid: 590887f9103812e4b88fbc2a72830b1c, type: 3}
+  - {fileID: 21300000, guid: 26397cff801669041a4e53eda4bdf0ce, type: 3}
+  - {fileID: 21300000, guid: cd2e90ecf7ebe3546b937653abaadabb, type: 3}
   box: {fileID: 361242326}
   currentState: 0
   textCooldown: 0
@@ -12078,7 +12078,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 3d2e49566e514354898e84b8f7eef3f2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ac244dee2893d17448b2823183348da4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -12585,7 +12585,7 @@ GameObject:
   - component: {fileID: 1574868881}
   - component: {fileID: 1574868882}
   m_Layer: 0
-  m_Name: The Merrow
+  m_Name: The Caillelach
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12647,7 +12647,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -4
-  m_Sprite: {fileID: 21300000, guid: cf61d8a7eb624e648950910e5c976b06, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 590887f9103812e4b88fbc2a72830b1c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
