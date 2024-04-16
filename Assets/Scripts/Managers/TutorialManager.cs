@@ -20,6 +20,8 @@ public class TutorialManager : MonoBehaviour
 
     [TextArea, SerializeField] protected string[] tutorialTexts;
     [SerializeField] protected GameObject[] chosenSlots;
+    [SerializeField] protected Sprite[] blackScreens;
+    [SerializeField] protected SpriteRenderer screenImage;
 
     public int currentTutorial;
 
@@ -119,7 +121,6 @@ public class TutorialManager : MonoBehaviour
 
     private void DisplayTutorial()
     {
-
         textBox.gameObject.SetActive(true);
         textManager.TutorialTalk(tutorialTexts[currentTutorial]);
         mouseManager.DeactivateDisplay();
@@ -131,6 +132,8 @@ public class TutorialManager : MonoBehaviour
             mouseManager.canClick = false;
             textManager.displayButton = true;
         }
+
+        DisplayNextBlackScreen();
     }
 
     public virtual void Nextmenu()
@@ -138,6 +141,9 @@ public class TutorialManager : MonoBehaviour
         //Called by buttons
 
         currentTutorial++;
+
+        DisplayNextBlackScreen();
+
         if (currentTutorial == 12)
         {
             //Destroy tutorial manager
@@ -183,6 +189,7 @@ public class TutorialManager : MonoBehaviour
 
     public void RemoveTutorial()
     {
+        screenImage.enabled = false;
         textBox.gameObject.SetActive(false);
         hand.DeterminePosition();
         textManager.StopTalk();
@@ -195,5 +202,15 @@ public class TutorialManager : MonoBehaviour
         if ((currentTutorial == 4 && mySlot == chosenSlots[currentTutorial - 1])) istrue = true;
 
         return istrue;
+    }
+
+    public void DisplayNextBlackScreen()
+    {
+        if (blackScreens[currentTutorial] != null)
+        {
+            screenImage.enabled = true;
+            screenImage.sprite = blackScreens[currentTutorial];
+        }
+        else screenImage.enabled = false;
     }
 }

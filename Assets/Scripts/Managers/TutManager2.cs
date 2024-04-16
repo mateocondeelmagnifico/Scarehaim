@@ -75,6 +75,9 @@ public class TutManager2 : TutorialManager
         //Called by buttons
 
         currentTutorial++;
+
+        DisplayNextBlackScreen();
+
         if (currentTutorial == 9)
         {
             //Destroy tutorial manager
