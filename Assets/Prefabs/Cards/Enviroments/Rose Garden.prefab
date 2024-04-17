@@ -113,4 +113,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 086c0b0eaf5a2b94cb0ef03050b07836, type: 3}
-  bigImage: {fileID: 21300000, guid: 086c0b0eaf5a2b94cb0ef03050b07836, type: 3}
+  bigImage: {fileID: 21300000, guid: 241aacb7539f2c248a38d013f5cdd520, type: 3}
