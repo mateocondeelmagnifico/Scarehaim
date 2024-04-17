@@ -115,7 +115,7 @@ MonoBehaviour:
   image: {fileID: 21300000, guid: 797a6973ceecad44687e41b574a0794e, type: 3}
   bigImage: {fileID: 21300000, guid: 7451aed88a72e1e4cbf16233b85b646b, type: 3}
   myCost:
-    explanation: A wild merrow appears, lose 3 hope
+    explanation: A wild merrow appears, lose 3 courage
     CostName: 
     costAmount: 0
     reward: 

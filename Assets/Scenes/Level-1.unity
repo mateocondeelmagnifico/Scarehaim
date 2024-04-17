@@ -4103,7 +4103,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fear = 7
+  m_text: Courage = 7
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d93d94de1ea1d864283329f42ef88f03, type: 2}
   m_sharedMaterial: {fileID: -4317416503888858199, guid: d93d94de1ea1d864283329f42ef88f03, type: 2}
@@ -9546,7 +9546,7 @@ MonoBehaviour:
   - {fileID: 1394568874}
   - {fileID: 1571830515}
   endCost:
-    explanation: You may pay treats to reduce your fear by 2
+    explanation: You may pay treats to incrrease your Courage by 2
     CostName: Treat
     costAmount: 3
     reward: Fear

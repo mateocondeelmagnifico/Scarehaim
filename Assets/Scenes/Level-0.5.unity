@@ -7198,7 +7198,7 @@ MonoBehaviour:
     turns.
   - Some monsters will ignore you while you wear it.
   - Come on don't be shy, put it on by dragging it to the screen.
-  - That's all you need to know! You can click here if you forget anything.
+  - That's all you need to know! Click on the options button if you forget anything.
   chosenSlots:
   - {fileID: 2070088355}
   - {fileID: 0}
