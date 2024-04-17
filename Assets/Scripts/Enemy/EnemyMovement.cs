@@ -72,6 +72,8 @@ public class EnemyMovement : MonoBehaviour
             {
                 animador.SetBool("shaking", true);
             }
+
+            if(!isSlow && hasMoved) animador.SetBool("shaking", false);
         }
         else animador.SetBool("shaking", false);
 

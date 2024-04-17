@@ -1328,7 +1328,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 579e5ded602feb244b87fef24d4090de, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0e2229ac02482e84cbac465ed6130e4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7208,7 +7208,7 @@ MonoBehaviour:
   blackScreens:
   - {fileID: 21300000, guid: 69ca6b7d5eab93b48a6f4a459fd08077, type: 3}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: c89cadf47007cd0448ada08581f54fff, type: 3}
   - {fileID: 21300000, guid: 89c83b3e82aab3e4bb374ba8cd2862cd, type: 3}
   - {fileID: 21300000, guid: 3874728ca810ade48a615da01d4b1765, type: 3}
   - {fileID: 0}
