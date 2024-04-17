@@ -114,8 +114,6 @@ public class TutorialManager : MonoBehaviour
 
     public void StopGame()
     {
-        if (manager.newCardSlot != null) manager.newCardSlot.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 4;
-
         DisplayTutorial();
     }
 
@@ -209,7 +207,17 @@ public class TutorialManager : MonoBehaviour
         if (blackScreens[currentTutorial] != null)
         {
             screenImage.enabled = true;
-            screenImage.sprite = blackScreens[currentTutorial];
+
+            if (currentTutorial != 4) screenImage.sprite = blackScreens[currentTutorial];
+            else
+            {
+                if (!manager.powerUpOn) screenImage.sprite = blackScreens[currentTutorial - 1];
+                else
+                {
+                    Debug.Log(1);
+                    screenImage.sprite = blackScreens[currentTutorial];
+                }
+            }
         }
         else screenImage.enabled = false;
     }

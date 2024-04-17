@@ -78,8 +78,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (enemy.transform.position == player.transform.position && enemy.turnsUntilStart <= 0)
-            player.GetComponent<Fear>().hope = 10;
+        if (Vector3.Distance(enemy.transform.position, player.transform.position) < 0.3f && turnCount > 2) player.GetComponent<Fear>().UpdateFear(-10);
 
         #region Check Turn State
         switch (currentState)
@@ -170,7 +169,8 @@ public class GameManager : MonoBehaviour
 
             case turnState.Endturn:
                 //This moves the enemy too
-                if(!enemyInformed) EndPlayerTurn();
+
+                if (!enemyInformed) EndPlayerTurn();
                 break;
         }
         #endregion
@@ -191,6 +191,7 @@ public class GameManager : MonoBehaviour
                 ChangeState(turnState.CheckMovement);
             }
 
+            turnCount++;
             enemyInformed = true;
         }
     }
