@@ -17,10 +17,11 @@ public class TutorialManager : MonoBehaviour
 
     protected bool tutorialPlayed;
     public bool radarDone; //Used by inherited member
+    private bool showExit;
 
     [TextArea, SerializeField] protected string[] tutorialTexts;
     [SerializeField] protected GameObject[] chosenSlots;
-    [SerializeField] protected Sprite[] blackScreens;
+    [SerializeField] protected Sprite[] blackScreens, exitspots1, exitspots2, exitspots3;
     [SerializeField] protected SpriteRenderer screenImage;
 
     public int currentTutorial;
@@ -110,6 +111,17 @@ public class TutorialManager : MonoBehaviour
             }
             #endregion
         }
+
+        if (currentTutorial == 4)
+        {
+            if (!manager.powerUpOn) screenImage.sprite = blackScreens[currentTutorial - 1];
+            else screenImage.sprite = blackScreens[currentTutorial];
+        }
+
+        if (showExit)
+        {
+            screenImage.enabled = true;
+        }
     }
 
     public void StopGame()
@@ -145,6 +157,7 @@ public class TutorialManager : MonoBehaviour
         if (currentTutorial == 12)
         {
             //Destroy tutorial manager
+            showExit = false;
             RemoveTutorial();
             nextTutorialButton.SetActive(false);
             mouseManager.canClick = true;
@@ -156,7 +169,7 @@ public class TutorialManager : MonoBehaviour
         if (currentTutorial != 8 && currentTutorial != 9 && currentTutorial != 10) mouseManager.canClick = false;
         else textManager.displayButton = true;
 
-            mouseManager.canClick = true;
+        mouseManager.canClick = true;
 
         switch (currentTutorial)
         {
@@ -208,17 +221,28 @@ public class TutorialManager : MonoBehaviour
         {
             screenImage.enabled = true;
 
-            if (currentTutorial != 4) screenImage.sprite = blackScreens[currentTutorial];
-            else
-            {
-                if (!manager.powerUpOn) screenImage.sprite = blackScreens[currentTutorial - 1];
-                else
-                {
-                    Debug.Log(1);
-                    screenImage.sprite = blackScreens[currentTutorial];
-                }
-            }
+            screenImage.sprite = blackScreens[currentTutorial];
         }
         else screenImage.enabled = false;
+    }
+
+    public void DisplayExitTutorial(Vector2 location)
+    {
+        switch(location.x)
+        {
+            case 1:
+                screenImage.sprite = exitspots1[(int)location.y -1];
+                break;
+
+            case 2:
+                screenImage.sprite = exitspots2[(int)location.y -1];
+                break;
+
+            case 3:
+                screenImage.sprite = exitspots2[(int)location.y - 1];
+                break;
+        }
+
+        showExit = true;
     }
 }

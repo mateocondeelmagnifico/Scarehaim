@@ -16,6 +16,7 @@ public class CardEffectManager : MonoBehaviour
     private Transform hand;
     public static CardEffectManager Instance { get; private set; }
     private GameManager manager;
+    [SerializeField] MouseManager mouseManager;
     private Image displayImage;
     private TMPro.TextMeshProUGUI explanation, fearText;
     private Cost currentCost;
@@ -310,11 +311,13 @@ public class CardEffectManager : MonoBehaviour
         {
             Time.timeScale = 0;
             gameWonMenu.SetActive(true);
+            mouseManager.canClick = false;
         }
         else
         {
             isEnding = true;
             ActivatePayment(endSprite, endCost);
+            mouseManager.canClick = false;
         }
     }
     private void DisplayFear()

@@ -1327,8 +1327,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 0e2229ac02482e84cbac465ed6130e4a, type: 3}
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 588089c26a71a144fb1b2dcc7047cb0a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1656,7 +1656,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d2ef145e540f5764b9a64427aa96ec0d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd6acc9e0581c5f41a849d87220658e7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5009,7 +5009,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d2ef145e540f5764b9a64427aa96ec0d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd6acc9e0581c5f41a849d87220658e7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6239,7 +6239,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d2ef145e540f5764b9a64427aa96ec0d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd6acc9e0581c5f41a849d87220658e7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7207,19 +7207,25 @@ MonoBehaviour:
   - {fileID: 685545275}
   blackScreens:
   - {fileID: 21300000, guid: 69ca6b7d5eab93b48a6f4a459fd08077, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
   - {fileID: 21300000, guid: c89cadf47007cd0448ada08581f54fff, type: 3}
   - {fileID: 21300000, guid: 89c83b3e82aab3e4bb374ba8cd2862cd, type: 3}
   - {fileID: 21300000, guid: 3874728ca810ade48a615da01d4b1765, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
+  - {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
   - {fileID: 0}
   - {fileID: 21300000, guid: c46280abfd8117444bc5b7dabd39ea50, type: 3}
   - {fileID: 21300000, guid: c46280abfd8117444bc5b7dabd39ea50, type: 3}
+  - {fileID: 21300000, guid: c46280abfd8117444bc5b7dabd39ea50, type: 3}
+  - {fileID: 21300000, guid: c46280abfd8117444bc5b7dabd39ea50, type: 3}
+  exitspots1: []
+  exitspots2: []
+  exitspots3: []
   screenImage: {fileID: 2006566881}
   currentTutorial: 0
   radarOn: 0
   trapDone: 0
+  arrow: {fileID: 1309887229}
 --- !u!1 &832433589
 GameObject:
   m_ObjectHideFlags: 0
@@ -8577,6 +8583,7 @@ Transform:
   - {fileID: 397142967}
   - {fileID: 904356216}
   - {fileID: 2006566880}
+  - {fileID: 1309887230}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8750,6 +8757,7 @@ MonoBehaviour:
   - {fileID: 339999000}
   - {fileID: 1394568874}
   - {fileID: 0}
+  mouseManager: {fileID: 679540269}
   endCost:
     explanation: You may pay treats to reduce your fear by 2
     CostName: Treat
@@ -9839,6 +9847,90 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1279256823}
   m_CullTransparentMesh: 1
+--- !u!1 &1309887229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1309887230}
+  - component: {fileID: 1309887231}
+  m_Layer: 0
+  m_Name: Arrow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1309887230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309887229}
+  m_LocalRotation: {x: -0.0047174003, y: -0.016027179, z: 0.34479448, w: 0.9385295}
+  m_LocalPosition: {x: 7.05, y: 2.88, z: 0}
+  m_LocalScale: {x: 0.18487722, y: 0.15142974, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1111271914}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0.126, y: -1.91, z: 40.342}
+--- !u!212 &1309887231
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309887229}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2000
+  m_Sprite: {fileID: 21300000, guid: 76bc98fc2f28054479f844121b50776a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 24, y: 15}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1313401788
 GameObject:
   m_ObjectHideFlags: 0
@@ -9897,7 +9989,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d2ef145e540f5764b9a64427aa96ec0d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd6acc9e0581c5f41a849d87220658e7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13536,7 +13628,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d2ef145e540f5764b9a64427aa96ec0d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd6acc9e0581c5f41a849d87220658e7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14297,7 +14389,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2006566879}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.38, y: 0.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14417,6 +14509,7 @@ MonoBehaviour:
   costumes:
   - {fileID: 638242032198707708, guid: 586fbdec72867df419f6c84721780c93, type: 3}
   allCards: []
+  enemy: {fileID: 798634178}
   cardsUntilExit: 8
   treatAmount: 2
   costumeAmount: 2
@@ -14425,6 +14518,7 @@ MonoBehaviour:
   cardsDealt: 0
   tricksNotRandom: 1
   mouseManager: {fileID: 679540269}
+  tutorialManager: {fileID: 0}
   doorText: {fileID: 2097598765}
   deck: {fileID: 832433590}
   enemyPos: {fileID: 798634178}

@@ -1800,7 +1800,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d2ef145e540f5764b9a64427aa96ec0d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd6acc9e0581c5f41a849d87220658e7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1876,7 +1876,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d2ef145e540f5764b9a64427aa96ec0d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd6acc9e0581c5f41a849d87220658e7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6208,7 +6208,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d2ef145e540f5764b9a64427aa96ec0d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd6acc9e0581c5f41a849d87220658e7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8446,6 +8446,7 @@ MonoBehaviour:
   - {fileID: 339999000}
   - {fileID: 1394568874}
   - {fileID: 1571830515}
+  mouseManager: {fileID: 679540269}
   endCost:
     explanation: 
     CostName: 
@@ -9607,7 +9608,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d2ef145e540f5764b9a64427aa96ec0d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd6acc9e0581c5f41a849d87220658e7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13234,7 +13235,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d2ef145e540f5764b9a64427aa96ec0d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd6acc9e0581c5f41a849d87220658e7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14230,6 +14231,7 @@ MonoBehaviour:
   costumes:
   - {fileID: 638242032198707708, guid: 586fbdec72867df419f6c84721780c93, type: 3}
   allCards: []
+  enemy: {fileID: 798634178}
   cardsUntilExit: 10
   treatAmount: 2
   costumeAmount: 2
@@ -14238,6 +14240,7 @@ MonoBehaviour:
   cardsDealt: 0
   tricksNotRandom: 0
   mouseManager: {fileID: 679540269}
+  tutorialManager: {fileID: 0}
   doorText: {fileID: 2097598765}
   deck: {fileID: 832433590}
   enemyPos: {fileID: 798634178}

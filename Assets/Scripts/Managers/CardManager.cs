@@ -14,6 +14,7 @@ public class CardManager : MonoBehaviour
     private GameObject newCard;
     [SerializeField] private GameObject[] enviroments, enviroments2, enviroments3, treats, costumes, allCards;
     private Transform[] cardObjects;
+    [SerializeField] private Transform enemy;
 
     public int cardsUntilExit, treatAmount, costumeAmount;
     private int resetTimes, cardsDealtAmount;
@@ -23,6 +24,7 @@ public class CardManager : MonoBehaviour
     private bool powerUpDealt, canEnd;
     private GameManager gameManager;
     [SerializeField] private MouseManager mouseManager;
+    [SerializeField] private TutorialManager tutorialManager;
     private CardSlot cardSlot;
     public TMPro.TextMeshProUGUI doorText;
     private List<GameObject> board;
@@ -243,12 +245,18 @@ public class CardManager : MonoBehaviour
                 {
                     if (!chosenCard.GetChild(0).CompareTag("Enemy") && (chosenCard.position.x != playerPos.position.x && chosenCard.position.y != playerPos.position.y))
                     {
-                        if (allCards[randomNum].transform.childCount > 0) Destroy(allCards[randomNum].transform.GetChild(0).gameObject);
-                        newCard = Instantiate(exitCard, allCards[randomNum].transform);
-                        newCard.transform.parent = allCards[randomNum].transform;
-                        allCards[randomNum].GetComponent<CardSlot>().cardObject = newCard;
-                        exitCardDealt = true;
-                        i = cardsOnBoard.transform.childCount;
+                        if(Vector3.Distance(chosenCard.position, enemy.position) > 0.3f)
+                        {
+                            if (allCards[randomNum].transform.childCount > 0) Destroy(allCards[randomNum].transform.GetChild(0).gameObject);
+
+                            newCard = Instantiate(exitCard, allCards[randomNum].transform);
+                            newCard.transform.parent = allCards[randomNum].transform;
+                            allCards[randomNum].GetComponent<CardSlot>().cardObject = newCard;
+                            exitCardDealt = true;
+                            if(tutorialManager != null) tutorialManager.DisplayExitTutorial(allCards[randomNum].GetComponent<CardSlot>().Location);
+
+                            i = cardsOnBoard.transform.childCount;
+                        }
                     }
                 }
 

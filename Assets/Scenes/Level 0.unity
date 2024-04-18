@@ -871,7 +871,7 @@ MonoBehaviour:
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d93d94de1ea1d864283329f42ef88f03, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -4317416503888858199, guid: d93d94de1ea1d864283329f42ef88f03, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1393,8 +1393,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 0e2229ac02482e84cbac465ed6130e4a, type: 3}
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 588089c26a71a144fb1b2dcc7047cb0a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1727,7 +1727,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d2ef145e540f5764b9a64427aa96ec0d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd6acc9e0581c5f41a849d87220658e7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3325,7 +3325,7 @@ MonoBehaviour:
   m_text: Game Won
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d93d94de1ea1d864283329f42ef88f03, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -4317416503888858199, guid: d93d94de1ea1d864283329f42ef88f03, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5133,7 +5133,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d2ef145e540f5764b9a64427aa96ec0d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd6acc9e0581c5f41a849d87220658e7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6529,7 +6529,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d2ef145e540f5764b9a64427aa96ec0d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd6acc9e0581c5f41a849d87220658e7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7537,18 +7537,38 @@ MonoBehaviour:
   - {fileID: 618815116}
   blackScreens:
   - {fileID: 21300000, guid: 2416a70fb2a17e4489ae5f4d28a7f8c3, type: 3}
-  - {fileID: 21300000, guid: ba73dc6d019b92b4c924d25618efaadc, type: 3}
+  - {fileID: 21300000, guid: fbe0e0d71d541504c8af582e43f51e02, type: 3}
   - {fileID: 21300000, guid: bcef23ccd353f6241bf2129321558723, type: 3}
   - {fileID: 21300000, guid: 0726737db151edf45a232b981f97aa81, type: 3}
   - {fileID: 21300000, guid: 860eefda4fff8404fad8266563b81b7c, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
   - {fileID: 21300000, guid: 89c83b3e82aab3e4bb374ba8cd2862cd, type: 3}
   - {fileID: 21300000, guid: 9db1f8702e1e85b44a6ef30cb8a9790f, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
   - {fileID: 21300000, guid: 8b840f0beb1f27c4b912039af23b6bb2, type: 3}
+  - {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  exitspots1:
+  - {fileID: 21300000, guid: 893cde756fbec7447a10ef96b20512e5, type: 3}
+  - {fileID: 21300000, guid: bcef23ccd353f6241bf2129321558723, type: 3}
+  - {fileID: 21300000, guid: bb3c738b6b1ddd94aba348037f440d8e, type: 3}
+  - {fileID: 21300000, guid: 3874728ca810ade48a615da01d4b1765, type: 3}
+  - {fileID: 21300000, guid: 8c5d246819607a14480cf55d2b7ecdbc, type: 3}
+  exitspots2:
+  - {fileID: 21300000, guid: 2416a70fb2a17e4489ae5f4d28a7f8c3, type: 3}
+  - {fileID: 21300000, guid: 5f2b43e78955be141b551ae08c9a0531, type: 3}
+  - {fileID: 21300000, guid: 69ca6b7d5eab93b48a6f4a459fd08077, type: 3}
+  - {fileID: 21300000, guid: 89c83b3e82aab3e4bb374ba8cd2862cd, type: 3}
+  - {fileID: 21300000, guid: 99a042b419a10d840ad4e56a54c23f94, type: 3}
+  exitspots3:
+  - {fileID: 21300000, guid: 8b840f0beb1f27c4b912039af23b6bb2, type: 3}
+  - {fileID: 21300000, guid: c27872d200cf872418b8aa460a37e0a8, type: 3}
+  - {fileID: 21300000, guid: df8ca0dbbc581da4ab359bd43b742608, type: 3}
+  - {fileID: 21300000, guid: ed844a9366d04174b835bbe455e0eb0e, type: 3}
+  - {fileID: 21300000, guid: fedbdcfc7d4367240b34006a97432f63, type: 3}
   screenImage: {fileID: 2041627018}
   currentTutorial: 0
 --- !u!1 &832433589
@@ -9009,6 +9029,7 @@ MonoBehaviour:
   - {fileID: 339999000}
   - {fileID: 1394568874}
   - {fileID: 1571830515}
+  mouseManager: {fileID: 679540269}
   endCost:
     explanation: You may pay treats to increase your Courage by 2
     CostName: Treat
@@ -10371,7 +10392,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d2ef145e540f5764b9a64427aa96ec0d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd6acc9e0581c5f41a849d87220658e7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13671,7 +13692,7 @@ MonoBehaviour:
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d93d94de1ea1d864283329f42ef88f03, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -4317416503888858199, guid: d93d94de1ea1d864283329f42ef88f03, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -13913,7 +13934,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d2ef145e540f5764b9a64427aa96ec0d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd6acc9e0581c5f41a849d87220658e7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14709,6 +14730,7 @@ MonoBehaviour:
   - {fileID: 638242032198707708, guid: 41e1f2fdd683d2c4ea0c3a23e7a5a36e, type: 3}
   costumes: []
   allCards: []
+  enemy: {fileID: 798634178}
   cardsUntilExit: 5
   treatAmount: 2
   costumeAmount: 0
@@ -14717,6 +14739,7 @@ MonoBehaviour:
   cardsDealt: 0
   tricksNotRandom: 1
   mouseManager: {fileID: 679540269}
+  tutorialManager: {fileID: 818420430}
   doorText: {fileID: 2097598765}
   deck: {fileID: 832433590}
   enemyPos: {fileID: 798634178}
@@ -14746,7 +14769,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2041627016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.38, y: 0.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

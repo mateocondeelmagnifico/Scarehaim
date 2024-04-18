@@ -6,6 +6,7 @@ public class TutManager2 : TutorialManager
 {
     public bool radarOn, trapDone;
     private bool doOnce;
+    [SerializeField] private GameObject arrow;
 
     public override void Update()
     {
@@ -65,6 +66,10 @@ public class TutManager2 : TutorialManager
                         doOnce = true;
                     }
                     break;
+
+                    case 8:
+                    arrow.SetActive(true);
+                    break;
             }
             #endregion
         }
@@ -84,6 +89,7 @@ public class TutManager2 : TutorialManager
             RemoveTutorial();
             nextTutorialButton.SetActive(false);
             mouseManager.canClick = true;
+            Destroy(arrow);
             Destroy(this.gameObject);
             return;
         }
