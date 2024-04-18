@@ -600,17 +600,21 @@ MonoBehaviour:
     source: 1
     clip: {fileID: 8300000, guid: a8c0f49d74eb9dd41812498ac6ebc820, type: 3}
   - name: Game Won
-    volume: 0.8
-    source: 1
+    volume: 0.5
+    source: 2
     clip: {fileID: 8300000, guid: 0463f38e46cac4f48a08da716f778bef, type: 3}
   - name: Game Over
     volume: 0.8
-    source: 1
+    source: 2
     clip: {fileID: 8300000, guid: 2e10db669debd9b4e86db2fa86f53b89, type: 3}
   - name: Next Stage
-    volume: 0.8
+    volume: 0.5
     source: 2
     clip: {fileID: 8300000, guid: e133361cc24e75b49a4fef0b7dd6bc30, type: 3}
+  - name: Radar
+    volume: 0.5
+    source: 0
+    clip: {fileID: 8300000, guid: 76e258a5fdef17543b1f2daae79d9675, type: 3}
   Sources:
   - {fileID: 18462974}
   - {fileID: 18462973}
@@ -9560,7 +9564,7 @@ MonoBehaviour:
   - {fileID: 1571830515}
   mouseManager: {fileID: 679540269}
   endCost:
-    explanation: You may pay treats to incrrease your Courage by 2
+    explanation: You may pay treats to increase your Courage by 2
     CostName: Treat
     costAmount: 3
     reward: Fear

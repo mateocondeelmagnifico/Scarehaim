@@ -17,6 +17,7 @@ public class MouseManager : MonoBehaviour
     private EnemyMovement enemyMove;
     private BoardOverlay boardOverlay;
     [SerializeField] private TMPro.TextMeshProUGUI radarText;
+    private SoundManager soundManager;
 
     [SerializeField] private Transform board, tricks;
 
@@ -38,6 +39,7 @@ public class MouseManager : MonoBehaviour
         manager = GameManager.Instance;
         myCam = Camera.main;
         hand = Hand.Instance;
+        soundManager = SoundManager.Instance;
         boardOverlay = BoardOverlay.instance;
         pMovement = manager.playerMove;
         enemyMove = manager.enemy;
@@ -204,14 +206,11 @@ public class MouseManager : MonoBehaviour
                         if (manager.currentState != GameManager.turnState.CheckCardEffect)
                         {
                             //this is to display the card on the left
-                            if (currentCard.hoverTimer > 0.4f)
+                            if (currentCard.hoverTimer > 0.4f && cardHit.transform.childCount > 0)
                             {
                                 display.enabled = true;
                                 blackBox.enabled = true;
-                                if (cardHit.transform.childCount > 0)
-                                {
-                                    display.sprite = cardHit.GetComponentInChildren<Card>().bigImage;
-                                }
+                                display.sprite = cardHit.GetComponentInChildren<Card>().bigImage;
                             }
                         }
                         #endregion
@@ -307,6 +306,7 @@ public class MouseManager : MonoBehaviour
                         FireRadar();
                         boardOverlay.DeactivatOverlay();
                         radarText.text = prevString;
+                        soundManager.PlaySound("Radar");
                     }
                     #endregion
                 }

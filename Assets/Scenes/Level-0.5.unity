@@ -596,21 +596,25 @@ MonoBehaviour:
     source: 0
     clip: {fileID: 8300000, guid: 9cdb7b5f0a757c14aa6ec0750bab4f9a, type: 3}
   - name: Card Played
-    volume: 0.8
+    volume: 0.5
     source: 1
     clip: {fileID: 8300000, guid: a8c0f49d74eb9dd41812498ac6ebc820, type: 3}
   - name: Game Won
-    volume: 0.8
-    source: 1
+    volume: 0.3
+    source: 2
     clip: {fileID: 8300000, guid: 0463f38e46cac4f48a08da716f778bef, type: 3}
   - name: Game Over
-    volume: 0.8
-    source: 1
+    volume: 0.5
+    source: 2
     clip: {fileID: 8300000, guid: 2e10db669debd9b4e86db2fa86f53b89, type: 3}
   - name: Next Stage
-    volume: 0.8
+    volume: 0.5
     source: 2
     clip: {fileID: 8300000, guid: e133361cc24e75b49a4fef0b7dd6bc30, type: 3}
+  - name: Radar
+    volume: 0.5
+    source: 0
+    clip: {fileID: 8300000, guid: 76e258a5fdef17543b1f2daae79d9675, type: 3}
   Sources:
   - {fileID: 18462974}
   - {fileID: 18462973}
@@ -7219,7 +7223,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 685545275}
   blackScreens:
-  - {fileID: 21300000, guid: b55810b4b7dc6354387480819f846efc, type: 3}
+  - {fileID: 21300000, guid: c5406cf019e1224488144568afa108a9, type: 3}
   - {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
   - {fileID: 21300000, guid: c89cadf47007cd0448ada08581f54fff, type: 3}
   - {fileID: 21300000, guid: 8df9b7177fd006341a87c15390fd9897, type: 3}
@@ -8773,7 +8777,9 @@ MonoBehaviour:
   - {fileID: 0}
   mouseManager: {fileID: 679540269}
   endCost:
-    explanation: You may pay treats to reduce your fear by 2
+    explanation: 'You may pay treats to increase your courage by 2
+
+'
     CostName: Treat
     costAmount: 3
     reward: Fear
@@ -11643,7 +11649,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: ac244dee2893d17448b2823183348da4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9d05704798fa8b94d9500e10c86210dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
