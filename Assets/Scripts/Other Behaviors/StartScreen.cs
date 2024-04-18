@@ -11,6 +11,7 @@ public class StartScreen : MonoBehaviour
     private Image background;
     private SpriteRenderer screenRenderer;
     private SceneManagement sceneManagement;
+    private SoundManager soundManager;
 
     private void Start()
     {
@@ -19,7 +20,10 @@ public class StartScreen : MonoBehaviour
         screenRenderer = blackScreen.GetComponent<SpriteRenderer>();
         timer = 4;
         blackScreen.SetActive(true);
-        sceneManagement = SceneManagement.Instance; 
+        sceneManagement = SceneManagement.Instance;
+        soundManager = SoundManager.Instance;
+        soundManager.PlaySound("Next Stage");
+        soundManager.Sources[2].loop = false;
     }
     private void Update()
     {
@@ -33,6 +37,8 @@ public class StartScreen : MonoBehaviour
         }
         else
         {
+            soundManager.PlaySound("Music");
+            soundManager.Sources[2].loop = true;
             sceneManagement.canPause = true;
             blackScreen.SetActive(false);
             screenRenderer.color = new Color(0, 0, 0, 0.9f);

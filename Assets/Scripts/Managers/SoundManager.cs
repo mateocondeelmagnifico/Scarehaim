@@ -10,6 +10,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource[] Sources;
     [SerializeField]private Slider volumeSlider;
 
+    [SerializeField] private bool autoPlayMusic;
     public float volumeSetting;
     void Awake()
     {
@@ -22,7 +23,7 @@ public class SoundManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        PlaySound("Music");
+        if(autoPlayMusic)PlaySound("Music");
     }
 
     private void Start()

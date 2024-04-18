@@ -607,11 +607,16 @@ MonoBehaviour:
     volume: 0.8
     source: 1
     clip: {fileID: 8300000, guid: 2e10db669debd9b4e86db2fa86f53b89, type: 3}
+  - name: Next Stage
+    volume: 0.8
+    source: 2
+    clip: {fileID: 8300000, guid: e133361cc24e75b49a4fef0b7dd6bc30, type: 3}
   Sources:
   - {fileID: 18462974}
   - {fileID: 18462973}
   - {fileID: 18462972}
   volumeSlider: {fileID: 1174422624}
+  autoPlayMusic: 0
   volumeSetting: 0
 --- !u!1001 &20393749
 PrefabInstance:
