@@ -22,6 +22,8 @@ public class Fear : MonoBehaviour
 
     public void UpdateFear(int howMuch)
     {
+        if (hope <= 0) return;
+
         hope += howMuch;
 
         text.text = hope.ToString();
@@ -52,6 +54,9 @@ public class Fear : MonoBehaviour
             Time.timeScale = 0;
             gameOverMenu.SetActive(true);
             blackscreen.SetActive(true);
+
+            SoundManager.Instance.PlaySound("Game Over");
+            SoundManager.Instance.Sources[2].loop = false;
         }
     }
 }

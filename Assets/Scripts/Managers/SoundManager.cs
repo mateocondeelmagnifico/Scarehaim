@@ -7,7 +7,7 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance{ get; private set; }
     public Sound[] Sonidos;
-    [SerializeField] private AudioSource[] Sources;
+    public AudioSource[] Sources;
     [SerializeField]private Slider volumeSlider;
 
     public float volumeSetting;

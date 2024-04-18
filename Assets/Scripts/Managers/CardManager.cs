@@ -245,7 +245,7 @@ public class CardManager : MonoBehaviour
                 {
                     if (!chosenCard.GetChild(0).CompareTag("Enemy") && (chosenCard.position.x != playerPos.position.x && chosenCard.position.y != playerPos.position.y))
                     {
-                        if(Vector3.Distance(chosenCard.position, enemy.position) > 0.3f)
+                        if(Vector3.Distance(allCards[randomNum].transform.position, enemy.position) > 0.3f)
                         {
                             if (allCards[randomNum].transform.childCount > 0) Destroy(allCards[randomNum].transform.GetChild(0).gameObject);
 

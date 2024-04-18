@@ -652,7 +652,7 @@ MonoBehaviour:
   - name: Music
     volume: 0.8
     source: 2
-    clip: {fileID: 8300000, guid: 0e2cf8131f1e59042ad8e2262ae4f3c7, type: 3}
+    clip: {fileID: 8300000, guid: 09a1068338ae2134a900b162d738c27f, type: 3}
   - name: Card Hovered
     volume: 0.6
     source: 0
@@ -665,6 +665,14 @@ MonoBehaviour:
     volume: 0.8
     source: 1
     clip: {fileID: 8300000, guid: a8c0f49d74eb9dd41812498ac6ebc820, type: 3}
+  - name: Game Won
+    volume: 0.8
+    source: 2
+    clip: {fileID: 8300000, guid: 0463f38e46cac4f48a08da716f778bef, type: 3}
+  - name: Game Over
+    volume: 0.8
+    source: 2
+    clip: {fileID: 8300000, guid: 2e10db669debd9b4e86db2fa86f53b89, type: 3}
   Sources:
   - {fileID: 18462974}
   - {fileID: 18462973}
@@ -7536,39 +7544,39 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 618815116}
   blackScreens:
-  - {fileID: 21300000, guid: 2416a70fb2a17e4489ae5f4d28a7f8c3, type: 3}
+  - {fileID: 21300000, guid: 7c80778c49b7ace4389a3a590ae82a5c, type: 3}
   - {fileID: 21300000, guid: fbe0e0d71d541504c8af582e43f51e02, type: 3}
-  - {fileID: 21300000, guid: bcef23ccd353f6241bf2129321558723, type: 3}
+  - {fileID: 21300000, guid: a095e1a00c9c2484f8d5f66a333b6f58, type: 3}
   - {fileID: 21300000, guid: 0726737db151edf45a232b981f97aa81, type: 3}
   - {fileID: 21300000, guid: 860eefda4fff8404fad8266563b81b7c, type: 3}
   - {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
-  - {fileID: 21300000, guid: 89c83b3e82aab3e4bb374ba8cd2862cd, type: 3}
+  - {fileID: 21300000, guid: 8df9b7177fd006341a87c15390fd9897, type: 3}
   - {fileID: 21300000, guid: 9db1f8702e1e85b44a6ef30cb8a9790f, type: 3}
   - {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
-  - {fileID: 21300000, guid: 8b840f0beb1f27c4b912039af23b6bb2, type: 3}
+  - {fileID: 21300000, guid: 4e5c416507d97824887f10ea9c1565f8, type: 3}
   - {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   exitspots1:
-  - {fileID: 21300000, guid: 893cde756fbec7447a10ef96b20512e5, type: 3}
-  - {fileID: 21300000, guid: bcef23ccd353f6241bf2129321558723, type: 3}
-  - {fileID: 21300000, guid: bb3c738b6b1ddd94aba348037f440d8e, type: 3}
-  - {fileID: 21300000, guid: 3874728ca810ade48a615da01d4b1765, type: 3}
-  - {fileID: 21300000, guid: 8c5d246819607a14480cf55d2b7ecdbc, type: 3}
+  - {fileID: 21300000, guid: c20940c1aed992e4a848a4ee3fb6b740, type: 3}
+  - {fileID: 21300000, guid: a095e1a00c9c2484f8d5f66a333b6f58, type: 3}
+  - {fileID: 21300000, guid: 7fe4349577758474fbef7c238072c099, type: 3}
+  - {fileID: 21300000, guid: 464a1d66283e2984baa41539ae75313b, type: 3}
+  - {fileID: 21300000, guid: 9a6a8159ae4a0ab4c8945ba98a83435f, type: 3}
   exitspots2:
-  - {fileID: 21300000, guid: 2416a70fb2a17e4489ae5f4d28a7f8c3, type: 3}
-  - {fileID: 21300000, guid: 5f2b43e78955be141b551ae08c9a0531, type: 3}
-  - {fileID: 21300000, guid: 69ca6b7d5eab93b48a6f4a459fd08077, type: 3}
-  - {fileID: 21300000, guid: 89c83b3e82aab3e4bb374ba8cd2862cd, type: 3}
-  - {fileID: 21300000, guid: 99a042b419a10d840ad4e56a54c23f94, type: 3}
+  - {fileID: 21300000, guid: 7c80778c49b7ace4389a3a590ae82a5c, type: 3}
+  - {fileID: 21300000, guid: b55810b4b7dc6354387480819f846efc, type: 3}
+  - {fileID: 21300000, guid: c5406cf019e1224488144568afa108a9, type: 3}
+  - {fileID: 21300000, guid: 8df9b7177fd006341a87c15390fd9897, type: 3}
+  - {fileID: 21300000, guid: 2df5edb1c1033784caa0a6c9c5f16d25, type: 3}
   exitspots3:
-  - {fileID: 21300000, guid: 8b840f0beb1f27c4b912039af23b6bb2, type: 3}
-  - {fileID: 21300000, guid: c27872d200cf872418b8aa460a37e0a8, type: 3}
-  - {fileID: 21300000, guid: df8ca0dbbc581da4ab359bd43b742608, type: 3}
-  - {fileID: 21300000, guid: ed844a9366d04174b835bbe455e0eb0e, type: 3}
-  - {fileID: 21300000, guid: fedbdcfc7d4367240b34006a97432f63, type: 3}
+  - {fileID: 21300000, guid: 4e5c416507d97824887f10ea9c1565f8, type: 3}
+  - {fileID: 21300000, guid: fae8409e4552f5f46b24900204f645d2, type: 3}
+  - {fileID: 21300000, guid: 39e9d71853a6d3448b71d6ffe676b397, type: 3}
+  - {fileID: 21300000, guid: 0ade27bc60e749141859caae538fd4f9, type: 3}
+  - {fileID: 21300000, guid: 6dfdba41040627a4ebbf8bc0022808ab, type: 3}
   screenImage: {fileID: 2041627018}
   cenefa: {fileID: 142486507}
   currentTutorial: 0

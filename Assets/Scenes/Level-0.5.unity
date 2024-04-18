@@ -586,7 +586,7 @@ MonoBehaviour:
   - name: Music
     volume: 0.8
     source: 2
-    clip: {fileID: 8300000, guid: 0e2cf8131f1e59042ad8e2262ae4f3c7, type: 3}
+    clip: {fileID: 8300000, guid: 09a1068338ae2134a900b162d738c27f, type: 3}
   - name: Card Hovered
     volume: 0.6
     source: 0
@@ -599,6 +599,14 @@ MonoBehaviour:
     volume: 0.8
     source: 1
     clip: {fileID: 8300000, guid: a8c0f49d74eb9dd41812498ac6ebc820, type: 3}
+  - name: Game Won
+    volume: 0.8
+    source: 1
+    clip: {fileID: 8300000, guid: 0463f38e46cac4f48a08da716f778bef, type: 3}
+  - name: Game Over
+    volume: 0.8
+    source: 1
+    clip: {fileID: 8300000, guid: 2e10db669debd9b4e86db2fa86f53b89, type: 3}
   Sources:
   - {fileID: 18462974}
   - {fileID: 18462973}
@@ -7206,11 +7214,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 685545275}
   blackScreens:
-  - {fileID: 21300000, guid: 69ca6b7d5eab93b48a6f4a459fd08077, type: 3}
+  - {fileID: 21300000, guid: b55810b4b7dc6354387480819f846efc, type: 3}
   - {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
   - {fileID: 21300000, guid: c89cadf47007cd0448ada08581f54fff, type: 3}
-  - {fileID: 21300000, guid: 89c83b3e82aab3e4bb374ba8cd2862cd, type: 3}
-  - {fileID: 21300000, guid: 3874728ca810ade48a615da01d4b1765, type: 3}
+  - {fileID: 21300000, guid: 8df9b7177fd006341a87c15390fd9897, type: 3}
+  - {fileID: 21300000, guid: 464a1d66283e2984baa41539ae75313b, type: 3}
   - {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
   - {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
   - {fileID: 0}

@@ -21,6 +21,7 @@ public class CardEffectManager : MonoBehaviour
     private TMPro.TextMeshProUGUI explanation, fearText;
     private Cost currentCost;
     private Fear playerFear;
+    private SoundManager soundManager;
     [SerializeField] private Cost endCost;
     private Hand handScript;
     private BoardOverlay overlay;
@@ -56,6 +57,7 @@ public class CardEffectManager : MonoBehaviour
         playerFear = player.GetComponent<Fear>();
         fearText = fearCounter.GetComponent<TMPro.TextMeshProUGUI>();
         overlay = BoardOverlay.instance;
+        soundManager = SoundManager.Instance;
 
         originalPos = merrowHand.transform.position;
     }
@@ -311,14 +313,16 @@ public class CardEffectManager : MonoBehaviour
         {
             Time.timeScale = 0;
             gameWonMenu.SetActive(true);
-            mouseManager.canClick = false;
         }
         else
         {
             isEnding = true;
             ActivatePayment(endSprite, endCost);
-            mouseManager.canClick = false;
         }
+
+        soundManager.PlaySound("Game Won");
+        soundManager.Sources[2].loop = false;
+        mouseManager.canClick = false;
     }
     private void DisplayFear()
     {
