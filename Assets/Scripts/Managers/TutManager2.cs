@@ -24,7 +24,7 @@ public class TutManager2 : TutorialManager
                     if (cardManager.cardsDealt)
                     {
                         //Move right tutorial
-                        StopGame();
+                        DisplayTutorial();
                     }
                     break;
 
@@ -32,7 +32,7 @@ public class TutManager2 : TutorialManager
                     if (manager.CheckIsInCheckMovement())
                     {
                         //go to trick tutorial
-                        StopGame();
+                        DisplayTutorial();
                     }
                     break;
 
@@ -53,7 +53,7 @@ public class TutManager2 : TutorialManager
                     if (manager.CheckIsInCheckMovement() && doOnce)
                     {
                         //Go to Costume tutorial
-                        StopGame();
+                        DisplayTutorial();
                         doOnce = false;
                     }
                     break;

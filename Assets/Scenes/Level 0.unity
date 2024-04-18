@@ -7570,6 +7570,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ed844a9366d04174b835bbe455e0eb0e, type: 3}
   - {fileID: 21300000, guid: fedbdcfc7d4367240b34006a97432f63, type: 3}
   screenImage: {fileID: 2041627018}
+  cenefa: {fileID: 142486507}
   currentTutorial: 0
 --- !u!1 &832433589
 GameObject:

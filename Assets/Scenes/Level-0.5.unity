@@ -7222,6 +7222,7 @@ MonoBehaviour:
   exitspots2: []
   exitspots3: []
   screenImage: {fileID: 2006566881}
+  cenefa: {fileID: 142486507}
   currentTutorial: 0
   radarOn: 0
   trapDone: 0

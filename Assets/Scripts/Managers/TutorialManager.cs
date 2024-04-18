@@ -22,7 +22,7 @@ public class TutorialManager : MonoBehaviour
     [TextArea, SerializeField] protected string[] tutorialTexts;
     [SerializeField] protected GameObject[] chosenSlots;
     [SerializeField] protected Sprite[] blackScreens, exitspots1, exitspots2, exitspots3;
-    [SerializeField] protected SpriteRenderer screenImage;
+    [SerializeField] protected SpriteRenderer screenImage, cenefa;
 
     public int currentTutorial;
 
@@ -50,7 +50,7 @@ public class TutorialManager : MonoBehaviour
                     if (cardManager.cardsDealt)
                     {
                         //Move down tutorial
-                        StopGame();
+                        DisplayTutorial();
                     }
                     break;
 
@@ -58,7 +58,7 @@ public class TutorialManager : MonoBehaviour
                     if (manager.CheckIsInCheckMovement())
                     {
                         //go to treat tutorial
-                        StopGame();             
+                        DisplayTutorial();             
                     }
                     break;
 
@@ -67,7 +67,7 @@ public class TutorialManager : MonoBehaviour
                     {
                         //use treat tutorial
                         mouseManager.needsTreat = true;
-                        StopGame();
+                        DisplayTutorial();
                     }
                     break;
 
@@ -75,7 +75,7 @@ public class TutorialManager : MonoBehaviour
                     if (manager.CheckIsInCheckMovement())
                     {
                         //Go to enemy tutorial
-                        StopGame();
+                        DisplayTutorial();
                     }
                     break;
 
@@ -84,28 +84,28 @@ public class TutorialManager : MonoBehaviour
                     if (manager.CheckIsInCheckMovement())
                     {
                         //Explain enemy tutorial
-                        StopGame();
+                        DisplayTutorial();
                     }
                     break;
 
                 case 9:
                     if (manager.currentState == GameManager.turnState.Endturn)
                     {
-                        StopGame();
+                        DisplayTutorial();
                     }
                     break;
 
                 case 10:
                     if (manager.CheckIsInCheckMovement())
                     {
-                        StopGame();
+                        DisplayTutorial();
                     }
                     break;
 
                 case 11:
                     if (manager.CheckIsInCheckMovement() && cardManager.exitCardDealt)
                     {
-                        StopGame();
+                        DisplayTutorial();
                     }
                     break;
             }
@@ -124,17 +124,13 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    public void StopGame()
-    {
-        DisplayTutorial();
-    }
-
-    private void DisplayTutorial()
+    protected void DisplayTutorial()
     {
         textBox.gameObject.SetActive(true);
         textManager.TutorialTalk(tutorialTexts[currentTutorial]);
         mouseManager.DeactivateDisplay();
         mouseManager.hoverAesthetics.SetActive(false);
+        cenefa.sortingOrder = 8000;
         tutorialPlayed = true;
 
         if (currentTutorial != 0)
@@ -204,6 +200,7 @@ public class TutorialManager : MonoBehaviour
         textBox.gameObject.SetActive(false);
         hand.DeterminePosition();
         textManager.StopTalk();
+        cenefa.sortingOrder = 4;
     }
     public virtual bool IsCorrectCard(GameObject mySlot)
     {
@@ -239,7 +236,7 @@ public class TutorialManager : MonoBehaviour
                 break;
 
             case 3:
-                screenImage.sprite = exitspots2[(int)location.y - 1];
+                screenImage.sprite = exitspots3[(int)location.y - 1];
                 break;
         }
 
