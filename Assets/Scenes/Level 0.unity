@@ -6758,7 +6758,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 776948678}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.967551, y: -0.06, z: 0}
+  m_LocalPosition: {x: -6.43, y: -0.248, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7068,7 +7068,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 59c7a3dc154507249b72ba857fbb1cb0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a9591e39ecb12dd43afdc6af8670c4e7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7114,7 +7114,7 @@ MonoBehaviour:
   playerText: {fileID: 0}
   bigText: {fileID: 0}
   bigFear: {fileID: 0}
-  bigImage: {fileID: 21300000, guid: a9cda5cd70e69f546aa2ff04536e6b76, type: 3}
+  bigImage: {fileID: 21300000, guid: d455b98d93e5bb14a820c8b88785a11a, type: 3}
 --- !u!50 &798634182
 Rigidbody2D:
   serializedVersion: 4
@@ -9295,7 +9295,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: (You can pay by draggind your treats to the screen)
+  m_text: (You can pay by draging your treats to the screen)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d93d94de1ea1d864283329f42ef88f03, type: 2}
   m_sharedMaterial: {fileID: -4317416503888858199, guid: d93d94de1ea1d864283329f42ef88f03, type: 2}
@@ -10501,7 +10501,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -10
-  m_Sprite: {fileID: 21300000, guid: 37fe6dd79b7687447bd56e6538815311, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7ed1ffaa4824a224f935906b118be053, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -12652,7 +12652,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1574868880}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.48, y: -0.055789087, z: 0}
+  m_LocalPosition: {x: -6.51, y: -0.055789087, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

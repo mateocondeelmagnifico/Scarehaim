@@ -313,6 +313,7 @@ public class CardEffectManager : MonoBehaviour
         {
             Time.timeScale = 0;
             gameWonMenu.SetActive(true);
+            mouseManager.canClick = false;
         }
         else
         {
@@ -321,12 +322,11 @@ public class CardEffectManager : MonoBehaviour
         }
 
         soundManager.PlaySound("Game Won");
-        soundManager.Sources[2].loop = false;
-        mouseManager.canClick = false;
+        soundManager.Sources[2].loop = false; 
     }
     private void DisplayFear()
     {
         fearCounter.gameObject.SetActive(true);
-        fearText.text = "Hope = " + playerFear.hope.ToString();
+        fearText.text = "Courage = " + playerFear.hope.ToString();
     }
 }
