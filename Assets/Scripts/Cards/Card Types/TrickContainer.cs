@@ -10,12 +10,6 @@ public class TrickContainer : CardObject
     private GameManager manager;
     [HideInInspector] public GameObject myIndicator;
 
-    //Constructor
-    public TrickContainer(Card CardScript, Transform discardLocation) : base(CardScript, discardLocation)
-    {
-        myTrick = CardScript as Trick;
-    }
-
     private void Start()
     {
         myTrick = myCard as Trick;
@@ -28,8 +22,7 @@ public class TrickContainer : CardObject
     {
         if (player.position.x == transform.position.x && player.position.y == transform.position.y)
         {
-            if (player.position.x == playerMovement.tempDestination.x && player.position.y == playerMovement.tempDestination.y) ;
-            else
+            if (player.position.x != playerMovement.tempDestination.x && player.position.y != playerMovement.tempDestination.y)
             {
                 manager.trapTriggered = true;
                 if (manager.currentState == GameManager.turnState.CheckCardEffect)

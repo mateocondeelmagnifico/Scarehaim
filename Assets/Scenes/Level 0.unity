@@ -692,6 +692,11 @@ MonoBehaviour:
   volumeSlider: {fileID: 1174422624}
   autoPlayMusic: 1
   volumeSetting: 0
+--- !u!4 &43865146 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4676084009188673460, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
+  m_PrefabInstance: {fileID: 855221615}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &71557773
 GameObject:
   m_ObjectHideFlags: 0
@@ -2977,7 +2982,7 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 894686014138126463, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1443171428}
+      addedObject: {fileID: 43865146}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
 --- !u!4 &301111691 stripped
@@ -8120,6 +8125,71 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 839340454}
   m_CullTransparentMesh: 1
+--- !u!1001 &855221615
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 301111691}
+    m_Modifications:
+    - target: {fileID: -1412659407225101089, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
+      propertyPath: myCard
+      value: 
+      objectReference: {fileID: 11400000, guid: 84339a6d95e474a4ca3fed9b74d3ed43, type: 2}
+    - target: {fileID: 638242032198707708, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
+      propertyPath: m_Name
+      value: 'Rose Garden 1 '
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676084009188673460, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676084009188673460, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676084009188673460, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676084009188673460, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676084009188673460, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676084009188673460, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676084009188673460, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676084009188673460, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676084009188673460, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676084009188673460, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676084009188673460, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
 --- !u!1 &904356215
 GameObject:
   m_ObjectHideFlags: 0
@@ -8530,7 +8600,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 84339a6d95e474a4ca3fed9b74d3ed43, type: 2}
     - target: {fileID: 638242032198707708, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
       propertyPath: m_Name
-      value: Rose Garden
+      value: Rose Garden 2
       objectReference: {fileID: 0}
     - target: {fileID: 4676084009188673460, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
       propertyPath: m_RootOrder
@@ -12212,76 +12282,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441963326}
   m_CullTransparentMesh: 1
---- !u!1001 &1443171427
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 301111691}
-    m_Modifications:
-    - target: {fileID: -1412659407225101089, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
-      propertyPath: myCard
-      value: 
-      objectReference: {fileID: 11400000, guid: 84339a6d95e474a4ca3fed9b74d3ed43, type: 2}
-    - target: {fileID: 638242032198707708, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
-      propertyPath: m_Name
-      value: Rose Garden
-      objectReference: {fileID: 0}
-    - target: {fileID: 4676084009188673460, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4676084009188673460, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4676084009188673460, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4676084009188673460, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4676084009188673460, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4676084009188673460, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4676084009188673460, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4676084009188673460, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4676084009188673460, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4676084009188673460, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4676084009188673460, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
---- !u!4 &1443171428 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4676084009188673460, guid: fb8ca816b587a904ea4beb170346deef, type: 3}
-  m_PrefabInstance: {fileID: 1443171427}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1462358200
 GameObject:
   m_ObjectHideFlags: 0
@@ -13494,6 +13494,10 @@ PrefabInstance:
     - target: {fileID: 8380407732755515517, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
       propertyPath: m_Size.y
       value: 2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8380407732755515517, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8380407732755515517, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
@@ -15246,8 +15250,8 @@ MonoBehaviour:
   turnCount: 0
   player: {fileID: 688192956}
   selectedCardSlot: {fileID: 0}
-  handSlotPrefab: {fileID: 5757337979554174078, guid: 215caa4bbbf4e41498cc4f35ea8d78b8, type: 3}
   selectedCard: {fileID: 0}
+  handSlotPrefab: {fileID: 5757337979554174078, guid: 215caa4bbbf4e41498cc4f35ea8d78b8, type: 3}
   newCardSlot: {fileID: 0}
   emptySlot: {fileID: 0}
   newCard: {fileID: 0}

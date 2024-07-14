@@ -21,7 +21,11 @@ public class CardSlotHand: CardSlot
         gameManager = GameManager.Instance;
         if(effectManager == null) effectManager = CardEffectManager.Instance;
         blackScreen = effectManager.blackScreen.transform;
-        if(transform.childCount > 0) cardObject = transform.GetChild(0).gameObject;
+        if (transform.childCount > 0)
+        {
+            Debug.Log(3);
+            cardObject = transform.GetChild(0).gameObject;
+        }
     }
 
     private void Update()
@@ -108,7 +112,8 @@ public class CardSlotHand: CardSlot
         bool cardPlayed = false;
             if (gameManager.currentState == GameManager.turnState.CheckMovement && !GameManager.Instance.powerUpOn)
             {
-                //Aqui es donde se aplica el efecto del disfraz y del treat
+            //Aqui es donde se aplica el efecto del disfraz y del treat
+            Debug.Log(5);
                 goHome = true;
                 cardObject.GetComponent<CardObject>().myCard.PlayEffect(gameManager);
                 cardPlayed = true;

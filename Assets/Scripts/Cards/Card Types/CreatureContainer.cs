@@ -8,12 +8,6 @@ public class CreatureContainer : CardObject
     private Movement pMovement;
     private string chosenDisguise;
 
-    //constructor
-    public CreatureContainer(Card cardScriptable, Transform discardSpot) : base(cardScriptable, discardSpot)
-    {
-        myCard = cardScriptable;
-    }
-
     private void Start()
     {
         gameManager = GameManager.Instance;

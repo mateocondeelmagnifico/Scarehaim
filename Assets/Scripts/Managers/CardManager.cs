@@ -248,6 +248,8 @@ public class CardManager : MonoBehaviour
                     {
                         if(Vector3.Distance(allCards[randomNum].transform.position, enemy.position) > 0.3f)
                         {
+                            Debug.Log(1);
+
                             if (allCards[randomNum].transform.childCount > 0) Destroy(allCards[randomNum].transform.GetChild(0).gameObject);
 
                             newCard = Instantiate(exitCard, allCards[randomNum].transform);
@@ -278,8 +280,9 @@ public class CardManager : MonoBehaviour
         //Called by gameManager
         cardSlot = gameManager.slotToReplaceOld.GetComponent<CardSlot>();
         ReplaceCard();
-       
+
         #region Assign card
+        Debug.Log(2);
         cardSlot.cardObject = newCard;
         newCard.transform.parent = cardSlot.gameObject.transform;
         gameManager.newCard = newCard;

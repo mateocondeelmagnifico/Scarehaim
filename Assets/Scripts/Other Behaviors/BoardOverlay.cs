@@ -36,13 +36,14 @@ public class BoardOverlay : MonoBehaviour
     public void ACtivateOverlay(string color)
     {
         return;
-
+        /*
         isActive = true;
 
         if (color == "Yellow") myColor = Color.yellow;
         if (color == "Green") myColor = Color.green;
         if (color == "Blue") myColor = Color.blue;
         if (color == "Red") myColor = Color.red;
+        */
     }
 
     public void DeactivatOverlay()

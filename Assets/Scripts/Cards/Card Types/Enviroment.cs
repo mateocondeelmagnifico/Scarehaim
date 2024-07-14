@@ -10,6 +10,6 @@ public class Enviroment : Card
             CardManager.Instance.cardsUntilExit--;
         }
         GameManager.Instance.ChangeState(GameManager.turnState.ApplyCardEffect);
-        DiscardCard();
+        myObject.DiscardCard();
     }
 }

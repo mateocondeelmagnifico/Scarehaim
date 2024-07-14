@@ -23,6 +23,7 @@ public class CardSlot : MonoBehaviour
     }
     private void Update()
     {
+
         if(otherTimer > 0)
         {
             otherTimer -= Time.deltaTime;
@@ -50,8 +51,6 @@ public class CardSlot : MonoBehaviour
 
     public void ReplaceCard()
     {
-        Debug.Log(cardObject);
-        gameManager.selectedCard = cardObject;
         gameManager.moveCard = true;
 
         cardManager.CardDiscarded(this);

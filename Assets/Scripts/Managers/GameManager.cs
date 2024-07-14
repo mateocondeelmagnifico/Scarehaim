@@ -38,7 +38,8 @@ public class GameManager : MonoBehaviour
 
     public int turnCount;
 
-    public GameObject player, selectedCardSlot, selectedCard, handSlotPrefab, newCardSlot, emptySlot, newCard, slotToReplaceOld, slotToReplaceNew;
+    public GameObject player, selectedCardSlot, handSlotPrefab, newCardSlot, emptySlot, newCard, slotToReplaceOld, slotToReplaceNew;
+    private GameObject selectedCard;
 
     [HideInInspector]
     public Transform deck, discardPile, hand;
@@ -78,6 +79,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+
         if (Vector3.Distance(enemy.transform.position, player.transform.position) < 0.3f && turnCount > 2) player.GetComponent<Fear>().UpdateFear(-10);
 
         #region Check Turn State
@@ -145,12 +147,7 @@ public class GameManager : MonoBehaviour
             case turnState.Movecard:
                 if (moveCardToHand || moveCard)
                 {
-                    if (moveCard)
-                        {
-                        Debug.Log(selectedCard);
-                        MoveCard(selectedCard, discardPile.position, selectedCard.GetComponent<SpriteRenderer>());
-                    }
-                    
+                    if (moveCard) MoveCard(selectedCard, discardPile.position, selectedCard.GetComponent<SpriteRenderer>());
 
                     if (moveCardToHand)
                     {
@@ -205,6 +202,7 @@ public class GameManager : MonoBehaviour
         //This script tells the card that it has to activate
         cardInformed = true;
         selectedCardSlot.transform.GetChild(0).GetComponent<CardObject>().myCard.Effect(selectedCardSlot.transform.GetChild(0).gameObject, handSlotPrefab);
+        selectedCard = selectedCardSlot.transform.GetChild(0).gameObject;
     }
 
     private void MoveCard( GameObject whatCard, Vector3 desiredPos, SpriteRenderer renderer)
