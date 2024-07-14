@@ -282,7 +282,6 @@ public class CardManager : MonoBehaviour
         ReplaceCard();
 
         #region Assign card
-        Debug.Log(2);
         cardSlot.cardObject = newCard;
         newCard.transform.parent = cardSlot.gameObject.transform;
         gameManager.newCard = newCard;

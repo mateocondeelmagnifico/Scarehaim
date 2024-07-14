@@ -6,7 +6,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="Treat", menuName = "Cards/Treat")]
 public class Treat: Card
 {
-    GameManager manager;
     public override void Effect(GameObject card, GameObject cardSlot)
     {
         //TurnState is changed in the card script
@@ -22,7 +21,7 @@ public class Treat: Card
 
     public override void UndoEffect()
     {
-        manager.powerUpOn = false;
-        manager.player.GetComponent<Movement>().hasTreat = false;
+        GameManager.Instance.powerUpOn = false;
+        GameManager.Instance.player.GetComponent<Movement>().hasTreat = false;
     }
 }

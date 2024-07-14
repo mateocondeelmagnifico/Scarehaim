@@ -232,7 +232,7 @@ public class Hand : MonoBehaviour
     public void UndoLimbo()
     {
         cardInLimbo.SetActive(true);
-        cardInLimbo.transform.GetChild(0).GetComponent<Card>().UndoEffect();
+        cardInLimbo.transform.GetChild(0).GetComponent<CardObject>().myCard.UndoEffect();
         if (overlay == null) overlay = BoardOverlay.instance;
         overlay.DeactivatOverlay();
 

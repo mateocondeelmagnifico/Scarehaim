@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     public int turnCount;
 
-    public GameObject player, selectedCardSlot, handSlotPrefab, newCardSlot, emptySlot, newCard, slotToReplaceOld, slotToReplaceNew;
+    public GameObject player, selectedCardSlot, handSlotPrefab, slotToReplaceNew, newCardSlot, emptySlot, newCard, slotToReplaceOld;
     private GameObject selectedCard;
 
     [HideInInspector]
@@ -201,8 +201,8 @@ public class GameManager : MonoBehaviour
     {
         //This script tells the card that it has to activate
         cardInformed = true;
-        selectedCardSlot.transform.GetChild(0).GetComponent<CardObject>().myCard.Effect(selectedCardSlot.transform.GetChild(0).gameObject, handSlotPrefab);
         selectedCard = selectedCardSlot.transform.GetChild(0).gameObject;
+        selectedCardSlot.transform.GetChild(0).GetComponent<CardObject>().DoEffect(handSlotPrefab);
     }
 
     private void MoveCard( GameObject whatCard, Vector3 desiredPos, SpriteRenderer renderer)

@@ -8,6 +8,7 @@ public class Card : ScriptableObject
 {
     public Sprite image, bigImage;
     [HideInInspector] public CardObject myObject;
+    public GameObject myCardObject;
 
     public virtual void Effect(GameObject card, GameObject cardSlot)
     {

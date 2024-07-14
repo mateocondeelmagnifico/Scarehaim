@@ -59,4 +59,12 @@ public class CardObject : MonoBehaviour
         Hand.Instance.PutCardInLimbo(transform.parent.gameObject);
     }
 
+    public void DoEffect(GameObject slot)
+    {
+        Debug.Log(gameObject);
+        
+        myCard.myCardObject = this.gameObject;
+        Debug.Log(myCard.myCardObject);
+        myCard.Effect(this.gameObject, slot);
+    }
 }
