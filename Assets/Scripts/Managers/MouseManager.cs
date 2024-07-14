@@ -128,6 +128,7 @@ public class MouseManager : MonoBehaviour
                             SoundManager.Instance.PlaySound("Card Picked");
                             if (manager.CheckIsInCheckMovement() && currentCard.transform.childCount > 0)
                             {
+
                                 if (playerMove.turnsWithcostume <= 0)
                                 {
                                     selectedCardSlot = cardHit;
@@ -194,7 +195,7 @@ public class MouseManager : MonoBehaviour
                                 blackBox.enabled = true;
                                 if (cardHit.transform.childCount > 0)
                                 {
-                                    display.sprite = cardHit.GetComponentInChildren<Card>().bigImage;
+                                    display.sprite = cardHit.GetComponentInChildren<CardObject>().myCard.bigImage;
                                 }
                             }
                         }
@@ -210,7 +211,7 @@ public class MouseManager : MonoBehaviour
                             {
                                 display.enabled = true;
                                 blackBox.enabled = true;
-                                display.sprite = cardHit.GetComponentInChildren<Card>().bigImage;
+                                display.sprite = cardHit.GetComponentInChildren<CardObject>().myCard.bigImage;
                             }
                         }
                         #endregion
@@ -456,7 +457,7 @@ public class MouseManager : MonoBehaviour
                 {
                     if (radarPositions[e].x == tricks.GetChild(i).transform.position.x && radarPositions[e].y == tricks.GetChild(i).transform.position.y)
                     {
-                        tricks.GetChild(i).GetComponent<Trick>().myIndicator = GameObject.Instantiate(trapIndicator, tricks.GetChild(i).transform.position, Quaternion.identity);
+                        tricks.GetChild(i).GetComponent<TrickContainer>().myIndicator = GameObject.Instantiate(trapIndicator, tricks.GetChild(i).transform.position, Quaternion.identity);
                     }
                 }
             }

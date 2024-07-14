@@ -9,9 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4676084009188673460}
-  - component: {fileID: -1412659407225101089}
   - component: {fileID: -5481713987991069524}
-  - component: {fileID: -853163976463578269}
+  - component: {fileID: 6392554949854954201}
   m_Layer: 0
   m_Name: Snow Dummy
   m_TagString: Enemy
@@ -34,20 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-1412659407225101089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 638242032198707708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9757ec7f74b773b4d8d55086e343fdb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myCard: {fileID: -853163976463578269}
-  rendereador: {fileID: -5481713987991069524}
 --- !u!212 &-5481713987991069524
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -100,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-853163976463578269
+--- !u!114 &6392554949854954201
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,19 +94,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 638242032198707708}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d408c0bcb01fae44bb9a824eeb57ef26, type: 3}
+  m_Script: {fileID: 11500000, guid: a27f712651a623c45a7ecd6d089c1e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: e0a9f807c173a024480a39381a8caa36, type: 3}
-  bigImage: {fileID: 21300000, guid: e0696156afa0fa245b9a22b24d9dc56f, type: 3}
-  myCost:
-    explanation: Pay 1 treat or lose 3 courage.
-    CostName: Treat
-    costAmount: 1
-    reward: 
-    rewardAmount: 0
-    consequenceName: Fear
-    secondConsequenceName: 
-    consequenceAmount: -3
-    secondConsequenceAmount: 0
-  disguiseToIgnore: 
+  myCard: {fileID: 11400000, guid: 614b95c08591bf042bf521463d771c29, type: 2}
+  player: {fileID: 0}
+  rendereador: {fileID: -5481713987991069524}
+  discardLocation: {fileID: 0}
+  isDone: 0

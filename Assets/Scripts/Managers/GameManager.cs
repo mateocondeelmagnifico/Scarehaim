@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     public int turnCount;
 
-    public GameObject player, selectedCardSlot, handSlotPrefab, selectedCard, newCardSlot, emptySlot, newCard, slotToReplaceOld, slotToReplaceNew;
+    public GameObject player, selectedCardSlot, selectedCard, handSlotPrefab, newCardSlot, emptySlot, newCard, slotToReplaceOld, slotToReplaceNew;
 
     [HideInInspector]
     public Transform deck, discardPile, hand;
@@ -146,7 +146,11 @@ public class GameManager : MonoBehaviour
                 if (moveCardToHand || moveCard)
                 {
                     if (moveCard)
+                        {
+                        Debug.Log(selectedCard);
                         MoveCard(selectedCard, discardPile.position, selectedCard.GetComponent<SpriteRenderer>());
+                    }
+                    
 
                     if (moveCardToHand)
                     {

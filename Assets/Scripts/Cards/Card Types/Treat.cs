@@ -3,23 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
+[CreateAssetMenu(fileName ="Treat", menuName = "Cards/Treat")]
 public class Treat: Card
 {
     GameManager manager;
     public override void Effect(GameObject card, GameObject cardSlot)
     {
         //TurnState is changed in the card script
-        MoveToHand(card, cardSlot);
+        myObject.MoveToHand(cardSlot);
     }
 
-    public override void PlayEffect()
+    public override void PlayEffect(GameManager manager)
     {
-        manager = GameManager.Instance;
         manager.powerUpOn = true;
         manager.player.GetComponent<Movement>().hasTreat = true;
         BoardOverlay.instance.ACtivateOverlay("Blue");
-
-        Hand.Instance.PutCardInLimbo(transform.parent.gameObject);
     }
 
     public override void UndoEffect()

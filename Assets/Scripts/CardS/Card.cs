@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 
 
-public class Card : MonoBehaviour
+public class Card : ScriptableObject
 {
 
     public Sprite image, bigImage;
-
-    CardSlot slot;
+    [HideInInspector] public CardObject myObject;
 
     public delegate void cardEffect();
     public event cardEffect discardCard;
@@ -21,31 +19,14 @@ public class Card : MonoBehaviour
 
     }
 
-    public virtual void PlayEffect()
+    public virtual void PlayEffect(GameManager manager)
     {
 
     }
     public virtual void UndoEffect() { }
     public virtual void MoveToHand(GameObject card, GameObject cardSlot) 
     {
-        #region Make new cardslot and change variables
-        transform.parent.GetComponent<CardSlot>().cardObject = null;
-
-        GameManager manager = GameManager.Instance;
-        GameObject newSlot = GameObject.Instantiate(cardSlot);
-
-        newSlot.transform.position = card.transform.position;
-        newSlot.GetComponent<CardSlotHand>().cardObject = card;
-        newSlot.GetComponent<CardSlotHand>().enabled = false;
-        CardManager.Instance.CardDiscarded(transform.parent.GetComponent<CardSlot>());
-        card.transform.parent = newSlot.transform;
-
-        manager.newCardSlot = newSlot;
-        manager.moveCardToHand = true;
-
-        #endregion
-
-        GameManager.Instance.ChangeState(GameManager.turnState.Movecard);
+       
     }
 
     public void DiscardCard()

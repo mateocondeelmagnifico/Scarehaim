@@ -15876,20 +15876,20 @@ MonoBehaviour:
   cardsOnBoard: {fileID: 1505720235}
   cardPrefab: {fileID: 8929231805802886072, guid: 02029671aee72844892ff20b614ee6d5, type: 3}
   exitCard: {fileID: 2428508991241272260, guid: 47cd3a6bc6ebda44ca528a7ede6a955f, type: 3}
-  enviroments:
-  - {fileID: 638242032198707708, guid: d32385184c6a48b419c2137da8affdec, type: 3}
-  enviroments2:
-  - {fileID: 638242032198707708, guid: 22c21454f35b55348af2ba91a3a3c76d, type: 3}
-  enviroments3:
-  - {fileID: 638242032198707708, guid: d32385184c6a48b419c2137da8affdec, type: 3}
-  - {fileID: 638242032198707708, guid: 22c21454f35b55348af2ba91a3a3c76d, type: 3}
-  treats:
-  - {fileID: 638242032198707708, guid: 8ea2ad0331422734e858efeaecb84e4d, type: 3}
-  - {fileID: 638242032198707708, guid: c244b2479b1fb554da78f695ea0d2058, type: 3}
-  - {fileID: 638242032198707708, guid: 151013d12cc251146ab1d474bec862a1, type: 3}
-  costumes:
-  - {fileID: 638242032198707708, guid: 586fbdec72867df419f6c84721780c93, type: 3}
   allCards: []
+  enviroments:
+  - {fileID: 11400000, guid: 3996a741bb5c01d469fdce2f8da5dd55, type: 2}
+  enviroments2:
+  - {fileID: 11400000, guid: 66b9a537d8db5de4f8c14bddb0883acc, type: 2}
+  enviroments3:
+  - {fileID: 11400000, guid: 66b9a537d8db5de4f8c14bddb0883acc, type: 2}
+  - {fileID: 11400000, guid: 3996a741bb5c01d469fdce2f8da5dd55, type: 2}
+  treats:
+  - {fileID: 11400000, guid: 4e4e7a9fbecf7d645979916b5264facb, type: 2}
+  - {fileID: 11400000, guid: 48ea448aa5b76554692eedf80f0329e2, type: 2}
+  - {fileID: 11400000, guid: 12bd1385aa05d0c4ab5cce2d8895fcfb, type: 2}
+  costumes:
+  - {fileID: 11400000, guid: d42ed4c72e30f2d45a25c464e13bcf2c, type: 2}
   enemy: {fileID: 798634178}
   cardsUntilExit: 10
   treatAmount: 2

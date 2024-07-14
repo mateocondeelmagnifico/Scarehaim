@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2742509580023843933}
   - component: {fileID: 3593681382010618264}
   - component: {fileID: 7906237720000457148}
-  - component: {fileID: 3647750438186075112}
   m_Layer: 0
   m_Name: Exit Card
   m_TagString: Untagged
@@ -47,7 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCard: {fileID: 0}
+  player: {fileID: 0}
   rendereador: {fileID: 0}
+  discardLocation: {fileID: 0}
 --- !u!212 &7906237720000457148
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -100,17 +101,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3647750438186075112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2428508991241272260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36f7459590f16d14099c499caa2e84ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: 61bc094d574eb8e41ba1f3daf8ab0db3, type: 3}
-  bigImage: {fileID: 21300000, guid: 61bc094d574eb8e41ba1f3daf8ab0db3, type: 3}

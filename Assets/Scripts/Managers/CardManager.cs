@@ -8,11 +8,12 @@ public class CardManager : MonoBehaviour
 {
     public static CardManager Instance {get; set;}
 
-    public List<GameObject[]> cards = new List<GameObject[]>();
+    public List<Card[]> cards = new List<Card[]>();
 
     public GameObject cardsOnBoard, cardPrefab, exitCard;
     private GameObject newCard;
-    [SerializeField] private GameObject[] enviroments, enviroments2, enviroments3, treats, costumes, allCards;
+    [SerializeField] private GameObject[] allCards;
+    [SerializeField] private Card[] enviroments, enviroments2, enviroments3, treats, costumes;
     private Transform[] cardObjects;
     [SerializeField] private Transform enemy;
 
@@ -300,10 +301,11 @@ public class CardManager : MonoBehaviour
         {
             randomInt = Random.Range(0, cards.Count);
         }
-        GameObject[] chosenArray = cards[randomInt];
+        Card[] chosenArray = cards[randomInt];
         int newRandom = Random.Range(0, chosenArray.Length);
 
-        newCard = Instantiate(chosenArray[newRandom], deck);
+        newCard = Instantiate(cardPrefab, deck);
+        newCard.GetComponent<CardObject>().myCard = chosenArray[randomInt];
 
         #region Check if it has run out of treats or costumes
         if (cards.Count == 4)

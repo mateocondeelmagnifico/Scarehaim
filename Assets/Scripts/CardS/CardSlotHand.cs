@@ -110,7 +110,7 @@ public class CardSlotHand: CardSlot
             {
                 //Aqui es donde se aplica el efecto del disfraz y del treat
                 goHome = true;
-                cardObject.GetComponent<Card>().PlayEffect();
+                cardObject.GetComponent<CardObject>().myCard.PlayEffect(gameManager);
                 cardPlayed = true;
             }
             

@@ -50,6 +50,7 @@ public class CardSlot : MonoBehaviour
 
     public void ReplaceCard()
     {
+        Debug.Log(cardObject);
         gameManager.selectedCard = cardObject;
         gameManager.moveCard = true;
 

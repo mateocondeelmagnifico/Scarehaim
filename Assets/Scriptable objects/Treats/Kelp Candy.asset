@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19fa87e435597843978411cad1df179, type: 3}
+  m_Name: Kelp Candy
+  m_EditorClassIdentifier: 
+  image: {fileID: 21300000, guid: 21cb151c76a565b498fe6c7476be00e9, type: 3}
+  bigImage: {fileID: 21300000, guid: 8dac7b9d695b632488d76e01ef24ec38, type: 3}

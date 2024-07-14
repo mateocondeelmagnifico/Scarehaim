@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4676084009188673460}
   - component: {fileID: -1412659407225101089}
   - component: {fileID: -5481713987991069524}
-  - component: {fileID: 5984906273801955380}
   m_Layer: 0
   m_Name: Melted Snow
   m_TagString: Treat
@@ -46,8 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9757ec7f74b773b4d8d55086e343fdb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myCard: {fileID: 5984906273801955380}
+  myCard: {fileID: 0}
+  player: {fileID: 0}
   rendereador: {fileID: 0}
+  discardLocation: {fileID: 0}
 --- !u!212 &-5481713987991069524
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -100,17 +101,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5984906273801955380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 638242032198707708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f19fa87e435597843978411cad1df179, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: 073c5a40af553ba4d92f837e6e743216, type: 3}
-  bigImage: {fileID: 21300000, guid: eb7b5f62ed0906941b318715bbc15a3d, type: 3}

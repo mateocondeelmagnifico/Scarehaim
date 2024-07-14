@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Enviroment", menuName = "Cards/Enviroment")]
 public class Enviroment : Card
 {
     public override void Effect(GameObject card, GameObject cardSlot)

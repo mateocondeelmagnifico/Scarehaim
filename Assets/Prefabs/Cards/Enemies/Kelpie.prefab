@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4676084009188673460}
   - component: {fileID: -1412659407225101089}
   - component: {fileID: -5481713987991069524}
-  - component: {fileID: -853163976463578269}
   m_Layer: 0
   m_Name: Kelpie
   m_TagString: Enemy
@@ -46,8 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9757ec7f74b773b4d8d55086e343fdb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myCard: {fileID: -853163976463578269}
+  myCard: {fileID: 0}
+  player: {fileID: 0}
   rendereador: {fileID: -5481713987991069524}
+  discardLocation: {fileID: 0}
 --- !u!212 &-5481713987991069524
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -100,28 +101,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-853163976463578269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 638242032198707708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d408c0bcb01fae44bb9a824eeb57ef26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: 75cf6c001cc83c844a55a73e5a833a2a, type: 3}
-  bigImage: {fileID: 21300000, guid: 7d83bc8feac5e3b42a3815d081b4d12c, type: 3}
-  myCost:
-    explanation: Pay 2 Treats and gain 2 Courage or Don't pay and Lose 3 Courage
-    CostName: Treat
-    costAmount: 2
-    reward: Fear
-    rewardAmount: 2
-    consequenceName: Fear
-    secondConsequenceName: 
-    consequenceAmount: -3
-    secondConsequenceAmount: 0
-  disguiseToIgnore: 
