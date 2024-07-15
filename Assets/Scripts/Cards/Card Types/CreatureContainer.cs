@@ -12,6 +12,7 @@ public class CreatureContainer : CardObject
     {
         gameManager = GameManager.Instance;
         player = gameManager.player.transform;
+        (myCard as CreatureCard).player = player;
         pMovement = player.GetComponent<Movement>();
         isDone = false;
         chosenDisguise = (myCard as CreatureCard).disguiseToIgnore;

@@ -61,10 +61,7 @@ public class CardObject : MonoBehaviour
 
     public void DoEffect(GameObject slot)
     {
-        Debug.Log(gameObject);
-        
         myCard.myCardObject = this.gameObject;
-        Debug.Log(myCard.myCardObject);
         myCard.Effect(this.gameObject, slot);
     }
 }

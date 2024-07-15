@@ -307,7 +307,7 @@ public class CardManager : MonoBehaviour
         int newRandom = Random.Range(0, chosenArray.Length);
 
         newCard = Instantiate(cardPrefab, deck);
-        newCard.GetComponent<CardObject>().myCard = chosenArray[randomInt];
+        newCard.GetComponent<CardObject>().myCard = chosenArray[newRandom];
 
         #region Check if it has run out of treats or costumes
         if (cards.Count == 4)

@@ -10,7 +10,7 @@ public class CreatureCard : Card
     public string disguiseToIgnore;
 
     private GameManager manager;
-    private Transform player;
+    public Transform player;
     [HideInInspector] public CreatureContainer container;
 
     public override void Effect(GameObject card, GameObject cardSlot)
