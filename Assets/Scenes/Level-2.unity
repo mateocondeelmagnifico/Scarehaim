@@ -12337,7 +12337,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1526464587
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14587,12 +14587,11 @@ MonoBehaviour:
   player: {fileID: 688192956}
   selectedCardSlot: {fileID: 0}
   handSlotPrefab: {fileID: 5757337979554174078, guid: 215caa4bbbf4e41498cc4f35ea8d78b8, type: 3}
-  selectedCard: {fileID: 0}
+  slotToReplaceNew: {fileID: 0}
   newCardSlot: {fileID: 0}
   emptySlot: {fileID: 0}
   newCard: {fileID: 0}
   slotToReplaceOld: {fileID: 0}
-  slotToReplaceNew: {fileID: 0}
   deck: {fileID: 832433590}
   discardPile: {fileID: 1969379264}
   hand: {fileID: 1571830515}

@@ -14,15 +14,10 @@ public class Card : ScriptableObject
     {
 
     }
-
     public virtual void PlayEffect(GameManager manager)
     {
 
     }
     public virtual void UndoEffect() { }
-    public virtual void MoveToHand(GameObject card, GameObject cardSlot) 
-    {
-       
-    }
 
 }
