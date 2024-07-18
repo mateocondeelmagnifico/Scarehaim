@@ -251,7 +251,7 @@ public class CardManager : MonoBehaviour
                             if (allCards[i].transform.childCount > 0) Destroy(allCards[i].transform.GetChild(0).gameObject);
 
                             newCard = Instantiate(exitCard, allCards[i].transform);
-                            newCard.transform.parent = allCards[randomNum].transform;
+                            newCard.transform.parent = allCards[i].transform;
                             allCards[i].GetComponent<CardSlot>().cardObject = newCard;
                             exitCardDealt = true;
                             if(tutorialManager != null) tutorialManager.DisplayExitTutorial(allCards[i].GetComponent<CardSlot>().Location);

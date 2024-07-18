@@ -24,6 +24,17 @@ public class CardSlotHand: CardSlot
         if (transform.childCount > 0)
         {
             cardObject = transform.GetChild(0).gameObject;
+            switch(cardObject.GetComponent<CardObject>().myCard)
+            {
+                case Treat:
+                    cardObject.tag = "Treat";
+                    break;
+
+                case Disguise:
+                    cardObject.tag = "Costume";
+                    break;
+
+            }
         }
     }
 
@@ -119,7 +130,6 @@ public class CardSlotHand: CardSlot
             
             if(gameManager.currentState == GameManager.turnState.CheckCardEffect && effectManager.effectActive)
             {
-            Debug.Log(1);
                 float[] distances = new float[3];
                 if (blackScreen.childCount == 2) distances[2] = 50000;
 
@@ -138,7 +148,7 @@ public class CardSlotHand: CardSlot
                     }
                 }
 
-                if(blackScreen.childCount == 2)
+            if (blackScreen.childCount == 2)
                 {
                     distances[2] = 50000;
                 }
