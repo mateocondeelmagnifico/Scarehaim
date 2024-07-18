@@ -113,13 +113,13 @@ public class CardSlotHand: CardSlot
             {
                 //Aqui es donde se aplica el efecto del disfraz y del treat
                 goHome = true;
-                //cardObject.GetComponent<CardObject>().myCard.PlayEffect(gameManager);
                 cardObject.GetComponent<CardObject>().PlayCard();
                 cardPlayed = true;
             }
             
             if(gameManager.currentState == GameManager.turnState.CheckCardEffect && effectManager.effectActive)
             {
+            Debug.Log(1);
                 float[] distances = new float[3];
                 if (blackScreen.childCount == 2) distances[2] = 50000;
 

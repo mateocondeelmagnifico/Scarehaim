@@ -240,31 +240,26 @@ public class CardManager : MonoBehaviour
             
             for (int i = randomNum; i < cardsOnBoard.transform.childCount; i++)
             {
-                Transform chosenCard = allCards[i].transform;
+                Transform chosenCard = cardsOnBoard.transform.GetChild(i);
 
                 if(chosenCard.transform.childCount > 0)
                 {
                     if (!chosenCard.GetChild(0).CompareTag("Enemy") && (chosenCard.position.x != playerPos.position.x && chosenCard.position.y != playerPos.position.y))
                     {
-                        if(Vector3.Distance(allCards[randomNum].transform.position, enemy.position) > 0.3f)
+                        if(Vector3.Distance(cardsOnBoard.transform.GetChild(i).transform.position, enemy.position) > 0.1f)
                         {
-                            Debug.Log(1);
+                            if (allCards[i].transform.childCount > 0) Destroy(allCards[i].transform.GetChild(0).gameObject);
 
-                            if (allCards[randomNum].transform.childCount > 0) Destroy(allCards[randomNum].transform.GetChild(0).gameObject);
-
-                            newCard = Instantiate(exitCard, allCards[randomNum].transform);
+                            newCard = Instantiate(exitCard, allCards[i].transform);
                             newCard.transform.parent = allCards[randomNum].transform;
-                            allCards[randomNum].GetComponent<CardSlot>().cardObject = newCard;
+                            allCards[i].GetComponent<CardSlot>().cardObject = newCard;
                             exitCardDealt = true;
-                            if(tutorialManager != null) tutorialManager.DisplayExitTutorial(allCards[randomNum].GetComponent<CardSlot>().Location);
+                            if(tutorialManager != null) tutorialManager.DisplayExitTutorial(allCards[i].GetComponent<CardSlot>().Location);
 
                             i = cardsOnBoard.transform.childCount;
                         }
                     }
                 }
-
-                //Reset if spot not found
-                if (i == cardsOnBoard.transform.childCount - 1) i = 0;
             }
             #endregion
         }

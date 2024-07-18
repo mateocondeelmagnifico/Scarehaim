@@ -64,76 +64,79 @@ public class Hand : MonoBehaviour
     {
         cards = new Transform[transform.childCount];
 
-        #region Reset position and rotation
-        for (int i = 0; i < cards.Length; i++)
+        if (transform.childCount > 0)
         {
-            cards[i] = transform.GetChild(i);
-
-            cards[i].position = defaultPos;
-            cards[i].rotation = Quaternion.identity;
-            cards[i].GetComponent<CardSlotHand>().startingPos = cards[i].position;
-            cards[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 20 - i;
-        }
-        #endregion
-
-        #region Give new Position
-        for (int i = 0; i < cards.Length; i++)
-        {
-            //Moves cads in hand
-            //This if is so that the card in the middle stays put
-
-            #region Rotation multiplier and offset
-            float rotMultiplier;
-            Vector3 positionOffset;
-
-            if (cards.Length == 2 || cards.Length == 4)
+            #region Reset position and rotation
+            for (int i = 0; i < cards.Length; i++)
             {
-                rotMultiplier = 0.6f;
-                positionOffset = new Vector3(0.7f, 0, 0);
-            }
-            else
-            {
-                rotMultiplier = 1;
-                positionOffset = new Vector3(1, 0, 0);
-            }
-            #endregion
+                cards[i] = transform.GetChild(i);
 
-            if ((cards.Length == 3 && i == 1) || (cards.Length == 5 && i == 2) || cards.Length == 1)
-            {
-                //Do nothing
                 cards[i].position = defaultPos;
                 cards[i].rotation = Quaternion.identity;
                 cards[i].GetComponent<CardSlotHand>().startingPos = cards[i].position;
+                cards[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 20 - i;
             }
-            else
+            #endregion
+
+            #region Give new Position
+            for (int i = 0; i < cards.Length; i++)
             {
-               if (cards.Length / (i + 1) < 2)
-               {
-                    //Upper half
-                    MoveAndRot(i, positionOffset, -rotMultiplier);
+                //Moves cads in hand
+                //This if is so that the card in the middle stays put
 
-                    if (i + 2 == cards.Length && cards.Length > 3)
+                #region Rotation multiplier and offset
+                float rotMultiplier;
+                Vector3 positionOffset;
+
+                if (cards.Length == 2 || cards.Length == 4)
+                {
+                    rotMultiplier = 0.6f;
+                    positionOffset = new Vector3(0.7f, 0, 0);
+                }
+                else
+                {
+                    rotMultiplier = 1;
+                    positionOffset = new Vector3(1, 0, 0);
+                }
+                #endregion
+
+                if ((cards.Length == 3 && i == 1) || (cards.Length == 5 && i == 2) || cards.Length == 1)
+                {
+                    //Do nothing
+                    cards[i].position = defaultPos;
+                    cards[i].rotation = Quaternion.identity;
+                    cards[i].GetComponent<CardSlotHand>().startingPos = cards[i].position;
+                }
+                else
+                {
+                    if (cards.Length / (i + 1) < 2)
                     {
-                        //Cards in the extremes are more rotated
-                        MoveAndRot(i + 1, positionOffset, -rotMultiplier);
-                    }
-               }
-               else
-               {
-                    //Lower Half
-                    MoveAndRot(i, -positionOffset, rotMultiplier);
+                        //Upper half
+                        MoveAndRot(i, positionOffset, -rotMultiplier);
 
-                    if (i - 1 == 0 && cards.Length > 3)
+                        if (i + 2 == cards.Length && cards.Length > 3)
                         {
-                        //Cards in the extremes are more rotated
-
-                        MoveAndRot(i - 1, -positionOffset, rotMultiplier);
+                            //Cards in the extremes are more rotated
+                            MoveAndRot(i + 1, positionOffset, -rotMultiplier);
+                        }
                     }
-               }
-            }
+                    else
+                    {
+                        //Lower Half
+                        MoveAndRot(i, -positionOffset, rotMultiplier);
 
+                        if (i - 1 == 0 && cards.Length > 3)
+                        {
+                            //Cards in the extremes are more rotated
+
+                            MoveAndRot(i - 1, -positionOffset, rotMultiplier);
+                        }
+                    }
+                }
+
+            }
+            #endregion
         }
-        #endregion
     }
 
     private void MoveAndRot(int whatcard, Vector3 offset, float multiplier)
