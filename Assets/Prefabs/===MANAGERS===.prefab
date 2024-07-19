@@ -294,6 +294,10 @@ MonoBehaviour:
     volume: 0.5
     source: 0
     clip: {fileID: 8300000, guid: 76e258a5fdef17543b1f2daae79d9675, type: 3}
+  - name: Cant go there
+    volume: 0.8
+    source: 0
+    clip: {fileID: 8300000, guid: 5dce9fe9aa0baf04eab71e53d439b1f1, type: 3}
   Sources:
   - {fileID: 654308425428184682}
   - {fileID: 463270433106488414}
@@ -686,7 +690,7 @@ Transform:
   - {fileID: 3658049857932576668}
   - {fileID: 1749668644789239575}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7661353766156556964
 GameObject:
@@ -824,12 +828,11 @@ MonoBehaviour:
   player: {fileID: 0}
   selectedCardSlot: {fileID: 0}
   handSlotPrefab: {fileID: 5757337979554174078, guid: 215caa4bbbf4e41498cc4f35ea8d78b8, type: 3}
-  selectedCard: {fileID: 0}
+  slotToReplaceNew: {fileID: 0}
   newCardSlot: {fileID: 0}
   emptySlot: {fileID: 0}
   newCard: {fileID: 0}
   slotToReplaceOld: {fileID: 0}
-  slotToReplaceNew: {fileID: 0}
   deck: {fileID: 0}
   discardPile: {fileID: 0}
   hand: {fileID: 0}
