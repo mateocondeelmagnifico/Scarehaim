@@ -11,6 +11,13 @@ public class HowToPlayMenu : MonoBehaviour
     private int currentTutorial;
     [SerializeField] private TextAndImage[] tutorials;
 
+    [SerializeField] private GameObject arrowLeft, arrowRight;
+
+    private void Start()
+    {
+        arrowLeft.SetActive(false);
+    }
+
     public void ChangeTutorial(int amount)
     { 
         //Called by buttons
@@ -23,6 +30,14 @@ public class HowToPlayMenu : MonoBehaviour
         {
             currentTutorial += amount;
         }
+
+        #region Disable Arrows
+        if (currentTutorial == 0) arrowLeft.SetActive(false);
+        else arrowLeft.SetActive(true);
+
+        if (currentTutorial == (tutorials.Length - 1)) arrowRight.SetActive(false);
+        else arrowRight.SetActive(true);
+        #endregion
 
         titulo.text = tutorials[currentTutorial].title;
         texto.text = tutorials[currentTutorial].text;
