@@ -21,7 +21,7 @@ public class MouseManager : MonoBehaviour
 
     [SerializeField] private Transform board, tricks;
 
-    private bool cardGrabbed, handDisplayed, highlightsSpawned;
+    private bool cardGrabbed, handDisplayed, highlightsSpawned, movePossible;
     public bool moveCard, cardInformed, canClick, isInTutorial, needsTreat, radarActive;
 
     private float handtimer;
@@ -98,10 +98,11 @@ public class MouseManager : MonoBehaviour
                 if (hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
                 {
                     //Check if it's hitting a player or enemy
+                    //Turn on image
                     cardHit.GetComponent<DisplayBigImage>().isHovered = true;
                     cardHit.GetComponent<DisplayBigImage>().otherTimer = 0.2f;
 
-                    if (cardHit.GetComponent<DisplayBigImage>().hoverTimer > 0.4f)
+                    if (cardHit.GetComponent<DisplayBigImage>().hoverTimer > 0.8f)
                     {
                         display.enabled = true;
                         blackBox.enabled = true;
@@ -125,10 +126,11 @@ public class MouseManager : MonoBehaviour
                     {
                         if (!currentCard.isInHand)
                         {
-                            SoundManager.Instance.PlaySound("Card Picked");
+                            if(movePossible) SoundManager.Instance.PlaySound("Card Picked");
+                            else SoundManager.Instance.PlaySound("Cant go there");
+
                             if (manager.CheckIsInCheckMovement() && currentCard.transform.childCount > 0)
                             {
-
                                 if (playerMove.turnsWithcostume <= 0)
                                 {
                                     selectedCardSlot = cardHit;
@@ -360,10 +362,12 @@ public class MouseManager : MonoBehaviour
                 if (pMovement.tempVector.x <= cardX + 1 && pMovement.tempVector.x >= cardX - 1 && pMovement.tempVector.y <= cardY + 1 && pMovement.tempVector.y >= cardY - 1)
                 {
                     hoverRenderer.color = startColor;
+                    movePossible = true;
                 }
                 else
                 {
                     hoverRenderer.color = Color.red;
+                    movePossible = false;
                 }
                 #endregion
             }
@@ -379,7 +383,7 @@ public class MouseManager : MonoBehaviour
                     #region Horrible treat math
                     if (!canBasicMove && playerX != cardX - 1 && playerX != cardX + 1 && playerY != cardY - 1 && playerY != cardY + 1)
                     {
-                        if(playerX <= cardX + 2 && playerX >= cardX - 2 && playerY <= cardY + 2 && playerY >= cardY - 2)
+                        if (playerX <= cardX + 2 && playerX >= cardX - 2 && playerY <= cardY + 2 && playerY >= cardY - 2)
                         {
                             #region Calculate Enemy position
                             float xposition = cardX;
@@ -403,12 +407,28 @@ public class MouseManager : MonoBehaviour
                             Vector2 middlePos = new Vector2(xposition, yposition);
                             #endregion
 
-                            if (enemyMove.myPos != middlePos) hoverRenderer.color = startColor;
-                            else hoverRenderer.color = Color.red;
+                            if (enemyMove.myPos != middlePos)
+                            {
+                                hoverRenderer.color = startColor;
+                                movePossible = true;
+                            }
+                            else
+                            {
+                                hoverRenderer.color = Color.red;
+                                movePossible = false;
+                            }
                         }
-                        else hoverRenderer.color = Color.red;
+                        else
+                        {
+                            hoverRenderer.color = Color.red;
+                            movePossible = false;
+                        }
                     }
-                    else hoverRenderer.color = Color.red;
+                    else
+                    {
+                        hoverRenderer.color = Color.red;
+                        movePossible = false;
+                    }
 
                     if (canBasicMove) playerMove.DisplayTreatHighlight(slotScript.Location);
                     else playerMove.DespawnHighlights(0);
@@ -420,10 +440,12 @@ public class MouseManager : MonoBehaviour
                     if (canBasicMove)
                     {
                         hoverRenderer.color = startColor;
+                        movePossible = true;
                     }
                     else
                     {
                         hoverRenderer.color = Color.red;
+                        movePossible = false;
                     }
                 }
             }

@@ -74,6 +74,8 @@ public class GameManager : MonoBehaviour
                 hand.transform.GetChild(i).GetComponent<CardSlotHand>().gameManager = this;
             }
         }
+
+        handScript.zPrompt.SetActive(false);
         #endregion
     }
 

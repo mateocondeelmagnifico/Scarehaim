@@ -13,10 +13,12 @@ public class CardSlot : MonoBehaviour
     public float hoverTimer, otherTimer;
 
     private CardManager cardManager;
+    private SoundManager soundManager;
     public GameManager gameManager;
 
     private void Start()
     {
+        soundManager = SoundManager.Instance;
         cardManager = CardManager.Instance;
         gameManager = GameManager.Instance;
         cardObject = transform.GetChild(0).gameObject;
@@ -37,9 +39,9 @@ public class CardSlot : MonoBehaviour
         if (isHovered)
         {
             hoverTimer += Time.deltaTime;
-            if(!soundPlayed && hoverTimer > 0.8f)
+            if(!soundPlayed && hoverTimer > 0.7f)
             {
-                SoundManager.Instance.PlaySound("Card Hovered");
+                soundManager.PlaySound("Card Hovered");
                 soundPlayed = true;
             }
         }

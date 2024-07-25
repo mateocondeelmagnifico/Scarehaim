@@ -53,7 +53,7 @@ MonoBehaviour:
     source: 2
     clip: {fileID: 8300000, guid: 09a1068338ae2134a900b162d738c27f, type: 3}
   - name: Card Hovered
-    volume: 0.5
+    volume: 0.3
     source: 0
     clip: {fileID: 8300000, guid: 991dc2d5906118f49b1521a91daa19e7, type: 3}
   - name: Card Picked
