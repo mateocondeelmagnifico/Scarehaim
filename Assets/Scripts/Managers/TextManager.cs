@@ -152,7 +152,6 @@ public class TextManager : MonoBehaviour
         displayText = false;
         textCooldown = 30;
         textDuration = 7;
-        Debug.Log(2);
     }
 
     public void TutorialTalk(string myText)

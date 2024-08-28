@@ -230,6 +230,7 @@ public class GameManager : MonoBehaviour
                 {
                     whatCard.transform.parent = discardPile;
                 }
+                if(discardPile.childCount > 1) Destroy(discardPile.transform.GetChild(0).gameObject);
                 renderer.sortingOrder = -2;
                 currentState = turnState.Endturn;
             }
