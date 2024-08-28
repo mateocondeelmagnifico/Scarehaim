@@ -7760,9 +7760,7 @@ MonoBehaviour:
   enemyRenderer: {fileID: 1574868882}
   tutorialManager: {fileID: 0}
   greetings:
-  - 'Two little fishes came to play with us, guys!
-
-'
+  - It's cold, come by the fire, let the snow melt
   - "A kid\u2026 oh, two of them? What a game\u2026"
   - 'What are you doing here? How old are you?
 
@@ -14747,10 +14745,10 @@ MonoBehaviour:
   cardsUntilExit: 5
   treatAmount: 2
   costumeAmount: 0
-  startTimer: 1.5
   exitCardDealt: 0
   cardsDealt: 0
   tricksNotRandom: 1
+  canDealCards: 0
   mouseManager: {fileID: 679540269}
   tutorialManager: {fileID: 818420430}
   doorText: {fileID: 2097598765}

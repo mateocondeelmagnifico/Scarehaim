@@ -26,7 +26,7 @@ public class TextManager : MonoBehaviour
         NearPlayer,
         FearOver7,
         HasWon,
-        HasLost
+        HasLost,
     }
 
     public EnemyStates currentState;
@@ -49,6 +49,7 @@ public class TextManager : MonoBehaviour
         textBox.text = "";
         textCooldown = 4;
         currentState = EnemyStates.Greeting;
+        Talk(currentState);
     }
 
     void Update()
@@ -118,7 +119,7 @@ public class TextManager : MonoBehaviour
 
     public void Talk(EnemyStates state)
     {
-        if (inTutorial) return;
+        if (inTutorial && currentState != EnemyStates.Greeting) return;
 
         currentState = state;
 
@@ -126,7 +127,6 @@ public class TextManager : MonoBehaviour
         {
             case EnemyStates.Greeting:
                 currentTexts = greetings;
-                currentState = EnemyStates.Idle;
                 break;
 
             case EnemyStates.Idle:
@@ -144,6 +144,7 @@ public class TextManager : MonoBehaviour
             case EnemyStates.FearOver7:
                 currentTexts = fearOver7;
                 break;
+
         }
 
         box.enabled = true;
@@ -151,6 +152,7 @@ public class TextManager : MonoBehaviour
         displayText = false;
         textCooldown = 30;
         textDuration = 7;
+        Debug.Log(2);
     }
 
     public void TutorialTalk(string myText)
@@ -188,6 +190,13 @@ public class TextManager : MonoBehaviour
             //Activates button in tutorial
             tutorialManager.nextTutorialButton.SetActive(true);
             displayButton = false;
+        }
+
+        //Empieza la partida después del diálogo
+        if (currentState == EnemyStates.Greeting)
+        {
+            CardManager.Instance.canDealCards = true;
+            currentState = EnemyStates.Idle;
         }
     }
 }

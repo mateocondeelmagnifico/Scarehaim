@@ -19,9 +19,9 @@ public class CardManager : MonoBehaviour
 
     public int cardsUntilExit, treatAmount, costumeAmount;
     private int resetTimes, cardsDealtAmount;
-    [SerializeField] private float startTimer;
+    private float startTimer;
 
-    public bool exitCardDealt, cardsDealt, tricksNotRandom;
+    public bool exitCardDealt, cardsDealt, tricksNotRandom, canDealCards;
     private bool powerUpDealt, canEnd;
     private GameManager gameManager;
     [SerializeField] private MouseManager mouseManager;
@@ -49,6 +49,7 @@ public class CardManager : MonoBehaviour
         gameManager = GameManager.Instance;
         playerPos = gameManager.player.transform;
         doorText.text = cardsUntilExit.ToString();
+        startTimer = 3;
 
         #region Create Cards List
         cards.Add(enviroments);
@@ -173,60 +174,63 @@ public class CardManager : MonoBehaviour
     private void FixedUpdate()
     {
         #region Deals cards at the start
-        if (startTimer > 0) startTimer -= Time.deltaTime;
-        else if (!cardsDealt)
+        if (!cardsDealt && canDealCards)
         {
-            Vector3 currentPos = Vector3.zero;
-            Vector3 desiredPos = Vector3.zero;
-
-            if (cardsDealtAmount < cardsOnBoard.transform.childCount)
-            {
-                currentPos = cardObjects[cardsDealtAmount].position;
-                desiredPos = cardsOnBoard.transform.GetChild(cardsDealtAmount).position;
-            }
+            if (startTimer > 0) startTimer -= Time.deltaTime;
             else
             {
-                //Para que se ejecute lo de abajo
-                if (cardsDealtAmount == cardsOnBoard.transform.childCount)
-                {
-                    currentPos = enemyPos.position;
-                    desiredPos = originalEnemyPos;
-                }
-                else
-                {
-                    currentPos = playerPos.position;
-                    desiredPos = originalPlayerPos;
-                }
-            }
+                Vector3 currentPos = Vector3.zero;
+                Vector3 desiredPos = Vector3.zero;
 
-            if (currentPos != desiredPos)
-            {
-                if(cardsDealtAmount < cardsOnBoard.transform.childCount)
+                if (cardsDealtAmount < cardsOnBoard.transform.childCount)
                 {
-                    cardObjects[cardsDealtAmount].gameObject.SetActive(true);
-                    cardObjects[cardsDealtAmount].position = Vector3.MoveTowards(currentPos, desiredPos, (14 * Time.deltaTime) + (Vector2.Distance(currentPos, desiredPos)/7));
+                    currentPos = cardObjects[cardsDealtAmount].position;
+                    desiredPos = cardsOnBoard.transform.GetChild(cardsDealtAmount).position;
                 }
                 else
                 {
+                    //Para que se ejecute lo de abajo
                     if (cardsDealtAmount == cardsOnBoard.transform.childCount)
                     {
-                        enemyPos.gameObject.SetActive(true);
-                        enemyPos.position = Vector3.MoveTowards(enemyPos.position, originalEnemyPos, 9 * Time.deltaTime);
+                        currentPos = enemyPos.position;
+                        desiredPos = originalEnemyPos;
                     }
                     else
                     {
-                        playerPos.gameObject.SetActive(true);
-                        playerPos.position = Vector3.MoveTowards(playerPos.position, originalPlayerPos, 9 * Time.deltaTime);
+                        currentPos = playerPos.position;
+                        desiredPos = originalPlayerPos;
                     }
                 }
-            }
-            else
-            {
-                cardsDealtAmount++;
-                if (cardsDealtAmount >= cardsOnBoard.transform.childCount + 2)
+
+                if (currentPos != desiredPos)
                 {
-                    mouseManager.canClick = true;
-                    cardsDealt = true;
+                    if (cardsDealtAmount < cardsOnBoard.transform.childCount)
+                    {
+                        cardObjects[cardsDealtAmount].gameObject.SetActive(true);
+                        cardObjects[cardsDealtAmount].position = Vector3.MoveTowards(currentPos, desiredPos, (14 * Time.deltaTime) + (Vector2.Distance(currentPos, desiredPos) / 7));
+                    }
+                    else
+                    {
+                        if (cardsDealtAmount == cardsOnBoard.transform.childCount)
+                        {
+                            enemyPos.gameObject.SetActive(true);
+                            enemyPos.position = Vector3.MoveTowards(enemyPos.position, originalEnemyPos, 9 * Time.deltaTime);
+                        }
+                        else
+                        {
+                            playerPos.gameObject.SetActive(true);
+                            playerPos.position = Vector3.MoveTowards(playerPos.position, originalPlayerPos, 9 * Time.deltaTime);
+                        }
+                    }
+                }
+                else
+                {
+                    cardsDealtAmount++;
+                    if (cardsDealtAmount >= cardsOnBoard.transform.childCount + 2)
+                    {
+                        mouseManager.canClick = true;
+                        cardsDealt = true;
+                    }
                 }
             }
         }
@@ -249,7 +253,7 @@ public class CardManager : MonoBehaviour
                         if(Vector3.Distance(cardsOnBoard.transform.GetChild(i).transform.position, enemy.position) > 0.1f)
                         {
                             if (allCards[i].transform.childCount > 0) Destroy(allCards[i].transform.GetChild(0).gameObject);
-
+ 
                             newCard = Instantiate(exitCard, allCards[i].transform);
                             newCard.transform.parent = allCards[i].transform;
                             allCards[i].GetComponent<CardSlot>().cardObject = newCard;
