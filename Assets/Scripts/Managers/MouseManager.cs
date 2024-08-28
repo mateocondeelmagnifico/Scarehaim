@@ -234,6 +234,7 @@ public class MouseManager : MonoBehaviour
                             pMovement.DespawnHighlights(0);
                             boardOverlay.DeactivatOverlay();
                             radarText.text = prevString;
+                            soundManager.PlaySound("Radar Off");
                         }
                         else if (trickRadar.CanUseScan())
                         {
@@ -241,6 +242,7 @@ public class MouseManager : MonoBehaviour
                             boardOverlay.ACtivateOverlay("Green");
                             prevString = radarText.text;
                             radarText.text = "Radars left: " + (trickRadar.numberOfScans + 1);
+                            soundManager.PlaySound("Radar On");
                         }
                     }
 

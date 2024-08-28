@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3376626047237437451
 MonoBehaviour:
@@ -84,6 +84,14 @@ MonoBehaviour:
     volume: 0.8
     source: 0
     clip: {fileID: 8300000, guid: 5dce9fe9aa0baf04eab71e53d439b1f1, type: 3}
+  - name: Radar On
+    volume: 0.4
+    source: 0
+    clip: {fileID: 8300000, guid: 9994233360cabea47bb19583299deb90, type: 3}
+  - name: Radar Off
+    volume: 0.2
+    source: 0
+    clip: {fileID: 8300000, guid: 27cb6b8d1bf41d84c9e6d10a27b9d918, type: 3}
   Sources:
   - {fileID: 1517937604603110046}
   - {fileID: 6593720495173298082}

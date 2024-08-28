@@ -7020,10 +7020,10 @@ MonoBehaviour:
       way if you''re using a treat and kill you if she touches you'
     title: The Merrow
   - image: {fileID: 21300000, guid: feff7097bf21aa84b86a20362ee342e4, type: 3}
-    text: 'Monsters and tricks will make you lose hope, you lose if it reaches 0.
+    text: 'Monsters and tricks will make you lose courage, you lose if it reaches
+      0.
 
-      At
-      the end of the stage you can trade treats to increase hope.'
+      At the end of the stage you can trade treats to increase courage.'
     title: Hope
   arrowLeft: {fileID: 1382109224}
   arrowRight: {fileID: 87500183}
