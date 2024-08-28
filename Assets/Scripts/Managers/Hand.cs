@@ -28,6 +28,7 @@ public class Hand : MonoBehaviour
             firstGame = true;
             DetermineStartCards();
             hope = 5;
+            volume = InfoKeeper.instance.volume;
 
             if (SceneManager.GetActiveScene().buildIndex == 1) hope = 8;
         }
@@ -35,7 +36,6 @@ public class Hand : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        volume = 1;
 
         defaultPos = new Vector3(transform.position.x, transform.position.y, -2);
 
@@ -255,6 +255,7 @@ public class Hand : MonoBehaviour
     public void NukeSelf()
     {
         //Called by buttons
+        InfoKeeper.instance.volume = volume;
         Destroy(cardStorage.gameObject);
         Destroy(this.gameObject);
     }
