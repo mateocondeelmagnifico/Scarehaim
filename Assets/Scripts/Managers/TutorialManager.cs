@@ -114,7 +114,15 @@ public class TutorialManager : MonoBehaviour
 
         if (currentTutorial == 4)
         {
-            if (!manager.powerUpOn) screenImage.sprite = blackScreens[currentTutorial - 1];
+            if (!manager.powerUpOn)
+            {
+                if(mouseManager.cardGrabbed) screenImage.enabled = false;
+                else
+                {
+                    screenImage.enabled = true;
+                    screenImage.sprite = blackScreens[currentTutorial - 1];
+                }           
+            }
             else screenImage.sprite = blackScreens[currentTutorial];
         }
 

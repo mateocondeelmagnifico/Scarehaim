@@ -14,6 +14,7 @@ public class Movement : MonoBehaviour
     private GameManager gameManager;
     private SpriteRenderer rendereador;
     private DisplayBigImage display;
+    private TrickRadar trickRadar;
     private BoardOverlay overlay;
     private Sprite startSprite;
     public Sprite tempSprite;
@@ -30,6 +31,7 @@ public class Movement : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         rendereador = GetComponent<SpriteRenderer>();
+        trickRadar = GetComponent<TrickRadar>();
         startSprite = rendereador.sprite;
         display = GetComponent<DisplayBigImage>();
         cardGrid = new Transform[15];
@@ -146,11 +148,11 @@ public class Movement : MonoBehaviour
             {
                 if (canBasicMove)
                 {
-
                     tempVector = cardGridPos;
                     tempDestination = new Vector3(cardActualPos.x, cardActualPos.y, -0.15f);
                     moveSelected = true;
                     hasMoved = false;
+                    trickRadar.ghostMoveOn = true;
 
                     #region Spawn and move highlights
                     SpawnHighlight(9);
@@ -175,6 +177,7 @@ public class Movement : MonoBehaviour
                     myPos = cardGridPos;
                     moveSelected = false;
                     isMoving = true;
+                    trickRadar.ghostMoveOn = false;
 
                     MoveHighlights(1, destination, "yellow");
                     DespawnHighlights(2);
