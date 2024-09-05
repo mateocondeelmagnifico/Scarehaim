@@ -10,7 +10,7 @@ public class CardSlotHand: CardSlot
     public bool goHome, followMouse, isPayment;
 
     public CardEffectManager effectManager;
-    private Transform blackScreen;
+    private Transform blackScreen, oldParent;
 
     private int chosenSlot;
 
@@ -56,6 +56,11 @@ public class CardSlotHand: CardSlot
 
         if (goHome && !isPayment)
         {
+            if(transform.parent == null)
+            {
+                transform.parent = oldParent;
+            }
+
             if (transform.position != startingPos)
             {
                 Move(startingPos);
@@ -201,5 +206,12 @@ public class CardSlotHand: CardSlot
     private void Move(Vector3 desiredPos)
     {
         transform.position = Vector3.MoveTowards(transform.position, desiredPos, 16 * Time.deltaTime);
+    }
+
+    public void Disown()
+    {
+        oldParent = transform.parent;
+        transform.parent = null;
+        oldParent.GetComponent<Hand>().DeterminePosition();
     }
 }

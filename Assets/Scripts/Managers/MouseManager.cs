@@ -178,6 +178,7 @@ public class MouseManager : MonoBehaviour
                         {
                             currentCard = currentCardHand;
                             currentCardHand.followMouse = true;
+                            currentCardHand.Disown();
                             cardGrabbed = true;
                         }
 

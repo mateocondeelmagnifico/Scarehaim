@@ -62,6 +62,8 @@ public class Hand : MonoBehaviour
 
     public void DeterminePosition()
     {
+        //Give the cards the position in the hand they're meant to have
+
         cards = new Transform[transform.childCount];
 
         if (transform.childCount > 0)
