@@ -15,6 +15,7 @@ public class CardObject : MonoBehaviour
     void Start()
     {
         myCard.myObject = this;
+        myCard.myCardObject = this.gameObject;
 
         if(GetComponent<SpriteRenderer>() != null )
         {
@@ -33,6 +34,8 @@ public class CardObject : MonoBehaviour
 
     public void MoveToHand(GameObject cardSlot)
     {
+        Debug.Log(transform.name);
+
         #region Make new cardslot and change variables
 
         transform.parent.GetComponent<CardSlot>().cardObject = null;

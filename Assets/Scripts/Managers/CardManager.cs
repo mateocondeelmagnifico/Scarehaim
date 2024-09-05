@@ -261,6 +261,7 @@ public class CardManager : MonoBehaviour
                             newCard.transform.parent = allCards[i].transform;
                             allCards[i].GetComponent<CardSlot>().cardObject = newCard;
                             exitCardDealt = true;
+                            if(tricks != null) tricks.gameObject.SetActive(false);
                             if(tutorialManager != null) tutorialManager.DisplayExitTutorial(allCards[i].GetComponent<CardSlot>().Location);
 
                             i = cardsOnBoard.transform.childCount;

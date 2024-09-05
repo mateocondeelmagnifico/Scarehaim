@@ -148,8 +148,7 @@ public class GameManager : MonoBehaviour
 
             case turnState.Movecard:
                 if (moveCardToHand || moveCard)
-                {
-                    if (moveCard) MoveCard(selectedCard, discardPile.position, selectedCard.GetComponent<SpriteRenderer>());
+                { 
 
                     if (moveCardToHand)
                     {
@@ -162,7 +161,7 @@ public class GameManager : MonoBehaviour
                             MoveCard(newCardSlot, discardPile.position, newCardSlot.transform.GetChild(0).GetComponent<SpriteRenderer>());
                         }
                     }
-
+                    else if (moveCard) MoveCard(selectedCard, discardPile.position, selectedCard.GetComponent<SpriteRenderer>());
                 }
                 else
                 {

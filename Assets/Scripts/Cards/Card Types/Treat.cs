@@ -8,8 +8,9 @@ public class Treat: Card
 {
     public override void Effect(GameObject card, GameObject cardSlot)
     {
+        Debug.Log(myCardObject.name);
         //TurnState is changed in the card script
-        myObject.MoveToHand(cardSlot);
+        myCardObject.GetComponent<CardObject>().MoveToHand(cardSlot);
     }
 
     public override void PlayEffect(GameManager manager)

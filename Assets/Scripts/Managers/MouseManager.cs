@@ -482,7 +482,9 @@ public class MouseManager : MonoBehaviour
                 {
                     if (radarPositions[e].x == tricks.GetChild(i).transform.position.x && radarPositions[e].y == tricks.GetChild(i).transform.position.y)
                     {
-                        tricks.GetChild(i).GetComponent<TrickContainer>().myIndicator = GameObject.Instantiate(trapIndicator, tricks.GetChild(i).transform.position, Quaternion.identity);
+                        GameObject trapMarker = GameObject.Instantiate(trapIndicator, tricks.GetChild(i).transform.position, Quaternion.identity);
+                        tricks.GetChild(i).GetComponent<TrickContainer>().myIndicator = trapMarker;
+                        trapMarker.transform.parent = tricks.GetChild(i);
                     }
                 }
             }
