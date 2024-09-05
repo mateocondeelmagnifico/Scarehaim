@@ -23,6 +23,7 @@ public class CardEffectManager : MonoBehaviour
     private Fear playerFear;
     private SoundManager soundManager;
     [SerializeField] private Cost endCost;
+    [SerializeField] private Button optionsButton;
     private Hand handScript;
     private BoardOverlay overlay;
     private Sprite mySprite;
@@ -101,6 +102,7 @@ public class CardEffectManager : MonoBehaviour
 
         paymentMenu.SetActive(true);
         blackScreen.SetActive(true);
+        optionsButton.enabled = false;
         DisplayFear();
         handScript.MoveHand(0);
         #endregion
@@ -234,6 +236,7 @@ public class CardEffectManager : MonoBehaviour
         paymentMenu.SetActive(false);
         blackScreen.SetActive(false);
         fearCounter.gameObject.SetActive(false);
+        optionsButton.enabled = true;
         handScript.MoveHand(4);
         #endregion
 

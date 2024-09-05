@@ -210,6 +210,8 @@ public class CardSlotHand: CardSlot
 
     public void Disown()
     {
+        //Deja de ser hijo de la mano para que esta enseña que hay una carta menos
+
         oldParent = transform.parent;
         transform.parent = null;
         oldParent.GetComponent<Hand>().DeterminePosition();

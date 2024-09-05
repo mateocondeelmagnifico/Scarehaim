@@ -5593,6 +5593,7 @@ MonoBehaviour:
   isInTutorial: 0
   needsTreat: 0
   radarActive: 0
+  cardGrabbed: 0
   selectedCardSlot: {fileID: 0}
   hoverAesthetics: {fileID: 1479909012}
   trapIndicator: {fileID: 1580633170274835095, guid: cb3b4e220841985458cf374c11277c40, type: 3}
@@ -5839,6 +5840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfScans: 3
+  ghostMoveOn: 0
 --- !u!1 &739360602
 GameObject:
   m_ObjectHideFlags: 0
@@ -8921,6 +8923,7 @@ MonoBehaviour:
     secondConsequenceName: 
     consequenceAmount: 0
     secondConsequenceAmount: 0
+  optionsButton: {fileID: 99018847}
   endSprite: {fileID: 21300000, guid: bea8c85bfd9f69c4b942b2d1fc0f4e01, type: 3}
   effectActive: 0
   moveHand: 0

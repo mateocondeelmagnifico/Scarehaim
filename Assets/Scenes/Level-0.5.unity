@@ -5775,6 +5775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfScans: 3
+  ghostMoveOn: 0
 --- !u!1001 &739128597
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15115,6 +15116,10 @@ PrefabInstance:
       propertyPath: paymentMenu
       value: 
       objectReference: {fileID: 1577559944}
+    - target: {fileID: 2271132349758565571, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: optionsButton
+      value: 
+      objectReference: {fileID: 99018847}
     - target: {fileID: 2271132349758565571, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: paymentButtons
       value: 

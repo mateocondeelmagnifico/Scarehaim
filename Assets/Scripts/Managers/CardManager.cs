@@ -207,6 +207,7 @@ public class CardManager : MonoBehaviour
                     if (cardsDealtAmount < cardsOnBoard.transform.childCount)
                     {
                         cardObjects[cardsDealtAmount].gameObject.SetActive(true);
+                        cardObjects[cardsDealtAmount].GetComponent<SpriteRenderer>().sortingOrder = 0;
                         cardObjects[cardsDealtAmount].position = Vector3.MoveTowards(currentPos, desiredPos, (14 * Time.deltaTime) + (Vector2.Distance(currentPos, desiredPos) / 7));
                     }
                     else
@@ -225,6 +226,8 @@ public class CardManager : MonoBehaviour
                 }
                 else
                 {
+                    cardObjects[cardsDealtAmount].GetComponent<SpriteRenderer>().sortingOrder = -2;
+
                     cardsDealtAmount++;
                     if (cardsDealtAmount >= cardsOnBoard.transform.childCount + 2)
                     {
