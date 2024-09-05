@@ -26,8 +26,6 @@ public class Fear : MonoBehaviour
 
         hope += howMuch;
 
-        text.text = hope.ToString();
-
         if (hope > 10)
         {
             hope = 10;
@@ -58,5 +56,7 @@ public class Fear : MonoBehaviour
             SoundManager.Instance.PlaySound("Game Over");
             SoundManager.Instance.Sources[2].loop = false;
         }
+
+        text.text = hope.ToString();
     }
 }

@@ -9,12 +9,13 @@ public class CreatureCard : Card
     public Cost myCost;
     public string disguiseToIgnore;
 
-    private GameManager manager;
+    public GameManager manager;
     public Transform player;
     [HideInInspector] public CreatureContainer container;
 
     public override void Effect(GameObject card, GameObject cardSlot)
-    {
+    { 
+
         if (player.GetComponent<Movement>().costumeName == disguiseToIgnore)
         {
             if(manager.currentState == GameManager.turnState.CheckCardEffect)

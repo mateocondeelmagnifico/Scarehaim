@@ -13,6 +13,7 @@ public class CreatureContainer : CardObject
         gameManager = GameManager.Instance;
         player = gameManager.player.transform;
         (myCard as CreatureCard).player = player;
+        (myCard as CreatureCard).manager = gameManager;
         pMovement = player.GetComponent<Movement>();
         isDone = false;
         chosenDisguise = (myCard as CreatureCard).disguiseToIgnore;
@@ -21,7 +22,7 @@ public class CreatureContainer : CardObject
 
     void Update()
     {
-        if (gameManager.currentState == GameManager.turnState.Moving && !(player.position.x == transform.position.x || player.position.y == transform.position.y))
+        if (gameManager.currentState == GameManager.turnState.Moving && (player.position.x != transform.position.x || player.position.y != transform.position.y))
         {
             isDone = false;
         }

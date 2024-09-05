@@ -226,7 +226,7 @@ public class CardManager : MonoBehaviour
                 }
                 else
                 {
-                    cardObjects[cardsDealtAmount].GetComponent<SpriteRenderer>().sortingOrder = -2;
+                    if (cardsDealtAmount <= cardsOnBoard.transform.childCount -2) cardObjects[cardsDealtAmount].GetComponent<SpriteRenderer>().sortingOrder = -2;
 
                     cardsDealtAmount++;
                     if (cardsDealtAmount >= cardsOnBoard.transform.childCount + 2)

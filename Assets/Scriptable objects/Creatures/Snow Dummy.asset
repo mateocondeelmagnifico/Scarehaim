@@ -14,15 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: e0a9f807c173a024480a39381a8caa36, type: 3}
   bigImage: {fileID: 21300000, guid: e0696156afa0fa245b9a22b24d9dc56f, type: 3}
+  myObject: {fileID: 0}
+  myCardObject: {fileID: 0}
   myCost:
-    explanation: 
+    explanation: A cold hug, lose 2 hope
     CostName: 
     costAmount: 0
     reward: 
     rewardAmount: 0
-    consequenceName: 
+    consequenceName: Fear
     secondConsequenceName: 
-    consequenceAmount: 0
+    consequenceAmount: -3
     secondConsequenceAmount: 0
-  disguiseToIgnore: 
+  disguiseToIgnore: Ghost Garb
+  manager: {fileID: 0}
+  player: {fileID: 0}
   container: {fileID: 0}
