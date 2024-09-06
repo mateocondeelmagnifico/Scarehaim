@@ -7280,7 +7280,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &818420429
 Transform:
   m_ObjectHideFlags: 0
@@ -7799,6 +7799,7 @@ MonoBehaviour:
   box: {fileID: 361242326}
   currentState: 0
   textCooldown: 0
+  startTextCD: 0
   fearReached: 0
   closeToEnemy: 0
   inTutorial: 1

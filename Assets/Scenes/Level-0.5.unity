@@ -15265,6 +15265,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 132045521}
     - target: {fileID: 6125602056207676952, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: startTextCD
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125602056207676952, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: enemyRenderer
       value: 
       objectReference: {fileID: 1574868882}
@@ -15336,6 +15340,10 @@ PrefabInstance:
       propertyPath: chosenSlots.Array.data[4]
       value: 
       objectReference: {fileID: 685545275}
+    - target: {fileID: 8460313530419967459, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

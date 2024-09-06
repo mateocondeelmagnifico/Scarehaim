@@ -32,10 +32,11 @@ public class TextManager : MonoBehaviour
     public EnemyStates currentState;
 
     [HideInInspector] public float textCooldown;
+    public float startTextCD;
     private float textDuration, annoyedDuration;
 
     public bool fearReached, closeToEnemy, inTutorial, displayButton; //accesed by enemyMovement
-    private bool displayText;
+    private bool displayText, hasTalked;
     private void Awake()
     {
         if(Instance == null)
@@ -49,11 +50,17 @@ public class TextManager : MonoBehaviour
         textBox.text = "";
         textCooldown = 4;
         currentState = EnemyStates.Greeting;
-        Talk(currentState);
     }
 
     void Update()
     {
+        if(startTextCD > 0) startTextCD -= Time.deltaTime;
+        else if (!hasTalked)
+        {
+            Talk(currentState);
+            hasTalked = true;
+        }
+
         if (inTutorial) return;
 
         #region Auto Talk

@@ -34,7 +34,6 @@ public class CardObject : MonoBehaviour
 
     public void MoveToHand(GameObject cardSlot)
     {
-        Debug.Log(transform.name);
 
         #region Make new cardslot and change variables
 

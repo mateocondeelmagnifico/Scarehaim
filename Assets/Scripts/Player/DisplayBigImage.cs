@@ -30,7 +30,7 @@ public class DisplayBigImage : MonoBehaviour
         if (isHovered)
         {
             hoverTimer += Time.deltaTime;
-            if(hoverTimer > 0.4f && playerIcon != null)
+            if(hoverTimer > 0.8f && playerIcon != null)
             {
                 //activate Ui icons in big display
                 bigText.text = playerText.text;

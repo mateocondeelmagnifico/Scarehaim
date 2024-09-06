@@ -63,73 +63,7 @@ public class CardManager : MonoBehaviour
     }
     private void Start()
     {
-        #region Distribute Tricks
-        if (!tricksNotRandom)
-        { 
-            Vector3[] assignedPositions = new Vector3[tricks.childCount];
-            int[] cardAdjacent = new int[3];
-
-            for (int i = 0; i < cardsOnBoard.transform.childCount; i++)
-            {
-                //cada casilla tiene una probabilidad sobre 3 de tener una trampa
-                //reset times esta para evitar bucles infinitos
-
-                if (Random.Range(0, 7) + resetTimes > 6)
-                {
-                    for (int e = 0; e < assignedPositions.Length; e++)
-                    {
-                        if (assignedPositions[e] == Vector3.zero)
-                        {
-                            //Chekea si el lugar tiene un enemigo, o si ahi esta el jugador
-                            Transform chosenCard = cardsOnBoard.transform.GetChild(i);
-                            canEnd = false;
-
-                            if (!chosenCard.GetChild(0).CompareTag("Enemy") && (chosenCard.position.x != playerPos.position.x && chosenCard.position.y != playerPos.position.y))
-                            {
-                                bool canplace = true;
-
-                                //Check if there are any adjacent cards
-                                for (int u = 0; u < cardAdjacent.Length; u++)
-                                {
-                                    if (i <= cardAdjacent[u] + 1 && i >= cardAdjacent[u] - 1) canplace = false;
-                                }
-
-                                //If you were to place two traps in the same position
-                                if (canplace)
-                                {
-                                    assignedPositions[e] = chosenCard.position;
-                                    tricks.GetChild(e).position = assignedPositions[e];
-                                    cardAdjacent[e] = i;
-                                }
-                            }
-                        }
-                        else if (e == assignedPositions.Length - 1)
-                        {
-                            canEnd = true;
-                        }
-                    }
-                }
-
-                if (resetTimes > 5)
-                {
-                    canEnd = true;
-                }
-
-                if (!canEnd)
-                {
-                    if (i == cardsOnBoard.transform.childCount - 1)
-                    {
-                        i = 0;
-                        resetTimes++;
-                    }
-                }
-                else
-                {
-                    i = cardsOnBoard.transform.childCount;
-                }
-            }
-        }
-        #endregion
+        DistributeTricks();
 
         board = new List<GameObject>();
 
@@ -361,5 +295,75 @@ public class CardManager : MonoBehaviour
         }
         #endregion
     }
+    private void DistributeTricks()
+    {
+        if (!tricksNotRandom)
+        {
+            Vector3[] assignedPositions = new Vector3[tricks.childCount];
+            int[] cardAdjacent = new int[3];
 
+            for (int i = 0; i < cardsOnBoard.transform.childCount; i++)
+            {
+                //cada casilla tiene una probabilidad sobre 3 de tener una trampa
+                //reset times esta para evitar bucles infinitos
+
+                if (Random.Range(0, 7) + resetTimes > 4)
+                {
+                    for (int e = 0; e < assignedPositions.Length; e++)
+                    {
+                        if (assignedPositions[e] == Vector3.zero)
+                        {                         
+                            //Chekea si el lugar tiene un enemigo, o si ahi esta el jugador
+                            Transform chosenCard = cardsOnBoard.transform.GetChild(i);
+                            canEnd = false;
+
+                            if (chosenCard.GetChild(0).tag != "Enemy")
+                            {
+                                if (chosenCard.position.x != playerPos.position.x || chosenCard.position.y != playerPos.position.y)
+                                {
+                                    bool canplace = true;
+
+                                    //Check if there are any adjacent cards
+                                    for (int u = 0; u < cardAdjacent.Length; u++)
+                                    {
+                                        if (i <= cardAdjacent[u] + 1 && i >= cardAdjacent[u] - 1) canplace = false;
+                                    }
+
+                                    //If you were to place two traps in the same position
+                                    if (canplace)
+                                    {
+                                        assignedPositions[e] = chosenCard.position;
+                                        tricks.GetChild(e).position = assignedPositions[e];
+                                        cardAdjacent[e] = i;
+                                    }
+                                }                                
+                            }
+                        }
+                        else if (e == assignedPositions.Length - 1)
+                        {
+                            canEnd = true;
+                        }
+                    }
+                }
+
+                if (resetTimes > 5)
+                {
+                    canEnd = true;
+                }
+
+                if (!canEnd)
+                {
+                    if (i == cardsOnBoard.transform.childCount - 1)
+                    {
+                        i = 0;
+                        resetTimes++;
+                    }
+                }
+                else
+                {
+                    i = cardsOnBoard.transform.childCount;
+                }
+            }
+        }
+    }
 }

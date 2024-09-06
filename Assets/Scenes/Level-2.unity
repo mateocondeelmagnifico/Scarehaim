@@ -7540,6 +7540,7 @@ MonoBehaviour:
   box: {fileID: 361242326}
   currentState: 0
   textCooldown: 0
+  startTextCD: 2
   fearReached: 0
   closeToEnemy: 0
   inTutorial: 0
@@ -14401,7 +14402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aa2ddec24034c14890574fec59359e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardsOnBoard: {fileID: 0}
+  cardsOnBoard: {fileID: 1505720235}
   cardPrefab: {fileID: 8929231805802886072, guid: 02029671aee72844892ff20b614ee6d5, type: 3}
   exitCard: {fileID: 2428508991241272260, guid: 47cd3a6bc6ebda44ca528a7ede6a955f, type: 3}
   allCards: []
