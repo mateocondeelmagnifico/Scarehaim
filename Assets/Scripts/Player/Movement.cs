@@ -111,6 +111,7 @@ public class Movement : MonoBehaviour
                         {
                             gameManager.powerUpOn = false;
                             overlay.DeactivatOverlay();
+                            TakeOffCostume();
                         }
 
                         DespawnHighlights(0);

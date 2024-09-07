@@ -7,7 +7,7 @@ public class CardSlotHand: CardSlot
 {
     public Vector3 direction, startingPos;
 
-    public bool goHome, followMouse, isPayment;
+    public bool goHome, followMouse, isPayment, hasArrived;
 
     public CardEffectManager effectManager;
     private Transform blackScreen, oldParent;
@@ -71,7 +71,7 @@ public class CardSlotHand: CardSlot
             }
         }
 
-        if(isPayment)
+        if(isPayment && !hasArrived)
         {
             if (transform.position != direction)
             {
@@ -80,6 +80,8 @@ public class CardSlotHand: CardSlot
             else
             {
                 transform.rotation = Quaternion.identity;
+                effectManager.CheckCanAfford();
+                hasArrived = true;
             }
         }
 

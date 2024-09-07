@@ -17,7 +17,7 @@ public class CardEffectManager : MonoBehaviour
     public static CardEffectManager Instance { get; private set; }
     private GameManager manager;
     [SerializeField] MouseManager mouseManager;
-    private Image displayImage;
+    private Image displayImage, tryPayButton;
     private TMPro.TextMeshProUGUI explanation, fearText;
     private Cost currentCost;
     private Fear playerFear;
@@ -59,6 +59,7 @@ public class CardEffectManager : MonoBehaviour
         fearText = fearCounter.GetComponent<TMPro.TextMeshProUGUI>();
         overlay = BoardOverlay.instance;
         soundManager = SoundManager.Instance;
+        tryPayButton = paymentButtons.transform.GetChild(0).GetComponent<Image>();
 
         originalPos = merrowHand.transform.position;
     }
@@ -132,6 +133,7 @@ public class CardEffectManager : MonoBehaviour
         else
         {
             paymentButtons.SetActive(true);
+            CheckCanAfford();
         }
         #endregion
 
@@ -146,20 +148,8 @@ public class CardEffectManager : MonoBehaviour
             //This checks if you selected pay or don't pay
             if (wantsToPay)
             {
-                bool canPay = true;
                 //this is to check if you have payed
-                for (int i = 0; i < blackScreen.transform.childCount; i++)
-                {
-                    if (blackScreen.transform.GetChild(i).childCount < 1)
-                    {
-                        canPay = false;
-                    }
-                }
-
-                if(blackScreen.transform.childCount == 0)
-                {
-                    canPay = false;
-                }
+                bool canPay = CanPay();  
 
                 #region Ending Screen Check
                 if (isEnding)
@@ -334,5 +324,35 @@ public class CardEffectManager : MonoBehaviour
     {
         fearCounter.gameObject.SetActive(true);
         fearText.text = "Courage = " + playerFear.hope.ToString();
+    }
+
+    public void CheckCanAfford()
+    {
+        bool canAfford = CanPay();
+
+        if (canAfford) tryPayButton.color = new Color(1, 1, 1, 1);
+        else tryPayButton.color = new Color(1, 1, 1, 0.5f);
+    }
+
+    private bool CanPay()
+    {
+        bool canPay = false;
+
+        for (int i = 0; i < blackScreen.transform.childCount; i++)
+        {
+            if (blackScreen.transform.GetChild(i).childCount < 1)
+            {
+                canPay = false;
+            }
+        }
+
+        if (blackScreen.transform.childCount == 0)
+        {
+            canPay = false;
+        }
+
+        if(isEnding && blackScreen.transform.GetChild(0).childCount > 0) canPay = true;
+
+        return canPay;
     }
 }

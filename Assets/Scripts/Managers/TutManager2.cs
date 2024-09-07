@@ -19,6 +19,11 @@ public class TutManager2 : TutorialManager
         if (manager.currentState == GameManager.turnState.Endturn) tutorialPlayed = false;
         if(manager.trapTriggered) trapDone = true;
         if (currentTutorial == 2 && trapDone) tutorialPlayed = false;
+        if (currentTutorial == 7)
+        {
+            if(manager.powerUpOn || mouseManager.cardGrabbed) screenImage.enabled = false;
+            else screenImage.enabled = false;
+        }
 
         if (!tutorialPlayed)
         {
@@ -74,6 +79,7 @@ public class TutManager2 : TutorialManager
                     break;
 
                     case 8:
+                    screenImage.enabled = true;
                     arrow.SetActive(true);
                     break;
             }

@@ -14,8 +14,7 @@ public class Disguise : Card
     public override void Effect(GameObject card, GameObject cardSlot)
     {
         //TurnState is changed in the card script
-        myObject.MoveToHand(cardSlot);
-        //MoveToHand(card, cardSlot);
+        myCardObject.GetComponent<CardObject>().MoveToHand(cardSlot);
     }
 
     public override void PlayEffect(GameManager manager)
