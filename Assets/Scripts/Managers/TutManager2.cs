@@ -8,6 +8,12 @@ public class TutManager2 : TutorialManager
     private bool doOnce;
     [SerializeField] private GameObject arrow;
 
+    public override void Start()
+    {
+        base.Start();
+        manager.player.GetComponent<Fear>().UpdateFear(4);
+    }
+
     public override void Update()
     {
         if (manager.currentState == GameManager.turnState.Endturn) tutorialPlayed = false;

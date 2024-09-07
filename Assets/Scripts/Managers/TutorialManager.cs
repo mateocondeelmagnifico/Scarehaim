@@ -26,7 +26,7 @@ public class TutorialManager : MonoBehaviour
 
     public int currentTutorial;
 
-    public void Start()
+    public virtual void Start()
     {
         hand = Hand.Instance;
         manager = GameManager.Instance;

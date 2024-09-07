@@ -173,6 +173,9 @@ public class CardEffectManager : MonoBehaviour
                             playerFear.UpdateFear(2);
                         }
                     }
+
+                    //Return hand to original pos
+                    handScript.MoveHand(4);
                 }
                 #endregion
 
