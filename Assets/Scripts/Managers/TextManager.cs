@@ -166,6 +166,8 @@ public class TextManager : MonoBehaviour
         inTutorial = true;
         box.enabled = true;
         displayText = false;
+        tempText = "";
+        StopAllCoroutines();
         
         StartCoroutine(ProduceLetters(myText));
     }

@@ -11,7 +11,10 @@ public class TutManager2 : TutorialManager
     public override void Start()
     {
         base.Start();
-        manager.player.GetComponent<Fear>().UpdateFear(4);
+
+        //Give player more hope so that the tutorial doesn't kill him
+        Fear playerFear = manager.player.GetComponent<Fear>();
+        if (playerFear.hope < 5) playerFear.UpdateFear(5 - playerFear.hope);
     }
 
     public override void Update()

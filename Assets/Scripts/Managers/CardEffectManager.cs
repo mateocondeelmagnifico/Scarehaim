@@ -351,7 +351,16 @@ public class CardEffectManager : MonoBehaviour
             canPay = false;
         }
 
-        if(isEnding && blackScreen.transform.GetChild(0).childCount > 0) canPay = true;
+        if (isEnding)
+        {
+            for (int i = 0; i <= 2; i++)
+            {
+                if(blackScreen.transform.GetChild(i).childCount > 0)
+                {
+                    canPay = true;
+                }
+            }
+        }
 
         return canPay;
     }
