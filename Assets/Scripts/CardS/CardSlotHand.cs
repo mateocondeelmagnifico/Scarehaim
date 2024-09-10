@@ -71,7 +71,7 @@ public class CardSlotHand: CardSlot
             }
         }
 
-        if(isPayment && !hasArrived)
+        if (isPayment && !hasArrived)
         {
             if (transform.position != direction)
             {
@@ -86,29 +86,9 @@ public class CardSlotHand: CardSlot
         }
 
         #region Hover Code
-        if (otherTimer > 0)
-        {
-            otherTimer -= Time.deltaTime;
-        }
-        else
-        {
-            isHovered = false;
-            soundPlayed = false;
-        }
+        if (hoverTimer < 1.5f && isHovered) hoverTimer += Time.deltaTime;
 
-        if (isHovered)
-        {
-            hoverTimer += Time.deltaTime;
-            if (!soundPlayed && hoverTimer > 0.8f)
-            {
-                SoundManager.Instance.PlaySound("Card Hovered");
-                soundPlayed = true;
-            }
-        }
-        else
-        {
-            hoverTimer = 0;
-        }
+        if (!isHovered) hoverTimer = 0;
         #endregion
     }
 

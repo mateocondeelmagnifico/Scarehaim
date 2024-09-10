@@ -1,6 +1,8 @@
 using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Experimental.GraphView.GraphView;
+
 
 
 public class MouseManager : MonoBehaviour
@@ -11,17 +13,19 @@ public class MouseManager : MonoBehaviour
     public Movement playerMove;
     public Image display, blackBox;
     private Hand hand;
+    private CardSlot currentCard;
     private TrickRadar trickRadar;
-    private SpriteRenderer hoverRenderer;
+    private SpriteRenderer hoverRenderer, hoverRenderer2;
     private Movement pMovement;
     private EnemyMovement enemyMove;
     private BoardOverlay boardOverlay;
-    [SerializeField] private TMPro.TextMeshProUGUI radarText;
+    [SerializeField] private TMPro.TextMeshProUGUI radarText, hopeText, costumeTurnsText;
     private SoundManager soundManager;
+    private CardSlotHand currentCardHand;
 
     [SerializeField] private Transform board, tricks;
 
-    private bool handDisplayed, highlightsSpawned, movePossible;
+    private bool handDisplayed, highlightsSpawned, cardHandHovered;
     public bool moveCard, cardInformed, canClick, isInTutorial, needsTreat, radarActive, cardGrabbed;
 
     private float handtimer;
@@ -30,7 +34,8 @@ public class MouseManager : MonoBehaviour
 
     private Vector2[] radarPositions;
 
-    public GameObject selectedCardSlot, hoverAesthetics, trapIndicator;
+    public GameObject firstSelect, selectedCardSlot, hoverAesthetics, hoverAesthetics2, trapIndicator;
+    private GameObject cardHit, hover2Pos;
 
     private Color startColor;
 
@@ -47,6 +52,7 @@ public class MouseManager : MonoBehaviour
         display.enabled = false;
         blackBox.enabled = false;
         hoverRenderer = hoverAesthetics.GetComponent<SpriteRenderer>();
+        hoverRenderer2 = hoverAesthetics2.GetComponent<SpriteRenderer>();
         startColor = hoverRenderer.color;
         radarPositions = new Vector2[3];
 
@@ -59,9 +65,17 @@ public class MouseManager : MonoBehaviour
 
         if(handtimer > 0.2f && !handDisplayed && !manager.moveCardToHand)
         {
+            Debug.Log(1);
             hand.ResizeHand(true);
             handDisplayed = true;
         }
+
+        if(!manager.CheckIsInCheckMovement())
+        {
+            DeactivateDisplay();
+            hoverAesthetics.SetActive(false);
+        }
+        else if (playerMove.turnsWithcostume <= 0) playerMove.DespawnHighlights(0);
     }
 
     private void Raycast()
@@ -74,63 +88,131 @@ public class MouseManager : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(myCam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
         #endregion
 
-        if(hit.collider != null && canClick)
+        if (hit.collider != null && canClick)
         {
             if (hit.collider.gameObject.tag.Equals("Card Slot") || hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
             {
-                GameObject cardHit = hit.collider.gameObject;
+                //Put highlights when hovering over cards
+                cardHit = hit.collider.gameObject;
 
-                #region Place Highlight
-                if (cardHit.transform.childCount > 0)
+                if (hit.collider.gameObject.tag.Equals("Card Slot"))
                 {
-                    hoverAesthetics.SetActive(true);
-                    hoverAesthetics.transform.position = cardHit.transform.position;
-                    hoverAesthetics.transform.rotation = cardHit.transform.rotation;
-                    if (cardHit.transform.GetChild(0).GetComponent<SpriteRenderer>()) hoverRenderer.sortingOrder = cardHit.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder;
-                    if (cardHit.GetComponent<CardSlot>()) CheckDistanceToPlayer(cardHit.GetComponent<CardSlot>());
+                    currentCard = cardHit.GetComponent<CardSlot>();
+                    if (cardHandHovered && !cardHit.GetComponent<CardSlotHand>())
+                    { 
+                        DeactivateDisplay();
+                        cardHandHovered = false;
+                        currentCardHand.hoverTimer = 0;
+                        currentCardHand.isHovered = false;
+                        hoverAesthetics.SetActive(false);
+                    }
                 }
-                else
+
+                PlaceHighlight(0);
+
+                if (hit.collider.gameObject.tag.Equals("Enemy") && manager.CheckIsInCheckMovement() && playerMove.turnsWithcostume <= 0)
                 {
+                    playerMove.DespawnHighlights(0);
+                }
+
+                #region Select Card in Hand
+
+                if (cardHit.GetComponent<CardSlotHand>())
+                {
+                    currentCardHand = cardHit.GetComponent<CardSlotHand>();
+
+                    currentCardHand.isHovered = true;
+                    handtimer += Time.deltaTime;
+
+                    if (currentCardHand.hoverTimer >= 0.5f)
+                    {
+                        DisplayCard(currentCardHand.objectSprite);
+                        cardHandHovered = true;
+                    }
+
+                    if (Input.GetMouseButton(0) && !cardGrabbed && (manager.CheckIsInCheckMovement() || manager.currentState == GameManager.turnState.CheckCardEffect))
+                    {
+                        //follow mouse
+                        currentCard = currentCardHand;
+                        currentCardHand.followMouse = true;
+                        currentCardHand.Disown();
+                        cardGrabbed = true;
+                    }
+
+                    if (Input.GetMouseButtonUp(0))
+                    {
+                        //Finish follow
+                        currentCardHand.followMouse = false;
+                        cardGrabbed = false;
+                        hoverAesthetics.SetActive(false);
+                        hover2Pos.SetActive(false);
+                        DeactivateDisplay();
+                    }
+                }
+
+                if (hit.collider.gameObject.tag.Equals("Hand") && handtimer < 1.5f)
+                {
+                    Debug.Log(2);
+                    handtimer += Time.deltaTime;
+                }
+                else if(!cardHit.GetComponent<CardSlotHand>()) ShrinkHand();
+                #endregion
+            }
+            else 
+            {
+                ShrinkHand();
+
+                if (cardHandHovered)
+                {
+                    DeactivateDisplay();
+                    cardHandHovered = false;
+                    currentCardHand.hoverTimer = 0;
+                    currentCardHand.isHovered = false;
                     hoverAesthetics.SetActive(false);
                 }
-                #endregion
+            }
 
+            if (Input.GetMouseButtonDown(0))
+            {
                 if (hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
                 {
-                    //Check if it's hitting a player or enemy
-                    //Turn on image
-                    cardHit.GetComponent<DisplayBigImage>().isHovered = true;
-                    cardHit.GetComponent<DisplayBigImage>().otherTimer = 0.2f;
-
-                    if (cardHit.GetComponent<DisplayBigImage>().hoverTimer > 0.8f)
+                    DisplayBigImage display = cardHit.GetComponent<DisplayBigImage>();
+                    //Display player or enemy card
+                    if (firstSelect != cardHit)
                     {
-                        display.enabled = true;
-                        blackBox.enabled = true;
-                        display.sprite = cardHit.GetComponent<DisplayBigImage>().bigImage;
+                        hoverAesthetics.SetActive(false);
+                        firstSelect = cardHit;
+                        DisplayCard(cardHit.GetComponent<DisplayBigImage>().bigImage);
+
+                        if (hit.collider.gameObject.tag.Equals("Player"))
+                        {
+                            hopeText.text = cardHit.GetComponent<Fear>().hope.ToString();
+                            if (cardHit.GetComponent<Movement>().turnsWithcostume > 0) costumeTurnsText.text = cardHit.GetComponent<Movement>().turnsWithcostume.ToString();
+                        }
+                        PlaceHighlight(1);
                     }
-
-                    if (hit.collider.gameObject.tag.Equals("Enemy") && manager.CheckIsInCheckMovement() && playerMove.turnsWithcostume <= 0)
+                    else
                     {
-                        playerMove.DespawnHighlights(0);
+                        firstSelect = null;
+                        DeactivateDisplay();
                     }
                 }
-                else
+
+                if (hit.collider.gameObject.tag.Equals("Card Slot"))
                 {
-                    #region Set Variables
-                    CardSlot currentCard = hit.collider.gameObject.GetComponent<CardSlot>();
-                    currentCard.isHovered = true;
-                    currentCard.otherTimer = 0.2f;
-                    #endregion
 
-                    if (Input.GetMouseButtonDown(0) && !radarActive)
+                    #region Select card in Board
+                    if (!radarActive && !currentCard.isInHand)
                     {
-                        if (!currentCard.isInHand)
-                        {
-                            if(movePossible) SoundManager.Instance.PlaySound("Card Picked");
-                            else SoundManager.Instance.PlaySound("Cant go there");
+                        PlaceHighlight(1);
 
+                        if (firstSelect == cardHit)
+                        {
                             if (manager.CheckIsInCheckMovement() && currentCard.transform.childCount > 0)
                             {
+                                if (CanReach(currentCard.Location)) SoundManager.Instance.PlaySound("Card Picked");
+                                else SoundManager.Instance.PlaySound("Cant go there");
+
                                 if (playerMove.turnsWithcostume <= 0)
                                 {
                                     selectedCardSlot = cardHit;
@@ -147,15 +229,19 @@ public class MouseManager : MonoBehaviour
                                 cardInformed = false;
 
                                 #region Inform Player to move and tutorial to progress
-                                if (tutorialManager == null) playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
-                                else if(tutorialManager.IsCorrectCard(selectedCardSlot) == true)
+                                if (tutorialManager == null)
                                 {
-                                    if(!needsTreat)
+                                    playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
+                                    DeactivateDisplay();
+                                }
+                                else if (tutorialManager.IsCorrectCard(selectedCardSlot) == true)
+                                {
+                                    if (!needsTreat)
                                     {
                                         tutorialManager.Nextmenu();
                                         playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
                                     }
-                                    else if(pMovement.hasTreat)
+                                    else if (pMovement.hasTreat)
                                     {
                                         tutorialManager.Nextmenu();
                                         playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
@@ -165,175 +251,126 @@ public class MouseManager : MonoBehaviour
                                 #endregion
                             }
                         }
-                    }
-
-                    //This code is for cards in your hand
-                    if (currentCard.isInHand)
-                    {
-                        CardSlotHand currentCardHand = cardHit.GetComponent<CardSlotHand>();
-
-                        if (handtimer < 1.5f) handtimer += Time.deltaTime;
-
-                        if (Input.GetMouseButton(0) && !cardGrabbed && (manager.CheckIsInCheckMovement() || manager.currentState == GameManager.turnState.CheckCardEffect))
+                        else 
                         {
-                            currentCard = currentCardHand;
-                            currentCardHand.followMouse = true;
-                            currentCardHand.Disown();
-                            cardGrabbed = true;
-                        }
-
-                        if (Input.GetMouseButtonUp(0))
-                        {
-                            currentCardHand.followMouse = false;
-                            cardGrabbed = false;
-                        }
-
-                        #region Display Big image
-                        if (manager.currentState != GameManager.turnState.CheckCardEffect)
-                        {
-                            //this is to display the card on the left
-                            if (currentCard.hoverTimer > 0.4f)
+                            if (cardHit.transform.childCount > 0)
                             {
-                                display.enabled = true;
-                                blackBox.enabled = true;
-                                if (cardHit.transform.childCount > 0)
-                                {
-                                    display.sprite = cardHit.GetComponentInChildren<CardObject>().myCard.bigImage;
-                                }
+                                soundManager.PlaySound("Card Hovered");
+                                firstSelect = cardHit;
+                                DisplayCard(cardHit.GetComponent<CardSlot>().objectSprite);
                             }
-                        }
-                        #endregion
-                    }
-                    else
-                    {
-                        #region Display Big image
-                        if (manager.currentState != GameManager.turnState.CheckCardEffect)
-                        {
-                            //this is to display the card on the left
-                            if (currentCard.hoverTimer > 0.4f && cardHit.transform.childCount > 0)
-                            {
-                                display.enabled = true;
-                                blackBox.enabled = true;
-                                display.sprite = cardHit.GetComponentInChildren<CardObject>().myCard.bigImage;
-                            }
-                        }
-                        #endregion
-
-                        ShrinkHand();
-                    }
-                }
-
-                if(!hit.collider.gameObject.tag.Equals("Player") && manager.CheckIsInCheckMovement())
-                {
-                    #region Check Radar
-                    if (Input.GetMouseButtonDown(1))
-                    {
-                        if (radarActive)
-                        {
-                            radarActive = false;
-                            trickRadar.numberOfScans++;
-                            pMovement.DespawnHighlights(0);
-                            boardOverlay.DeactivatOverlay();
-                            radarText.text = prevString;
-                            soundManager.PlaySound("Radar Off");
-                        }
-                        else if (trickRadar.CanUseScan())
-                        {
-                            radarActive = true;
-                            boardOverlay.ACtivateOverlay("Green");
-                            prevString = radarText.text;
-                            radarText.text = "Radars left: " + (trickRadar.numberOfScans + 1);
-                            soundManager.PlaySound("Radar On");
-                        }
-                    }
-
-                    if (radarActive)
-                    {
-                        if (!highlightsSpawned)
-                        {
-                            pMovement.SpawnHighlight(3);
-                            highlightsSpawned = true;
+                            else DeactivateDisplay();
                         }
 
-                        #region Define Variables
-                        radarPositions[0] = Vector2.zero;
-                        radarPositions[1] = Vector2.zero;
-                        radarPositions[2] = Vector2.zero;
-                        Vector2 cardVector = new Vector2(cardHit.transform.position.x, cardHit.transform.position.y);
-                        float playerY = pMovement.transform.position.y;
-                        float playerX = pMovement.transform.position.x;
-                        #endregion
-
-                        if (Mathf.Abs(playerX - cardHit.transform.position.x) <= 2 && Mathf.Abs(playerY - cardHit.transform.position.y) <= 2.7f)
-                        {
-                            
-                            //if scanner is in range
-                            if (cardHit.transform.position.x != playerX)
-                            {
-                                pMovement.MoveHighlights(0, new Vector2(cardVector.x, playerY), "blue");
-                                radarPositions[0] = new Vector2(cardVector.x, playerY);
-
-                                if (playerY < -2f) { }
-                                else
-                                {
-                                    pMovement.MoveHighlights(1, new Vector2(cardVector.x, playerY - 2.7f), "blue");
-                                    radarPositions[1] = new Vector2(cardVector.x, playerY - 2.7f);
-                                }
-
-                                if (playerY! > 0.2f) { }
-                                else
-                                {
-                                    pMovement.MoveHighlights(2, new Vector2(cardVector.x, playerY + 2.7f), "blue");
-                                    radarPositions[2] = new Vector2(cardVector.x, playerY + 2.7f);
-                                }
-                            }
-                            else
-                            {
-                                pMovement.MoveHighlights(0, cardVector, "blue");
-                                radarPositions[0] = cardVector;
-
-                                if (FindBoardPos(cardVector + new Vector2(-2, 0)))
-                                {
-                                    pMovement.MoveHighlights(1, cardVector + new Vector2(-2, 0), "blue");
-                                    radarPositions[1] = cardVector + new Vector2(-2, 0);
-                                }
-
-                                if (FindBoardPos(cardVector + new Vector2(2, 0)))
-                                {
-                                    pMovement.MoveHighlights(2, cardVector + new Vector2(2, 0), "blue");
-                                    radarPositions[2] = cardVector + new Vector2(2, 0);
-                                }
-                            }
-                        }
-                    }
-
-                    if (Input.GetMouseButtonDown(0) && radarActive)
-                    {
-                        FireRadar();
-                        boardOverlay.DeactivatOverlay();
-                        radarText.text = prevString;
-                        soundManager.PlaySound("Radar");
                     }
                     #endregion
                 }
-            }
-            else
-            {
-                if(hit.collider.gameObject.tag.Equals("Hand")) handtimer += Time.deltaTime;
-                else ShrinkHand();
 
-                if(hit.collider.gameObject.tag.Equals("Undo Button") && Input.GetMouseButtonDown(0))
+                if (hit.collider.gameObject.tag.Equals("Undo Button"))
                 {
                     //Press Undo Button
                     hand.UndoLimbo();
                 }
 
-                if(manager.CheckIsInCheckMovement() && playerMove.turnsWithcostume <= 0) playerMove.DespawnHighlights(0);
-                DeactivateDisplay();
-
-                hoverAesthetics.SetActive(false);
+                if (hit.collider.gameObject.tag.Equals("Untagged")) DeactivateDisplay();
             }
+
+            #region Check Radar
+            if (!hit.collider.gameObject.tag.Equals("Player") && manager.CheckIsInCheckMovement())
+            {
+                if (Input.GetMouseButtonDown(1))
+                {
+                    if (radarActive)
+                    {
+                        radarActive = false;
+                        trickRadar.numberOfScans++;
+                        pMovement.DespawnHighlights(0);
+                        boardOverlay.DeactivatOverlay();
+                        radarText.text = prevString;
+                        soundManager.PlaySound("Radar Off");
+                    }
+                    else if (trickRadar.CanUseScan())
+                    {
+                        radarActive = true;
+                        boardOverlay.ACtivateOverlay("Green");
+                        prevString = radarText.text;
+                        radarText.text = "Radars left: " + (trickRadar.numberOfScans + 1);
+                        soundManager.PlaySound("Radar On");
+                    }
+                }
+
+                if (radarActive)
+                {
+                    if (!highlightsSpawned)
+                    {
+                        pMovement.SpawnHighlight(3);
+                        highlightsSpawned = true;
+                    }
+
+                    #region Define Variables
+                    radarPositions[0] = Vector2.zero;
+                    radarPositions[1] = Vector2.zero;
+                    radarPositions[2] = Vector2.zero;
+                    Vector2 cardVector = new Vector2(cardHit.transform.position.x, cardHit.transform.position.y);
+                    float playerY = pMovement.transform.position.y;
+                    float playerX = pMovement.transform.position.x;
+                    #endregion
+
+                    if (Mathf.Abs(playerX - cardHit.transform.position.x) <= 2 && Mathf.Abs(playerY - cardHit.transform.position.y) <= 2.7f)
+                    {
+
+                        //if scanner is in range
+                        if (cardHit.transform.position.x != playerX)
+                        {
+                            pMovement.MoveHighlights(0, new Vector2(cardVector.x, playerY), "blue");
+                            radarPositions[0] = new Vector2(cardVector.x, playerY);
+
+                            if (playerY < -2f) { }
+                            else
+                            {
+                                pMovement.MoveHighlights(1, new Vector2(cardVector.x, playerY - 2.7f), "blue");
+                                radarPositions[1] = new Vector2(cardVector.x, playerY - 2.7f);
+                            }
+
+                            if (playerY! > 0.2f) { }
+                            else
+                            {
+                                pMovement.MoveHighlights(2, new Vector2(cardVector.x, playerY + 2.7f), "blue");
+                                radarPositions[2] = new Vector2(cardVector.x, playerY + 2.7f);
+                            }
+                        }
+                        else
+                        {
+                            pMovement.MoveHighlights(0, cardVector, "blue");
+                            radarPositions[0] = cardVector;
+
+                            if (FindBoardPos(cardVector + new Vector2(-2, 0)))
+                            {
+                                pMovement.MoveHighlights(1, cardVector + new Vector2(-2, 0), "blue");
+                                radarPositions[1] = cardVector + new Vector2(-2, 0);
+                            }
+
+                            if (FindBoardPos(cardVector + new Vector2(2, 0)))
+                            {
+                                pMovement.MoveHighlights(2, cardVector + new Vector2(2, 0), "blue");
+                                radarPositions[2] = cardVector + new Vector2(2, 0);
+                            }
+                        }
+                    }
+                }
+
+                if (Input.GetMouseButtonDown(0) && radarActive)
+                {
+                    FireRadar();
+                    boardOverlay.DeactivatOverlay();
+                    radarText.text = prevString;
+                    soundManager.PlaySound("Radar");
+                }
+
+            }
+            #endregion
         }
+        
     }
 
     private void ShrinkHand()
@@ -345,117 +382,114 @@ public class MouseManager : MonoBehaviour
             hand.ResizeHand(false);
         }
     }
-
     private void CheckDistanceToPlayer(CardSlot slotScript)
     {
-        float playerX = pMovement.myPos.x;
-        float playerY = pMovement.myPos.y;
-
-        float cardX = slotScript.Location.x;
-        float cardY = slotScript.Location.y;
-
-        bool canBasicMove = false;
-
         if (slotScript.isInHand) hoverRenderer.color = Color.green;
         else
         {
-            if(pMovement.turnsWithcostume > 0 && pMovement.moveSelected)
+           if(CanReach(slotScript.Location)) hoverRenderer.color = startColor;
+           else hoverRenderer.color = Color.red;
+        }
+    }
+    private bool CanReach(Vector2 slot)
+    {
+        bool iReach = false;
+        bool canBasicMove = false;
+
+        float playerX = pMovement.myPos.x;
+        float playerY = pMovement.myPos.y;
+        float cardX = slot.x;
+        float cardY = slot.y;
+
+        if (pMovement.turnsWithcostume > 0 && pMovement.moveSelected)
+        {
+            #region Second turn costume check
+            if (pMovement.tempVector.x <= cardX + 1 && pMovement.tempVector.x >= cardX - 1 && pMovement.tempVector.y <= cardY + 1 && pMovement.tempVector.y >= cardY - 1)
             {
-                #region Second turn costume check
-                if (pMovement.tempVector.x <= cardX + 1 && pMovement.tempVector.x >= cardX - 1 && pMovement.tempVector.y <= cardY + 1 && pMovement.tempVector.y >= cardY - 1)
+                iReach = true;
+            }
+            else
+            {
+                iReach = false;
+            }
+            #endregion
+        }
+        else
+        {
+            if (playerX <= cardX + 1 && playerX >= cardX - 1 && playerY <= cardY + 1 && playerY >= cardY - 1)
+            {
+                canBasicMove = true;
+            }
+
+            if (pMovement.hasTreat && manager.CheckIsInCheckMovement())
+            {
+                #region Horrible treat math
+                float xposition = cardX;
+                float yposition = cardY;
+
+                if (!canBasicMove && playerX != cardX - 1 && playerX != cardX + 1 && playerY != cardY - 1 && playerY != cardY + 1)
                 {
-                    hoverRenderer.color = startColor;
-                    movePossible = true;
+                    if (playerX <= cardX + 2 && playerX >= cardX - 2 && playerY <= cardY + 2 && playerY >= cardY - 2)
+                    {
+                        #region Calculate Enemy position
+                       
+                        if (cardX == playerX + 2)
+                        {
+                            xposition = cardX - 1;
+                        }
+                        if (cardX == playerX - 2)
+                        {
+                            xposition = cardX + 1;
+                        }
+                        if (cardY == playerY + 2)
+                        {
+                            yposition = cardY - 1;
+                        }
+                        if (cardY == playerY - 2)
+                        {
+                            yposition = cardY + 1;
+                        }
+                        Vector2 middlePos = new Vector2(xposition, yposition);
+                        #endregion
+
+                        if (enemyMove.myPos != middlePos)
+                        {
+                            iReach = true;
+                        }
+                        else
+                        {
+                            iReach = false;
+                        }
+                    }
+                    else
+                    {
+                        iReach = false;
+                    }
                 }
                 else
                 {
-                    hoverRenderer.color = Color.red;
-                    movePossible = false;
+                    iReach = false;
                 }
+
+                if (iReach) playerMove.DisplayTreatHighlight(new Vector2());
+                else playerMove.DespawnHighlights(0);
+
                 #endregion
             }
             else
             {
-                if (playerX <= cardX + 1 && playerX >= cardX - 1 && playerY <= cardY + 1 && playerY >= cardY - 1)
+                if (canBasicMove)
                 {
-                    canBasicMove = true;
-                }
-
-                if (pMovement.hasTreat && manager.CheckIsInCheckMovement())
-                {
-                    #region Horrible treat math
-                    if (!canBasicMove && playerX != cardX - 1 && playerX != cardX + 1 && playerY != cardY - 1 && playerY != cardY + 1)
-                    {
-                        if (playerX <= cardX + 2 && playerX >= cardX - 2 && playerY <= cardY + 2 && playerY >= cardY - 2)
-                        {
-                            #region Calculate Enemy position
-                            float xposition = cardX;
-                            float yposition = cardY;
-                            if (cardX == playerX + 2)
-                            {
-                                xposition = cardX - 1;
-                            }
-                            if (cardX == playerX - 2)
-                            {
-                                xposition = cardX + 1;
-                            }
-                            if (cardY == playerY + 2)
-                            {
-                                yposition = cardY - 1;
-                            }
-                            if (cardY == playerY - 2)
-                            {
-                                yposition = cardY + 1;
-                            }
-                            Vector2 middlePos = new Vector2(xposition, yposition);
-                            #endregion
-
-                            if (enemyMove.myPos != middlePos)
-                            {
-                                hoverRenderer.color = startColor;
-                                movePossible = true;
-                            }
-                            else
-                            {
-                                hoverRenderer.color = Color.red;
-                                movePossible = false;
-                            }
-                        }
-                        else
-                        {
-                            hoverRenderer.color = Color.red;
-                            movePossible = false;
-                        }
-                    }
-                    else
-                    {
-                        hoverRenderer.color = Color.red;
-                        movePossible = false;
-                    }
-
-                    if (canBasicMove) playerMove.DisplayTreatHighlight(slotScript.Location);
-                    else playerMove.DespawnHighlights(0);
-
-                    #endregion
+                    iReach = true;
                 }
                 else
                 {
-                    if (canBasicMove)
-                    {
-                        hoverRenderer.color = startColor;
-                        movePossible = true;
-                    }
-                    else
-                    {
-                        hoverRenderer.color = Color.red;
-                        movePossible = false;
-                    }
+                    iReach = false;
                 }
             }
-           
-        }  
+        }
+        return iReach;
     }
-
     private bool FindBoardPos(Vector2 pos)
     {
         bool isTrue = false;
@@ -499,5 +533,59 @@ public class MouseManager : MonoBehaviour
     {
         display.enabled = false;
         blackBox.enabled = false;
+        firstSelect = null;
+        hopeText.text = "";
+        costumeTurnsText.text = "";
+        hoverAesthetics2.SetActive(false);
+    }
+
+    private void DisplayCard(Sprite spriteToDisplay)
+    {
+        display.enabled = true;
+        blackBox.enabled = true;
+        display.sprite = spriteToDisplay;
+    }
+
+    private void PlaceHighlight(int whichOne)
+    {
+        if (cardHit.transform.childCount > 0 || cardHit.CompareTag("Enemy"))
+        {
+            if(whichOne == 0)
+            {
+                if (cardHit == hover2Pos)
+                {
+                    hoverAesthetics.SetActive(false);
+                    return;
+                }
+
+                hoverAesthetics.SetActive(true);
+                hoverAesthetics.transform.position = cardHit.transform.position;
+                hoverAesthetics.transform.rotation = cardHit.transform.rotation;
+                if(cardHit.transform.childCount > 0)
+                if (cardHit.transform.GetChild(0).GetComponent<SpriteRenderer>()) hoverRenderer.sortingOrder = cardHit.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder;
+
+                if (cardHit.GetComponent<CardSlot>()) CheckDistanceToPlayer(cardHit.GetComponent<CardSlot>());
+            }
+            else
+            {
+                hover2Pos = cardHit;
+                hoverAesthetics.SetActive(false);
+                hoverAesthetics2.SetActive(true);
+                hoverAesthetics2.transform.position = cardHit.transform.position;
+                hoverAesthetics2.transform.rotation = cardHit.transform.rotation;
+
+                if(cardHit.transform.childCount > 0)
+                if (cardHit.transform.GetChild(0).GetComponent<SpriteRenderer>()) hoverRenderer2.sortingOrder = cardHit.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder;
+
+                //Change color depending on availability
+                if(CanReach(currentCard.Location)) hoverRenderer2.color = Color.white;
+                else hoverRenderer2.color = Color.red;
+                
+            }
+        }
+        else
+        {
+            hoverAesthetics.SetActive(false);
+        }
     }
 }

@@ -16,39 +16,15 @@ public class CardSlot : MonoBehaviour
     private SoundManager soundManager;
     public GameManager gameManager;
 
+    public Sprite objectSprite;
+
     private void Start()
     {
         soundManager = SoundManager.Instance;
         cardManager = CardManager.Instance;
         gameManager = GameManager.Instance;
         cardObject = transform.GetChild(0).gameObject;
-    }
-    private void Update()
-    {
-
-        if(otherTimer > 0)
-        {
-            otherTimer -= Time.deltaTime;
-        }
-        else
-        {
-            isHovered = false;
-            soundPlayed = false;
-        }
-
-        if (isHovered)
-        {
-            hoverTimer += Time.deltaTime;
-            if(!soundPlayed && hoverTimer > 0.7f)
-            {
-                soundManager.PlaySound("Card Hovered");
-                soundPlayed = true;
-            }
-        }
-        else
-        {
-            hoverTimer = 0;
-        }
+        objectSprite = cardObject.GetComponent<CardObject>().myCard.bigImage;
     }
 
     public void ReplaceCard()
@@ -59,5 +35,4 @@ public class CardSlot : MonoBehaviour
 
         gameManager.ChangeState(GameManager.turnState.Movecard);
     }
-
 }

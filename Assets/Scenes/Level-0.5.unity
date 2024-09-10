@@ -5732,10 +5732,7 @@ MonoBehaviour:
   otherTimer: 0
   isHovered: 0
   playerIcon: {fileID: 1648374399}
-  bigIcon: {fileID: 1874896671}
   playerText: {fileID: 404758913}
-  bigText: {fileID: 839340456}
-  bigFear: {fileID: 1376976502}
   bigImage: {fileID: 21300000, guid: e19be1ab57792d3468d36e5907c0afd7, type: 3}
 --- !u!61 &688192964
 BoxCollider2D:
@@ -7021,10 +7018,7 @@ MonoBehaviour:
   otherTimer: 0
   isHovered: 0
   playerIcon: {fileID: 0}
-  bigIcon: {fileID: 0}
   playerText: {fileID: 0}
-  bigText: {fileID: 0}
-  bigFear: {fileID: 0}
   bigImage: {fileID: 21300000, guid: d455b98d93e5bb14a820c8b88785a11a, type: 3}
 --- !u!50 &798634182
 Rigidbody2D:
@@ -16111,6 +16105,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1936492283}
     - target: {fileID: 6807894361244419997, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: hopeText
+      value: 
+      objectReference: {fileID: 1376976502}
+    - target: {fileID: 6807894361244419997, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: radarText
       value: 
       objectReference: {fileID: 349588073}
@@ -16122,6 +16120,10 @@ PrefabInstance:
       propertyPath: hoverAesthetics
       value: 
       objectReference: {fileID: 1479909012}
+    - target: {fileID: 6807894361244419997, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: costumeTurnsText
+      value: 
+      objectReference: {fileID: 839340456}
     - target: {fileID: 7299788136531806102, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: m_Name
       value: ===MANAGERS===

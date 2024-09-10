@@ -9,8 +9,8 @@ public class DisplayBigImage : MonoBehaviour
     public float hoverTimer, otherTimer;
     public bool isHovered;
 
-    public Image playerIcon, bigIcon;
-    public TMPro.TextMeshProUGUI playerText, bigText, bigFear;
+    public Image playerIcon;
+    public TMPro.TextMeshProUGUI playerText;
 
     public Sprite bigImage;
     private Sprite baseImage, baseIcon;
@@ -21,43 +21,6 @@ public class DisplayBigImage : MonoBehaviour
         if(playerIcon != null)
         {
             baseIcon = playerIcon.sprite;
-            DeactivateIcons();
-        }
-    }
-
-    private void Update()
-    {
-        if (isHovered)
-        {
-            hoverTimer += Time.deltaTime;
-            if(hoverTimer > 0.8f && playerIcon != null)
-            {
-                //activate Ui icons in big display
-                bigText.text = playerText.text;
-                bigFear.text = GetComponent<Fear>().hope.ToString();
-                bigIcon.sprite = playerIcon.sprite;
-                bigIcon.enabled = true;
-            }
-        }
-        else
-        {
-            hoverTimer = 0;
-        }
-
-        if (otherTimer > 0)
-        {
-            otherTimer -= Time.deltaTime;
-            if(otherTimer < 0.19f && isHovered)
-            {
-                //Deactivate UI Icons in big display
-                DeactivateIcons();
-            }
-        }
-        else
-        { 
-            isHovered = false;
-            //Deactivate UI Icons in big display
-            DeactivateIcons();
         }
     }
 
@@ -72,16 +35,6 @@ public class DisplayBigImage : MonoBehaviour
         bigImage = baseImage;
         playerIcon.sprite = baseIcon;
         playerText.text = "";
-    }
-
-    private void DeactivateIcons()
-    {
-        if (playerIcon != null)
-        {
-            bigText.text = "";
-            bigIcon.enabled = false;
-            bigFear.text = "";
-        }
     }
 }
 

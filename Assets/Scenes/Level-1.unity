@@ -4747,6 +4747,7 @@ MonoBehaviour:
   hoverTimer: 0
   otherTimer: 0
   gameManager: {fileID: 1909411721}
+  objectSprite: {fileID: 0}
   direction: {x: 0, y: 0, z: 0}
   startingPos: {x: 0, y: 0, z: 0}
   goHome: 0
@@ -6070,6 +6071,8 @@ MonoBehaviour:
   display: {fileID: 1204713695}
   blackBox: {fileID: 1936492283}
   radarText: {fileID: 349588073}
+  hopeText: {fileID: 1376976502}
+  costumeTurnsText: {fileID: 839340456}
   board: {fileID: 1505720236}
   tricks: {fileID: 2052462755}
   moveCard: 0
@@ -6079,8 +6082,10 @@ MonoBehaviour:
   needsTreat: 0
   radarActive: 0
   cardGrabbed: 0
+  firstSelect: {fileID: 0}
   selectedCardSlot: {fileID: 0}
   hoverAesthetics: {fileID: 1479909012}
+  hoverAesthetics2: {fileID: 0}
   trapIndicator: {fileID: 1580633170274835095, guid: cb3b4e220841985458cf374c11277c40, type: 3}
 --- !u!1 &688192956
 GameObject:
@@ -6257,10 +6262,7 @@ MonoBehaviour:
   otherTimer: 0
   isHovered: 0
   playerIcon: {fileID: 1648374399}
-  bigIcon: {fileID: 1874896671}
   playerText: {fileID: 404758913}
-  bigText: {fileID: 839340456}
-  bigFear: {fileID: 1376976502}
   bigImage: {fileID: 21300000, guid: e19be1ab57792d3468d36e5907c0afd7, type: 3}
 --- !u!61 &688192964
 BoxCollider2D:
@@ -6390,6 +6392,7 @@ MonoBehaviour:
   hoverTimer: 0
   otherTimer: 0
   gameManager: {fileID: 1909411721}
+  objectSprite: {fileID: 0}
   direction: {x: 0, y: 0, z: 0}
   startingPos: {x: 0, y: 0, z: 0}
   goHome: 0
@@ -7421,10 +7424,7 @@ MonoBehaviour:
   otherTimer: 0
   isHovered: 0
   playerIcon: {fileID: 0}
-  bigIcon: {fileID: 0}
   playerText: {fileID: 0}
-  bigText: {fileID: 0}
-  bigFear: {fileID: 0}
   bigImage: {fileID: 21300000, guid: df677eeded05c814aa3a77376e30b51d, type: 3}
 --- !u!50 &798634182
 Rigidbody2D:
@@ -13161,6 +13161,7 @@ MonoBehaviour:
   hoverTimer: 0
   otherTimer: 0
   gameManager: {fileID: 1909411721}
+  objectSprite: {fileID: 0}
   direction: {x: 0, y: 0, z: 0}
   startingPos: {x: 0, y: 0, z: 0}
   goHome: 0

@@ -5441,6 +5441,8 @@ MonoBehaviour:
   display: {fileID: 1204713695}
   blackBox: {fileID: 1936492283}
   radarText: {fileID: 853371070}
+  hopeText: {fileID: 1376976502}
+  costumeTurnsText: {fileID: 839340456}
   board: {fileID: 1505720236}
   tricks: {fileID: 2052462755}
   moveCard: 0
@@ -5450,8 +5452,10 @@ MonoBehaviour:
   needsTreat: 0
   radarActive: 0
   cardGrabbed: 0
+  firstSelect: {fileID: 0}
   selectedCardSlot: {fileID: 0}
   hoverAesthetics: {fileID: 744728880}
+  hoverAesthetics2: {fileID: 0}
   trapIndicator: {fileID: 1580633170274835095, guid: cb3b4e220841985458cf374c11277c40, type: 3}
 --- !u!1 &685424164
 GameObject:
@@ -5763,10 +5767,7 @@ MonoBehaviour:
   otherTimer: 0
   isHovered: 0
   playerIcon: {fileID: 1648374399}
-  bigIcon: {fileID: 1874896671}
   playerText: {fileID: 404758913}
-  bigText: {fileID: 839340456}
-  bigFear: {fileID: 1376976502}
   bigImage: {fileID: 21300000, guid: e19be1ab57792d3468d36e5907c0afd7, type: 3}
 --- !u!61 &688192964
 BoxCollider2D:
@@ -6725,10 +6726,7 @@ MonoBehaviour:
   otherTimer: 0
   isHovered: 0
   playerIcon: {fileID: 0}
-  bigIcon: {fileID: 0}
   playerText: {fileID: 0}
-  bigText: {fileID: 0}
-  bigFear: {fileID: 0}
   bigImage: {fileID: 21300000, guid: df677eeded05c814aa3a77376e30b51d, type: 3}
 --- !u!50 &798634182
 Rigidbody2D:
@@ -7607,6 +7605,7 @@ MonoBehaviour:
   closeToEnemy: 0
   inTutorial: 0
   displayButton: 0
+  inTrap: 0
 --- !u!1001 &1026890211
 PrefabInstance:
   m_ObjectHideFlags: 0
