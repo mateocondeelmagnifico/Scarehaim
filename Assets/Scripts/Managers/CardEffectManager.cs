@@ -16,6 +16,7 @@ public class CardEffectManager : MonoBehaviour
     private Transform hand;
     public static CardEffectManager Instance { get; private set; }
     private GameManager manager;
+    private TextManager textManager;
     [SerializeField] MouseManager mouseManager;
     private Image displayImage, tryPayButton;
     private TMPro.TextMeshProUGUI explanation, fearText;
@@ -54,6 +55,7 @@ public class CardEffectManager : MonoBehaviour
         manager = GameManager.Instance;
         player = manager.player;
         hand = Hand.Instance.transform;
+        textManager = TextManager.Instance;
         handScript = hand.GetComponent<Hand>();
         playerFear = player.GetComponent<Fear>();
         fearText = fearCounter.GetComponent<TMPro.TextMeshProUGUI>();
@@ -175,7 +177,8 @@ public class CardEffectManager : MonoBehaviour
                     {
                         Destroy(blackScreen.transform.GetChild(i).gameObject);
                     }
-                    CheckConsequence(currentCost.reward, currentCost.rewardAmount);
+
+                    if(!isEnding) CheckConsequence(currentCost.reward, currentCost.rewardAmount);
 
                     DeactivateMenu();
                 }
@@ -207,6 +210,8 @@ public class CardEffectManager : MonoBehaviour
                     DeactivateMenu();
                 }
             }
+
+            if (textManager.inTrap) textManager.inTrap = false;
 
             if(isEnding)
             {
@@ -336,7 +341,7 @@ public class CardEffectManager : MonoBehaviour
 
     private bool CanPay()
     {
-        bool canPay = false;
+        bool canPay = true;
 
         for (int i = 0; i < blackScreen.transform.childCount; i++)
         {

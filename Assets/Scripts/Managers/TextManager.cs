@@ -35,7 +35,7 @@ public class TextManager : MonoBehaviour
     public float startTextCD;
     private float textDuration, annoyedDuration;
 
-    public bool fearReached, closeToEnemy, inTutorial, displayButton; //accesed by enemyMovement
+    public bool fearReached, closeToEnemy, inTutorial, displayButton, inTrap; //accesed by enemyMovement
     private bool displayText, hasTalked;
     private void Awake()
     {
@@ -95,8 +95,12 @@ public class TextManager : MonoBehaviour
         #region Change State
         if (currentState != EnemyStates.Greeting)
         {
-            if (!closeToEnemy)
+            if (inTrap)
             {
+                enemyRenderer.sprite = sprites[2];
+            }
+            else if (!closeToEnemy)
+            {       
                 if (!fearReached)
                 {
                     currentState = EnemyStates.Idle;
@@ -129,6 +133,8 @@ public class TextManager : MonoBehaviour
         if (inTutorial && currentState != EnemyStates.Greeting) return;
 
         currentState = state;
+        tempText = "";
+        StopAllCoroutines();
 
         switch (currentState)
         {

@@ -8181,6 +8181,7 @@ MonoBehaviour:
   closeToEnemy: 0
   inTutorial: 1
   displayButton: 0
+  inTrap: 0
 --- !u!1 &950698927
 GameObject:
   m_ObjectHideFlags: 0

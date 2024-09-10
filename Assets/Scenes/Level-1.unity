@@ -8621,6 +8621,7 @@ MonoBehaviour:
   closeToEnemy: 0
   inTutorial: 0
   displayButton: 0
+  inTrap: 0
 --- !u!1001 &933055710
 PrefabInstance:
   m_ObjectHideFlags: 0

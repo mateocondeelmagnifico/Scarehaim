@@ -22,7 +22,7 @@ public class CardManager : MonoBehaviour
     private float startTimer;
 
     public bool exitCardDealt, cardsDealt, tricksNotRandom, canDealCards;
-    private bool powerUpDealt, canEnd;
+    private bool powerUpDealt, canEnd, cardChosen;
     private GameManager gameManager;
     [SerializeField] private MouseManager mouseManager;
     [SerializeField] private TutorialManager tutorialManager;
@@ -31,10 +31,10 @@ public class CardManager : MonoBehaviour
     private List<GameObject> board;
 
     [SerializeField] private Transform deck, enemyPos;
-    private Transform playerPos;
+    private Transform playerPos, currentPos;
     public Transform tricks;
 
-    private Vector3 originalPlayerPos, originalEnemyPos;
+    private Vector3 originalPlayerPos, originalEnemyPos, desiredPos;
     void Awake()
     {
         if (Instance == null)
@@ -113,47 +113,22 @@ public class CardManager : MonoBehaviour
             if (startTimer > 0) startTimer -= Time.deltaTime;
             else
             {
-                Vector3 currentPos = Vector3.zero;
-                Vector3 desiredPos = Vector3.zero;
+                if (!cardChosen) ActivateCard();
 
-                if (cardsDealtAmount < cardsOnBoard.transform.childCount)
-                {
-                    currentPos = cardObjects[cardsDealtAmount].position;
-                    desiredPos = cardsOnBoard.transform.GetChild(cardsDealtAmount).position;
-                }
-                else
-                {
-                    //Para que se ejecute lo de abajo
-                    if (cardsDealtAmount == cardsOnBoard.transform.childCount)
-                    {
-                        currentPos = enemyPos.position;
-                        desiredPos = originalEnemyPos;
-                    }
-                    else
-                    {
-                        currentPos = playerPos.position;
-                        desiredPos = originalPlayerPos;
-                    }
-                }
-
-                if (currentPos != desiredPos)
+                if (currentPos.position != desiredPos)
                 {
                     if (cardsDealtAmount < cardsOnBoard.transform.childCount)
                     {
-                        cardObjects[cardsDealtAmount].gameObject.SetActive(true);
-                        cardObjects[cardsDealtAmount].GetComponent<SpriteRenderer>().sortingOrder = -1;
-                        cardObjects[cardsDealtAmount].position = Vector3.MoveTowards(currentPos, desiredPos, (14 * Time.deltaTime) + (Vector2.Distance(currentPos, desiredPos) / 7));
+                        cardObjects[cardsDealtAmount].position = Vector3.MoveTowards(currentPos.position, desiredPos, (7 * Time.deltaTime) + (Vector2.Distance(currentPos.position, desiredPos) / 7));
                     }
                     else
                     {
                         if (cardsDealtAmount == cardsOnBoard.transform.childCount)
                         {
-                            enemyPos.gameObject.SetActive(true);
                             enemyPos.position = Vector3.MoveTowards(enemyPos.position, originalEnemyPos, 9 * Time.deltaTime);
                         }
                         else
-                        {
-                            playerPos.gameObject.SetActive(true);
+                        {  
                             playerPos.position = Vector3.MoveTowards(playerPos.position, originalPlayerPos, 9 * Time.deltaTime);
                         }
                     }
@@ -163,6 +138,8 @@ public class CardManager : MonoBehaviour
                     if (cardsDealtAmount <= cardsOnBoard.transform.childCount -2) cardObjects[cardsDealtAmount].GetComponent<SpriteRenderer>().sortingOrder = -2;
 
                     cardsDealtAmount++;
+                    cardChosen = false;
+
                     if (cardsDealtAmount >= cardsOnBoard.transform.childCount + 2)
                     {
                         mouseManager.canClick = true;
@@ -365,5 +342,37 @@ public class CardManager : MonoBehaviour
                 }
             }
         }
+    }
+    private void ActivateCard()
+    {
+        //chooses and activates a card when dealing at the start
+
+        if (cardsDealtAmount < cardsOnBoard.transform.childCount)
+        {
+            //Activa una carta
+            cardObjects[cardsDealtAmount].gameObject.SetActive(true);
+            cardObjects[cardsDealtAmount].GetComponent<SpriteRenderer>().sortingOrder = -1;
+
+            currentPos = cardObjects[cardsDealtAmount].transform;
+            desiredPos = cardsOnBoard.transform.GetChild(cardsDealtAmount).position;
+        }
+        else
+        {
+            //Activa al jugador o enemigo
+            if (cardsDealtAmount == cardsOnBoard.transform.childCount)
+            {
+                enemyPos.gameObject.SetActive(true);
+                currentPos = enemyPos;
+                desiredPos = originalEnemyPos;
+            }
+            else
+            {
+                playerPos.gameObject.SetActive(true);
+                currentPos = playerPos;
+                desiredPos = originalPlayerPos;
+            }
+        }
+
+        cardChosen = true;
     }
 }

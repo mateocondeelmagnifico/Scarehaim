@@ -25,7 +25,7 @@ public class TutManager2 : TutorialManager
         if (currentTutorial == 7)
         {
             if(manager.powerUpOn || mouseManager.cardGrabbed) screenImage.enabled = false;
-            else screenImage.enabled = false;
+            else screenImage.enabled = true;
         }
 
         if (!tutorialPlayed)
