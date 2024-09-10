@@ -75,7 +75,6 @@ public class MouseManager : MonoBehaviour
             DeactivateDisplay();
             hoverAesthetics.SetActive(false);
         }
-        else if (playerMove.turnsWithcostume <= 0) playerMove.DespawnHighlights(0);
     }
 
     private void Raycast()
@@ -471,7 +470,7 @@ public class MouseManager : MonoBehaviour
                     iReach = false;
                 }
 
-                if (iReach) playerMove.DisplayTreatHighlight(new Vector2());
+                if (canBasicMove) playerMove.DisplayTreatHighlight(slot);
                 else playerMove.DespawnHighlights(0);
 
                 #endregion
