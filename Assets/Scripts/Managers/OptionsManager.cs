@@ -78,4 +78,9 @@ public class OptionsManager : MonoBehaviour
         Screen.SetResolution((int)values.x, (int)values.y, isFullScreen);
         resText.text = values.x.ToString() + "x" + values.y.ToString();
     }
+
+    public void UpdateVolume()
+    {
+        InfoKeeper.instance.volume = SoundManager.Instance.volumeSetting;
+    }
 }

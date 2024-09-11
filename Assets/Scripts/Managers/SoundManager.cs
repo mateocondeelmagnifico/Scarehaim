@@ -28,7 +28,7 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        volumeSlider.value = Hand.Instance.volume;
+        volumeSlider.value = InfoKeeper.instance.volume;
         volumeSetting = volumeSlider.value;
     }
 

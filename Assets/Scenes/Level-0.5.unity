@@ -10961,6 +10961,72 @@ Transform:
   m_Father: {fileID: 1769950244}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1408509122
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3693071763250408614, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+      propertyPath: m_Name
+      value: Highlight 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620990634837756399, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620990634837756399, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.3388193
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620990634837756399, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.7812903
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620990634837756399, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620990634837756399, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620990634837756399, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620990634837756399, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620990634837756399, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620990634837756399, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620990634837756399, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620990634837756399, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+--- !u!1 &1408509123 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3693071763250408614, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+  m_PrefabInstance: {fileID: 1408509122}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1441963326
 GameObject:
   m_ObjectHideFlags: 0
@@ -13000,6 +13066,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 1244177771}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1262701232}
+        m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
+        m_MethodName: UpdateVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -16124,6 +16202,10 @@ PrefabInstance:
       propertyPath: costumeTurnsText
       value: 
       objectReference: {fileID: 839340456}
+    - target: {fileID: 6807894361244419997, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: hoverAesthetics2
+      value: 
+      objectReference: {fileID: 1408509123}
     - target: {fileID: 7299788136531806102, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: m_Name
       value: ===MANAGERS===
@@ -16175,7 +16257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8460313530419967459, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

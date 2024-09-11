@@ -6219,10 +6219,7 @@ MonoBehaviour:
   otherTimer: 0
   isHovered: 0
   playerIcon: {fileID: 1648374399}
-  bigIcon: {fileID: 1874896671}
   playerText: {fileID: 404758913}
-  bigText: {fileID: 839340456}
-  bigFear: {fileID: 1376976502}
   bigImage: {fileID: 21300000, guid: e19be1ab57792d3468d36e5907c0afd7, type: 3}
 --- !u!61 &688192964
 BoxCollider2D:
@@ -7342,10 +7339,7 @@ MonoBehaviour:
   otherTimer: 0
   isHovered: 0
   playerIcon: {fileID: 0}
-  bigIcon: {fileID: 0}
   playerText: {fileID: 0}
-  bigText: {fileID: 0}
-  bigFear: {fileID: 0}
   bigImage: {fileID: 21300000, guid: d455b98d93e5bb14a820c8b88785a11a, type: 3}
 --- !u!50 &798634182
 Rigidbody2D:
@@ -13298,7 +13292,6 @@ MonoBehaviour:
   cardStorage: {fileID: 739360602}
   zPrompt: {fileID: 792549632}
   hope: 0
-  volume: 0
   firstGame: 0
 --- !u!61 &1571830517
 BoxCollider2D:
@@ -14106,6 +14099,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 1244177771}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1440943518}
+        m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
+        m_MethodName: UpdateVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

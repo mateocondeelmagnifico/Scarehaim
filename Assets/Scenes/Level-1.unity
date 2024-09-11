@@ -1974,7 +1974,7 @@ Transform:
   - {fileID: 2022413376}
   - {fileID: 592090871}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &246935966
 GameObject:
@@ -6085,7 +6085,7 @@ MonoBehaviour:
   firstSelect: {fileID: 0}
   selectedCardSlot: {fileID: 0}
   hoverAesthetics: {fileID: 1479909012}
-  hoverAesthetics2: {fileID: 0}
+  hoverAesthetics2: {fileID: 1947916008}
   trapIndicator: {fileID: 1580633170274835095, guid: cb3b4e220841985458cf374c11277c40, type: 3}
 --- !u!1 &688192956
 GameObject:
@@ -13355,7 +13355,6 @@ MonoBehaviour:
   cardStorage: {fileID: 739360602}
   zPrompt: {fileID: 234978152}
   hope: 0
-  volume: 0
   firstGame: 0
 --- !u!61 &1571830517
 BoxCollider2D:
@@ -14163,6 +14162,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 1244177771}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1510100650}
+        m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
+        m_MethodName: UpdateVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -15677,6 +15688,72 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4676084009188673460, guid: 2b886efc8f3f9304ea46b0b2f9cda827, type: 3}
   m_PrefabInstance: {fileID: 1941149242}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1947916007
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3693071763250408614, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+      propertyPath: m_Name
+      value: Highlight 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620990634837756399, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620990634837756399, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.3388193
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620990634837756399, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.7812903
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620990634837756399, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620990634837756399, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620990634837756399, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620990634837756399, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620990634837756399, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620990634837756399, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620990634837756399, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5620990634837756399, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+--- !u!1 &1947916008 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3693071763250408614, guid: 050b66a3d3aff7c488b1052b57face42, type: 3}
+  m_PrefabInstance: {fileID: 1947916007}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1969379263
 GameObject:

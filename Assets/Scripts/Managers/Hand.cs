@@ -14,7 +14,6 @@ public class Hand : MonoBehaviour
 
     //la mano guarda el fear entre escenas y sabe si has hecho el tutorial
     public int hope;
-    public float volume;
     public bool firstGame;
 
     private void Awake()
@@ -28,9 +27,8 @@ public class Hand : MonoBehaviour
             firstGame = true;
             DetermineStartCards();
             hope = 5;
-            volume = InfoKeeper.instance.volume;
 
-            if (SceneManager.GetActiveScene().buildIndex == 1) hope = 8;
+            if (SceneManager.GetActiveScene().buildIndex == 1) hope = 10;
         }
         else
         {
@@ -177,7 +175,6 @@ public class Hand : MonoBehaviour
     {
         //llamado por botones
         hope = GameManager.Instance.player.GetComponent<Fear>().hope;
-        volume = SoundManager.Instance.volumeSetting;
 
         DetermineStartCards();
     }
@@ -257,7 +254,6 @@ public class Hand : MonoBehaviour
     public void NukeSelf()
     {
         //Called by buttons
-        InfoKeeper.instance.volume = volume;
         Destroy(cardStorage.gameObject);
         Destroy(this.gameObject);
     }
