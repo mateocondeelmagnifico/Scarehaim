@@ -14,7 +14,7 @@ public class Hand : MonoBehaviour
 
     //la mano guarda el fear entre escenas y sabe si has hecho el tutorial
     public int hope;
-    public bool firstGame;
+    public bool firstGame, paying;
 
     private void Awake()
     {
@@ -230,6 +230,10 @@ public class Hand : MonoBehaviour
         cardInLimbo.transform.parent = cardStorage.transform;
         zPrompt.SetActive(true);
         DeterminePosition();
+    }
+    public void Undo()
+    {
+        if (paying) UndoLimbo();
     }
     public void UndoLimbo()
     {

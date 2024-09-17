@@ -1,9 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
-
-
 public class MouseManager : MonoBehaviour
 {
     private GameManager manager;
@@ -24,10 +21,10 @@ public class MouseManager : MonoBehaviour
 
     [SerializeField] private Transform board, tricks;
 
-    private bool handDisplayed, highlightsSpawned, cardHandHovered;
+    private bool handDisplayed, highlightsSpawned, cardHandHovered, wantsToDisplay;
     public bool moveCard, cardInformed, canClick, isInTutorial, needsTreat, radarActive, cardGrabbed;
 
-    private float handtimer;
+    private float handtimer, displayTimer;
 
     private string prevString;
 
@@ -64,7 +61,6 @@ public class MouseManager : MonoBehaviour
 
         if(handtimer > 0.2f && !handDisplayed && !manager.moveCardToHand)
         {
-            Debug.Log(1);
             hand.ResizeHand(true);
             handDisplayed = true;
         }
@@ -73,6 +69,16 @@ public class MouseManager : MonoBehaviour
         {
             DeactivateDisplay();
             hoverAesthetics.SetActive(false);
+        }
+
+        if (wantsToDisplay)
+        {
+            displayTimer -= Time.deltaTime;
+            if(displayTimer <= 0)
+            {
+                display.enabled = true;
+                blackBox.enabled = true;
+            }
         }
     }
 
@@ -122,9 +128,10 @@ public class MouseManager : MonoBehaviour
                     currentCardHand.isHovered = true;
                     handtimer += Time.deltaTime;
 
-                    if (currentCardHand.hoverTimer >= 0.5f)
+                    if (currentCardHand.hoverTimer >= 0.2f)
                     {
                         DisplayCard(currentCardHand.objectSprite);
+
                         cardHandHovered = true;
                     }
 
@@ -150,7 +157,6 @@ public class MouseManager : MonoBehaviour
 
                 if (hit.collider.gameObject.tag.Equals("Hand") && handtimer < 1.5f)
                 {
-                    Debug.Log(2);
                     handtimer += Time.deltaTime;
                 }
                 else if(!cardHit.GetComponent<CardSlotHand>()) ShrinkHand();
@@ -370,7 +376,6 @@ public class MouseManager : MonoBehaviour
         }
         
     }
-
     private void ShrinkHand()
     {
         if (handtimer > 0 && handDisplayed)
@@ -503,7 +508,6 @@ public class MouseManager : MonoBehaviour
 
         return isTrue;
     }
-
     private void FireRadar()
     {
         for(int i = 0;i < tricks.childCount;i++)
@@ -526,24 +530,26 @@ public class MouseManager : MonoBehaviour
         radarActive = false;
         pMovement.DespawnHighlights(0);
     }
-
     public void DeactivateDisplay()
     {
         display.enabled = false;
         blackBox.enabled = false;
+        wantsToDisplay = false;
         firstSelect = null;
         hopeText.text = "";
         costumeTurnsText.text = "";
         hoverAesthetics2.SetActive(false);
     }
-
     private void DisplayCard(Sprite spriteToDisplay)
     {
-        display.enabled = true;
-        blackBox.enabled = true;
         display.sprite = spriteToDisplay;
-    }
 
+        if (!wantsToDisplay)
+        {
+            displayTimer = 0.4f;
+            wantsToDisplay = true;
+        }
+    }
     private void PlaceHighlight(int whichOne)
     {
         if (cardHit.transform.childCount > 0 || cardHit.CompareTag("Enemy"))

@@ -14,6 +14,9 @@ public class MaintainCamSize : MonoBehaviour
     {
         cam = GetComponent<Camera>();
 
+        cam.aspect = 1.778f;
+
+        /*
         pos = transform.position;
         width = cam.orthographicSize * cam.aspect;
         height = cam.orthographicSize;
@@ -26,5 +29,7 @@ public class MaintainCamSize : MonoBehaviour
     {
         cam.orthographicSize = width / cam.aspect;
         transform.position = new Vector3(pos.x,-1 * (height - cam.orthographicSize),pos.z);
+    }
+        */
     }
 }
