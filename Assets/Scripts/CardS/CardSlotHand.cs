@@ -7,10 +7,11 @@ public class CardSlotHand: CardSlot
 {
     public Vector3 direction, startingPos;
 
-    public bool goHome, followMouse, isPayment, hasArrived;
+    public bool goHome, isPayment, hasArrived, followMouse;
 
     public CardEffectManager effectManager;
-    private Transform blackScreen, oldParent;
+    private Transform blackScreen;
+    public Transform oldParent;
 
     private int chosenSlot;
 
@@ -21,6 +22,8 @@ public class CardSlotHand: CardSlot
         gameManager = GameManager.Instance;
         if(effectManager == null) effectManager = CardEffectManager.Instance;
         blackScreen = effectManager.blackScreen.transform;
+
+        //Give tag to self
         if (transform.childCount > 0)
         {
             cardObject = transform.GetChild(0).gameObject;
@@ -46,7 +49,7 @@ public class CardSlotHand: CardSlot
         if (followMouse && !isPayment)
         {
             direction = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = new Vector3(direction.x, direction.y, transform.position.z);
+            transform.position = new Vector3(direction.x, direction.y, -5);
         }
         
         if(transform.position != startingPos && !isPayment && !followMouse)
@@ -94,9 +97,11 @@ public class CardSlotHand: CardSlot
 
     public void Relocate()
     {
-        if(Vector3.Distance(transform.position, startingPos) <= 2)
+        if(Vector3.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(startingPos.x, startingPos.y)) <= 2)
         {
+            followMouse = false;
             goHome = true;
+            transform.parent = Hand.Instance.transform;
         }
         else
         {
@@ -196,6 +201,6 @@ public class CardSlotHand: CardSlot
 
         oldParent = transform.parent;
         transform.parent = null;
-        oldParent.GetComponent<Hand>().DeterminePosition();
+        Hand.Instance.DeterminePosition();
     }
 }

@@ -14,7 +14,7 @@ public class Hand : MonoBehaviour
 
     //la mano guarda el fear entre escenas y sabe si has hecho el tutorial
     public int hope;
-    public bool firstGame, paying;
+    public bool firstGame;
 
     private void Awake()
     {
@@ -49,7 +49,7 @@ public class Hand : MonoBehaviour
         if(transform.childCount != cards.Length) DeterminePosition();
 
         //Undo play card
-        if(Input.GetKeyDown(KeyCode.Z) && cardInLimbo != null) UndoLimbo();
+        if(Input.GetKeyDown(KeyCode.Z) && cardInLimbo != null) Undo();
     }
 
     public void AddCardToHand(Transform card)
@@ -103,7 +103,7 @@ public class Hand : MonoBehaviour
                 if ((cards.Length == 3 && i == 1) || (cards.Length == 5 && i == 2) || cards.Length == 1)
                 {
                     //Do nothing
-                    cards[i].position = defaultPos;
+                    cards[i].position = new Vector3(defaultPos.x, defaultPos.y, -3);
                     cards[i].rotation = Quaternion.identity;
                     cards[i].GetComponent<CardSlotHand>().startingPos = cards[i].position;
                 }
@@ -228,12 +228,15 @@ public class Hand : MonoBehaviour
         cardInLimbo = Slot;
         cardInLimbo.SetActive(false);
         cardInLimbo.transform.parent = cardStorage.transform;
-        zPrompt.SetActive(true);
+        ActivateUndo();
         DeterminePosition();
     }
     public void Undo()
     {
-        if (paying) UndoLimbo();
+        UndoLimbo();
+
+        zPrompt.SetActive(false);
+        DeterminePosition();
     }
     public void UndoLimbo()
     {
@@ -243,8 +246,6 @@ public class Hand : MonoBehaviour
         overlay.DeactivatOverlay();
 
         cardInLimbo.transform.parent = transform;
-        zPrompt.SetActive(false);
-        DeterminePosition();
     }
     public void DestroyLimbo()
     {
@@ -254,7 +255,10 @@ public class Hand : MonoBehaviour
             Destroy(cardInLimbo);
         }
     }
-
+    public void ActivateUndo()
+    {
+        zPrompt.SetActive(true);
+    }
     public void NukeSelf()
     {
         //Called by buttons

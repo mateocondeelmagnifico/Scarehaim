@@ -141,7 +141,6 @@ public class CardEffectManager : MonoBehaviour
 
         effectActive = true;
     }
-
     public void Payment(bool wantsToPay)
     {
         //called by buttons
@@ -220,7 +219,6 @@ public class CardEffectManager : MonoBehaviour
             }
         }
     }
-
     private void DeactivateMenu()
     {
         for (int i = 0; i < blackScreen.transform.childCount; i++)
@@ -260,7 +258,6 @@ public class CardEffectManager : MonoBehaviour
         }
         effectActive = false;
     }
-
     private void DiscardCards(string cardType, int amount)
     {
         if(hand.childCount > 0)
@@ -293,7 +290,6 @@ public class CardEffectManager : MonoBehaviour
             DiscardCards(name, howMuch);
         }
     }
-
     public void InformMoveHand(Vector3 cardPos, Sprite image, Cost whatCost)
     {
         moveHand = true;

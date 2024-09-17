@@ -94,6 +94,7 @@ public class MouseManager : MonoBehaviour
 
         if (hit.collider != null && canClick)
         {
+
             if (hit.collider.gameObject.tag.Equals("Card Slot") || hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
             {
                 //Put highlights when hovering over cards
@@ -140,6 +141,11 @@ public class MouseManager : MonoBehaviour
                         //follow mouse
                         currentCard = currentCardHand;
                         currentCardHand.followMouse = true;
+                        if (currentCardHand.isPayment)
+                        {
+                            currentCardHand.isPayment = false;
+                            currentCardHand.hasArrived = false;
+                        }
                         currentCardHand.Disown();
                         cardGrabbed = true;
                     }
@@ -152,6 +158,7 @@ public class MouseManager : MonoBehaviour
                         hoverAesthetics.SetActive(false);
                         hover2Pos.SetActive(false);
                         DeactivateDisplay();
+                        Debug.Log(currentCardHand.followMouse);
                     }
                 }
 
@@ -204,7 +211,6 @@ public class MouseManager : MonoBehaviour
 
                 if (hit.collider.gameObject.tag.Equals("Card Slot"))
                 {
-
                     #region Select card in Board
                     if (!radarActive && !currentCard.isInHand)
                     {
@@ -273,7 +279,7 @@ public class MouseManager : MonoBehaviour
                 if (hit.collider.gameObject.tag.Equals("Undo Button"))
                 {
                     //Press Undo Button
-                    hand.UndoLimbo();
+                    hand.Undo();
                 }
 
                 if (hit.collider.gameObject.tag.Equals("Untagged")) DeactivateDisplay();
