@@ -94,7 +94,6 @@ public class MouseManager : MonoBehaviour
 
         if (hit.collider != null && canClick)
         {
-
             if (hit.collider.gameObject.tag.Equals("Card Slot") || hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
             {
                 //Put highlights when hovering over cards
@@ -158,7 +157,6 @@ public class MouseManager : MonoBehaviour
                         hoverAesthetics.SetActive(false);
                         hover2Pos.SetActive(false);
                         DeactivateDisplay();
-                        Debug.Log(currentCardHand.followMouse);
                     }
                 }
 
@@ -173,7 +171,7 @@ public class MouseManager : MonoBehaviour
             {
                 ShrinkHand();
 
-                if (cardHandHovered)
+                if (cardHandHovered || hit.collider.gameObject.tag.Equals("Undo Button"))
                 {
                     DeactivateDisplay();
                     cardHandHovered = false;
