@@ -139,14 +139,16 @@ public class MouseManager : MonoBehaviour
                     {
                         //follow mouse
                         currentCard = currentCardHand;
-                        currentCardHand.followMouse = true;
+                        currentCardHand.followMouse = true;                
+                        currentCardHand.Disown();
+                        cardGrabbed = true;
+
                         if (currentCardHand.isPayment)
                         {
                             currentCardHand.isPayment = false;
                             currentCardHand.hasArrived = false;
+                            CardEffectManager.Instance.CheckCanAfford();
                         }
-                        currentCardHand.Disown();
-                        cardGrabbed = true;
                     }
 
                     if (Input.GetMouseButtonUp(0))
@@ -155,7 +157,6 @@ public class MouseManager : MonoBehaviour
                         currentCardHand.followMouse = false;
                         cardGrabbed = false;
                         hoverAesthetics.SetActive(false);
-                        hover2Pos.SetActive(false);
                         DeactivateDisplay();
                     }
                 }

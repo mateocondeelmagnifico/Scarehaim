@@ -186,13 +186,13 @@ public class CardManager : MonoBehaviour
 
     public void CardDiscarded(CardSlot whatSlot)
     {
-        gameManager.slotToReplaceNew = whatSlot.gameObject;
+        gameManager.slotToReplace = whatSlot.gameObject;
         doorText.text = cardsUntilExit.ToString();
     }
     public void DistributeCard()
     {
         //Called by gameManager
-        cardSlot = gameManager.slotToReplaceOld.GetComponent<CardSlot>();
+        cardSlot = gameManager.slotToReplace.GetComponent<CardSlot>();
         ReplaceCard();
 
         #region Assign card

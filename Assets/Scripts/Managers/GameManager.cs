@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     public int turnCount;
 
-    public GameObject player, selectedCardSlot, handSlotPrefab, slotToReplaceNew, newCardSlot, emptySlot, newCard, slotToReplaceOld;
+    public GameObject player, selectedCardSlot, handSlotPrefab, slotToReplace, newCardSlot, emptySlot, newCard;
     private GameObject selectedCard;
 
     [HideInInspector]
@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
 
             case turnState.ReplaceCard:
 
-                if (slotToReplaceOld != null && !mustMove)
+                if (slotToReplace != null && !mustMove)
                 {
                     cardManager.DistributeCard();
                     mustMove = true;
@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour
 
                 if (mustMove)
                 {
-                    MoveCard(newCard, slotToReplaceOld.transform.position, newCard.GetComponent<SpriteRenderer>());
+                    MoveCard(newCard, slotToReplace.transform.position, newCard.GetComponent<SpriteRenderer>());
                 }
                 else
                 {
@@ -121,10 +121,6 @@ public class GameManager : MonoBehaviour
 
             case turnState.CheckCardEffect:
                 //This is changed by the card's script
-                if (!slotErased)
-                {
-                    slotToReplaceOld = slotToReplaceNew;
-                }
 
                 if (!selectedCardSlot.transform.GetChild(0).CompareTag("Enemy"))
                 {
@@ -132,7 +128,7 @@ public class GameManager : MonoBehaviour
                 }
                 else if (!slotErased)
                 {
-                    slotToReplaceNew = null;
+                    slotToReplace = null;
                     slotErased = true;
                 }
 
@@ -233,7 +229,7 @@ public class GameManager : MonoBehaviour
                 renderer.sortingOrder = -2;
                 currentState = turnState.Endturn;
             }
-            else if(slotToReplaceOld != null)
+            else if(slotToReplace != null)
             {
                 renderer.sortingOrder = -2;
                 currentState = turnState.CheckCardEffect;

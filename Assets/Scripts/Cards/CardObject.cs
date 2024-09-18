@@ -34,7 +34,6 @@ public class CardObject : MonoBehaviour
 
     public void MoveToHand(GameObject cardSlot)
     {
-
         #region Make new cardslot and change variables
 
         transform.parent.GetComponent<CardSlot>().cardObject = null;
