@@ -119,13 +119,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45a05fe882c9ce34c945c699bbb075fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardObject: {fileID: 0}
+  cardObject: {fileID: 767593447808176829}
+  redHighlight: {fileID: 6846837024927457774, guid: 661b0975d55ac404fbee0a673b425413, type: 3}
   Location: {x: 0, y: 0}
   isInHand: 0
   isHovered: 0
   hoverTimer: 0
   otherTimer: 0
+  unavailable: 0
   gameManager: {fileID: 0}
+  objectSprite: {fileID: 0}
 --- !u!1001 &179149561341377345
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -134,6 +137,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 894686014138126463}
     m_Modifications:
+    - target: {fileID: -5481713987991069524, guid: 8239166acee45684489156ec96f26d4f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 638242032198707708, guid: 8239166acee45684489156ec96f26d4f, type: 3}
       propertyPath: m_Name
       value: Card Object
@@ -187,6 +194,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8239166acee45684489156ec96f26d4f, type: 3}
+--- !u!1 &767593447808176829 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 638242032198707708, guid: 8239166acee45684489156ec96f26d4f, type: 3}
+  m_PrefabInstance: {fileID: 179149561341377345}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4798794525172055285 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4676084009188673460, guid: 8239166acee45684489156ec96f26d4f, type: 3}

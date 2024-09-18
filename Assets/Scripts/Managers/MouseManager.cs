@@ -217,7 +217,7 @@ public class MouseManager : MonoBehaviour
 
                         if (firstSelect == cardHit)
                         {
-                            if (manager.CheckIsInCheckMovement() && currentCard.transform.childCount > 0)
+                            if (manager.CheckIsInCheckMovement() && currentCard.transform.childCount > 0 && cardHit.GetComponent<CardSlot>().unavailable <= 0)
                             {
                                 if (CanReach(currentCard.Location)) SoundManager.Instance.PlaySound("Card Picked");
                                 else SoundManager.Instance.PlaySound("Cant go there");
@@ -262,7 +262,7 @@ public class MouseManager : MonoBehaviour
                         }
                         else 
                         {
-                            if (cardHit.transform.childCount > 0)
+                            if (cardHit.transform.childCount > 0 )
                             {
                                 soundManager.PlaySound("Card Hovered");
                                 firstSelect = cardHit;
@@ -544,6 +544,7 @@ public class MouseManager : MonoBehaviour
         hopeText.text = "";
         costumeTurnsText.text = "";
         hoverAesthetics2.SetActive(false);
+        playerMove.DespawnHighlights(0);
     }
     private void DisplayCard(Sprite spriteToDisplay)
     {
