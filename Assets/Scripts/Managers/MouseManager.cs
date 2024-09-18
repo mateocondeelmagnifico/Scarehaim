@@ -217,9 +217,9 @@ public class MouseManager : MonoBehaviour
 
                         if (firstSelect == cardHit)
                         {
-                            if (manager.CheckIsInCheckMovement() && currentCard.transform.childCount > 0 && cardHit.GetComponent<CardSlot>().unavailable <= 0)
+                            if (manager.CheckIsInCheckMovement() && currentCard.transform.childCount > 0)
                             {
-                                if (CanReach(currentCard.Location)) SoundManager.Instance.PlaySound("Card Picked");
+                                if (CanReach(currentCard.Location) && cardHit.GetComponent<CardSlot>().unavailable > 0) SoundManager.Instance.PlaySound("Card Picked");
                                 else SoundManager.Instance.PlaySound("Cant go there");
 
                                 if (playerMove.turnsWithcostume <= 0)
@@ -240,7 +240,7 @@ public class MouseManager : MonoBehaviour
                                 #region Inform Player to move and tutorial to progress
                                 if (tutorialManager == null)
                                 {
-                                    playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
+                                    if(cardHit.GetComponent<CardSlot>().unavailable <= 0  || playerMove.hasTreat) playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
                                     DeactivateDisplay();
                                 }
                                 else if (tutorialManager.IsCorrectCard(selectedCardSlot) == true)
