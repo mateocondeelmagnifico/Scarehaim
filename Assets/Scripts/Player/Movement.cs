@@ -390,7 +390,6 @@ public class Movement : MonoBehaviour
         }
         return wantedpos;
     }
-
     public void DisplayTreatHighlight(Vector2 pos)
     {
         if (isMoving) return;

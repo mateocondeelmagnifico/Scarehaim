@@ -7070,7 +7070,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 792549632}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.9315, y: -4.76, z: -2.67}
+  m_LocalPosition: {x: 3.9315, y: -4.76, z: -5}
   m_LocalScale: {x: 1.6570729, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15308,11 +15308,10 @@ MonoBehaviour:
   player: {fileID: 688192956}
   selectedCardSlot: {fileID: 0}
   handSlotPrefab: {fileID: 5757337979554174078, guid: 215caa4bbbf4e41498cc4f35ea8d78b8, type: 3}
-  slotToReplaceNew: {fileID: 0}
+  slotToReplace: {fileID: 0}
   newCardSlot: {fileID: 0}
   emptySlot: {fileID: 0}
   newCard: {fileID: 0}
-  slotToReplaceOld: {fileID: 0}
   deck: {fileID: 832433590}
   discardPile: {fileID: 1969379264}
   hand: {fileID: 1571830515}

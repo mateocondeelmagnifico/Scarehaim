@@ -8,7 +8,6 @@ public class Disguise : Card
 {
     public string myName;
     public Sprite icon, onPlayerImage;
-    GameManager manager;
     private Movement pMovement;
 
     public override void Effect(GameObject card, GameObject cardSlot)
@@ -29,10 +28,10 @@ public class Disguise : Card
 
     public override void UndoEffect()
     {
-        manager.powerUpOn = true;
+        GameManager.Instance.powerUpOn = true;
         pMovement.turnsWithcostume = 0;
         pMovement.TakeOffCostume();
-        manager.powerUpOn = false;
+        GameManager.Instance.powerUpOn = false;
     }
 }
 

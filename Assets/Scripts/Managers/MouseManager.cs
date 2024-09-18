@@ -544,7 +544,7 @@ public class MouseManager : MonoBehaviour
         hopeText.text = "";
         costumeTurnsText.text = "";
         hoverAesthetics2.SetActive(false);
-        playerMove.DespawnHighlights(0);
+        if(!playerMove.moveSelected)playerMove.DespawnHighlights(0);
     }
     private void DisplayCard(Sprite spriteToDisplay)
     {
