@@ -37,6 +37,7 @@ public class CardObject : MonoBehaviour
         #region Make new cardslot and change variables
 
         transform.parent.GetComponent<CardSlot>().cardObject = null;
+        transform.parent.GetComponent<CardSlot>().unavailable = 3;
 
         GameObject newSlot = GameObject.Instantiate(cardSlot);
 
