@@ -66,6 +66,7 @@ public class SceneManagement : MonoBehaviour
 
     public void DisplayMenu(GameObject menu)
     {
+        if(currentMenu != null) currentMenu.SetActive(false);
         currentMenu = menu;
         menu.SetActive(true);
         if(blackscreen.activeInHierarchy) wasActive = true;
