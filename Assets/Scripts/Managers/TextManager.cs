@@ -34,6 +34,7 @@ public class TextManager : MonoBehaviour
     [HideInInspector] public float textCooldown;
     public float startTextCD;
     private float textDuration, annoyedDuration;
+    private int lastArray, lastText;
 
     public bool fearReached, closeToEnemy, inTutorial, displayButton, inTrap; //accesed by enemyMovement
     private bool displayText, hasTalked;
@@ -160,11 +161,23 @@ public class TextManager : MonoBehaviour
 
         }
 
+
+        int randomNum = Random.Range(0, currentTexts.Length);
+
+        if(currentTexts.GetHashCode() == lastArray && randomNum == lastText)
+        {
+            if (randomNum == currentTexts.Length) randomNum = 0;
+            else randomNum++;
+        }
+
         box.enabled = true;
-        StartCoroutine(ProduceLetters(currentTexts[Random.Range(0, currentTexts.Length)]));
+        StartCoroutine(ProduceLetters(currentTexts[randomNum]));
         displayText = false;
         textCooldown = 30;
         textDuration = 7;
+
+        lastArray = currentTexts.GetHashCode();
+        lastText = randomNum;
     }
 
     public void TutorialTalk(string myText)

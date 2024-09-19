@@ -1,5 +1,3 @@
- using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -153,7 +151,7 @@ public class CardEffectManager : MonoBehaviour
                 bool canPay = CanPay();  
 
                 #region Ending Screen Check
-                if (isEnding)
+                if (isEnding && canPay)
                 {
                     //reduce fear by 2 for each treat payed
                     //hardcoded but functional
@@ -167,6 +165,11 @@ public class CardEffectManager : MonoBehaviour
 
                     //Return hand to original pos
                     handScript.MoveHand(4);
+                    if (isEnding)
+                    {
+                        handScript.UpdateFear();
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                    }
                 }
                 #endregion
 
@@ -208,15 +211,16 @@ public class CardEffectManager : MonoBehaviour
                 {
                     DeactivateMenu();
                 }
+
+                if (isEnding)
+                {
+                    handScript.UpdateFear();
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                }
             }
 
             if (textManager.inTrap) textManager.inTrap = false;
 
-            if(isEnding)
-            {
-                handScript.UpdateFear();
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            }
         }
     }
     private void DeactivateMenu()
