@@ -19,10 +19,8 @@ public class Disguise : Card
     public override void PlayEffect(GameManager manager)
     {
         pMovement = manager.player.GetComponent<Movement>();
+        pMovement.PutOnCostume(image,myName);
         manager.powerUpOn = true;
-        pMovement.turnsWithcostume = 3;
-        pMovement.tempSprite = image;
-        pMovement.costumeName = myName;
         pMovement.GetComponent<DisplayBigImage>().ChangeImageAndIcon(onPlayerImage, icon);
     }
 

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class MouseManager : MonoBehaviour
 {
+    public static MouseManager instance { get; private set; }
     private GameManager manager;
     [HideInInspector] public TutorialManager tutorialManager;
     private Camera myCam;
@@ -34,6 +35,12 @@ public class MouseManager : MonoBehaviour
     private GameObject cardHit, hover2Pos;
 
     private Color startColor;
+
+    private void Awake()
+    {
+        if (instance == null) instance = this;
+        else Destroy(this.gameObject);
+    }
 
     private void Start()
     {

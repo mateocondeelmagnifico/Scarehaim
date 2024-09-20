@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class Movement : MonoBehaviour
 {
-
     private bool resetSprite;
     public bool hasTreat, hasMoved, moveSelected, isMoving;
 
@@ -15,6 +14,7 @@ public class Movement : MonoBehaviour
     private SpriteRenderer rendereador;
     private DisplayBigImage display;
     private TrickRadar trickRadar;
+    private TurnCheck turnCounter;
     private BoardOverlay overlay;
     private Sprite startSprite;
     public Sprite tempSprite;
@@ -46,6 +46,7 @@ public class Movement : MonoBehaviour
     {
         overlay = BoardOverlay.instance;
         hand = Hand.Instance;
+        turnCounter = gameManager.turnCounter;
     }
 
     private void Update()
@@ -104,6 +105,7 @@ public class Movement : MonoBehaviour
                     else if(transform.position.x == destination.x && transform.position.y == destination.y)
                     {
                         isMoving = false;
+                        hand.zPrompt.SetActive(false);
                         
                         gameManager.ChangeState(GameManager.turnState.ReplaceCard);
                         turnsWithcostume--;
@@ -454,6 +456,14 @@ public class Movement : MonoBehaviour
         costumeName = "None";
         rendereador.sprite = startSprite;
         display.ResetImage();
+        turnCounter.DisplayCostumeTurns(true);
+    }
+    public void PutOnCostume(Sprite image, string name)
+    {
+        turnsWithcostume = 3;
+        tempSprite = image;
+        costumeName = name;
+        turnCounter.DisplayCostumeTurns(false);
     }
     public void UndoCostumeMove()
     {
