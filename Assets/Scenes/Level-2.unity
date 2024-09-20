@@ -4330,7 +4330,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 5fa7a860bf7aca4439a7abf304763c0e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6733,7 +6733,6 @@ MonoBehaviour:
   playerMove: {fileID: 688192960}
   initialSlot: {fileID: 0}
   cardGrid: {fileID: 1505720235}
-  turnsCounter: {fileID: 853371070}
   isMoving: 0
   isSlow: 0
   turnsUntilStart: 2
@@ -7700,6 +7699,86 @@ MonoBehaviour:
   inTutorial: 0
   displayButton: 0
   inTrap: 0
+--- !u!1001 &941420144
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4321602623883367868, guid: 311c93cf120101b4f8a7f42ad883ad23, type: 3}
+      propertyPath: m_Name
+      value: Turn Counter
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343089285307065910, guid: 311c93cf120101b4f8a7f42ad883ad23, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343089285307065910, guid: 311c93cf120101b4f8a7f42ad883ad23, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343089285307065910, guid: 311c93cf120101b4f8a7f42ad883ad23, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.5896163
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343089285307065910, guid: 311c93cf120101b4f8a7f42ad883ad23, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343089285307065910, guid: 311c93cf120101b4f8a7f42ad883ad23, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343089285307065910, guid: 311c93cf120101b4f8a7f42ad883ad23, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343089285307065910, guid: 311c93cf120101b4f8a7f42ad883ad23, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343089285307065910, guid: 311c93cf120101b4f8a7f42ad883ad23, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343089285307065910, guid: 311c93cf120101b4f8a7f42ad883ad23, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343089285307065910, guid: 311c93cf120101b4f8a7f42ad883ad23, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343089285307065910, guid: 311c93cf120101b4f8a7f42ad883ad23, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5025506809153186580, guid: 311c93cf120101b4f8a7f42ad883ad23, type: 3}
+      propertyPath: enemySprite
+      value: 
+      objectReference: {fileID: 21300000, guid: de3fcf9cf498ae84d9cecd582b2e8b9c, type: 3}
+    - target: {fileID: 5025506809153186580, guid: 311c93cf120101b4f8a7f42ad883ad23, type: 3}
+      propertyPath: moveFrequency
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 311c93cf120101b4f8a7f42ad883ad23, type: 3}
+--- !u!114 &941420145 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5025506809153186580, guid: 311c93cf120101b4f8a7f42ad883ad23, type: 3}
+  m_PrefabInstance: {fileID: 941420144}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e642d7a612494b042b737cbb78b812db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1026890211
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12742,7 +12821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1526464587
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12902,8 +12981,10 @@ MonoBehaviour:
   cardsStart: []
   cardStorage: {fileID: 0}
   zPrompt: {fileID: 0}
+  movimiento: {fileID: 0}
   hope: 0
   firstGame: 0
+  costumeOn: 0
 --- !u!114 &1571830517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15432,6 +15513,7 @@ MonoBehaviour:
   currentState: 0
   cardManager: {fileID: 2012204620}
   enemy: {fileID: 798634176}
+  turnCounter: {fileID: 941420145}
   turnCount: 0
   player: {fileID: 688192956}
   selectedCardSlot: {fileID: 0}

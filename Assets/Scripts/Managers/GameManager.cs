@@ -1,8 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -35,6 +31,7 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public CardManager cardManager;
     [HideInInspector] public EnemyMovement enemy;
+    public TurnCheck turnCounter;
 
     public int turnCount;
 
@@ -65,9 +62,10 @@ public class GameManager : MonoBehaviour
         hand = handScript.transform;
         playerTurnInProgress = true;
         turnCount = 1;
-
+        turnCounter.turnsUntilEnemy = enemy.turnsUntilStart - 2;
+           
         #region Reset hand variables
-        if(hand.transform.childCount > 0)
+        if (hand.transform.childCount > 0)
         {
             for(int i = 0; i < hand.transform.childCount; i++)
             {
@@ -168,7 +166,11 @@ public class GameManager : MonoBehaviour
             case turnState.Endturn:
                 //This moves the enemy too
 
-                if (!enemyInformed) EndPlayerTurn();
+                if (!enemyInformed)
+                {
+                    turnCounter.MoveLeft();
+                    EndPlayerTurn();
+                }
                 break;
         }
         #endregion

@@ -11,8 +11,8 @@ public class EnemyMovement : MonoBehaviour
     public GameObject cardGrid;
     private TextManager textManager;
     private Animator animador;
+    private TurnCheck turnCounter;
     private GameManager gameManager;
-    [SerializeField] private TMPro.TextMeshProUGUI turnsCounter;
 
     [SerializeField] private bool isMoving, isSlow;
     private bool hasTalked, hasMoved;
@@ -21,13 +21,14 @@ public class EnemyMovement : MonoBehaviour
     private Vector2 cardGridPos;
     private Vector2 cardActualPos;
 
-    public float turnsUntilStart;
+    public int turnsUntilStart;
 
     private void Start()
     {
         textManager = TextManager.Instance;
         animador = GetComponent<Animator>();
         gameManager = GameManager.Instance;
+        turnCounter = gameManager.turnCounter;
         TurnInStasis(0);
     }
     private void Update()
@@ -177,6 +178,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 gameManager.ChangeState(GameManager.turnState.CheckMovement);
                 isMoving = false;
+                turnCounter.MoveLeft();
 
                 if (isSlow) TurnInStasis(1);
             }
@@ -185,8 +187,5 @@ public class EnemyMovement : MonoBehaviour
 
     public void TurnInStasis(int amount)
     {
-        turnsUntilStart += amount;
-        if (turnsUntilStart > 0) turnsCounter.text = turnsUntilStart.ToString();
-        else turnsCounter.text = "";
-    }
+        turnsUntilStart += amount;    }
 }
