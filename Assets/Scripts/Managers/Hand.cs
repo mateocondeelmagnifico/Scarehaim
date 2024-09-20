@@ -9,12 +9,13 @@ public class Hand : MonoBehaviour
     public GameObject cardStorage, zPrompt;
     private GameObject cardInLimbo;
     private BoardOverlay overlay;
+    public Movement movimiento;
 
     public static Hand Instance { get; set;}
 
     //la mano guarda el fear entre escenas y sabe si has hecho el tutorial
     public int hope;
-    public bool firstGame;
+    public bool firstGame, costumeOn;
 
     private void Awake()
     {
@@ -233,7 +234,8 @@ public class Hand : MonoBehaviour
     }
     public void Undo()
     {
-        UndoLimbo();
+        if(costumeOn) UndoCostumeMove();
+        else UndoLimbo();
 
         zPrompt.SetActive(false);
         DeterminePosition();
@@ -246,6 +248,11 @@ public class Hand : MonoBehaviour
         overlay.DeactivatOverlay();
 
         cardInLimbo.transform.parent = transform;
+    }
+    private void UndoCostumeMove()
+    {
+        movimiento.UndoCostumeMove();
+        costumeOn = false;
     }
     public void DestroyLimbo()
     {

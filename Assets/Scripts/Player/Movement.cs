@@ -149,6 +149,11 @@ public class Movement : MonoBehaviour
             {
                 if (canBasicMove)
                 {
+                    //Set first move and activate undo
+                    hand.movimiento = this;
+                    hand.costumeOn = true;
+                    hand.zPrompt.SetActive(true);
+
                     tempVector = cardGridPos;
                     tempDestination = new Vector3(cardActualPos.x, cardActualPos.y, -0.15f);
                     moveSelected = true;
@@ -449,5 +454,11 @@ public class Movement : MonoBehaviour
         costumeName = "None";
         rendereador.sprite = startSprite;
         display.ResetImage();
+    }
+    public void UndoCostumeMove()
+    {
+        moveSelected = false;
+        trickRadar.ghostMoveOn = false;
+        DespawnHighlights(0);
     }
 }

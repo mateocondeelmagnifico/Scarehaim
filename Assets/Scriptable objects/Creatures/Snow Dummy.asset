@@ -17,9 +17,9 @@ MonoBehaviour:
   myObject: {fileID: 0}
   myCardObject: {fileID: 0}
   myCost:
-    explanation: A cold hug, lose 2 hope
-    CostName: 
-    costAmount: 0
+    explanation: A cold hug,  pay 1 treat or lose 2 hope
+    CostName: Treat
+    costAmount: 1
     reward: 
     rewardAmount: 0
     consequenceName: Fear
