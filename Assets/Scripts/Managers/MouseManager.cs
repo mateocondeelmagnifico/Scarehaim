@@ -31,8 +31,8 @@ public class MouseManager : MonoBehaviour
 
     private Vector2[] radarPositions;
 
-    public GameObject firstSelect, selectedCardSlot, hoverAesthetics, hoverAesthetics2, trapIndicator;
-    private GameObject cardHit, hover2Pos;
+    public GameObject firstSelect, selectedCardSlot, hoverAesthetics, hoverAesthetics2, trapIndicator, hover2Pos;
+    private GameObject cardHit;
 
     private Color startColor;
 
@@ -110,7 +110,7 @@ public class MouseManager : MonoBehaviour
                 {
                     currentCard = cardHit.GetComponent<CardSlot>();
                     if (cardHandHovered && !cardHit.GetComponent<CardSlotHand>())
-                    { 
+                    {
                         DeactivateDisplay();
                         cardHandHovered = false;
                         currentCardHand.hoverTimer = 0;

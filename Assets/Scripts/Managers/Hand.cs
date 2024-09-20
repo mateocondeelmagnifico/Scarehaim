@@ -252,6 +252,7 @@ public class Hand : MonoBehaviour
     private void UndoCostumeMove()
     {
         MouseManager.instance.firstSelect = null;
+        MouseManager.instance.hover2Pos = null;
         movimiento.UndoCostumeMove();
         costumeOn = false;
     }
