@@ -27,8 +27,6 @@ public class MouseManager : MonoBehaviour
 
     private float handtimer, displayTimer;
 
-    private string prevString;
-
     private Vector2[] radarPositions;
 
     public GameObject firstSelect, selectedCardSlot, hoverAesthetics, hoverAesthetics2, trapIndicator, hover2Pos;
@@ -87,6 +85,7 @@ public class MouseManager : MonoBehaviour
                 blackBox.enabled = true;
             }
         }
+
     }
 
     private void Raycast()
@@ -98,6 +97,8 @@ public class MouseManager : MonoBehaviour
         Ray rayo = myCam.ScreenPointToRay(mousePos);
         RaycastHit2D hit = Physics2D.Raycast(myCam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
         #endregion
+
+        if (radarActive) radarText.transform.position = new Vector3(hit.point.x + 0.8f, hit.point.y - 0.8f, 0);
 
         if (hit.collider != null && canClick)
         {
@@ -302,15 +303,14 @@ public class MouseManager : MonoBehaviour
                         trickRadar.numberOfScans++;
                         pMovement.DespawnHighlights(0);
                         boardOverlay.DeactivatOverlay();
-                        radarText.text = prevString;
+                        radarText.text = "";
                         soundManager.PlaySound("Radar Off");
                     }
                     else if (trickRadar.CanUseScan())
                     {
                         radarActive = true;
                         boardOverlay.ACtivateOverlay("Green");
-                        prevString = radarText.text;
-                        radarText.text = "Radars left: " + (trickRadar.numberOfScans + 1);
+                        radarText.text = (trickRadar.numberOfScans + 1).ToString();
                         soundManager.PlaySound("Radar On");
                     }
                 }
@@ -379,7 +379,7 @@ public class MouseManager : MonoBehaviour
                 {
                     FireRadar();
                     boardOverlay.DeactivatOverlay();
-                    radarText.text = prevString;
+                    radarText.text = "";
                     soundManager.PlaySound("Radar");
                 }
 
