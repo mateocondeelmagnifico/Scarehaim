@@ -34,7 +34,7 @@ public class CreatureContainer : CardObject
                 pMovement.destination = transform.position;
                 pMovement.myPos = transform.parent.GetComponent<CardSlot>().Location;
                 gameManager.selectedCardSlot = transform.parent.gameObject;
-                gameManager.ChangeState(GameManager.turnState.CheckCardEffect);
+                gameManager.ChangeState(GameManager.turnState.ReplaceCard);
                 gameManager.cardInformed = true;
                 myCard.Effect(null, null);
             }

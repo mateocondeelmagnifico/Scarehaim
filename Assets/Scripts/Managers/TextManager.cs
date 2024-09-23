@@ -166,7 +166,7 @@ public class TextManager : MonoBehaviour
 
         if(currentTexts.GetHashCode() == lastArray && randomNum == lastText)
         {
-            if (randomNum == currentTexts.Length) randomNum = 0;
+            if (randomNum >= currentTexts.Length - 1) randomNum = 0;
             else randomNum++;
         }
 

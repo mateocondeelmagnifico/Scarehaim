@@ -14,15 +14,14 @@ public class MaintainCamSize : MonoBehaviour
     {
         cam = GetComponent<Camera>();
 
+        //This is to force a resolution
         cam.aspect = 1.778f;
+        Camera.main.pixelRect = new Rect(0, 0, 1920, 1080);
 
         /*
         pos = transform.position;
         width = cam.orthographicSize * cam.aspect;
-        height = cam.orthographicSize;
-
-        //This is to force a resolution
-        //Camera.main.pixelRect = new Rect(0, 0, 1920, 1080); 
+        height = cam.orthographicSize;   
     }
 
     private void Update()

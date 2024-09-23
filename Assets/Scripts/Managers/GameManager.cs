@@ -86,7 +86,6 @@ public class GameManager : MonoBehaviour
         switch (currentState)
         {
             //En muchos estados no pasa nada, pero estan ahía para las acciones vayan de estado en estado
-
             case turnState.CheckMovement:
                 //Player movement is the one that changes to the next state
                 cardInformed = false;

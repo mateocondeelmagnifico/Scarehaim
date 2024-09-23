@@ -28,6 +28,7 @@ public class CardObject : MonoBehaviour
 
     public void DiscardCard()
     {
+        Debug.Log(1);
         transform.GetComponentInParent<CardSlot>().ReplaceCard();
         this.enabled = false;
     }

@@ -250,15 +250,17 @@ public class CardEffectManager : MonoBehaviour
         else
         {
             //If you trigerred a creature
-            if(manager.currentState == GameManager.turnState.CheckMovement)
+            if(manager.currentState == GameManager.turnState.Moving)
             {
                 //This is in case you trigger a creature with a costume on
-                manager.ChangeState(GameManager.turnState.ReplaceCard);
+                manager.ChangeState(GameManager.turnState.ReplaceCard);        
             }
             else
             {
                 manager.ChangeState(GameManager.turnState.Endturn);
             }
+
+            mouseManager.hover2Pos = null;
         }
         effectActive = false;
     }
