@@ -14,13 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 67a28e68231d402459018a5aa1b018ff, type: 3}
   bigImage: {fileID: 21300000, guid: 67a28e68231d402459018a5aa1b018ff, type: 3}
+  myObject: {fileID: 0}
+  myCardObject: {fileID: 0}
   myCost:
-    explanation: Pay 1 costume or lose 3 courage.
+    explanation: Pay 1 costume or lose 2 courage.
     CostName: Costume
     costAmount: 1
     reward: 
     rewardAmount: 0
     consequenceName: Fear
     secondConsequenceName: 
-    consequenceAmount: -3
+    consequenceAmount: -2
     secondConsequenceAmount: 0

@@ -18,11 +18,11 @@ public class CardManager : MonoBehaviour
     [SerializeField] private Transform enemy;
 
     public int cardsUntilExit, treatAmount, costumeAmount;
-    private int resetTimes, cardsDealtAmount;
+    private int resetTimes, cardsDealtAmount, turnsWithoutSpecial;
     private float startTimer;
 
     public bool exitCardDealt, cardsDealt, tricksNotRandom, canDealCards;
-    private bool powerUpDealt, canEnd, cardChosen;
+    private bool canEnd, cardChosen;
     private GameManager gameManager;
     [SerializeField] private MouseManager mouseManager;
     [SerializeField] private TutorialManager tutorialManager;
@@ -207,18 +207,32 @@ public class CardManager : MonoBehaviour
         //this selects an individual card within card arrays
         //The first array is for enviroments, second for treats, third for costumes
         int randomInt = 0;
-        if (powerUpDealt)
+        if (turnsWithoutSpecial == 0)
         {
             //This is so you don't get two treats or costumes in a row
             randomInt = Random.Range(0, 3);
-            powerUpDealt = false;
         }
         else
         {
             randomInt = Random.Range(0, cards.Count);
         }
+
+        //This is so that you get a treat after 3 cards without getting one
+        if (turnsWithoutSpecial >= 3 && cards.Count > 3)
+        {
+            if (cards.Count == 5)
+            {
+                randomInt = Random.Range(3, 5);
+            }
+            else randomInt = 3;
+        }
+
         Card[] chosenArray = cards[randomInt];
         int newRandom = Random.Range(0, chosenArray.Length);
+
+        //Check if you have received treat
+        if ((randomInt != 3 || randomInt != 4) && cards.Count > 3) turnsWithoutSpecial++;
+        else turnsWithoutSpecial = 0;
 
         newCard = Instantiate(cardPrefab, deck);
         newCard.GetComponent<CardObject>().myCard = chosenArray[newRandom];
@@ -237,16 +251,17 @@ public class CardManager : MonoBehaviour
                     }
 
                 }
+
                 if (treatAmount > 0)
                 {
                     treatAmount--;
-                    if (costumeAmount <= 0)
+                    if (treatAmount <= 0)
                     {
                         cards.RemoveAt(3);
                     }
+                
                 }
 
-                powerUpDealt = true;
             }
         }
         if (cards.Count == 5)
@@ -258,7 +273,6 @@ public class CardManager : MonoBehaviour
                 {
                     cards.RemoveAt(3);
                 }
-                powerUpDealt = true;
             }
             if (randomInt == 4)
             {
@@ -267,10 +281,10 @@ public class CardManager : MonoBehaviour
                 {
                     cards.RemoveAt(4);
                 }
-                powerUpDealt = true;
             }
         }
         #endregion
+        
     }
     private void DistributeTricks()
     {

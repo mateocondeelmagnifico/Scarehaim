@@ -9096,7 +9096,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1156338549
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12616,6 +12616,76 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1525140882}
   m_CullTransparentMesh: 1
+--- !u!1001 &1532110038
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2052462755}
+    m_Modifications:
+    - target: {fileID: 638242032198707708, guid: 86c848f6d4cd0574f9724520d7e33565, type: 3}
+      propertyPath: m_Name
+      value: Trick 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676084009188673460, guid: 86c848f6d4cd0574f9724520d7e33565, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676084009188673460, guid: 86c848f6d4cd0574f9724520d7e33565, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.059999943
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676084009188673460, guid: 86c848f6d4cd0574f9724520d7e33565, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676084009188673460, guid: 86c848f6d4cd0574f9724520d7e33565, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676084009188673460, guid: 86c848f6d4cd0574f9724520d7e33565, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676084009188673460, guid: 86c848f6d4cd0574f9724520d7e33565, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676084009188673460, guid: 86c848f6d4cd0574f9724520d7e33565, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676084009188673460, guid: 86c848f6d4cd0574f9724520d7e33565, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676084009188673460, guid: 86c848f6d4cd0574f9724520d7e33565, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676084009188673460, guid: 86c848f6d4cd0574f9724520d7e33565, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676084009188673460, guid: 86c848f6d4cd0574f9724520d7e33565, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7827536744625155066, guid: 86c848f6d4cd0574f9724520d7e33565, type: 3}
+      propertyPath: myCard
+      value: 
+      objectReference: {fileID: 11400000, guid: aca597e6afb9f9c4e8199463ea2303ed, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 86c848f6d4cd0574f9724520d7e33565, type: 3}
+--- !u!4 &1532110039 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4676084009188673460, guid: 86c848f6d4cd0574f9724520d7e33565, type: 3}
+  m_PrefabInstance: {fileID: 1532110038}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1567346306
 GameObject:
   m_ObjectHideFlags: 0
@@ -15617,6 +15687,7 @@ Transform:
   m_Children:
   - {fileID: 1826568176}
   - {fileID: 19224325}
+  - {fileID: 1532110039}
   m_Father: {fileID: 763641823}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16954,6 +17025,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1884403230}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: chosenSlots.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: chosenSlots.Array.data[0]
       value: 
       objectReference: {fileID: 2070088355}
@@ -16962,9 +17037,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 685545275}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: chosenSlots.Array.data[5]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: chosenSlots.Array.data[6]
+      value: 
+      objectReference: {fileID: 1155759590}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: chosenSlots.Array.data[7]
+      value: 
+      objectReference: {fileID: 1155759590}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: blackScreens.Array.data[7]
       value: 
       objectReference: {fileID: 21300000, guid: 0c150e0b604728b48b77c4af4f08741a, type: 3}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[1]
+      value: Hehe, that was a trick, you can't see them but there are three in each
+        board.
+      objectReference: {fileID: 0}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: tutorialTexts.Array.data[3]
       value: When you detect a trick this icon will appear. You can do this 3 times
