@@ -85,6 +85,7 @@ public class CardSlotHand: CardSlot
                 transform.rotation = Quaternion.identity;
                 effectManager.CheckCanAfford();
                 hasArrived = true;
+                SoundManager.Instance.PlaySound("Pay");
             }
         }
 

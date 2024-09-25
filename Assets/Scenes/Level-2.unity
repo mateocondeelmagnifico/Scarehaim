@@ -942,6 +942,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1677727088}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Button Press
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1909411722}
         m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
         m_MethodName: DisplayMenu
@@ -1535,6 +1547,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1677727088}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Button Press
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &164618774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2088,6 +2112,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1677727088}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Button Press
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1909411722}
         m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
         m_MethodName: ExitMenu
@@ -2292,6 +2328,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1677727088}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Button Press
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1909411722}
         m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
         m_MethodName: QuitGame
@@ -2564,6 +2612,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1677727088}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Button Press
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1909411722}
         m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
         m_MethodName: QuitGame
@@ -4785,6 +4845,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1677727088}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Button Press
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1909411722}
         m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
         m_MethodName: DisplayMenu
@@ -4929,6 +5001,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1677727088}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Button Press
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &624468666
@@ -6409,6 +6493,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1677727088}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Button Press
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1909411722}
         m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
         m_MethodName: ReloadScene
@@ -6543,6 +6639,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1677727088}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Button Press
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1909411722}
         m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
         m_MethodName: ExitMenu
@@ -9984,6 +10092,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1677727088}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Button Press
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1909411722}
         m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
         m_MethodName: ReloadScene
@@ -10525,6 +10645,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1677727088}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Button Press
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1909411722}
         m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
         m_MethodName: DisplayMenu
@@ -12494,6 +12626,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1677727088}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Button Press
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1909411722}
         m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
         m_MethodName: DisplayMenu
@@ -12704,6 +12848,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1677727088}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Button Press
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1909411722}
         m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
         m_MethodName: DisplayMenu
@@ -12892,7 +13048,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1526464587
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13941,6 +14097,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6705204745689640785, guid: 39ef8e22f91d7524fba57b013353219b, type: 3}
   m_PrefabInstance: {fileID: 1677727086}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1677727088 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3376626047237437451, guid: 39ef8e22f91d7524fba57b013353219b, type: 3}
+  m_PrefabInstance: {fileID: 1677727086}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f66ca746d25c3244fa9e46506680e391, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1691918115
 GameObject:
   m_ObjectHideFlags: 0
@@ -14025,6 +14192,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1677727088}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Button Press
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1909411722}
         m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
         m_MethodName: ExitMenu
@@ -14510,6 +14689,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1677727088}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Button Press
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1909411722}
         m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
         m_MethodName: DisplayMenu
@@ -15137,6 +15328,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1677727088}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Button Press
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1155827278}
         m_TargetAssemblyTypeName: CardEffectManager, Assembly-CSharp
         m_MethodName: Payment
@@ -16646,6 +16849,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1677727088}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Button Press
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1909411722}
         m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
         m_MethodName: QuitGame
