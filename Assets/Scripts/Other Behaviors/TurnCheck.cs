@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TurnCheck : MonoBehaviour
@@ -11,24 +12,50 @@ public class TurnCheck : MonoBehaviour
     public int turnsUntilEnemy;
     private int costumeTurns;
 
+    private bool move;
+    private bool[] hasArrived = new bool[5];
+
+
+    private void Update()
+    {
+        //Move when turn progresses
+        if (move)
+        {
+            for (int i = 4; i >= 0; i--)
+            {
+               //Move towards objective and decelerate when near
+               Vector3 currentDestination = positions[i].GetComponent<DestinationInfo>().destination;
+                if (positions[i].position != currentDestination) positions[i].position = Vector3.MoveTowards(positions[i].position, currentDestination, 1 * Time.deltaTime);
+                else hasArrived[i] = true;             
+            }
+
+            #region Check if all have arrived
+            int count = 0;
+
+            for(int i = 0; i < hasArrived.Length; i++)
+            {
+                if (hasArrived[i]) count++;
+            }
+
+            if (count == 5) move = false;
+            #endregion
+        }
+    }
+
     public void MoveLeft()
     {
         for(int i = 4; i >= 0; i--)
         {
-            #region Move images to the left and place the first to the right
+            #region Inform images where to go
             if (i == 0)
             {
                 Transform firstIcon = positions[i];
-                positions[i].position = startPos.position;
+                firstIcon.position = startPos.position;
+                firstIcon.GetComponent<DestinationInfo>().destination = startPos.position;
                 positions.RemoveAt(0);
-                positions.Add(firstIcon);         
-            } 
-            else positions[i].position = new Vector3(positions[i].position.x - 0.66f, positions[i].position.y, positions[i].position.z);
-            #endregion
-
-            #region Disable or enable images
-            if (i == 0 || i == 5) positions[i].GetComponent<SpriteRenderer>().enabled = false;
-            else positions[i].GetComponent<SpriteRenderer>().enabled = true;
+                positions.Add(firstIcon);     
+            }
+            else positions[i].GetComponent<DestinationInfo>().destination = new Vector3(positions[i].position.x - 0.66f, positions[i].position.y, positions[i].position.z);
             #endregion
 
             #region Decide if it's either player or enemy sprite
@@ -52,6 +79,14 @@ public class TurnCheck : MonoBehaviour
             }
             #endregion
         }
+
+        #region Command Move
+        for (int i = 0; i < hasArrived.Length; i++)
+        {
+            hasArrived[i] = false;
+        }
+        move = true;
+        #endregion
     }
 
     public void DisplayCostumeTurns(bool takeOff)
@@ -74,4 +109,7 @@ public class TurnCheck : MonoBehaviour
             }
         }
     }
+
+
 }
+
