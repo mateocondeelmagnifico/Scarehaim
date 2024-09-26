@@ -33,7 +33,6 @@ public class EnemyMovement : MonoBehaviour
     }
     private void Update()
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y, -0.13f);
 
         if(isMoving)
         {
@@ -156,7 +155,7 @@ public class EnemyMovement : MonoBehaviour
         EnemyLogic();
         if (cardGridPos.x <= myPos.x + 1 && cardGridPos.x >= myPos.x - 1 && cardGridPos.y <= myPos.y + 1 && cardGridPos.y >= myPos.y - 1 && !isMoving)
         {
-            destination = cardActualPos;
+            destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
             myPos = cardGridPos;
             isMoving = true; 
         }
