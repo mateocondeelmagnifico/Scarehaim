@@ -309,7 +309,6 @@ public class CardEffectManager : MonoBehaviour
         hand1.SetActive(false);
         hand2.SetActive(true);
     }
-
     public void ActivateFinalScreen()
     {
         if(SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 4)
@@ -332,7 +331,6 @@ public class CardEffectManager : MonoBehaviour
         fearCounter.gameObject.SetActive(true);
         fearText.text = "Courage = " + playerFear.hope.ToString();
     }
-
     public void CheckCanAfford()
     {
         bool canAfford = CanPay();
@@ -340,7 +338,6 @@ public class CardEffectManager : MonoBehaviour
         if (canAfford) tryPayButton.color = new Color(1, 1, 1, 1);
         else tryPayButton.color = new Color(1, 1, 1, 0.5f);
     }
-
     private bool CanPay()
     {
         bool canPay = true;
