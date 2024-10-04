@@ -10,7 +10,7 @@ public class CardEffectManager : MonoBehaviour
     private GameObject newSlot, player;
     [SerializeField] private Transform merrowHand, fearCounter;
 
-    public Transform[] slotPositions;
+    public Transform slotPosition;
     private Transform hand;
     public static CardEffectManager Instance { get; private set; }
     private GameManager manager;
@@ -108,22 +108,60 @@ public class CardEffectManager : MonoBehaviour
         handScript.MoveHand(0);
         #endregion
 
-        for (int i = 0; i < currentCost.costAmount; i++)
-        {
-            if(currentCost.CostName == "Treat")
-            {
-               newSlot = Instantiate(treatSlot);
-               newSlot.transform.position = slotPositions[i].position;
-               newSlot.transform.parent = blackScreen.transform;
-            }
+        #region Spawn Cost Slots
+        Vector3 offset = Vector3.zero;
+        GameObject slotPrefab = null;
 
-            if (currentCost.CostName == "Costume")
-            {
-                newSlot = Instantiate(costumeSlot);
-                newSlot.transform.position = slotPositions[i].position;
+        if (currentCost.CostName == "Costume") slotPrefab = treatSlot;
+        if (currentCost.CostName == "Treat") slotPrefab = costumeSlot;
+
+        switch (currentCost.costAmount)
+        {
+            case 1:
+                newSlot = Instantiate(slotPrefab);
+                newSlot.transform.position = slotPosition.position;
                 newSlot.transform.parent = blackScreen.transform;
-            }
+                break;
+
+            case 2:
+                for(int i = 0; i < 2; i++)
+                {
+                    if (i == 0) offset = new Vector3(1,0,0);
+                    else offset = new Vector3(1, 0, 0);
+
+                    newSlot = Instantiate(slotPrefab);
+                    newSlot.transform.position = slotPosition.position + offset;
+                    newSlot.transform.parent = blackScreen.transform;
+                }
+                
+                break;
+
+            case 3:
+                for (int i = 0; i < 3; i++)
+                {
+                    switch(i)
+                    {
+                        case 0:
+                            offset = new Vector3(2, 0, 0);
+                            break;
+
+                        case 1:
+                            offset = Vector3.zero;
+                            break;
+
+                        case 2:
+                            offset = new Vector3(-2, 0, 0);
+                            break;
+                    }
+
+
+                    newSlot = Instantiate(slotPrefab);
+                    newSlot.transform.position = slotPosition.position + offset;
+                    newSlot.transform.parent = blackScreen.transform;
+                }
+                break;
         }
+        #endregion
 
         #region Activate Buttons
         if (currentCost.costAmount == 0)
