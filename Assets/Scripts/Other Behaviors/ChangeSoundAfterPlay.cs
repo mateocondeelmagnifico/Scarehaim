@@ -18,6 +18,8 @@ public class ChangeSoundAfterPlay : MonoBehaviour
         if (mySource.time >= playDuration)
         {
             mySource.clip = myClip;
+            mySource.volume = 1;
+            mySource.Play();
             Destroy(this);
         }
     }
