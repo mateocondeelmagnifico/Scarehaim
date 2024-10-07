@@ -1,3 +1,5 @@
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +18,7 @@ public class MouseManager : MonoBehaviour
     private Movement pMovement;
     private EnemyMovement enemyMove;
     private BoardOverlay boardOverlay;
-    [SerializeField] private TMPro.TextMeshProUGUI radarText, hopeText, costumeTurnsText;
+    [SerializeField] private TMPro.TextMeshProUGUI radarText, hopeText, costumeTurnsText, descriptionText;
     private SoundManager soundManager;
     private CardSlotHand currentCardHand;
 
@@ -56,6 +58,7 @@ public class MouseManager : MonoBehaviour
         hoverRenderer2 = hoverAesthetics2.GetComponent<SpriteRenderer>();
         startColor = hoverRenderer.color;
         radarPositions = new Vector2[3];
+        descriptionText = display.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
 
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
@@ -138,7 +141,7 @@ public class MouseManager : MonoBehaviour
 
                     if (currentCardHand.hoverTimer >= 0.2f)
                     {
-                        DisplayCard(currentCardHand.objectSprite);
+                        DisplayCard(currentCardHand.objectSprite, currentCardHand.objectDescription);
 
                         cardHandHovered = true;
                     }
@@ -200,7 +203,7 @@ public class MouseManager : MonoBehaviour
                     {
                         hoverAesthetics.SetActive(false);
                         firstSelect = cardHit;
-                        DisplayCard(cardHit.GetComponent<DisplayBigImage>().bigImage);
+                        DisplayCard(cardHit.GetComponent<DisplayBigImage>().bigImage, "");
 
                         if (hit.collider.gameObject.tag.Equals("Player"))
                         {
@@ -274,7 +277,7 @@ public class MouseManager : MonoBehaviour
                             {
                                 soundManager.PlaySound("Card Hovered");
                                 firstSelect = cardHit;
-                                DisplayCard(cardHit.GetComponent<CardSlot>().objectSprite);
+                                DisplayCard(cardHit.GetComponent<CardSlot>().objectSprite, cardHit.GetComponent<CardSlot>().objectDescription);
                             }
                             else DeactivateDisplay();
                         }
@@ -550,12 +553,14 @@ public class MouseManager : MonoBehaviour
         firstSelect = null;
         hopeText.text = "";
         costumeTurnsText.text = "";
+        descriptionText.text = "";
         hoverAesthetics2.SetActive(false);
         if(!playerMove.moveSelected)playerMove.DespawnHighlights(0);
     }
-    private void DisplayCard(Sprite spriteToDisplay)
+    private void DisplayCard(Sprite spriteToDisplay, string description)
     {
         display.sprite = spriteToDisplay;
+        descriptionText.text = description;
 
         if (!wantsToDisplay)
         {

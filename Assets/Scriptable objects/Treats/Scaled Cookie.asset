@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: Scaled Cookie
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: da2729c371335f946b91123588135f88, type: 3}
-  bigImage: {fileID: 21300000, guid: 4467e203c5683c3498a485db2e16d948, type: 3}
+  bigImage: {fileID: 21300000, guid: 6c930a49cc07869488497c114237b736, type: 3}
+  myObject: {fileID: 0}
+  myCardObject: {fileID: 0}
+  description: 

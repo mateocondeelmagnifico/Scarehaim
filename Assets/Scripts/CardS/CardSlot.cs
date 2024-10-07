@@ -15,18 +15,18 @@ public class CardSlot : MonoBehaviour
     public int unavailable;
 
     private CardManager cardManager;
-    private SoundManager soundManager;
     public GameManager gameManager;
 
     public Sprite objectSprite;
+    public string objectDescription;
 
     private void Start()
     {
-        soundManager = SoundManager.Instance;
         cardManager = CardManager.Instance;
         gameManager = GameManager.Instance;
         cardObject = transform.GetChild(0).gameObject;
         objectSprite = cardObject.GetComponent<CardObject>().myCard.bigImage;
+        objectDescription = cardObject.GetComponent<CardObject>().myCard.description;
     }
 
     private void Update()

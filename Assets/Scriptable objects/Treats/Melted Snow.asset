@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: Melted Snow
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 073c5a40af553ba4d92f837e6e743216, type: 3}
-  bigImage: {fileID: 21300000, guid: eb7b5f62ed0906941b318715bbc15a3d, type: 3}
+  bigImage: {fileID: 21300000, guid: b8b58a34d01dc1b428d54a09a9db2277, type: 3}
+  myObject: {fileID: 0}
+  myCardObject: {fileID: 0}
+  description: 

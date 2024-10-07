@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: b1f3ec47427e3504d840513ec8497dba
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Scarehain
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 75575385add4b764b94fc2e224e5380b, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
