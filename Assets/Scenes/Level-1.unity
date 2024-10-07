@@ -9528,8 +9528,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0f890cd679c90fa4db64d76c17c5b7ba, type: 2}
-  m_sharedMaterial: {fileID: -9167218576193554476, guid: 0f890cd679c90fa4db64d76c17c5b7ba, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ab5b055ebe2f70440af3492a8eb75891, type: 2}
+  m_sharedMaterial: {fileID: -9167218576193554476, guid: ab5b055ebe2f70440af3492a8eb75891, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
