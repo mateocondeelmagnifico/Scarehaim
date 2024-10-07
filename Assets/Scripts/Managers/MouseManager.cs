@@ -59,6 +59,7 @@ public class MouseManager : MonoBehaviour
         startColor = hoverRenderer.color;
         radarPositions = new Vector2[3];
         descriptionText = display.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
+        descriptionText.enabled = false;
 
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
@@ -85,6 +86,7 @@ public class MouseManager : MonoBehaviour
             if(displayTimer <= 0)
             {
                 display.enabled = true;
+                descriptionText.enabled = true;
                 blackBox.enabled = true;
             }
         }
@@ -548,6 +550,7 @@ public class MouseManager : MonoBehaviour
     public void DeactivateDisplay()
     {
         display.enabled = false;
+        descriptionText.enabled = false;
         blackBox.enabled = false;
         wantsToDisplay = false;
         firstSelect = null;

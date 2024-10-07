@@ -16,4 +16,4 @@ MonoBehaviour:
   bigImage: {fileID: 21300000, guid: aa044e65af0f857459ffb25714177d47, type: 3}
   myObject: {fileID: 0}
   myCardObject: {fileID: 0}
-  description: 
+  description: Use me to move further
