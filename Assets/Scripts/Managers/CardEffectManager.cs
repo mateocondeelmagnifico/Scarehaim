@@ -112,8 +112,9 @@ public class CardEffectManager : MonoBehaviour
         Vector3 offset = Vector3.zero;
         GameObject slotPrefab = null;
 
-        if (currentCost.CostName == "Costume") slotPrefab = treatSlot;
-        if (currentCost.CostName == "Treat") slotPrefab = costumeSlot;
+        if (currentCost.CostName == "Costume") slotPrefab = costumeSlot;
+        if (currentCost.CostName == "Treat") slotPrefab = treatSlot;
+
 
         switch (currentCost.costAmount)
         {
@@ -126,7 +127,7 @@ public class CardEffectManager : MonoBehaviour
             case 2:
                 for(int i = 0; i < 2; i++)
                 {
-                    if (i == 0) offset = new Vector3(1,0,0);
+                    if (i == 0) offset = new Vector3(-1,0,0);
                     else offset = new Vector3(1, 0, 0);
 
                     newSlot = Instantiate(slotPrefab);

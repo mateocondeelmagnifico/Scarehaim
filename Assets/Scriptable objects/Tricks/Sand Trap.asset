@@ -18,7 +18,7 @@ MonoBehaviour:
   myCardObject: {fileID: 0}
   description: Pay 1 treat or lose 2 courage.
   myCost:
-    explanation: Pay 1 treat or lose 2 courage.
+    explanation: Pay 1 Costume or lose 2 courage.
     CostName: Costume
     costAmount: 1
     reward: 

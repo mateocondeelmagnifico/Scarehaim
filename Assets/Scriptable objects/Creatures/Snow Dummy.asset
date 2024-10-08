@@ -25,7 +25,7 @@ MonoBehaviour:
     rewardAmount: 0
     consequenceName: Fear
     secondConsequenceName: 
-    consequenceAmount: -3
+    consequenceAmount: -2
     secondConsequenceAmount: 0
   disguiseToIgnore: 
   manager: {fileID: 0}
