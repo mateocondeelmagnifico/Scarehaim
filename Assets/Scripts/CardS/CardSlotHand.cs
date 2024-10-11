@@ -98,7 +98,7 @@ public class CardSlotHand: CardSlot
 
     public void Relocate()
     {
-        if(Vector3.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(startingPos.x, startingPos.y)) <= 2)
+        if(Vector3.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(startingPos.x, startingPos.y)) <= 1.5f)
         {
             followMouse = false;
             goHome = true;

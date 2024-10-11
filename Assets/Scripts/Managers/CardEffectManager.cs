@@ -100,6 +100,7 @@ public class CardEffectManager : MonoBehaviour
         displayImage.sprite = mySprite;
         explanation.text = currentCost.explanation;
 
+        mouseManager.hover2Pos = null;
 
         paymentMenu.SetActive(true);
         blackScreen.SetActive(true);
