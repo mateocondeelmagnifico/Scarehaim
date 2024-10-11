@@ -195,7 +195,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: c2d6b789f5c23ed4695adaac1f29478b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5113,7 +5113,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: a8a633dbb1e6b6b429ab409c9dde342f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -8720,11 +8720,9 @@ MonoBehaviour:
   enemyRenderer: {fileID: 1574868882}
   tutorialManager: {fileID: 0}
   greetings:
-  - It's cold, come by the fire, let the snow melt
-  - "A kid\u2026 oh, two of them? What a game\u2026"
-  - 'What are you doing here? How old are you?
-
-'
+  - Hello Sweetie, welcome to the game
+  - Hello Sweetie, welcome to the game
+  - Hello Sweetie, welcome to the game
   basicDialogue:
   - 'You don''t know what you have
 
@@ -15747,7 +15745,7 @@ PrefabInstance:
     - target: {fileID: 7910806558704184282, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
       propertyPath: myCard
       value: 
-      objectReference: {fileID: 11400000, guid: d1d8115e6afed404f8bfea22fa7b3030, type: 2}
+      objectReference: {fileID: 11400000, guid: d42ed4c72e30f2d45a25c464e13bcf2c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -65,11 +65,13 @@ public class SceneManagement : MonoBehaviour
 
     public void DisplayMenu(GameObject menu)
     {
-        if(currentMenu != null) currentMenu.SetActive(false);
+        if (blackscreen.activeInHierarchy && currentMenu == null) wasActive = true;
+        else blackscreen.SetActive(true);
+
+        if (currentMenu != null) currentMenu.SetActive(false);
         currentMenu = menu;
         menu.SetActive(true);
-        if(blackscreen.activeInHierarchy) wasActive = true;
-        else blackscreen.SetActive(true); 
+        
         
         Time.timeScale = 0;
     }
@@ -78,7 +80,7 @@ public class SceneManagement : MonoBehaviour
         currentMenu = null;
         menu.SetActive(false);
 
-        if(wasActive)  wasActive = false; 
+        if(wasActive) wasActive = false; 
         else blackscreen.SetActive(false);
 
         Time.timeScale = 1;

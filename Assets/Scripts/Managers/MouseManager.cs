@@ -1,5 +1,4 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,7 +23,7 @@ public class MouseManager : MonoBehaviour
 
     [SerializeField] private Transform board, tricks;
 
-    private bool handDisplayed, highlightsSpawned, cardHandHovered, wantsToDisplay;
+    private bool handDisplayed, highlightsSpawned, cardHandHovered, wantsToDisplay, playerDisplay;
     public bool moveCard, cardInformed, canClick, isInTutorial, needsTreat, radarActive, cardGrabbed;
 
     private float handtimer, displayTimer;
@@ -54,6 +53,7 @@ public class MouseManager : MonoBehaviour
         trickRadar = pMovement.GetComponent<TrickRadar>();
         display.enabled = false;
         blackBox.enabled = false;
+        hopeText.enabled = false;
         hoverRenderer = hoverAesthetics.GetComponent<SpriteRenderer>();
         hoverRenderer2 = hoverAesthetics2.GetComponent<SpriteRenderer>();
         startColor = hoverRenderer.color;
@@ -85,8 +85,14 @@ public class MouseManager : MonoBehaviour
             displayTimer -= Time.deltaTime;
             if(displayTimer <= 0)
             {
+                if (playerDisplay)
+                {
+                    hopeText.enabled = true; 
+                    playerDisplay = false;
+                }
+                else descriptionText.enabled = true;
+
                 display.enabled = true;
-                descriptionText.enabled = true;
                 blackBox.enabled = true;
             }
         }
@@ -209,9 +215,11 @@ public class MouseManager : MonoBehaviour
 
                         if (hit.collider.gameObject.tag.Equals("Player"))
                         {
+                            playerDisplay = true;
                             hopeText.text = cardHit.GetComponent<Fear>().hope.ToString();
                             if (cardHit.GetComponent<Movement>().turnsWithcostume > 0) costumeTurnsText.text = cardHit.GetComponent<Movement>().turnsWithcostume.ToString();
                         }
+                        else hopeText.enabled = false;
                         PlaceHighlight(1);
                     }
                     else
@@ -224,6 +232,8 @@ public class MouseManager : MonoBehaviour
                 if (hit.collider.gameObject.tag.Equals("Card Slot"))
                 {
                     #region Select card in Board
+
+                    hopeText.enabled = false;
                     if (!radarActive && !currentCard.isInHand)
                     {
                         PlaceHighlight(1);
@@ -552,6 +562,7 @@ public class MouseManager : MonoBehaviour
         display.enabled = false;
         descriptionText.enabled = false;
         blackBox.enabled = false;
+        hopeText.enabled = false;
         wantsToDisplay = false;
         firstSelect = null;
         hopeText.text = "";
