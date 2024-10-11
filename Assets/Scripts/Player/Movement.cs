@@ -12,6 +12,7 @@ public class Movement : MonoBehaviour
 
     private GameManager gameManager;
     private SpriteRenderer rendereador;
+    private MouseManager mouseManager;
     private DisplayBigImage display;
     private TrickRadar trickRadar;
     private TurnCheck turnCounter;
@@ -45,6 +46,7 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         overlay = BoardOverlay.instance;
+        mouseManager = MouseManager.instance;
         hand = Hand.Instance;
         turnCounter = gameManager.turnCounter;
     }
@@ -309,12 +311,12 @@ public class Movement : MonoBehaviour
                     Vector2 middlePos = new Vector2(xposition, yposition);
                     #endregion
 
-
                     if (cardGridPos != myPos && gameManager.enemy.myPos != middlePos)
                     {
                         destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
                         myPos = cardGridPos;
                         isMoving = true;
+                        mouseManager.hasTreat = false;
                         hand.DestroyLimbo();
                     }
                 }
@@ -470,5 +472,11 @@ public class Movement : MonoBehaviour
         moveSelected = false;
         trickRadar.ghostMoveOn = false;
         DespawnHighlights(0);
+    }
+    public void ActivateTreat()
+    {
+        hasTreat = true;
+        mouseManager.hasTreat = true;
+        mouseManager.DeactivateRadar();
     }
 }

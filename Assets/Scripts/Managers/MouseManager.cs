@@ -24,7 +24,7 @@ public class MouseManager : MonoBehaviour
     [SerializeField] private Transform board, tricks;
 
     private bool handDisplayed, highlightsSpawned, cardHandHovered, wantsToDisplay, playerDisplay;
-    public bool moveCard, cardInformed, canClick, isInTutorial, needsTreat, radarActive, cardGrabbed;
+    public bool moveCard, cardInformed, canClick, isInTutorial, needsTreat, radarActive, cardGrabbed, hasTreat;
 
     private float handtimer, displayTimer;
 
@@ -310,16 +310,11 @@ public class MouseManager : MonoBehaviour
             #region Check Radar
             if (!hit.collider.gameObject.tag.Equals("Player") && manager.CheckIsInCheckMovement())
             {
-                if (Input.GetMouseButtonDown(1))
+                if (Input.GetMouseButtonDown(1) && !hasTreat)
                 {
                     if (radarActive)
                     {
-                        radarActive = false;
-                        trickRadar.numberOfScans++;
-                        pMovement.DespawnHighlights(0);
-                        boardOverlay.DeactivatOverlay();
-                        radarText.text = "";
-                        soundManager.PlaySound("Radar Off");
+                        DeactivateRadar();
                     }
                     else if (trickRadar.CanUseScan())
                     {
@@ -402,6 +397,15 @@ public class MouseManager : MonoBehaviour
             #endregion
         }
         
+    }
+    public void DeactivateRadar()
+    {
+        radarActive = false;
+        trickRadar.numberOfScans++;
+        pMovement.DespawnHighlights(0);
+        boardOverlay.DeactivatOverlay();
+        radarText.text = "";
+        soundManager.PlaySound("Radar Off");
     }
     private void ShrinkHand()
     {

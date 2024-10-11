@@ -5564,6 +5564,7 @@ MonoBehaviour:
   needsTreat: 0
   radarActive: 0
   cardGrabbed: 0
+  hasTreat: 0
   firstSelect: {fileID: 0}
   selectedCardSlot: {fileID: 0}
   hoverAesthetics: {fileID: 744728880}
@@ -7910,7 +7911,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: de3fcf9cf498ae84d9cecd582b2e8b9c, type: 3}
     - target: {fileID: 5025506809153186580, guid: 311c93cf120101b4f8a7f42ad883ad23, type: 3}
       propertyPath: moveFrequency
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

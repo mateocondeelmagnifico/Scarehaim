@@ -246,6 +246,7 @@ public class Hand : MonoBehaviour
         cardInLimbo.transform.GetChild(0).GetComponent<CardObject>().myCard.UndoEffect();
         if (overlay == null) overlay = BoardOverlay.instance;
         overlay.DeactivatOverlay();
+        MouseManager.instance.hasTreat = false;
 
         cardInLimbo.transform.parent = transform;
     }

@@ -15,7 +15,7 @@ public class Treat: Card
     public override void PlayEffect(GameManager manager)
     {
         manager.powerUpOn = true;
-        manager.player.GetComponent<Movement>().hasTreat = true;
+        manager.player.GetComponent<Movement>().ActivateTreat();
         BoardOverlay.instance.ACtivateOverlay("Blue");
     }
 
