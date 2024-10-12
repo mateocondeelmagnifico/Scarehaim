@@ -19,8 +19,8 @@ public class OptionsManager : MonoBehaviour
     public void ChangeRes(int amount)
     {
         currentRes += amount;
-        if(currentRes < 0) currentRes = 7;
-        if(currentRes > 7) currentRes = 0;
+        if(currentRes < 0) currentRes = 8;
+        if(currentRes > 8) currentRes = 0;
 
         SetMyResolution(currentRes);
     }
@@ -73,9 +73,14 @@ public class OptionsManager : MonoBehaviour
             case 7:
                 values = new Vector2(1024, 768);
                 break;
+
+            case 8:
+                values = new Vector2(3840, 2160);
+                break;
         }
 
         Screen.SetResolution((int)values.x, (int)values.y, isFullScreen);
+        Camera.main.pixelRect = new Rect(0, 0, Screen.currentResolution.width, Screen.currentResolution.height);
         resText.text = values.x.ToString() + "x" + values.y.ToString();
     }
 

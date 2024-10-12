@@ -9,7 +9,7 @@ public class TurnCheck : MonoBehaviour
     [SerializeField] private Sprite enemySprite, playerSprite, costumeSprite;
 
     [SerializeField] private int moveFrequency;
-    public int turnsUntilEnemy;
+    private int turnsUntilEnemy;
     private int costumeTurns;
 
     private bool move, storeMove;
@@ -42,8 +42,7 @@ public class TurnCheck : MonoBehaviour
                 else 
                 {
                     hasArrived[i] = true;
-                }
-               
+                }              
             }
 
             #region Check if all have arrived
@@ -83,14 +82,9 @@ public class TurnCheck : MonoBehaviour
                 firstIcon.position = startPos.position;
                 firstIcon.GetComponent<DestinationInfo>().destination = startPos.position - new Vector3(0.66f,0,0);
                 positions.RemoveAt(0);
-                positions.Add(firstIcon);     
-            }
-            else positions[i].GetComponent<DestinationInfo>().destination = new Vector3(positions[i].position.x - 0.66f, positions[i].position.y, positions[i].position.z);
-            #endregion
+                positions.Add(firstIcon);
 
-            #region Decide if it's either player or enemy sprite
-            if (i == 5)
-            {
+                #region Decide Sprite
                 if (turnsUntilEnemy > 0)
                 {
                     if (costumeTurns <= 0) positions[i].GetComponent<SpriteRenderer>().sprite = playerSprite;
@@ -106,7 +100,9 @@ public class TurnCheck : MonoBehaviour
                     positions[i].GetComponent<SpriteRenderer>().sprite = enemySprite;
                     turnsUntilEnemy = moveFrequency;
                 }
+                #endregion
             }
+            else positions[i].GetComponent<DestinationInfo>().destination = new Vector3(positions[i].position.x - 0.66f, positions[i].position.y, positions[i].position.z);
             #endregion
         }
 
@@ -126,9 +122,11 @@ public class TurnCheck : MonoBehaviour
         if(takeOff) costumeTurns = 0;
         else costumeTurns = 3;
 
+        int times = 3;
+
         for (int i = 0; i < positions.Count; i++)
         {
-            if(i >0 && i < 4 && positions[i].GetComponent<SpriteRenderer>().sprite != enemySprite)
+            if(i > 1 && i < 6 && positions[i].GetComponent<SpriteRenderer>().sprite != enemySprite && times > 0)
             {
                 if (!takeOff)
                 {
@@ -136,10 +134,17 @@ public class TurnCheck : MonoBehaviour
                     costumeTurns--;
                 }
                 else positions[i].GetComponent<SpriteRenderer>().sprite = playerSprite;
+
+                times--;
             }
         }
+
+        //In case a costume icon is not placed
+        if(times > 0)
+        {
+            if(positions[0].GetComponent<SpriteRenderer>().sprite != enemySprite) positions[0].GetComponent<SpriteRenderer>().sprite = costumeSprite;
+            else positions[1].GetComponent<SpriteRenderer>().sprite = costumeSprite;
+        }
     }
-
-
 }
 

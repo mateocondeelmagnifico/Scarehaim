@@ -8003,6 +8003,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 452781667806937207, guid: 311c93cf120101b4f8a7f42ad883ad23, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b0254c56439d24c48b204091561a7655, type: 3}
     - target: {fileID: 4321602623883367868, guid: 311c93cf120101b4f8a7f42ad883ad23, type: 3}
       propertyPath: m_Name
       value: Turn Counter
@@ -8051,6 +8055,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4380276596847082750, guid: 311c93cf120101b4f8a7f42ad883ad23, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9c3e72047c33ed3459b50f8e99b2e281, type: 3}
     - target: {fileID: 5025506809153186580, guid: 311c93cf120101b4f8a7f42ad883ad23, type: 3}
       propertyPath: enemySprite
       value: 
@@ -8059,6 +8067,18 @@ PrefabInstance:
       propertyPath: moveFrequency
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6059516735408673546, guid: 311c93cf120101b4f8a7f42ad883ad23, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b0254c56439d24c48b204091561a7655, type: 3}
+    - target: {fileID: 8449591263469791847, guid: 311c93cf120101b4f8a7f42ad883ad23, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3460366f69e49074e9c7cc4fb9a8b04f, type: 3}
+    - target: {fileID: 8939668970195958625, guid: 311c93cf120101b4f8a7f42ad883ad23, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b0254c56439d24c48b204091561a7655, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

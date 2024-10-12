@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     private Hand handScript;
 
     public int cardDiscarded;
+    private float accelerator = 0.5f;
 
     public bool playerTurnInProgress, trapTriggered, powerUpOn;
     private bool slotErased, enemyInformed;
@@ -62,7 +63,7 @@ public class GameManager : MonoBehaviour
         hand = handScript.transform;
         playerTurnInProgress = true;
         turnCount = 1;
-        turnCounter.turnsUntilEnemy = enemy.turnsUntilStart - 2;
+        //turnCounter.turnsUntilEnemy = enemy.turnsUntilStart - 2;
            
         #region Reset hand variables
         if (hand.transform.childCount > 0)
@@ -79,7 +80,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-
         if (Vector3.Distance(enemy.transform.position, player.transform.position) < 0.3f && turnCount > 2) player.GetComponent<Fear>().UpdateFear(-10);
 
         #region Check Turn State
@@ -205,13 +205,15 @@ public class GameManager : MonoBehaviour
 
     private void MoveCard( GameObject whatCard, Vector3 desiredPos, SpriteRenderer renderer)
     {
-        //This cript is used to move cards to the deck and discard pile
-        whatCard.transform.position = Vector3.MoveTowards(whatCard.transform.position, desiredPos, 8 * Time.deltaTime);
+        //This method is used to move cards to the deck and discard pile
+        accelerator += Time.deltaTime * 2;
+        whatCard.transform.position = Vector3.MoveTowards(whatCard.transform.position, desiredPos, 6 * Time.deltaTime * accelerator);
         renderer.sortingOrder = 0;
 
         if(whatCard.transform.position == desiredPos)
         {
             moveCard = false;
+            accelerator = 0.5f;
 
             if(desiredPos == discardPile.position)
             {
@@ -243,13 +245,15 @@ public class GameManager : MonoBehaviour
     {
         if(hand.childCount < 5)
         {
+            accelerator += Time.deltaTime * 2;
             Vector3 desiredPos = new Vector3(4, -5, -2);
 
-            card.transform.position = Vector3.MoveTowards(card.transform.position, desiredPos, 8 * Time.deltaTime);
+            card.transform.position = Vector3.MoveTowards(card.transform.position, desiredPos, 6 * Time.deltaTime * accelerator);
 
 
             if (card.transform.position == desiredPos)
             {
+                accelerator = 0.5f;
                 card.transform.parent = hand;
                 moveCardToHand = false;
                 if (card.GetComponent<CardSlotHand>() != null)

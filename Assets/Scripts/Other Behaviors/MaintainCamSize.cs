@@ -6,17 +6,14 @@ public class MaintainCamSize : MonoBehaviour
 {
     private Camera cam;
 
-    float width, height;
-
-    Vector3 pos;
-
     private void Start()
     {
         cam = GetComponent<Camera>();
 
         //This is to force a resolution
         cam.aspect = 1.778f;
-        Camera.main.pixelRect = new Rect(0, 0, 1920, 1080);
+        if(Screen.currentResolution.width > 1920 || Screen.currentResolution.height > 1080) Camera.main.pixelRect = new Rect(0, 0, Screen.currentResolution.width, Screen.currentResolution.height);
+        else Camera.main.pixelRect = new Rect(0, 0, 1920, 1080);
 
         /*
         pos = transform.position;
