@@ -409,6 +409,8 @@ public class MouseManager : MonoBehaviour
     }
     private void ShrinkHand()
     {
+        if (cardGrabbed) return;
+
         if (handtimer > 0 && handDisplayed)
         {
             handtimer = 0;

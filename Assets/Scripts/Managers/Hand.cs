@@ -43,8 +43,6 @@ public class Hand : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Q)) DeterminePosition();
-
         //Check hand size
         if (transform.childCount != 0)
         if(transform.childCount != cards.Length) DeterminePosition();
@@ -56,7 +54,6 @@ public class Hand : MonoBehaviour
     public void AddCardToHand(Transform card)
     {
         card.parent = this.transform;
-        DeterminePosition();
     }
 
     public void DeterminePosition()
@@ -72,7 +69,8 @@ public class Hand : MonoBehaviour
             {
                 cards[i] = transform.GetChild(i);
 
-                cards[i].position = defaultPos;
+                //cards[i].position = defaultPos + offset;
+                cards[i].position = new Vector3(defaultPos.x, transform.position.y, defaultPos.z);
                 cards[i].rotation = Quaternion.identity;
                 cards[i].GetComponent<CardSlotHand>().startingPos = cards[i].position;
                 cards[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 20 - i;
@@ -104,7 +102,8 @@ public class Hand : MonoBehaviour
                 if ((cards.Length == 3 && i == 1) || (cards.Length == 5 && i == 2) || cards.Length == 1)
                 {
                     //Do nothing
-                    cards[i].position = new Vector3(defaultPos.x, defaultPos.y, -3);
+                    //cards[i].position = new Vector3(defaultPos.x, defaultPos.y + offset.y, -3);
+                    cards[i].position = new Vector3(defaultPos.x, transform.position.y, -3);
                     cards[i].rotation = Quaternion.identity;
                     cards[i].GetComponent<CardSlotHand>().startingPos = cards[i].position;
                 }
@@ -134,7 +133,6 @@ public class Hand : MonoBehaviour
                         }
                     }
                 }
-
             }
             #endregion
         }
@@ -150,24 +148,33 @@ public class Hand : MonoBehaviour
 
     public void ResizeHand(bool makeBig)
     {
-        DeterminePosition();
-
-        Vector3 offset;
-
+        bool goUp = false;
+        bool goDown = false;
         if (makeBig)
         {
-            offset = new Vector3(0,1,0);
+            if(cards[0].transform.position.y <= -4) goUp = true;
         }
         else
         {
-            offset = new Vector3(0, 0, 0);
+            switch(cards[0].transform.position.y)
+            {
+                case <-5:
+                    goUp = true;
+                    break;
+
+                case >-5:
+                    goDown = true;
+                    break;
+            }
         }
 
         if (transform.childCount > 0)
         {
             for (int i = 0; i < cards.Length; i++)
             {
-                cards[i].GetComponent<CardSlotHand>().startingPos += offset;
+                if(goUp) cards[i].GetComponent<CardSlotHand>().startingPos.y = -4;
+                
+                if(goDown) cards[i].GetComponent<CardSlotHand>().startingPos.y = -5;
             }
         } 
     }
@@ -197,7 +204,7 @@ public class Hand : MonoBehaviour
         {
            GameObject currentCard =  GameObject.Instantiate(cardsStart[i].gameObject);
            currentCard.transform.parent = this.transform;
-            currentCard.SetActive(true);
+           currentCard.SetActive(true);
         }
 
         DeterminePosition();
@@ -230,7 +237,6 @@ public class Hand : MonoBehaviour
         cardInLimbo.SetActive(false);
         cardInLimbo.transform.parent = cardStorage.transform;
         ActivateUndo();
-        DeterminePosition();
     }
     public void Undo()
     {

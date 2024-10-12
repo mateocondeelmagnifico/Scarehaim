@@ -14,12 +14,14 @@ public class CardSlotHand: CardSlot
     public Transform oldParent;
 
     private int chosenSlot;
+    private float accelerator = 0.5f;
 
     private void OnEnable()
     {
         isInHand = true;
         startingPos = transform.position;
         gameManager = GameManager.Instance;
+
         if(effectManager == null) effectManager = CardEffectManager.Instance;
         blackScreen = effectManager.blackScreen.transform;
 
@@ -46,13 +48,16 @@ public class CardSlotHand: CardSlot
         //Both Relocate and Move are called by the gameManager
         //Follow Mouse is changed by the Mouse manager
 
+        #region Follow mouse
         if (followMouse && !isPayment)
         {
             direction = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = new Vector3(direction.x, direction.y, -5);
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(direction.x, direction.y, -5), 4 * Time.deltaTime * (Vector3.Distance(transform.position, direction) * 2));
         }
-        
-        if(transform.position != startingPos && !isPayment && !followMouse)
+        #endregion
+
+        #region Go home
+        if (transform.position != startingPos && !isPayment && !followMouse)
         {
             Relocate();
         }
@@ -70,10 +75,13 @@ public class CardSlotHand: CardSlot
             }
             else
             {
+                accelerator = 0.5f;
                 goHome = false;
             }
         }
+        #endregion
 
+        #region Go to payment slot
         if (isPayment && !hasArrived)
         {
             if (transform.position != direction)
@@ -82,12 +90,14 @@ public class CardSlotHand: CardSlot
             }
             else
             {
+                accelerator = 0.5f;
                 transform.rotation = Quaternion.identity;
                 effectManager.CheckCanAfford();
                 hasArrived = true;
                 SoundManager.Instance.PlaySound("Pay");
             }
         }
+        #endregion
 
         #region Hover Code
         if (hoverTimer < 1.5f && isHovered) hoverTimer += Time.deltaTime;
@@ -98,7 +108,7 @@ public class CardSlotHand: CardSlot
 
     public void Relocate()
     {
-        if(Vector3.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(startingPos.x, startingPos.y)) <= 1.5f)
+        if(Vector3.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(startingPos.x, startingPos.y)) <= 2f)
         {
             followMouse = false;
             goHome = true;
@@ -193,7 +203,8 @@ public class CardSlotHand: CardSlot
 
     private void Move(Vector3 desiredPos)
     {
-        transform.position = Vector3.MoveTowards(transform.position, desiredPos, 16 * Time.deltaTime);
+        accelerator += Time.deltaTime * 2;
+        transform.position = Vector3.MoveTowards(transform.position, desiredPos, 14 * Time.deltaTime * accelerator);
     }
 
     public void Disown()
@@ -203,5 +214,6 @@ public class CardSlotHand: CardSlot
         oldParent = transform.parent;
         transform.parent = null;
         Hand.Instance.DeterminePosition();
+        Hand.Instance.ResizeHand(false);
     }
 }
