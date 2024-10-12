@@ -15,7 +15,9 @@ public class Hand : MonoBehaviour
 
     //la mano guarda el fear entre escenas y sabe si has hecho el tutorial
     public int hope;
-    public bool firstGame, costumeOn;
+    public bool firstGame, costumeOn, activateColliders;
+
+    private float timer;
 
     private void Awake()
     {
@@ -49,6 +51,18 @@ public class Hand : MonoBehaviour
 
         //Undo play card
         if(Input.GetKeyDown(KeyCode.Z) && cardInLimbo != null) Undo();
+
+        //Reset colliders after undo
+        if(activateColliders)
+        {
+            timer -=Time.deltaTime;
+
+            if(timer <= 0)
+            {
+                ActivateColliders(true);
+                activateColliders = false;
+            }
+        }
     }
 
     public void AddCardToHand(Transform card)
@@ -69,8 +83,7 @@ public class Hand : MonoBehaviour
             {
                 cards[i] = transform.GetChild(i);
 
-                //cards[i].position = defaultPos + offset;
-                cards[i].position = new Vector3(defaultPos.x, transform.position.y, defaultPos.z);
+                cards[i].position = new Vector3(defaultPos.x, cards[i].transform.position.y, defaultPos.z);
                 cards[i].rotation = Quaternion.identity;
                 cards[i].GetComponent<CardSlotHand>().startingPos = cards[i].position;
                 cards[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 20 - i;
@@ -102,8 +115,7 @@ public class Hand : MonoBehaviour
                 if ((cards.Length == 3 && i == 1) || (cards.Length == 5 && i == 2) || cards.Length == 1)
                 {
                     //Do nothing
-                    //cards[i].position = new Vector3(defaultPos.x, defaultPos.y + offset.y, -3);
-                    cards[i].position = new Vector3(defaultPos.x, transform.position.y, -3);
+                    cards[i].position = new Vector3(defaultPos.x, cards[i].transform.position.y, -3);
                     cards[i].rotation = Quaternion.identity;
                     cards[i].GetComponent<CardSlotHand>().startingPos = cards[i].position;
                 }
@@ -236,6 +248,7 @@ public class Hand : MonoBehaviour
         cardInLimbo = Slot;
         cardInLimbo.SetActive(false);
         cardInLimbo.transform.parent = cardStorage.transform;
+        ActivateColliders(false);
         ActivateUndo();
     }
     public void Undo()
@@ -253,8 +266,11 @@ public class Hand : MonoBehaviour
         if (overlay == null) overlay = BoardOverlay.instance;
         overlay.DeactivatOverlay();
         MouseManager.instance.hasTreat = false;
+        activateColliders = true;
+        timer = 0.25f;
 
-        cardInLimbo.transform.parent = transform;
+        cardInLimbo.transform.position = transform.position;
+        cardInLimbo.transform.parent = transform;      
     }
     private void UndoCostumeMove()
     {
@@ -269,6 +285,8 @@ public class Hand : MonoBehaviour
         {
             zPrompt.SetActive(false);
             Destroy(cardInLimbo);
+            activateColliders = true;
+            timer = 0.25f;
         }
     }
     public void ActivateUndo()
@@ -280,5 +298,12 @@ public class Hand : MonoBehaviour
         //Called by buttons
         Destroy(cardStorage.gameObject);
         Destroy(this.gameObject);
+    }
+    private void ActivateColliders(bool state)
+    {
+        for(int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).GetComponent<BoxCollider2D>().enabled = state;
+        }
     }
 }

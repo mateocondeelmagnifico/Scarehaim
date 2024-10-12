@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CardSlotHand: CardSlot
@@ -112,6 +109,8 @@ public class CardSlotHand: CardSlot
         {
             followMouse = false;
             goHome = true;
+
+            transform.position = new Vector3(transform.position.x, Hand.Instance.transform.GetChild(0).transform.position.y, transform.position.z);
             transform.parent = Hand.Instance.transform;
         }
         else
