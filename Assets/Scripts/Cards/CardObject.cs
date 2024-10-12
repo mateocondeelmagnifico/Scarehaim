@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-
 public class CardObject : MonoBehaviour
 {
     public Card myCard;
@@ -24,6 +20,17 @@ public class CardObject : MonoBehaviour
         }
 
         gameManager = GameManager.Instance;
+
+        switch(myCard)
+        {
+            case Treat:
+                gameObject.tag = "Treat";
+            break;
+
+            case Disguise:
+                gameObject.tag = "Costume";
+                break;
+        }
     }
 
     public void DiscardCard()

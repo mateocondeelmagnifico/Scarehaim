@@ -308,7 +308,7 @@ public class CardManager : MonoBehaviour
                             Transform chosenCard = cardsOnBoard.transform.GetChild(i);
                             canEnd = false;
 
-                            if (chosenCard.GetChild(0).tag != "Enemy")
+                            if (chosenCard.GetChild(0).tag != "Enemy" && chosenCard.GetChild(0).tag != "Treat" && chosenCard.GetChild(0).tag != "Costume")
                             {
                                 if (chosenCard.position.x != playerPos.position.x || chosenCard.position.y != playerPos.position.y)
                                 {
