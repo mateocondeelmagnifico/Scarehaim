@@ -232,7 +232,7 @@ public class CardEffectManager : MonoBehaviour
                 {
                     if (blackScreen.transform.GetChild(i).childCount != 0)
                     {
-                        blackScreen.transform.GetChild(i).transform.GetChild(0).position = blackScreen.transform.GetChild(i).transform.GetChild(0).GetComponent<CardSlotHand>().startingPos;
+                        //blackScreen.transform.GetChild(i).transform.GetChild(0).position = blackScreen.transform.GetChild(i).transform.GetChild(0).GetComponent<CardSlotHand>().startingPos;
                         blackScreen.transform.GetChild(i).transform.GetComponentInChildren<CardSlotHand>().isPayment = false;
                         blackScreen.transform.GetChild(i).transform.GetChild(0).parent = hand;
                     }

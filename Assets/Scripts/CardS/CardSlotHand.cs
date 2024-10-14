@@ -4,7 +4,8 @@ public class CardSlotHand: CardSlot
 {
     public Vector3 direction, startingPos;
 
-    public bool goHome, isPayment, hasArrived, followMouse;
+    public bool  isPayment, hasArrived, followMouse, inHand;
+    [SerializeField] private bool goHome;
 
     public CardEffectManager effectManager;
     private Transform blackScreen;
@@ -54,26 +55,24 @@ public class CardSlotHand: CardSlot
         #endregion
 
         #region Go home
-        if (transform.position != startingPos && !isPayment && !followMouse)
+        if (transform.position != startingPos && !isPayment && !followMouse && !goHome)
         {
             Relocate();
         }
 
-        if (goHome && !isPayment)
+        if (goHome && !isPayment && transform.position != startingPos)
         {
-            if(transform.parent == null)
+            if (transform.parent == null)
             {
                 transform.parent = oldParent;
             }
 
-            if (transform.position != startingPos)
-            {
-                Move(startingPos);
-            }
-            else
+            Move(startingPos);
+            
+            if(transform.position == startingPos)
             {
                 accelerator = 0.5f;
-                goHome = false;
+                goHome = false;          
             }
         }
         #endregion
@@ -105,17 +104,12 @@ public class CardSlotHand: CardSlot
 
     public void Relocate()
     {
-        if(Vector3.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(startingPos.x, startingPos.y)) <= 2f)
-        {
-            followMouse = false;
-            goHome = true;
-
-            transform.position = new Vector3(transform.position.x, Hand.Instance.transform.GetChild(0).transform.position.y, transform.position.z);
-            transform.parent = Hand.Instance.transform;
-        }
+        if(Vector3.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(startingPos.x, startingPos.y)) <= 2f) GoHome();
         else
         {
-            TryToPlayCard();
+            if (!inHand) TryToPlayCard();
+            else GoHome();
+            
         }
     }
     
@@ -185,14 +179,14 @@ public class CardSlotHand: CardSlot
                 }
                 else
                 {
-                    goHome = true;
+                GoHome();
                 }
                     #endregion
             }
       
         if(!cardPlayed)
         {
-            goHome = true;
+            GoHome();
         }
         else
         {
@@ -214,5 +208,24 @@ public class CardSlotHand: CardSlot
         transform.parent = null;
         Hand.Instance.DeterminePosition();
         Hand.Instance.ResizeHand(false);
+        inHand = false;
+    }
+
+    private void GoHome()
+    {
+        if (goHome) return;
+
+        followMouse = false;
+        goHome = true;
+
+        float yPos = 0;
+
+        if (Hand.Instance.transform.childCount > 0) yPos = Hand.Instance.transform.GetChild(0).transform.position.y;
+        else yPos = Hand.Instance.transform.position.y;
+
+        //transform.position = new Vector3(transform.position.x, yPos, transform.position.z);
+        //startingPos = new Vector3(transform.position.x, yPos, transform.position.z);
+        transform.parent = Hand.Instance.transform;
+        inHand = true;
     }
 }

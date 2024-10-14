@@ -191,7 +191,12 @@ public class TutorialManager : MonoBehaviour
                 RemoveTutorial();
                 break;
 
+            case 6:
+                hand.ActivateColliders(false);
+                break;
+
             case 7:
+                hand.ActivateColliders(true);
                 RemoveTutorial();
                 break;
 

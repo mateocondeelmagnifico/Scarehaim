@@ -15,7 +15,9 @@ public class Hand : MonoBehaviour
 
     //la mano guarda el fear entre escenas y sabe si has hecho el tutorial
     public int hope;
+    private int yPos = -5;
     public bool firstGame, costumeOn, activateColliders;
+
 
     private float timer;
 
@@ -85,7 +87,7 @@ public class Hand : MonoBehaviour
 
                 cards[i].position = new Vector3(defaultPos.x, cards[i].transform.position.y, defaultPos.z);
                 cards[i].rotation = Quaternion.identity;
-                cards[i].GetComponent<CardSlotHand>().startingPos = cards[i].position;
+                cards[i].GetComponent<CardSlotHand>().startingPos =  new Vector3 (cards[i].position.x, yPos, cards[i].position.z);
                 cards[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 20 - i;
             }
             #endregion
@@ -117,7 +119,7 @@ public class Hand : MonoBehaviour
                     //Do nothing
                     cards[i].position = new Vector3(defaultPos.x, cards[i].transform.position.y, -3);
                     cards[i].rotation = Quaternion.identity;
-                    cards[i].GetComponent<CardSlotHand>().startingPos = cards[i].position;
+                    cards[i].GetComponent<CardSlotHand>().startingPos = new Vector3(cards[i].position.x, yPos, cards[i].position.z);
                 }
                 else
                 {
@@ -155,7 +157,7 @@ public class Hand : MonoBehaviour
         cards[whatcard].position += offset;
         cards[whatcard].position = new Vector3(cards[whatcard].position.x, cards[whatcard].position.y, -3);
         cards[whatcard].Rotate(0, 0, 10 * multiplier);
-        cards[whatcard].GetComponent<CardSlotHand>().startingPos = cards[whatcard].position;
+        cards[whatcard].GetComponent<CardSlotHand>().startingPos = new Vector3(cards[whatcard].position.x, yPos, cards[whatcard].position.z);
     }
 
     public void ResizeHand(bool makeBig)
@@ -186,9 +188,17 @@ public class Hand : MonoBehaviour
         {
             for (int i = 0; i < cards.Length; i++)
             {
-                if(goUp) cards[i].GetComponent<CardSlotHand>().startingPos.y = -4;
-                
-                if(goDown) cards[i].GetComponent<CardSlotHand>().startingPos.y = -5;
+                if (goUp)
+                {
+                    cards[i].GetComponent<CardSlotHand>().startingPos.y = -4;
+                    yPos = -4;
+                }
+
+                if (goDown)
+                {
+                    cards[i].GetComponent<CardSlotHand>().startingPos.y = -5;
+                    yPos = -5;
+                }
             }
         } 
     }
@@ -301,7 +311,7 @@ public class Hand : MonoBehaviour
         Destroy(cardStorage.gameObject);
         Destroy(this.gameObject);
     }
-    private void ActivateColliders(bool state)
+    public void ActivateColliders(bool state)
     {
         for(int i = 0; i < transform.childCount; i++)
         {

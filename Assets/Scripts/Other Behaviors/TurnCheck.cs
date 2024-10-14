@@ -90,8 +90,15 @@ public class TurnCheck : MonoBehaviour
                     if (costumeTurns <= 0) positions[i].GetComponent<SpriteRenderer>().sprite = playerSprite;
                     else
                     {
-                        positions[i].GetComponent<SpriteRenderer>().sprite = costumeSprite;
+                        if (positions[4].GetComponent<SpriteRenderer>().sprite != enemySprite)
+                        {
+                            positions[4].GetComponent<SpriteRenderer>().sprite = costumeSprite;
+                        }
+                        else positions[i].GetComponent<SpriteRenderer>().sprite = costumeSprite;
+
                         costumeTurns--;
+
+                        if(costumeTurns <= 0) DeleteCostumes();
                     }
                     turnsUntilEnemy--;
                 }
@@ -101,8 +108,11 @@ public class TurnCheck : MonoBehaviour
                     turnsUntilEnemy = moveFrequency;
                 }
                 #endregion
+
+                
             }
             else positions[i].GetComponent<DestinationInfo>().destination = new Vector3(positions[i].position.x - 0.66f, positions[i].position.y, positions[i].position.z);
+
             #endregion
         }
 
@@ -122,11 +132,10 @@ public class TurnCheck : MonoBehaviour
         if(takeOff) costumeTurns = 0;
         else costumeTurns = 3;
 
-        int times = 3;
 
         for (int i = 0; i < positions.Count; i++)
         {
-            if(i > 1 && i < 6 && positions[i].GetComponent<SpriteRenderer>().sprite != enemySprite && times > 0)
+            if(i > 1 && i < 6 && positions[i].GetComponent<SpriteRenderer>().sprite != enemySprite && costumeTurns > 0)
             {
                 if (!takeOff)
                 {
@@ -135,15 +144,18 @@ public class TurnCheck : MonoBehaviour
                 }
                 else positions[i].GetComponent<SpriteRenderer>().sprite = playerSprite;
 
-                times--;
             }
         }
+    }
 
-        //In case a costume icon is not placed
-        if(times > 0)
+    private void DeleteCostumes()
+    {
+        for (int i = 0; i < positions.Count; i++)
         {
-            if(positions[0].GetComponent<SpriteRenderer>().sprite != enemySprite) positions[0].GetComponent<SpriteRenderer>().sprite = costumeSprite;
-            else positions[1].GetComponent<SpriteRenderer>().sprite = costumeSprite;
+            if(i== 0 || i == 1 )
+            {
+                if (positions[i].GetComponent<SpriteRenderer>().sprite == costumeSprite) positions[i].GetComponent<SpriteRenderer>().sprite = playerSprite;
+            }    
         }
     }
 }

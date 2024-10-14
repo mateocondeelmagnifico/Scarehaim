@@ -317,6 +317,7 @@ public class Movement : MonoBehaviour
                         myPos = cardGridPos;
                         isMoving = true;
                         mouseManager.hasTreat = false;
+                        mouseManager.hover2Pos = null;
                         hand.DestroyLimbo();
                     }
                 }
