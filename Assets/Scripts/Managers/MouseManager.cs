@@ -265,7 +265,11 @@ public class MouseManager : MonoBehaviour
                                     #region Inform Player to move and tutorial to progress
                                     if (tutorialManager == null)
                                     {
-                                        if (cardHit.GetComponent<CardSlot>().unavailable <= 0 || playerMove.hasTreat) playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
+                                        if (cardHit.GetComponent<CardSlot>().unavailable <= 0 || playerMove.hasTreat)
+                                        {
+                                            playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
+                                        }
+
                                         DeactivateDisplay();
                                     }
                                     else if (tutorialManager.IsCorrectCard(selectedCardSlot) == true)

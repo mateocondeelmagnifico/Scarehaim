@@ -262,6 +262,8 @@ public class Movement : MonoBehaviour
                         else cantMove = true;
                     }
 
+                    if (!cantMove) cantMove = CanGoThere(cardActualPos);
+
                     if (cantMove)
                     {
                         cardGridPos = originalPosGrid;
@@ -313,12 +315,15 @@ public class Movement : MonoBehaviour
 
                     if (cardGridPos != myPos && gameManager.enemy.myPos != middlePos)
                     {
-                        destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
-                        myPos = cardGridPos;
-                        isMoving = true;
-                        mouseManager.hasTreat = false;
-                        mouseManager.hover2Pos = null;
-                        hand.DestroyLimbo();
+                        if(!CanGoThere(cardActualPos))
+                        {
+                            destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
+                            myPos = cardGridPos;
+                            isMoving = true;
+                            mouseManager.hasTreat = false;
+                            mouseManager.hover2Pos = null;
+                            hand.DestroyLimbo();
+                        }
                     }
                 }
             }
@@ -479,5 +484,25 @@ public class Movement : MonoBehaviour
         hasTreat = true;
         mouseManager.hasTreat = true;
         mouseManager.DeactivateRadar();
+    }
+
+    private bool CanGoThere(Vector2 pos)
+    {
+        bool istrue = false;
+
+        //Avoid steeping into a place you can't with a treat
+        for (int o = 0; o < cards.transform.childCount; o++)
+        {
+            
+            Transform cardPos = cards.transform.GetChild(o).transform;
+            if (pos.x == cardPos.position.x && pos.y == cardPos.position.y)
+            {
+                    if (cardPos.GetComponent<CardSlot>().unavailable > 0) istrue = true;
+            }
+            
+        }
+
+        //Returns true when you can't go there
+        return istrue;
     }
 }
