@@ -111,17 +111,89 @@ public class MouseManager : MonoBehaviour
 
         if (radarActive) radarText.transform.position = new Vector3(hit.point.x + 0.8f, hit.point.y - 0.8f, 0);
 
-        if (hit.collider != null && canClick)
+        if (hit.collider != null )
         {
-            if (hit.collider.gameObject.tag.Equals("Card Slot") || hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
+            if (canClick)
             {
-                //Put highlights when hovering over cards
-                cardHit = hit.collider.gameObject;
-
-                if (hit.collider.gameObject.tag.Equals("Card Slot"))
+                if (hit.collider.gameObject.tag.Equals("Card Slot") || hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
                 {
-                    currentCard = cardHit.GetComponent<CardSlot>();
-                    if (cardHandHovered && !cardHit.GetComponent<CardSlotHand>())
+                    //Put highlights when hovering over cards
+                    cardHit = hit.collider.gameObject;
+
+                    if (hit.collider.gameObject.tag.Equals("Card Slot"))
+                    {
+                        currentCard = cardHit.GetComponent<CardSlot>();
+                        if (cardHandHovered && !cardHit.GetComponent<CardSlotHand>())
+                        {
+                            DeactivateDisplay();
+                            cardHandHovered = false;
+                            currentCardHand.hoverTimer = 0;
+                            currentCardHand.isHovered = false;
+                            hoverAesthetics.SetActive(false);
+                        }
+                    }
+
+                    PlaceHighlight(0);
+
+                    if (hit.collider.gameObject.tag.Equals("Enemy") && manager.CheckIsInCheckMovement() && playerMove.turnsWithcostume <= 0)
+                    {
+                        playerMove.DespawnHighlights(0);
+                    }
+
+                    #region Select Card in Hand
+
+                    if (cardHit.GetComponent<CardSlotHand>())
+                    {
+                        currentCardHand = cardHit.GetComponent<CardSlotHand>();
+
+                        currentCardHand.isHovered = true;
+                        handtimer += Time.deltaTime;
+
+                        if (currentCardHand.hoverTimer >= 0.2f)
+                        {
+                            DisplayCard(currentCardHand.objectSprite, currentCardHand.objectDescription);
+
+                            cardHandHovered = true;
+                        }
+
+                        if (Input.GetMouseButton(0) && !cardGrabbed && (manager.CheckIsInCheckMovement() || manager.currentState == GameManager.turnState.CheckCardEffect))
+                        {
+                            //follow mouse
+                            currentCard = currentCardHand;
+                            currentCardHand.followMouse = true;
+                            currentCardHand.Disown();
+                            cardGrabbed = true;
+
+                            if (currentCardHand.isPayment)
+                            {
+                                currentCardHand.isPayment = false;
+                                currentCardHand.hasArrived = false;
+                                CardEffectManager.Instance.CheckCanAfford();
+                            }
+                        }
+
+                        if (Input.GetMouseButtonUp(0))
+                        {
+                            //Finish follow
+                            currentCardHand.followMouse = false;
+                            cardGrabbed = false;
+                            hoverAesthetics.SetActive(false);
+                            DeactivateDisplay();
+                        }
+                    }
+
+                    if (hit.collider.gameObject.tag.Equals("Hand") && handtimer < 1.5f)
+                    {
+                        handtimer += Time.deltaTime;
+                    }
+                    else if (!cardHit.GetComponent<CardSlotHand>()) ShrinkHand();
+                    #endregion
+                }
+                else
+                {
+                    ShrinkHand();
+
+                    if (cardHandHovered || hit.collider.gameObject.tag.Equals("Undo Button"))
                     {
                         DeactivateDisplay();
                         cardHandHovered = false;
@@ -131,270 +203,206 @@ public class MouseManager : MonoBehaviour
                     }
                 }
 
-                PlaceHighlight(0);
-
-                if (hit.collider.gameObject.tag.Equals("Enemy") && manager.CheckIsInCheckMovement() && playerMove.turnsWithcostume <= 0)
+                if (Input.GetMouseButtonDown(0))
                 {
-                    playerMove.DespawnHighlights(0);
-                }
-
-                #region Select Card in Hand
-
-                if (cardHit.GetComponent<CardSlotHand>())
-                {
-                    currentCardHand = cardHit.GetComponent<CardSlotHand>();
-
-                    currentCardHand.isHovered = true;
-                    handtimer += Time.deltaTime;
-
-                    if (currentCardHand.hoverTimer >= 0.2f)
+                    if (hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
                     {
-                        DisplayCard(currentCardHand.objectSprite, currentCardHand.objectDescription);
-
-                        cardHandHovered = true;
-                    }
-
-                    if (Input.GetMouseButton(0) && !cardGrabbed && (manager.CheckIsInCheckMovement() || manager.currentState == GameManager.turnState.CheckCardEffect))
-                    {
-                        //follow mouse
-                        currentCard = currentCardHand;
-                        currentCardHand.followMouse = true;                
-                        currentCardHand.Disown();
-                        cardGrabbed = true;
-
-                        if (currentCardHand.isPayment)
+                        DisplayBigImage display = cardHit.GetComponent<DisplayBigImage>();
+                        //Display player or enemy card
+                        if (firstSelect != cardHit)
                         {
-                            currentCardHand.isPayment = false;
-                            currentCardHand.hasArrived = false;
-                            CardEffectManager.Instance.CheckCanAfford();
-                        }
-                    }
+                            hoverAesthetics.SetActive(false);
+                            firstSelect = cardHit;
+                            DisplayCard(cardHit.GetComponent<DisplayBigImage>().bigImage, "");
 
-                    if (Input.GetMouseButtonUp(0))
-                    {
-                        //Finish follow
-                        currentCardHand.followMouse = false;
-                        cardGrabbed = false;
-                        hoverAesthetics.SetActive(false);
-                        DeactivateDisplay();
-                    }
-                }
-
-                if (hit.collider.gameObject.tag.Equals("Hand") && handtimer < 1.5f)
-                {
-                    handtimer += Time.deltaTime;
-                }
-                else if(!cardHit.GetComponent<CardSlotHand>()) ShrinkHand();
-                #endregion
-            }
-            else 
-            {
-                ShrinkHand();
-
-                if (cardHandHovered || hit.collider.gameObject.tag.Equals("Undo Button"))
-                {
-                    DeactivateDisplay();
-                    cardHandHovered = false;
-                    currentCardHand.hoverTimer = 0;
-                    currentCardHand.isHovered = false;
-                    hoverAesthetics.SetActive(false);
-                }
-            }
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
-                {
-                    DisplayBigImage display = cardHit.GetComponent<DisplayBigImage>();
-                    //Display player or enemy card
-                    if (firstSelect != cardHit)
-                    {
-                        hoverAesthetics.SetActive(false);
-                        firstSelect = cardHit;
-                        DisplayCard(cardHit.GetComponent<DisplayBigImage>().bigImage, "");
-
-                        if (hit.collider.gameObject.tag.Equals("Player"))
-                        {
-                            playerDisplay = true;
-                            hopeText.text = cardHit.GetComponent<Fear>().hope.ToString();
-                            if (cardHit.GetComponent<Movement>().turnsWithcostume > 0) costumeTurnsText.text = cardHit.GetComponent<Movement>().turnsWithcostume.ToString();
-                        }
-                        else hopeText.enabled = false;
-                        PlaceHighlight(1);
-                    }
-                    else
-                    {
-                        firstSelect = null;
-                        DeactivateDisplay();
-                    }
-                }
-
-                if (hit.collider.gameObject.tag.Equals("Card Slot"))
-                {
-                    #region Select card in Board
-
-                    hopeText.enabled = false;
-                    if (!radarActive && !currentCard.isInHand)
-                    {
-                        PlaceHighlight(1);
-
-                        if (firstSelect == cardHit)
-                        {
-                            if (manager.CheckIsInCheckMovement() && currentCard.transform.childCount > 0)
+                            if (hit.collider.gameObject.tag.Equals("Player"))
                             {
-                                if (CanReach(currentCard.Location) && cardHit.GetComponent<CardSlot>().unavailable > 0) SoundManager.Instance.PlaySound("Card Picked");
-                                else SoundManager.Instance.PlaySound("Cant go there");
+                                playerDisplay = true;
+                                hopeText.text = cardHit.GetComponent<Fear>().hope.ToString();
+                                if (cardHit.GetComponent<Movement>().turnsWithcostume > 0) costumeTurnsText.text = cardHit.GetComponent<Movement>().turnsWithcostume.ToString();
+                            }
+                            else hopeText.enabled = false;
+                            PlaceHighlight(1);
+                        }
+                        else
+                        {
+                            firstSelect = null;
+                            DeactivateDisplay();
+                        }
+                    }
 
-                                if (playerMove.turnsWithcostume <= 0)
+                    if (hit.collider.gameObject.tag.Equals("Card Slot"))
+                    {
+                        #region Select card in Board
+
+                        hopeText.enabled = false;
+                        if (!radarActive && !currentCard.isInHand)
+                        {
+                            PlaceHighlight(1);
+
+                            if (firstSelect == cardHit)
+                            {
+                                if (manager.CheckIsInCheckMovement() && currentCard.transform.childCount > 0)
                                 {
-                                    selectedCardSlot = cardHit;
-                                    manager.selectedCardSlot = cardHit;
-                                }
-                                else
-                                {
-                                    if (playerMove.moveSelected)
+                                    if (CanReach(currentCard.Location) && cardHit.GetComponent<CardSlot>().unavailable > 0) SoundManager.Instance.PlaySound("Card Picked");
+                                    else SoundManager.Instance.PlaySound("Cant go there");
+
+                                    if (playerMove.turnsWithcostume <= 0)
                                     {
                                         selectedCardSlot = cardHit;
                                         manager.selectedCardSlot = cardHit;
                                     }
-                                }
-                                cardInformed = false;
+                                    else
+                                    {
+                                        if (playerMove.moveSelected)
+                                        {
+                                            selectedCardSlot = cardHit;
+                                            manager.selectedCardSlot = cardHit;
+                                        }
+                                    }
+                                    cardInformed = false;
 
-                                #region Inform Player to move and tutorial to progress
-                                if (tutorialManager == null)
-                                {
-                                    if(cardHit.GetComponent<CardSlot>().unavailable <= 0  || playerMove.hasTreat) playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
-                                    DeactivateDisplay();
-                                }
-                                else if (tutorialManager.IsCorrectCard(selectedCardSlot) == true)
-                                {
-                                    if (!needsTreat)
+                                    #region Inform Player to move and tutorial to progress
+                                    if (tutorialManager == null)
                                     {
-                                        tutorialManager.Nextmenu();
-                                        playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
+                                        if (cardHit.GetComponent<CardSlot>().unavailable <= 0 || playerMove.hasTreat) playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
+                                        DeactivateDisplay();
                                     }
-                                    else if (pMovement.hasTreat)
+                                    else if (tutorialManager.IsCorrectCard(selectedCardSlot) == true)
                                     {
-                                        tutorialManager.Nextmenu();
-                                        playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
-                                        needsTreat = false;
+                                        if (!needsTreat)
+                                        {
+                                            tutorialManager.Nextmenu();
+                                            playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
+                                        }
+                                        else if (pMovement.hasTreat)
+                                        {
+                                            tutorialManager.Nextmenu();
+                                            playerMove.TryMove(currentCard.Location, new Vector2(currentCard.transform.position.x, currentCard.transform.position.y));
+                                            needsTreat = false;
+                                        }
                                     }
+                                    #endregion
                                 }
-                                #endregion
                             }
-                        }
-                        else 
-                        {
-                            if (cardHit.transform.childCount > 0 )
+                            else
                             {
-                                soundManager.PlaySound("Card Hovered");
-                                firstSelect = cardHit;
-                                DisplayCard(cardHit.GetComponent<CardSlot>().objectSprite, cardHit.GetComponent<CardSlot>().objectDescription);
+                                if (cardHit.transform.childCount > 0)
+                                {
+                                    soundManager.PlaySound("Card Hovered");
+                                    firstSelect = cardHit;
+                                    DisplayCard(cardHit.GetComponent<CardSlot>().objectSprite, cardHit.GetComponent<CardSlot>().objectDescription);
+                                }
+                                else DeactivateDisplay();
                             }
-                            else DeactivateDisplay();
+
                         }
-
+                        #endregion
                     }
-                    #endregion
+
+                    if (hit.collider.gameObject.tag.Equals("Undo Button"))
+                    {
+                        //Press Undo Button
+                        hand.Undo();
+                    }
+
+                    if (hit.collider.gameObject.tag.Equals("Untagged")) DeactivateDisplay();
                 }
 
-                if (hit.collider.gameObject.tag.Equals("Undo Button"))
+                #region Check Radar
+                if (!hit.collider.gameObject.tag.Equals("Player") && manager.CheckIsInCheckMovement())
                 {
-                    //Press Undo Button
-                    hand.Undo();
-                }
+                    if (Input.GetMouseButtonDown(1) && !hasTreat)
+                    {
+                        if (radarActive)
+                        {
+                            DeactivateRadar();
+                        }
+                        else if (trickRadar.CanUseScan())
+                        {
+                            radarActive = true;
+                            boardOverlay.ACtivateOverlay("Green");
+                            radarText.text = (trickRadar.numberOfScans + 1).ToString();
+                            soundManager.PlaySound("Radar On");
+                        }
+                    }
 
-                if (hit.collider.gameObject.tag.Equals("Untagged")) DeactivateDisplay();
-            }
-
-            #region Check Radar
-            if (!hit.collider.gameObject.tag.Equals("Player") && manager.CheckIsInCheckMovement())
-            {
-                if (Input.GetMouseButtonDown(1) && !hasTreat)
-                {
                     if (radarActive)
                     {
-                        DeactivateRadar();
-                    }
-                    else if (trickRadar.CanUseScan())
-                    {
-                        radarActive = true;
-                        boardOverlay.ACtivateOverlay("Green");
-                        radarText.text = (trickRadar.numberOfScans + 1).ToString();
-                        soundManager.PlaySound("Radar On");
-                    }
-                }
-
-                if (radarActive)
-                {
-                    if (!highlightsSpawned)
-                    {
-                        pMovement.SpawnHighlight(3);
-                        highlightsSpawned = true;
-                    }
-
-                    #region Define Variables
-                    radarPositions[0] = Vector2.zero;
-                    radarPositions[1] = Vector2.zero;
-                    radarPositions[2] = Vector2.zero;
-                    Vector2 cardVector = new Vector2(cardHit.transform.position.x, cardHit.transform.position.y);
-                    float playerY = pMovement.transform.position.y;
-                    float playerX = pMovement.transform.position.x;
-                    #endregion
-
-                    if (Mathf.Abs(playerX - cardHit.transform.position.x) <= 2 && Mathf.Abs(playerY - cardHit.transform.position.y) <= 2.7f)
-                    {
-
-                        //if scanner is in range
-                        if (cardHit.transform.position.x != playerX)
+                        if (!highlightsSpawned)
                         {
-                            pMovement.MoveHighlights(0, new Vector2(cardVector.x, playerY), "blue");
-                            radarPositions[0] = new Vector2(cardVector.x, playerY);
-
-                            if (playerY < -2f) { }
-                            else
-                            {
-                                pMovement.MoveHighlights(1, new Vector2(cardVector.x, playerY - 2.7f), "blue");
-                                radarPositions[1] = new Vector2(cardVector.x, playerY - 2.7f);
-                            }
-
-                            if (playerY! > 0.2f) { }
-                            else
-                            {
-                                pMovement.MoveHighlights(2, new Vector2(cardVector.x, playerY + 2.7f), "blue");
-                                radarPositions[2] = new Vector2(cardVector.x, playerY + 2.7f);
-                            }
+                            pMovement.SpawnHighlight(3);
+                            highlightsSpawned = true;
                         }
-                        else
+
+                        #region Define Variables
+                        radarPositions[0] = Vector2.zero;
+                        radarPositions[1] = Vector2.zero;
+                        radarPositions[2] = Vector2.zero;
+                        Vector2 cardVector = new Vector2(cardHit.transform.position.x, cardHit.transform.position.y);
+                        float playerY = pMovement.transform.position.y;
+                        float playerX = pMovement.transform.position.x;
+                        #endregion
+
+                        if (Mathf.Abs(playerX - cardHit.transform.position.x) <= 2 && Mathf.Abs(playerY - cardHit.transform.position.y) <= 2.7f)
                         {
-                            pMovement.MoveHighlights(0, cardVector, "blue");
-                            radarPositions[0] = cardVector;
 
-                            if (FindBoardPos(cardVector + new Vector2(-2, 0)))
+                            //if scanner is in range
+                            if (cardHit.transform.position.x != playerX)
                             {
-                                pMovement.MoveHighlights(1, cardVector + new Vector2(-2, 0), "blue");
-                                radarPositions[1] = cardVector + new Vector2(-2, 0);
+                                pMovement.MoveHighlights(0, new Vector2(cardVector.x, playerY), "blue");
+                                radarPositions[0] = new Vector2(cardVector.x, playerY);
+
+                                if (playerY < -2f) { }
+                                else
+                                {
+                                    pMovement.MoveHighlights(1, new Vector2(cardVector.x, playerY - 2.7f), "blue");
+                                    radarPositions[1] = new Vector2(cardVector.x, playerY - 2.7f);
+                                }
+
+                                if (playerY! > 0.2f) { }
+                                else
+                                {
+                                    pMovement.MoveHighlights(2, new Vector2(cardVector.x, playerY + 2.7f), "blue");
+                                    radarPositions[2] = new Vector2(cardVector.x, playerY + 2.7f);
+                                }
                             }
-
-                            if (FindBoardPos(cardVector + new Vector2(2, 0)))
+                            else
                             {
-                                pMovement.MoveHighlights(2, cardVector + new Vector2(2, 0), "blue");
-                                radarPositions[2] = cardVector + new Vector2(2, 0);
+                                pMovement.MoveHighlights(0, cardVector, "blue");
+                                radarPositions[0] = cardVector;
+
+                                if (FindBoardPos(cardVector + new Vector2(-2, 0)))
+                                {
+                                    pMovement.MoveHighlights(1, cardVector + new Vector2(-2, 0), "blue");
+                                    radarPositions[1] = cardVector + new Vector2(-2, 0);
+                                }
+
+                                if (FindBoardPos(cardVector + new Vector2(2, 0)))
+                                {
+                                    pMovement.MoveHighlights(2, cardVector + new Vector2(2, 0), "blue");
+                                    radarPositions[2] = cardVector + new Vector2(2, 0);
+                                }
                             }
                         }
                     }
-                }
 
-                if (Input.GetMouseButtonDown(0) && radarActive)
-                {
-                    FireRadar();
-                    boardOverlay.DeactivatOverlay();
-                    radarText.text = "";
-                    soundManager.PlaySound("Radar");
-                }
+                    if (Input.GetMouseButtonDown(0) && radarActive)
+                    {
+                        FireRadar();
+                        boardOverlay.DeactivatOverlay();
+                        radarText.text = "";
+                        soundManager.PlaySound("Radar");
+                    }
 
+                }
+                #endregion
             }
-            #endregion
+            else if (hit.collider.gameObject.tag.Equals("Tutorial Button"))
+            {
+                //Hit tutorial button
+                hit.collider.gameObject.GetComponent<Animator>().SetBool("Jump", false);
+            }
         }
         
     }

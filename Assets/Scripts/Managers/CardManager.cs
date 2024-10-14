@@ -125,11 +125,11 @@ public class CardManager : MonoBehaviour
                     {
                         if (cardsDealtAmount == cardsOnBoard.transform.childCount)
                         {
-                            enemyPos.position = Vector3.MoveTowards(enemyPos.position, originalEnemyPos, 9 * Time.deltaTime);
+                            enemyPos.position = Vector3.MoveTowards(enemyPos.position, originalEnemyPos, 2 * Time.deltaTime + (Vector2.Distance(enemyPos.position, originalEnemyPos) / 8));
                         }
                         else
                         {  
-                            playerPos.position = Vector3.MoveTowards(playerPos.position, originalPlayerPos, 9 * Time.deltaTime);
+                            playerPos.position = Vector3.MoveTowards(playerPos.position, originalPlayerPos, 2 * Time.deltaTime + (Vector2.Distance(playerPos.position, originalPlayerPos) / 8));
                         }
                     }
                 }

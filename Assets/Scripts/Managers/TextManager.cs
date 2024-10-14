@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TextManager : MonoBehaviour
 {
@@ -216,6 +215,7 @@ public class TextManager : MonoBehaviour
         {
             //Activates button in tutorial
             tutorialManager.nextTutorialButton.SetActive(true);
+            tutorialManager.buttonAnimator.SetBool("Jump", true);
             displayButton = false;
         }
 

@@ -1,11 +1,11 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
 {
 
     [SerializeField] protected GameObject displayImage;
     public GameObject nextTutorialButton;
+    public Animator buttonAnimator;
 
     [SerializeField] protected TMPro.TextMeshProUGUI textBox;
 
@@ -34,6 +34,7 @@ public class TutorialManager : MonoBehaviour
         textManager = TextManager.Instance;
         mouseManager.tutorialManager = this;
         textManager.tutorialManager = this;
+        buttonAnimator = nextTutorialButton.GetComponent<Animator>();
     }
 
     public virtual void Update()
@@ -157,12 +158,13 @@ public class TutorialManager : MonoBehaviour
         currentTutorial++;
 
         DisplayNextBlackScreen();
+        buttonAnimator.SetBool("Jump", false);
 
         if (currentTutorial == 12)
         {
             //Destroy tutorial manager
             showExit = false;
-            RemoveTutorial();
+            RemoveTutorial();          
             nextTutorialButton.SetActive(false);
             mouseManager.canClick = true;
             Destroy(this.gameObject);

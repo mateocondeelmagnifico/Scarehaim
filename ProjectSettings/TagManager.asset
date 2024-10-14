@@ -11,6 +11,7 @@ TagManager:
   - Table
   - Hand
   - Undo Button
+  - Tutorial Button
   layers:
   - Default
   - TransparentFX

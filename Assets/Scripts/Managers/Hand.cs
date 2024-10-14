@@ -160,13 +160,15 @@ public class Hand : MonoBehaviour
 
     public void ResizeHand(bool makeBig)
     {
+        if (transform.childCount < 1) return;
+
         bool goUp = false;
         bool goDown = false;
         if (makeBig)
         {
             if(cards[0].transform.position.y <= -4) goUp = true;
         }
-        else
+        else 
         {
             switch(cards[0].transform.position.y)
             {
