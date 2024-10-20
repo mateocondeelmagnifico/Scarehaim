@@ -286,4 +286,10 @@ public class GameManager : MonoBehaviour
         //Void is called by buttons
         Hand.Instance.NukeSelf();
     }
+
+    public void CallResetHand()
+    {
+        //Called by the get back to previous stage buttons
+        hand.GetComponent<Hand>().resetCards = true;
+    }
 }

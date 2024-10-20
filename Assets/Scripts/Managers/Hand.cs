@@ -16,7 +16,7 @@ public class Hand : MonoBehaviour
     //la mano guarda el fear entre escenas y sabe si has hecho el tutorial
     public int hope;
     private int yPos = -5;
-    public bool firstGame, costumeOn, activateColliders;
+    public bool firstGame, costumeOn, activateColliders, resetCards;
 
 
     private float timer;
@@ -37,7 +37,25 @@ public class Hand : MonoBehaviour
         }
         else
         {
+            #region Give cards to old Hand
+            Hand myHand = Hand.Instance;
+            if(myHand.resetCards) 
+            {
+                for(int i = 0; i < myHand.transform.childCount; i++)
+                {
+                    Destroy(myHand.transform.GetChild(0).gameObject);
+                }
+
+                for(int i = 0;i < transform.childCount; i++)
+                {
+                    transform.GetChild(0).transform.parent = myHand.transform;  
+                }
+
+                myHand.resetCards = false;
+            }
+
             Destroy(this.gameObject);
+            #endregion
         }
 
         defaultPos = new Vector3(transform.position.x, transform.position.y, -2);

@@ -314,7 +314,7 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ab5b055ebe2f70440af3492a8eb75891, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d93d94de1ea1d864283329f42ef88f03, type: 2}
   m_sharedMaterial: {fileID: -4317416503888858199, guid: d93d94de1ea1d864283329f42ef88f03, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -7642,7 +7642,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Pay
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ab5b055ebe2f70440af3492a8eb75891, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d93d94de1ea1d864283329f42ef88f03, type: 2}
   m_sharedMaterial: {fileID: -4317416503888858199, guid: d93d94de1ea1d864283329f42ef88f03, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -14235,6 +14235,7 @@ MonoBehaviour:
   firstGame: 0
   costumeOn: 0
   activateColliders: 0
+  resetCards: 0
 --- !u!61 &1571830517
 BoxCollider2D:
   m_ObjectHideFlags: 0

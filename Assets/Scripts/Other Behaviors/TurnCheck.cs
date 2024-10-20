@@ -8,12 +8,17 @@ public class TurnCheck : MonoBehaviour
     [SerializeField] private Transform startPos;
     [SerializeField] private Sprite enemySprite, playerSprite, costumeSprite;
 
-    [SerializeField] private int moveFrequency;
+    [SerializeField] private int moveFrequency, extraTurnsStart;
     private int turnsUntilEnemy;
     private int costumeTurns;
 
     private bool move, storeMove;
     private bool[] hasArrived = new bool[6];
+
+    private void Start()
+    {
+        turnsUntilEnemy += extraTurnsStart;
+    }
 
 
     private void Update()
@@ -84,6 +89,8 @@ public class TurnCheck : MonoBehaviour
                 positions.RemoveAt(0);
                 positions.Add(firstIcon);
 
+                Debug.Log(turnsUntilEnemy);
+
                 #region Decide Sprite
                 if (turnsUntilEnemy > 0)
                 {
@@ -107,9 +114,7 @@ public class TurnCheck : MonoBehaviour
                     positions[i].GetComponent<SpriteRenderer>().sprite = enemySprite;
                     turnsUntilEnemy = moveFrequency;
                 }
-                #endregion
-
-                
+                #endregion            
             }
             else positions[i].GetComponent<DestinationInfo>().destination = new Vector3(positions[i].position.x - 0.66f, positions[i].position.y, positions[i].position.z);
 

@@ -10,6 +10,7 @@ public class CardSlotHand: CardSlot
     public CardEffectManager effectManager;
     private Transform blackScreen;
     public Transform oldParent;
+    private Hand hand;
 
     private int chosenSlot;
     private float accelerator = 0.5f;
@@ -19,6 +20,7 @@ public class CardSlotHand: CardSlot
         isInHand = true;
         startingPos = transform.position;
         gameManager = GameManager.Instance;
+        hand = Hand.Instance;
 
         if(effectManager == null) effectManager = CardEffectManager.Instance;
         blackScreen = effectManager.blackScreen.transform;
@@ -116,13 +118,14 @@ public class CardSlotHand: CardSlot
     private void TryToPlayCard()
     {
         bool cardPlayed = false;
-            if (gameManager.currentState == GameManager.turnState.CheckMovement && !GameManager.Instance.powerUpOn)
-            {
-                //Aqui es donde se aplica el efecto del disfraz y del treat
+        if (gameManager.currentState == GameManager.turnState.CheckMovement && !GameManager.Instance.powerUpOn)
+        {
+                //Aqui es donde se aplicta el efecto del disfraz y del treat
                 goHome = true;
                 cardObject.GetComponent<CardObject>().PlayCard();
                 cardPlayed = true;
-            }
+            hand.ResizeHand(false);
+        }
             
             if(gameManager.currentState == GameManager.turnState.CheckCardEffect && effectManager.effectActive)
             {
