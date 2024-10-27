@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d408c0bcb01fae44bb9a824eeb57ef26, type: 3}
   m_Name: Snow Dummy
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: e0a9f807c173a024480a39381a8caa36, type: 3}
+  image: {fileID: 21300000, guid: 5f941dc487a4d3b449544b52a9768396, type: 3}
   bigImage: {fileID: 21300000, guid: f04d46c9ba9618d4686e6321e00a6c4f, type: 3}
   myObject: {fileID: 0}
   myCardObject: {fileID: 0}

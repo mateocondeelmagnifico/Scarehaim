@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f19fa87e435597843978411cad1df179, type: 3}
   m_Name: Raisin Cookie
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: 8d949f84ee84e43408c5216ee4e5cc46, type: 3}
+  image: {fileID: 21300000, guid: df5c927dd4f0f4d49a3e2036f3862999, type: 3}
   bigImage: {fileID: 21300000, guid: 2616a7a2b7961e046bccb06864d08614, type: 3}
   myObject: {fileID: 0}
   myCardObject: {fileID: 0}
