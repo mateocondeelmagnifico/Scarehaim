@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TurnCheck : MonoBehaviour
 {
+    public static TurnCheck instance { get; set; }
+
     [SerializeField] private List<Transform> positions;
     [SerializeField] private Transform startPos;
     [SerializeField] private Sprite enemySprite, playerSprite, costumeSprite;
@@ -15,11 +17,13 @@ public class TurnCheck : MonoBehaviour
     private bool move, storeMove;
     private bool[] hasArrived = new bool[6];
 
-    private void Start()
+    private void Awake()
     {
+        if (instance == null) instance = this;
+        else Destroy(this.gameObject);
+
         turnsUntilEnemy += extraTurnsStart;
     }
-
 
     private void Update()
     {
@@ -159,6 +163,15 @@ public class TurnCheck : MonoBehaviour
             {
                 if (positions[i].GetComponent<SpriteRenderer>().sprite == costumeSprite) positions[i].GetComponent<SpriteRenderer>().sprite = playerSprite;
             }    
+        }
+    }
+
+    public void UndoCostumes()
+    {
+        //This is in case you undo the costume
+        for (int i = 0; i<positions.Count; i++)
+        {
+            if(positions[i].GetComponent<SpriteRenderer>().sprite == costumeSprite) positions[i].GetComponent<SpriteRenderer>().sprite = playerSprite;
         }
     }
 }

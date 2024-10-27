@@ -288,6 +288,7 @@ public class Hand : MonoBehaviour
     {
         cardInLimbo.SetActive(true);
         cardInLimbo.transform.GetChild(0).GetComponent<CardObject>().myCard.UndoEffect();
+        TurnCheck.instance.UndoCostumes();
         if (overlay == null) overlay = BoardOverlay.instance;
         overlay.DeactivatOverlay();
         MouseManager.instance.hasTreat = false;

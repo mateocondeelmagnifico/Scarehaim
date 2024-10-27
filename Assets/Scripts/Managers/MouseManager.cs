@@ -77,7 +77,8 @@ public class MouseManager : MonoBehaviour
         if(!manager.CheckIsInCheckMovement())
         {
             DeactivateDisplay();
-            hoverAesthetics.SetActive(false);
+            
+            if(manager.currentState != GameManager.turnState.CheckCardEffect) hoverAesthetics.SetActive(false);
         }
 
         if (wantsToDisplay)
@@ -182,16 +183,11 @@ public class MouseManager : MonoBehaviour
                         }
                     }
 
-                    if (hit.collider.gameObject.tag.Equals("Hand") && handtimer < 1.5f)
-                    {
-                        handtimer += Time.deltaTime;
-                    }
-                    else if (!cardHit.GetComponent<CardSlotHand>()) ShrinkHand();
+                    
                     #endregion
                 }
                 else
                 {
-                    ShrinkHand();
 
                     if (cardHandHovered || hit.collider.gameObject.tag.Equals("Undo Button"))
                     {
@@ -201,6 +197,12 @@ public class MouseManager : MonoBehaviour
                         currentCardHand.isHovered = false;
                         hoverAesthetics.SetActive(false);
                     }
+
+                    if (hit.collider.gameObject.tag.Equals("Hand") && handtimer < 1.5f)
+                    {
+                        handtimer += Time.deltaTime;
+                    }
+                    else ShrinkHand();
                 }
 
                 if (Input.GetMouseButtonDown(0))
@@ -602,10 +604,12 @@ public class MouseManager : MonoBehaviour
     }
     private void PlaceHighlight(int whichOne)
     {
+        
         if (cardHit.transform.childCount > 0 || cardHit.CompareTag("Enemy"))
         {
             if(whichOne == 0)
-            {
+            {      
+
                 if (cardHit == hover2Pos)
                 {
                     hoverAesthetics.SetActive(false);
@@ -622,6 +626,7 @@ public class MouseManager : MonoBehaviour
             }
             else
             {
+
                 hover2Pos = cardHit;
                 hoverAesthetics.SetActive(false);
                 hoverAesthetics2.SetActive(true);
