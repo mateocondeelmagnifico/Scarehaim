@@ -20,7 +20,7 @@ public class CardSlot : MonoBehaviour
     public Sprite objectSprite;
     public string objectDescription;
 
-    private void Start()
+    protected virtual void Start()
     {
         cardManager = CardManager.Instance;
         gameManager = GameManager.Instance;

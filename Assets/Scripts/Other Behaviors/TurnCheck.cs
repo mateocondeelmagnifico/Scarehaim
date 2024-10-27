@@ -89,8 +89,6 @@ public class TurnCheck : MonoBehaviour
                 positions.RemoveAt(0);
                 positions.Add(firstIcon);
 
-                Debug.Log(turnsUntilEnemy);
-
                 #region Decide Sprite
                 if (turnsUntilEnemy > 0)
                 {

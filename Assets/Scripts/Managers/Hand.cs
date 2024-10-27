@@ -58,7 +58,7 @@ public class Hand : MonoBehaviour
             #endregion
         }
 
-        defaultPos = new Vector3(transform.position.x, transform.position.y, -2);
+        defaultPos = new Vector3(transform.position.x, transform.position.y, -3);
 
         DeterminePosition();
     }
@@ -103,9 +103,8 @@ public class Hand : MonoBehaviour
             {
                 cards[i] = transform.GetChild(i);
 
-                cards[i].position = new Vector3(defaultPos.x, cards[i].transform.position.y, defaultPos.z);
                 cards[i].rotation = Quaternion.identity;
-                cards[i].GetComponent<CardSlotHand>().startingPos =  new Vector3 (cards[i].position.x, yPos, cards[i].position.z);
+                cards[i].GetComponent<CardSlotHand>().startingPos = new Vector3(defaultPos.x, yPos, defaultPos.z);
                 cards[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 20 - i;
             }
             #endregion
@@ -135,9 +134,8 @@ public class Hand : MonoBehaviour
                 if ((cards.Length == 3 && i == 1) || (cards.Length == 5 && i == 2) || cards.Length == 1)
                 {
                     //Do nothing
-                    cards[i].position = new Vector3(defaultPos.x, cards[i].transform.position.y, -3);
                     cards[i].rotation = Quaternion.identity;
-                    cards[i].GetComponent<CardSlotHand>().startingPos = new Vector3(cards[i].position.x, yPos, cards[i].position.z);
+                    cards[i].GetComponent<CardSlotHand>().startingPos = new Vector3(defaultPos.x, cards[i].transform.position.y, defaultPos.z);
                 }
                 else
                 {
@@ -160,7 +158,6 @@ public class Hand : MonoBehaviour
                         if (i - 1 == 0 && cards.Length > 3)
                         {
                             //Cards in the extremes are more rotated
-
                             MoveAndRot(i - 1, -positionOffset, rotMultiplier);
                         }
                     }
@@ -172,10 +169,8 @@ public class Hand : MonoBehaviour
 
     private void MoveAndRot(int whatcard, Vector3 offset, float multiplier)
     {
-        cards[whatcard].position += offset;
-        cards[whatcard].position = new Vector3(cards[whatcard].position.x, cards[whatcard].position.y, -3);
+        cards[whatcard].GetComponent<CardSlotHand>().startingPos += offset;
         cards[whatcard].Rotate(0, 0, 10 * multiplier);
-        cards[whatcard].GetComponent<CardSlotHand>().startingPos = new Vector3(cards[whatcard].position.x, yPos, cards[whatcard].position.z);
     }
 
     public void ResizeHand(bool makeBig)
