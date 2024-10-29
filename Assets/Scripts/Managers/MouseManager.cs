@@ -435,11 +435,14 @@ public class MouseManager : MonoBehaviour
     }
     private void CheckDistanceToPlayer(CardSlot slotScript)
     {
-        if (slotScript.isInHand) hoverRenderer.color = Color.green;
+        if (slotScript.isInHand)
+        {
+            hoverRenderer.color = Color.green;
+        }
         else
         {
-           if(CanReach(slotScript.Location)) hoverRenderer.color = startColor;
-           else hoverRenderer.color = Color.red;
+            if (CanReach(slotScript.Location)) hoverRenderer.color = startColor;
+            else hoverRenderer.color = Color.red;
         }
     }
     private bool CanReach(Vector2 slot)
@@ -604,18 +607,17 @@ public class MouseManager : MonoBehaviour
         }
     }
     private void PlaceHighlight(int whichOne)
-    {
-        
+    {    
         if (cardHit.transform.childCount > 0 || cardHit.CompareTag("Enemy"))
         {
             if(whichOne == 0)
-            {      
+            {
 
                 if (cardHit == hover2Pos)
                 {
                     hoverAesthetics.SetActive(false);
                     return;
-                }
+                }    
 
                 hoverAesthetics.SetActive(true);
                 hoverAesthetics.transform.position = cardHit.transform.position;
@@ -624,6 +626,14 @@ public class MouseManager : MonoBehaviour
                 if (cardHit.transform.GetChild(0).GetComponent<SpriteRenderer>()) hoverRenderer.sortingOrder = cardHit.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder;
 
                 if (cardHit.GetComponent<CardSlot>()) CheckDistanceToPlayer(cardHit.GetComponent<CardSlot>());
+
+                if (cardHit.CompareTag("Player")) hoverRenderer.color = Color.white;
+
+                if (cardHit.CompareTag("Enemy"))
+                {
+                    hoverRenderer.color = Color.white;
+                    hoverRenderer.sortingOrder = -2;
+                }
             }
             else
             {
@@ -638,9 +648,8 @@ public class MouseManager : MonoBehaviour
                 if (cardHit.transform.GetChild(0).GetComponent<SpriteRenderer>()) hoverRenderer2.sortingOrder = cardHit.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder;
 
                 //Change color depending on availability
-                if(CanReach(currentCard.Location)) hoverRenderer2.color = Color.white;
-                else hoverRenderer2.color = Color.red;
-                
+                if (CanReach(currentCard.Location)) hoverRenderer2.color = Color.white;
+                else hoverRenderer2.color = Color.red;              
             }
         }
         else

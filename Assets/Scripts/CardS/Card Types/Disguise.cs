@@ -7,7 +7,7 @@ using UnityEngine;
 public class Disguise : Card
 {
     public string myName;
-    public Sprite icon, onPlayerImage;
+    public Sprite icon, onPlayerImage, onPlayerImageSmall;
     private Movement pMovement;
 
     public override void Effect(GameObject card, GameObject cardSlot)
@@ -19,7 +19,7 @@ public class Disguise : Card
     public override void PlayEffect(GameManager manager)
     {
         pMovement = manager.player.GetComponent<Movement>();
-        pMovement.PutOnCostume(image,myName);
+        pMovement.PutOnCostume(onPlayerImageSmall, myName);
         manager.powerUpOn = true;
         pMovement.GetComponent<DisplayBigImage>().ChangeImageAndIcon(onPlayerImage, icon);
     }

@@ -16,9 +16,9 @@ MonoBehaviour:
   bigImage: {fileID: 21300000, guid: f04d46c9ba9618d4686e6321e00a6c4f, type: 3}
   myObject: {fileID: 0}
   myCardObject: {fileID: 0}
-  description: A cold hug,  pay 1 treat or lose 2 hope
+  description: A cold hug,  pay 1 treat or lose 2 courage
   myCost:
-    explanation: A cold hug,  pay 1 treat or lose 2 hope
+    explanation: A cold hug,  pay 1 treat or lose 2 courage
     CostName: Treat
     costAmount: 1
     reward: 

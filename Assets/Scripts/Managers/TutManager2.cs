@@ -125,4 +125,9 @@ public class TutManager2 : TutorialManager
 
         if (textBox.gameObject.activeInHierarchy) textManager.TutorialTalk(tutorialTexts[currentTutorial]);
     }
+
+    public void OptionsPressed()
+    {
+        if (currentTutorial == 8) Nextmenu();
+    }
 }

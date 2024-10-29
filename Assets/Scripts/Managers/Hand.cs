@@ -328,6 +328,8 @@ public class Hand : MonoBehaviour
     }
     public void ActivateColliders(bool state)
     {
+        GetComponent<BoxCollider2D>().enabled = state;
+
         for(int i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).GetComponent<BoxCollider2D>().enabled = state;
