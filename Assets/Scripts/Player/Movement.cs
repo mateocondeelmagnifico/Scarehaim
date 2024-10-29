@@ -116,6 +116,7 @@ public class Movement : MonoBehaviour
                             gameManager.powerUpOn = false;
                             overlay.DeactivatOverlay();
                             TakeOffCostume();
+                            hand.hasMoved = false;
                         }
 
                         DespawnHighlights(0);
@@ -192,6 +193,7 @@ public class Movement : MonoBehaviour
                     MoveHighlights(1, destination, "yellow");
                     DespawnHighlights(2);
                     hand.DestroyLimbo();
+                    hand.hasMoved = true;
                 }
             }
             #endregion

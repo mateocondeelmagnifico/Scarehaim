@@ -16,7 +16,7 @@ public class Hand : MonoBehaviour
     //la mano guarda el fear entre escenas y sabe si has hecho el tutorial
     public int hope;
     private int yPos = -5;
-    public bool firstGame, costumeOn, activateColliders, resetCards;
+    public bool firstGame, costumeOn, activateColliders, resetCards, hasMoved;
 
 
     private float timer;
@@ -304,6 +304,7 @@ public class Hand : MonoBehaviour
         MouseManager.instance.hover2Pos = null;
         movimiento.UndoCostumeMove();
         costumeOn = false;
+        if(!hasMoved) UndoLimbo();
     }
     public void DestroyLimbo()
     {
