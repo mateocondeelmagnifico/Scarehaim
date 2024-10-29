@@ -487,7 +487,6 @@ public class Movement : MonoBehaviour
         mouseManager.hasTreat = true;
         mouseManager.DeactivateRadar();
     }
-
     private bool CanGoThere(Vector2 pos)
     {
         bool istrue = false;
