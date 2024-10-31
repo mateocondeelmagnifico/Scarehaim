@@ -63,7 +63,6 @@ public class GameManager : MonoBehaviour
         hand = handScript.transform;
         playerTurnInProgress = true;
         turnCount = 1;
-        //turnCounter.turnsUntilEnemy = enemy.turnsUntilStart - 2;
            
         #region Reset hand variables
         if (hand.transform.childCount > 0)
@@ -167,7 +166,6 @@ public class GameManager : MonoBehaviour
 
                 if (!enemyInformed)
                 {
-                    turnCounter.MoveLeft();
                     EndPlayerTurn();
                 }
                 break;

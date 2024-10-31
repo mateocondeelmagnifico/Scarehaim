@@ -157,7 +157,8 @@ public class EnemyMovement : MonoBehaviour
         {
             destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
             myPos = cardGridPos;
-            isMoving = true; 
+            isMoving = true;
+            turnCounter.MoveLeft();
         }
     }
 
@@ -177,7 +178,6 @@ public class EnemyMovement : MonoBehaviour
             {
                 gameManager.ChangeState(GameManager.turnState.CheckMovement);
                 isMoving = false;
-                turnCounter.MoveLeft();
 
                 if (isSlow) TurnInStasis(1);
             }

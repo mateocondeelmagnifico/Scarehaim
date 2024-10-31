@@ -192,6 +192,7 @@ public class Movement : MonoBehaviour
 
                     MoveHighlights(1, destination, "yellow");
                     DespawnHighlights(2);
+                    turnCounter.MoveLeft();
                     hand.DestroyLimbo();
                     hand.hasMoved = true;
                 }
@@ -208,6 +209,7 @@ public class Movement : MonoBehaviour
                     destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
                     myPos = cardGridPos;
                     isMoving = true;
+                    turnCounter.MoveLeft();
                 }
                 #endregion
             }
@@ -324,6 +326,7 @@ public class Movement : MonoBehaviour
                             isMoving = true;
                             mouseManager.hasTreat = false;
                             mouseManager.hover2Pos = null;
+                            turnCounter.MoveLeft();
                             hand.DestroyLimbo();
                         }
                     }
