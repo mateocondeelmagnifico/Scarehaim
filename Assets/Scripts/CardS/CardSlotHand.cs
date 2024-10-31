@@ -118,7 +118,7 @@ public class CardSlotHand: CardSlot
     private void TryToPlayCard()
     {
         bool cardPlayed = false;
-        if (gameManager.currentState == GameManager.turnState.CheckMovement && !GameManager.Instance.powerUpOn)
+        if (gameManager.currentState == GameManager.turnState.CheckMovement && !GameManager.Instance.powerUpOn && !inHand)
         {
              //Aqui es donde se aplicta el efecto del disfraz y del treat
              goHome = true;

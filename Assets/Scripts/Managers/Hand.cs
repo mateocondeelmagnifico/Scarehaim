@@ -31,7 +31,7 @@ public class Hand : MonoBehaviour
             DontDestroyOnLoad(zPrompt);
             firstGame = true;
             DetermineStartCards();
-            hope = 5;
+            hope = 5;          
 
             if (SceneManager.GetActiveScene().buildIndex == 1) hope = 10;
         }
@@ -61,6 +61,10 @@ public class Hand : MonoBehaviour
         defaultPos = new Vector3(transform.position.x, transform.position.y, -3);
 
         DeterminePosition();
+    }
+    private void Start()
+    {
+        HideHand(true);
     }
 
     private void Update()
@@ -267,7 +271,19 @@ public class Hand : MonoBehaviour
         transform.position = new Vector3(x, transform.position.y, transform.position.z);
         DeterminePosition();
     }
-
+    public void HideHand(bool hide)
+    {
+        //Hide The hand below the screen at the start of the game
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (hide)
+            {
+                transform.GetChild(i).GetComponent<CardSlotHand>().inHand = true;
+                transform.GetChild(i).GetComponent<CardSlotHand>().startingPos.y = -8;
+            }
+           else transform.GetChild(i).GetComponent<CardSlotHand>().startingPos.y = yPos;
+        }
+    }
     public void PutCardInLimbo(GameObject Slot)
     {
         cardInLimbo = Slot;

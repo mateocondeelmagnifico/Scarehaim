@@ -142,8 +142,10 @@ public class CardManager : MonoBehaviour
 
                     if (cardsDealtAmount >= cardsOnBoard.transform.childCount + 2)
                     {
+                        //Start playing
                         mouseManager.canClick = true;
                         cardsDealt = true;
+                        Hand.Instance.HideHand(false);
                     }
                 }
             }
