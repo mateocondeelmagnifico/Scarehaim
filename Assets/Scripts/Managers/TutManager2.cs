@@ -4,7 +4,6 @@ public class TutManager2 : TutorialManager
 {
     public bool radarOn, trapDone;
     private bool doOnce;
-    [SerializeField] private GameObject arrow;
 
     public override void Start()
     {
@@ -81,7 +80,6 @@ public class TutManager2 : TutorialManager
 
                     case 8:
                     screenImage.enabled = true;
-                    arrow.SetActive(true);
                     break;
             }
             #endregion
@@ -102,7 +100,6 @@ public class TutManager2 : TutorialManager
             RemoveTutorial();
             nextTutorialButton.SetActive(false);
             mouseManager.canClick = true;
-            Destroy(arrow);
             Destroy(this.gameObject);
             return;
         }

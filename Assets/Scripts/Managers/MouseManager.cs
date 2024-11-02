@@ -405,11 +405,6 @@ public class MouseManager : MonoBehaviour
                 }
                 #endregion
             }
-            else if (hit.collider.gameObject.tag.Equals("Tutorial Button"))
-            {
-                //Hit tutorial button
-                hit.collider.gameObject.GetComponent<Animator>().SetBool("Jump", false);
-            }
         }
         
     }
