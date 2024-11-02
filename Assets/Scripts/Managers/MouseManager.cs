@@ -17,7 +17,7 @@ public class MouseManager : MonoBehaviour
     private Movement pMovement;
     private EnemyMovement enemyMove;
     private BoardOverlay boardOverlay;
-    [SerializeField] private TMPro.TextMeshProUGUI radarText, hopeText, costumeTurnsText, descriptionText;
+    [SerializeField] private TMPro.TextMeshProUGUI radarText, hopeText, descriptionText;
     private SoundManager soundManager;
     private CardSlotHand currentCardHand;
 
@@ -221,7 +221,6 @@ public class MouseManager : MonoBehaviour
                             {
                                 playerDisplay = true;
                                 hopeText.text = cardHit.GetComponent<Fear>().hope.ToString();
-                                if (cardHit.GetComponent<Movement>().turnsWithcostume > 0) costumeTurnsText.text = cardHit.GetComponent<Movement>().turnsWithcostume.ToString();
                             }
                             else hopeText.enabled = false;
                             PlaceHighlight(1);
@@ -585,7 +584,6 @@ public class MouseManager : MonoBehaviour
         wantsToDisplay = false;
         firstSelect = null;
         hopeText.text = "";
-        costumeTurnsText.text = "";
         descriptionText.text = "";
         hoverAesthetics2.SetActive(false);
         if(!playerMove.moveSelected)playerMove.DespawnHighlights(0);
