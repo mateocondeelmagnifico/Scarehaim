@@ -83,6 +83,7 @@ public class CardManager : MonoBehaviour
 
         #region Hide Cards at Start
         cardObjects = new Transform[cardsOnBoard.transform.childCount];
+        Hand.Instance.HideHand(true);
 
         for(int i = 0; i < cardsOnBoard.transform.childCount + 1; i++)
         {

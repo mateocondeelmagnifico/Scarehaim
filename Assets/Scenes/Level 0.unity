@@ -2096,18 +2096,6 @@ MonoBehaviour:
           m_StringArgument: Button Press
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1571830516}
-        m_TargetAssemblyTypeName: Hand, Assembly-CSharp
-        m_MethodName: HideHand
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 1909411722}
         m_TargetAssemblyTypeName: SceneManagement, Assembly-CSharp
         m_MethodName: ChangeScene
@@ -16636,6 +16624,7 @@ MonoBehaviour:
   zPrompt: {fileID: 792549632}
   movimiento: {fileID: 0}
   hope: 0
+  yPos: -5
   firstGame: 0
   costumeOn: 0
   activateColliders: 0

@@ -110,8 +110,7 @@ public class CardSlotHand: CardSlot
         else
         {
             if (!inHand) TryToPlayCard();
-            else GoHome();
-            
+            else GoHome();      
         }
     }
     
@@ -124,15 +123,14 @@ public class CardSlotHand: CardSlot
              goHome = true;
              cardObject.GetComponent<CardObject>().PlayCard();
              cardPlayed = true;
-             hand.ResizeHand(false);
         }
             
-            if(gameManager.currentState == GameManager.turnState.CheckCardEffect && effectManager.effectActive)
-            {
-                float[] distances = new float[3];
-                if (blackScreen.childCount == 2) distances[2] = 50000;
+        if(gameManager.currentState == GameManager.turnState.CheckCardEffect && effectManager.effectActive)
+        {
+             float[] distances = new float[3];
+             if (blackScreen.childCount == 2) distances[2] = 50000;
 
-                #region Check Which Slot is Closer
+             #region Check Which Slot is Closer
                 //This loop gets the position of the payment spots
                 for (int i = 0; i < blackScreen.childCount; i++)
                 {
@@ -185,7 +183,7 @@ public class CardSlotHand: CardSlot
                 GoHome();
                 }
                     #endregion
-            }
+        }
       
         if(!cardPlayed)
         {
@@ -226,8 +224,6 @@ public class CardSlotHand: CardSlot
         if (Hand.Instance.transform.childCount > 0) yPos = Hand.Instance.transform.GetChild(0).transform.position.y;
         else yPos = Hand.Instance.transform.position.y;
 
-        //transform.position = new Vector3(transform.position.x, yPos, transform.position.z);
-        //startingPos = new Vector3(transform.position.x, yPos, transform.position.z);
         transform.parent = Hand.Instance.transform;
         inHand = true;
     }

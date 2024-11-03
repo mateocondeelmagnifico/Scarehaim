@@ -58,7 +58,7 @@ public class MouseManager : MonoBehaviour
         hoverRenderer2 = hoverAesthetics2.GetComponent<SpriteRenderer>();
         startColor = hoverRenderer.color;
         radarPositions = new Vector2[3];
-        descriptionText = display.transform.GetChild(3).GetComponent<TextMeshProUGUI>();
+        descriptionText = display.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         descriptionText.enabled = false;
 
         Cursor.lockState = CursorLockMode.Confined;
@@ -67,12 +67,6 @@ public class MouseManager : MonoBehaviour
     private void Update()
     {
         Raycast();
-
-        if(handtimer > 0.2f && !handDisplayed && !manager.moveCardToHand)
-        {
-            hand.ResizeHand(true);
-            handDisplayed = true;
-        }
 
         if(!manager.CheckIsInCheckMovement())
         {
@@ -112,7 +106,7 @@ public class MouseManager : MonoBehaviour
 
         if (radarActive) radarText.transform.position = new Vector3(hit.point.x + 0.8f, hit.point.y - 0.8f, 0);
 
-        if (hit.collider != null )
+        if (hit.collider != null)
         {
             if (canClick)
             {
@@ -148,7 +142,6 @@ public class MouseManager : MonoBehaviour
                         currentCardHand = cardHit.GetComponent<CardSlotHand>();
 
                         currentCardHand.isHovered = true;
-                        handtimer += Time.deltaTime;
 
                         if (currentCardHand.hoverTimer >= 0.2f)
                         {
@@ -183,12 +176,12 @@ public class MouseManager : MonoBehaviour
                         }
                     }
 
-                    
+
                     #endregion
                 }
                 else
                 {
-
+                    cardHit = null;
                     if (cardHandHovered || hit.collider.gameObject.tag.Equals("Undo Button"))
                     {
                         DeactivateDisplay();
@@ -197,12 +190,6 @@ public class MouseManager : MonoBehaviour
                         currentCardHand.isHovered = false;
                         hoverAesthetics.SetActive(false);
                     }
-
-                    if (hit.collider.gameObject.tag.Equals("Hand") && handtimer < 1.5f)
-                    {
-                        handtimer += Time.deltaTime;
-                    }
-                    else ShrinkHand();
                 }
 
                 if (Input.GetMouseButtonDown(0))
@@ -314,6 +301,24 @@ public class MouseManager : MonoBehaviour
                     if (hit.collider.gameObject.tag.Equals("Untagged")) DeactivateDisplay();
                 }
 
+                #region Display Hand
+                if(cardHit != null || hit.collider.gameObject.CompareTag("Hand")) 
+                {
+                    if (hit.collider.gameObject.CompareTag("Hand") || cardHit.GetComponent<CardSlotHand>())
+                    {
+                        if (handtimer < 1.5f) handtimer += Time.deltaTime;
+
+                        if (handtimer > 0.2f && !handDisplayed && !manager.moveCardToHand)
+                        {
+                            hand.ResizeHand(true);
+                            handDisplayed = true;
+                        }
+                    }
+                    else ShrinkHand();
+                }
+                else ShrinkHand();
+                #endregion
+
                 #region Check Radar
                 if (!hit.collider.gameObject.tag.Equals("Player") && manager.CheckIsInCheckMovement())
                 {
@@ -404,8 +409,9 @@ public class MouseManager : MonoBehaviour
                 }
                 #endregion
             }
+            else ShrinkHand();
         }
-        
+        else ShrinkHand();
     }
     public void DeactivateRadar()
     {

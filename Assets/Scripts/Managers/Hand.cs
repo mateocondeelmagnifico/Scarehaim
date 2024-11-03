@@ -15,7 +15,7 @@ public class Hand : MonoBehaviour
 
     //la mano guarda el fear entre escenas y sabe si has hecho el tutorial
     public int hope;
-    private int yPos = -5;
+    [SerializeField] private int yPos;
     public bool firstGame, costumeOn, activateColliders, resetCards, hasMoved;
 
 
@@ -61,10 +61,6 @@ public class Hand : MonoBehaviour
         defaultPos = new Vector3(transform.position.x, transform.position.y, -3);
 
         DeterminePosition();
-    }
-    private void Start()
-    {
-        HideHand(true);
     }
 
     private void Update()
@@ -139,7 +135,7 @@ public class Hand : MonoBehaviour
                 {
                     //Do nothing
                     cards[i].rotation = Quaternion.identity;
-                    cards[i].GetComponent<CardSlotHand>().startingPos = new Vector3(defaultPos.x, cards[i].transform.position.y, defaultPos.z);
+                    cards[i].GetComponent<CardSlotHand>().startingPos = new Vector3(defaultPos.x, yPos, defaultPos.z);
                 }
                 else
                 {
@@ -179,17 +175,21 @@ public class Hand : MonoBehaviour
 
     public void ResizeHand(bool makeBig)
     {
-        if (transform.childCount < 1) return;
+        if (transform.childCount < 1)
+        {
+            yPos = -5;
+            return;
+        }
 
         bool goUp = false;
         bool goDown = false;
         if (makeBig)
         {
-            if(cards[0].transform.position.y <= -4) goUp = true;
+            if(transform.GetChild(0).position.y <= -4) goUp = true;
         }
         else 
         {
-            switch(cards[0].transform.position.y)
+            switch(transform.GetChild(0).position.y)
             {
                 case <-5:
                     goUp = true;
@@ -207,14 +207,14 @@ public class Hand : MonoBehaviour
             {
                 if (goUp)
                 {
-                    cards[i].GetComponent<CardSlotHand>().startingPos.y = -4;
                     yPos = -4;
+                    DeterminePosition();
                 }
 
                 if (goDown)
                 {
-                    cards[i].GetComponent<CardSlotHand>().startingPos.y = -5;
                     yPos = -5;
+                    DeterminePosition();
                 }
             }
         } 
@@ -243,11 +243,12 @@ public class Hand : MonoBehaviour
 
         for (int i = 0; i < cardsStart.Length; i++)
         {
-           GameObject currentCard =  GameObject.Instantiate(cardsStart[i].gameObject);
-           currentCard.transform.parent = this.transform;
+           GameObject currentCard =  GameObject.Instantiate(cardsStart[i].gameObject, transform);
            currentCard.SetActive(true);
         }
 
+        yPos = -8;
+        
         DeterminePosition();
     }
 
@@ -257,9 +258,8 @@ public class Hand : MonoBehaviour
 
         for (int i = 0; i < transform.childCount; i++)
         {
-            cardsStart[i] = GameObject.Instantiate(transform.GetChild(i).gameObject);
+            cardsStart[i] = GameObject.Instantiate(transform.GetChild(i).gameObject, cardStorage.transform);
             cardsStart[i].SetActive(false);
-            cardsStart[i].transform.parent = cardStorage.transform;
         }
     }
 
@@ -274,14 +274,19 @@ public class Hand : MonoBehaviour
     public void HideHand(bool hide)
     {
         //Hide The hand below the screen at the start of the game
-        for (int i = 0; i < transform.childCount; i++)
-        {
+        for (int i = 0; i < cards.Length; i++)
+        {        
             if (hide)
             {
-                transform.GetChild(i).GetComponent<CardSlotHand>().inHand = true;
-                transform.GetChild(i).GetComponent<CardSlotHand>().startingPos.y = -8;
+                yPos = -8;
+                cards[i].GetComponent<CardSlotHand>().inHand = true;
+                DeterminePosition();
             }
-           else transform.GetChild(i).GetComponent<CardSlotHand>().startingPos.y = yPos;
+            else
+            {
+                yPos = -5;
+                cards[i].GetComponent<CardSlotHand>().startingPos.y = yPos;
+            }
         }
     }
     public void PutCardInLimbo(GameObject Slot)

@@ -45,6 +45,11 @@ public class SceneManagement : MonoBehaviour
         SceneManager.LoadScene(whatScene);
     }
 
+    public void SaveProgress(int stage)
+    {
+        PlayerPrefs.SetInt("CurrentStage", stage);
+    }
+
     public void ReloadScene()
     {
         ChangeScene(SceneManager.GetActiveScene().buildIndex);
@@ -85,14 +90,19 @@ public class SceneManagement : MonoBehaviour
 
         Time.timeScale = 1;
     }
-
     public void CallLoadScene()
     {
-        //Called by buttons
-        loadingMenu.SetActive(true);
-        StartCoroutine(LoadSceneAsync(1));
+        //Called by buttons, start game where you left off
+        int myStage = 1;
+        if (PlayerPrefs.HasKey("CurrentStage")) myStage = PlayerPrefs.GetInt("CurrentStage");
+        StartLoad(myStage);
     }
 
+    private void StartLoad(int stage)
+    {
+        loadingMenu.SetActive(true);
+        StartCoroutine(LoadSceneAsync(stage));
+    }
     IEnumerator LoadSceneAsync(int sceneId)
     {
         operation = SceneManager.LoadSceneAsync(sceneId);
