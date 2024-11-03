@@ -8,6 +8,7 @@ public class SceneManagement : MonoBehaviour
     //Este script es principalmente accedido por botones
     public static SceneManagement Instance { get; private set; }
     private AsyncOperation operation;
+    [SerializeField] private GameObject skipTutorialMenu;
 
     public GameObject gameWonMenu, optionsMenu, pauseMenu, blackscreen, loadingIcon, loadingMenu;
     private GameObject currentMenu;
@@ -93,12 +94,14 @@ public class SceneManagement : MonoBehaviour
     public void CallLoadScene()
     {
         //Called by buttons, start game where you left off
+        //Only used in main menu
         int myStage = 1;
         if (PlayerPrefs.HasKey("CurrentStage")) myStage = PlayerPrefs.GetInt("CurrentStage");
-        StartLoad(myStage);
+        if(myStage == 1) StartLoad(myStage);
+        else skipTutorialMenu.SetActive(true);
     }
 
-    private void StartLoad(int stage)
+    public void StartLoad(int stage)
     {
         loadingMenu.SetActive(true);
         StartCoroutine(LoadSceneAsync(stage));
