@@ -53,7 +53,7 @@ public class SceneManagement : MonoBehaviour
 
     public void ReloadScene()
     {
-        ChangeScene(SceneManager.GetActiveScene().buildIndex);
+        StartLoad(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void QuitGame()

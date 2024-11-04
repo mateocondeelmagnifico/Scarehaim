@@ -634,9 +634,8 @@ public class MouseManager : MonoBehaviour
                     hoverRenderer.sortingOrder = -2;
                 }
             }
-            else
+            else if(manager.CheckIsInCheckMovement())
             {
-
                 hover2Pos = cardHit;
                 hoverAesthetics.SetActive(false);
                 hoverAesthetics2.SetActive(true);
