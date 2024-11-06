@@ -1694,6 +1694,7 @@ MonoBehaviour:
   blackscreen: {fileID: 269851994}
   loadingIcon: {fileID: 2131006931}
   loadingMenu: {fileID: 562925523}
+  currentMenu: {fileID: 0}
   canPause: 0
 --- !u!4 &538322097
 Transform:
@@ -3248,7 +3249,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11.7376, y: -3.8783}
+  m_AnchoredPosition: {x: -0.000015259, y: 1.0539}
   m_SizeDelta: {x: 904.334, y: 501.315}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &801206374
