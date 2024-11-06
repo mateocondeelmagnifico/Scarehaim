@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -262,7 +263,6 @@ public class Hand : MonoBehaviour
             cardsStart[i].SetActive(false);
         }
     }
-
     public void MoveHand(int x)
     {
         //esto manda a la mano al centro durante los pagos y luego la devuelve
@@ -340,6 +340,21 @@ public class Hand : MonoBehaviour
     public void ActivateUndo()
     {
         zPrompt.SetActive(true);
+
+        //Change size of black cover
+        float xSize = 1;
+        switch(transform.childCount)
+        {
+            case <= 3:
+                xSize = 1;
+                break;
+
+            case 4:
+                xSize = 1.4f;
+                break;
+        }
+
+        zPrompt.transform.GetChild(1).localScale = new Vector3(xSize, 1, 1);
     }
     public void NukeSelf()
     {

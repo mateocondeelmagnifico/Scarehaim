@@ -17,6 +17,7 @@ public class MouseManager : MonoBehaviour
     private Movement pMovement;
     private EnemyMovement enemyMove;
     private BoardOverlay boardOverlay;
+    private CardEffectManager effectManager;
     [SerializeField] private TMPro.TextMeshProUGUI radarText, hopeText, descriptionText;
     private SoundManager soundManager;
     private CardSlotHand currentCardHand;
@@ -24,7 +25,7 @@ public class MouseManager : MonoBehaviour
     [SerializeField] private Transform board, tricks;
 
     private bool handDisplayed, highlightsSpawned, cardHandHovered, wantsToDisplay, playerDisplay;
-    public bool moveCard, cardInformed, canClick, isInTutorial, needsTreat, radarActive, cardGrabbed, hasTreat;
+    public bool moveCard, cardInformed,  isInTutorial, needsTreat, radarActive, cardGrabbed, hasTreat, canClick;
 
     private float handtimer, displayTimer;
 
@@ -44,6 +45,7 @@ public class MouseManager : MonoBehaviour
     private void Start()
     {
         manager = GameManager.Instance;
+        effectManager = CardEffectManager.Instance;
         myCam = Camera.main;
         hand = Hand.Instance;
         soundManager = SoundManager.Instance;
@@ -128,7 +130,7 @@ public class MouseManager : MonoBehaviour
                         }
                     }
 
-                    PlaceHighlight(0);
+                    if(manager.CheckIsInCheckMovement() || effectManager.effectActive) PlaceHighlight(0);
 
                     if (hit.collider.gameObject.tag.Equals("Enemy") && manager.CheckIsInCheckMovement() && playerMove.turnsWithcostume <= 0)
                     {
@@ -162,7 +164,7 @@ public class MouseManager : MonoBehaviour
                             {
                                 currentCardHand.isPayment = false;
                                 currentCardHand.hasArrived = false;
-                                CardEffectManager.Instance.CheckCanAfford();
+                                effectManager.CheckCanAfford();
                             }
                         }
 
@@ -415,8 +417,11 @@ public class MouseManager : MonoBehaviour
     }
     public void DeactivateRadar()
     {
-        radarActive = false;
-        trickRadar.numberOfScans++;
+        if(radarActive)
+        {
+            radarActive = false;
+            trickRadar.numberOfScans++;
+        }      
         pMovement.DespawnHighlights(0);
         boardOverlay.DeactivatOverlay();
         radarText.text = "";
@@ -611,7 +616,6 @@ public class MouseManager : MonoBehaviour
         {
             if(whichOne == 0)
             {
-
                 if (cardHit == hover2Pos)
                 {
                     hoverAesthetics.SetActive(false);
