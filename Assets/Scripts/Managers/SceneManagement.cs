@@ -10,8 +10,8 @@ public class SceneManagement : MonoBehaviour
     private AsyncOperation operation;
     [SerializeField] private GameObject skipTutorialMenu;
 
-    public GameObject gameWonMenu, optionsMenu, pauseMenu, blackscreen, loadingIcon, loadingMenu;
-    private GameObject currentMenu;
+    public GameObject gameWonMenu, optionsMenu, pauseMenu, blackscreen, loadingIcon, loadingMenu, currentMenu;
+    private GameObject oldMenu;
 
     public bool canPause;
     private bool wasActive;
@@ -45,22 +45,18 @@ public class SceneManagement : MonoBehaviour
     {
         SceneManager.LoadScene(whatScene);
     }
-
     public void SaveProgress(int stage)
     {
         PlayerPrefs.SetInt("CurrentStage", stage);
     }
-
     public void ReloadScene()
     {
         StartLoad(SceneManager.GetActiveScene().buildIndex);
     }
-
     public void QuitGame()
     {
         Application.Quit();
     }
-
     public void NextScene()
     {
         //Aqui va código que cambia la escena segun en la que estes
@@ -68,18 +64,23 @@ public class SceneManagement : MonoBehaviour
         gameWonMenu.SetActive(true);
         Time.timeScale = 0;
     }
-
     public void DisplayMenu(GameObject menu)
     {
         if (blackscreen.activeInHierarchy && currentMenu == null) wasActive = true;
         else blackscreen.SetActive(true);
 
         if (currentMenu != null) currentMenu.SetActive(false);
+        oldMenu = currentMenu;
         currentMenu = menu;
-        menu.SetActive(true);
-        
+        menu.SetActive(true);       
         
         Time.timeScale = 0;
+    }
+    public void ReturnToMenu()
+    {
+        //Go back to the previous menu, activated by buttons
+        if (oldMenu == null) return;
+        DisplayMenu(oldMenu);
     }
     public void ExitMenu(GameObject menu)
     {
@@ -100,7 +101,6 @@ public class SceneManagement : MonoBehaviour
         if(myStage == 1) StartLoad(myStage);
         else skipTutorialMenu.SetActive(true);
     }
-
     public void StartLoad(int stage)
     {
         loadingMenu.SetActive(true);

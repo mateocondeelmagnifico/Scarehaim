@@ -51,6 +51,7 @@ public class Fear : MonoBehaviour
             hope = 0;
             Time.timeScale = 0;
             gameOverMenu.SetActive(true);
+            SceneManagement.Instance.currentMenu = gameOverMenu;
             SceneManagement.Instance.canPause = false;
             blackscreen.SetActive(true);
 

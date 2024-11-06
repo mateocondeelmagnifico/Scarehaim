@@ -354,6 +354,7 @@ public class CardEffectManager : MonoBehaviour
         {
             Time.timeScale = 0;
             gameWonMenu.SetActive(true);
+            manager.GetComponent<SceneManagement>().currentMenu = gameWonMenu;
             mouseManager.canClick = false;
         }
         else
