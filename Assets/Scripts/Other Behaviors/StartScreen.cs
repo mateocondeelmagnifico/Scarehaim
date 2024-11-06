@@ -41,7 +41,7 @@ public class StartScreen : MonoBehaviour
             soundManager.Sources[2].loop = true;
             sceneManagement.canPause = true;
             blackScreen.SetActive(false);
-            screenRenderer.color = new Color(0, 0, 0, 0.9f);
+            screenRenderer.color = new Color(0, 0, 0, 0);
             Destroy(gameObject);
         }
     }

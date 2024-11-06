@@ -7,7 +7,6 @@ public class Fear : MonoBehaviour
     public TMPro.TextMeshProUGUI text;
     private TextManager textManager;
     public GameObject gameOverMenu;
-    [SerializeField] private GameObject blackscreen;  
     public int hope;
     private bool fearReached;
 
@@ -50,10 +49,9 @@ public class Fear : MonoBehaviour
         {
             hope = 0;
             Time.timeScale = 0;
-            gameOverMenu.SetActive(true);
-            SceneManagement.Instance.currentMenu = gameOverMenu;
+            CardEffectManager.Instance.hasLost = true;
+            SceneManagement.Instance.DisplayMenu(gameOverMenu);
             SceneManagement.Instance.canPause = false;
-            blackscreen.SetActive(true);
 
             SoundManager.Instance.PlaySound("Game Over");
             SoundManager.Instance.Sources[2].loop = false;

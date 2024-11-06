@@ -28,7 +28,7 @@ public class CardEffectManager : MonoBehaviour
     private Sprite mySprite;
     [SerializeField] private Sprite endSprite;
 
-    public bool effectActive, moveHand, isEnding;
+    public bool effectActive, moveHand, isEnding, hasLost;
 
     private Vector3 desiredPos, originalPos;
 
@@ -45,8 +45,8 @@ public class CardEffectManager : MonoBehaviour
 
         paymentMenu.SetActive(false);
         blackScreen.SetActive(false);
-        displayImage = paymentMenu.transform.GetChild(0).GetComponent<Image>();
-        explanation = paymentMenu.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>();
+        displayImage = paymentMenu.transform.GetChild(1).GetComponent<Image>();
+        explanation = paymentMenu.transform.GetChild(2).GetComponent<TMPro.TextMeshProUGUI>();
     }
     private void Start()
     {
@@ -273,7 +273,7 @@ public class CardEffectManager : MonoBehaviour
         bigButton.SetActive(false);
         paymentButtons.SetActive(false);
         paymentMenu.SetActive(false);
-        blackScreen.SetActive(false);
+        if(!hasLost) blackScreen.SetActive(false);
         fearCounter.gameObject.SetActive(false);
         optionsButton.enabled = true;
         handScript.MoveHand(4);
@@ -353,8 +353,7 @@ public class CardEffectManager : MonoBehaviour
         if(SceneManager.GetActiveScene().buildIndex == 2 || SceneManager.GetActiveScene().buildIndex == 4)
         {
             Time.timeScale = 0;
-            gameWonMenu.SetActive(true);
-            manager.GetComponent<SceneManagement>().currentMenu = gameWonMenu;
+            manager.GetComponent<SceneManagement>().DisplayMenu(gameWonMenu);
             mouseManager.canClick = false;
         }
         else
