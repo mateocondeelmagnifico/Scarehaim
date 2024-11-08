@@ -6,7 +6,7 @@ public class CardEffectManager : MonoBehaviour
 {
     //this script also manages paying treats at the end of a stage
 
-    public GameObject paymentMenu, blackScreen, treatSlot, costumeSlot, paymentButtons, bigButton, hand1, hand2, gameWonMenu;
+    public GameObject paymentMenu, blackScreen, blackscreen2, treatSlot, costumeSlot, paymentButtons, bigButton, hand1, hand2, gameWonMenu;
     private GameObject newSlot, player;
     [SerializeField] private Transform merrowHand, fearCounter;
 
@@ -45,8 +45,8 @@ public class CardEffectManager : MonoBehaviour
 
         paymentMenu.SetActive(false);
         blackScreen.SetActive(false);
-        displayImage = paymentMenu.transform.GetChild(1).GetComponent<Image>();
-        explanation = paymentMenu.transform.GetChild(2).GetComponent<TMPro.TextMeshProUGUI>();
+        displayImage = paymentMenu.transform.GetChild(0).GetComponent<Image>();
+        explanation = paymentMenu.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>();
     }
     private void Start()
     {
@@ -104,6 +104,7 @@ public class CardEffectManager : MonoBehaviour
 
         paymentMenu.SetActive(true);
         blackScreen.SetActive(true);
+        blackscreen2.SetActive(true);
         optionsButton.enabled = false;
         DisplayFear();
         handScript.MoveHand(0);
@@ -274,6 +275,7 @@ public class CardEffectManager : MonoBehaviour
         paymentButtons.SetActive(false);
         paymentMenu.SetActive(false);
         if(!hasLost) blackScreen.SetActive(false);
+        blackscreen2.SetActive(false);
         fearCounter.gameObject.SetActive(false);
         optionsButton.enabled = true;
         handScript.MoveHand(4);
