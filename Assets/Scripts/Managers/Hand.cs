@@ -59,7 +59,7 @@ public class Hand : MonoBehaviour
             #endregion
         }
 
-        defaultPos = new Vector3(transform.position.x, transform.position.y, -3);
+        defaultPos = new Vector3(transform.position.x, transform.position.y, -4);
 
         DeterminePosition();
     }
@@ -90,7 +90,6 @@ public class Hand : MonoBehaviour
     {
         card.parent = this.transform;
     }
-
     public void DeterminePosition()
     {
         //Give the cards the position in the hand they're meant to have
@@ -123,12 +122,12 @@ public class Hand : MonoBehaviour
                 if (cards.Length == 2 || cards.Length == 4)
                 {
                     rotMultiplier = 0.6f;
-                    positionOffset = new Vector3(0.7f, 0, 0);
+                    positionOffset = new Vector3(0.7f, 0, 0.1f);
                 }
                 else
                 {
                     rotMultiplier = 1;
-                    positionOffset = new Vector3(1, 0, 0);
+                    positionOffset = new Vector3(1, 0, 0.1f);
                 }
                 #endregion
 
@@ -167,13 +166,11 @@ public class Hand : MonoBehaviour
             #endregion
         }
     }
-
     private void MoveAndRot(int whatcard, Vector3 offset, float multiplier)
     {
         cards[whatcard].GetComponent<CardSlotHand>().startingPos += offset;
         cards[whatcard].Rotate(0, 0, 10 * multiplier);
     }
-
     public void ResizeHand(bool makeBig)
     {
         if (transform.childCount < 1)
@@ -220,7 +217,6 @@ public class Hand : MonoBehaviour
             }
         } 
     }
-
     public void UpdateFear()
     {
         //llamado por botones
@@ -266,7 +262,7 @@ public class Hand : MonoBehaviour
     public void MoveHand(int x)
     {
         //esto manda a la mano al centro durante los pagos y luego la devuelve
-        defaultPos = new Vector3(x, transform.position.y, -2);
+        defaultPos = new Vector3(x, transform.position.y, -4);
 
         transform.position = new Vector3(x, transform.position.y, transform.position.z);
         DeterminePosition();
