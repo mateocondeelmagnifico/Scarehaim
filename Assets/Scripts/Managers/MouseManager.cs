@@ -106,7 +106,7 @@ public class MouseManager : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(myCam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
         #endregion
 
-        if (radarActive) radarText.transform.position = new Vector3(hit.point.x + 0.8f, hit.point.y - 0.8f, 0);
+        if (radarActive) radarText.transform.position = new Vector3(hit.point.x + 0.8f, hit.point.y - 0.8f, -2);
 
         if (hit.collider != null)
         {
@@ -334,7 +334,7 @@ public class MouseManager : MonoBehaviour
                         {
                             radarActive = true;
                             boardOverlay.ACtivateOverlay("Green");
-                            radarText.transform.position = new Vector3(hit.point.x + 0.8f, hit.point.y - 0.8f, 0);
+                            radarText.transform.position = new Vector3(hit.point.x + 0.8f, hit.point.y - 0.8f, -1);
                             radarText.text = (trickRadar.numberOfScans + 1).ToString();
                             soundManager.PlaySound("Radar On");
                         }
