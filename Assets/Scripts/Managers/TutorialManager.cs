@@ -136,7 +136,10 @@ public class TutorialManager : MonoBehaviour
     protected void DisplayTutorial()
     {
         textBox.gameObject.SetActive(true);
+
+        //These had to be split in two because they where too long for the inspector
         textManager.TutorialTalk(tutorialTexts[currentTutorial]);
+
         mouseManager.DeactivateDisplay();
         mouseManager.hoverAesthetics.SetActive(false);
         cenefa.sortingOrder = 8000;

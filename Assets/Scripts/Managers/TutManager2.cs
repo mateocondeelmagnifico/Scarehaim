@@ -18,8 +18,8 @@ public class TutManager2 : TutorialManager
     {
         if (manager.currentState == GameManager.turnState.Endturn) tutorialPlayed = false;
         if(manager.trapTriggered) trapDone = true;
-        if (currentTutorial == 2 && trapDone) tutorialPlayed = false;
-        if (currentTutorial == 7)
+        if (currentTutorial == 6 && trapDone) tutorialPlayed = false;
+        if (currentTutorial == 11)
         {
             if(manager.powerUpOn || mouseManager.cardGrabbed) screenImage.enabled = false;
             else screenImage.enabled = true;
@@ -36,10 +36,11 @@ public class TutManager2 : TutorialManager
                     {
                         //Move right tutorial
                         DisplayTutorial();
+                        textManager.displayButton = true;
                     }
                     break;
 
-                case 1:
+                case 3:
                     if (manager.CheckIsInCheckMovement())
                     {
                         //go to trick tutorial
@@ -47,7 +48,7 @@ public class TutManager2 : TutorialManager
                     }
                     break;
 
-                case 2:
+                case 6:
                     //Radar tutorial
 
                     if(mouseManager.radarActive) radarOn = true;
@@ -60,7 +61,7 @@ public class TutManager2 : TutorialManager
                     }
                     break;
 
-                case 5:
+                case 10:
                     if (manager.CheckIsInCheckMovement() && doOnce)
                     {
                         //Go to Costume tutorial
@@ -69,7 +70,7 @@ public class TutManager2 : TutorialManager
                     }
                     break;
 
-                case 7:
+                case 11:
                     if (manager.CheckIsInCheckMovement() && manager.playerMove.turnsWithcostume > 0 && !doOnce)
                     {
                         //Go to Costume tutorial
@@ -78,7 +79,7 @@ public class TutManager2 : TutorialManager
                     }
                     break;
 
-                    case 8:
+                    case 17:
                     screenImage.enabled = true;
                     break;
             }
@@ -94,7 +95,7 @@ public class TutManager2 : TutorialManager
 
         DisplayNextBlackScreen();
 
-        if (currentTutorial == 9)
+        if (currentTutorial == 19)
         {
             //Destroy tutorial manager
             RemoveTutorial();
@@ -106,16 +107,16 @@ public class TutManager2 : TutorialManager
 
         nextTutorialButton.SetActive(false);
 
-        if (currentTutorial != 6 && currentTutorial != 8) mouseManager.canClick = true;
+        if (currentTutorial != 15 && currentTutorial != 17) mouseManager.canClick = true;
         else textManager.displayButton = true;
 
         switch (currentTutorial)
         {
-            case 1:
+            case 3:
                 RemoveTutorial();
                 break;
 
-            case 5:
+            case 10:
                 RemoveTutorial();
                 break;
         }
@@ -125,6 +126,6 @@ public class TutManager2 : TutorialManager
 
     public void OptionsPressed()
     {
-        if (currentTutorial == 8) Nextmenu();
+        if (currentTutorial == 17) Nextmenu();
     }
 }

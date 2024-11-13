@@ -10298,7 +10298,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &818420429
 Transform:
   m_ObjectHideFlags: 0
@@ -10333,22 +10333,30 @@ MonoBehaviour:
   mouseManager: {fileID: 679540269}
   radarDone: 0
   tutorialTexts:
+  - "As you know, you\u2019re playing with your brother\u2019s card."
+  - Be careful! His soul is contained in it!
   - Double click on an adjacent card to move to it.
   - That was an enviroment card, discard 10 and you will win.
-  - Down to your right is a treat card, go grab it.
-  - If you use a treat you will be able to skip one card and go directly to the next
-    one.
-  - Try using one, you can skip over all enemies except me. You can play it by dragging
-    it towards the screen.
-  - Good job, if you regret playing a treat you can press the undo button to get
-    it back.
-  - Step into that card, see what happens.
-  - Hehehe, that was an enemy, try to avoid them or you will be forced to pay a price.
-  - If you don't remember what a a card does you can click it and it will appear
-    over me.
-  - Now it's my turn, i will try to catch you, unlike you i can't move diagonally.
-  - You can move freely now.
-  - There is the exit card, once you pass you can spend treats to gain courage.
+  - Little Farrell can move one step each turn, in any direction.
+  - Oh, look! A nice sweet Treat Card! Go grab it.
+  - "It\u2019s in your hand now! "
+  - Drag the card towards the table to use it. Now.
+  - "Your brother looks a little excited! Isn\u2019t that too much sugar?"
+  - "Now you\u2019ll skip any card in your next move. But not mine! Hehe."
+  - "How lucky! There\u2019s two nice Treats you can land on."
+  - Sweet! If you regret using a treat you can press the undo button to get it back.
+  - Now, that card right next to you is my Snow Dummy.
+  - Step on it, see what happens!
+  - "\rHehe! That was a Creature Card."
+  - Creature Cards can take away your Courage.
+  - Courage is your health. Reach 0 and you will lose! Hahaha!
+  - You can check what a Card does by clicking on it, and it will appear over me.
+  - "Now it\u2019s my turn! I will follow you now, like in a game of tag."
+  - If I reach you, I win.
+  - "But I\u2019ll make it easy for you, I cannot move diagonally."
+  - Haha! Not so fast! You still have to reach the Escape card! I will keep chasing
+    you until you do.
+  - Once you escape you can spend treats to gain courage.
   chosenSlots:
   - {fileID: 150453012}
   - {fileID: 332225209}
@@ -20533,7 +20541,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7159921f2a12dd9429fcdb4b4e8e00c1, type: 2}
   costumes: []
   enemy: {fileID: 798634178}
-  cardsUntilExit: 5
+  cardsUntilExit: 1
   treatAmount: 2
   costumeAmount: 0
   exitCardDealt: 0
