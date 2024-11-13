@@ -130,7 +130,7 @@ public class MouseManager : MonoBehaviour
                         }
                     }
 
-                    if(manager.CheckIsInCheckMovement() || effectManager.effectActive) PlaceHighlight(0);
+                    if (manager.CheckIsInCheckMovement() || effectManager.effectActive) PlaceHighlight(0);
 
                     if (hit.collider.gameObject.tag.Equals("Enemy") && manager.CheckIsInCheckMovement() && playerMove.turnsWithcostume <= 0)
                     {
@@ -304,7 +304,7 @@ public class MouseManager : MonoBehaviour
                 }
 
                 #region Display Hand
-                if(cardHit != null || hit.collider.gameObject.CompareTag("Hand")) 
+                if (cardHit != null || hit.collider.gameObject.CompareTag("Hand"))
                 {
                     if (hit.collider.gameObject.CompareTag("Hand") || cardHit.GetComponent<CardSlotHand>())
                     {
@@ -411,9 +411,9 @@ public class MouseManager : MonoBehaviour
                 }
                 #endregion
             }
-            else ShrinkHand();
+            else Deactivation();
         }
-        else ShrinkHand();
+        else Deactivation();
     }
     public void DeactivateRadar()
     {
@@ -426,6 +426,11 @@ public class MouseManager : MonoBehaviour
         boardOverlay.DeactivatOverlay();
         radarText.text = "";
         soundManager.PlaySound("Radar Off");
+    }
+    private void Deactivation()
+    {
+        hoverAesthetics.SetActive(false);
+        ShrinkHand();
     }
     private void ShrinkHand()
     {
