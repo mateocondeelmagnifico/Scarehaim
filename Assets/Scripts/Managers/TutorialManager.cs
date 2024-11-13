@@ -35,6 +35,7 @@ public class TutorialManager : MonoBehaviour
         mouseManager.tutorialManager = this;
         textManager.tutorialManager = this;
         buttonAnimator = nextTutorialButton.GetComponent<Animator>();
+        //textManager.displayButton = true;
     }
 
     public virtual void Update()
@@ -55,7 +56,7 @@ public class TutorialManager : MonoBehaviour
                     }
                     break;
 
-                 case 1:
+                 case 3:
                     if (manager.CheckIsInCheckMovement())
                     {
                         //go to treat tutorial
@@ -63,7 +64,7 @@ public class TutorialManager : MonoBehaviour
                     }
                     break;
 
-                case 3:
+                case 6:
                     if (manager.CheckIsInCheckMovement())
                     {
                         //use treat tutorial
@@ -72,7 +73,11 @@ public class TutorialManager : MonoBehaviour
                     }
                     break;
 
-                case 5:
+                case 7:
+                    if () Nextmenu();
+                    break;
+
+                case 11:
                     if (manager.CheckIsInCheckMovement())
                     {
                         //Go to enemy tutorial
@@ -81,7 +86,7 @@ public class TutorialManager : MonoBehaviour
                     break;
 
 
-                case 7:
+                case 14:
                     if (manager.CheckIsInCheckMovement())
                     {
                         //Explain enemy tutorial
@@ -89,21 +94,21 @@ public class TutorialManager : MonoBehaviour
                     }
                     break;
 
-                case 9:
+                case 18:
                     if (manager.currentState == GameManager.turnState.Endturn)
                     {
                         DisplayTutorial();
                     }
                     break;
 
-                case 10:
+                case 20:
                     if (manager.CheckIsInCheckMovement())
                     {
                         DisplayTutorial();
                     }
                     break;
 
-                case 11:
+                case 21:
                     if (manager.CheckIsInCheckMovement() && cardManager.exitCardDealt)
                     {
                         DisplayTutorial();
@@ -113,7 +118,7 @@ public class TutorialManager : MonoBehaviour
             #endregion
         }
 
-        if (currentTutorial == 4)
+        if (currentTutorial == 7)
         {
             if (!manager.powerUpOn)
             {
@@ -137,7 +142,6 @@ public class TutorialManager : MonoBehaviour
     {
         textBox.gameObject.SetActive(true);
 
-        //These had to be split in two because they where too long for the inspector
         textManager.TutorialTalk(tutorialTexts[currentTutorial]);
 
         mouseManager.DeactivateDisplay();
@@ -145,7 +149,7 @@ public class TutorialManager : MonoBehaviour
         cenefa.sortingOrder = 8000;
         tutorialPlayed = true;
 
-        if (currentTutorial != 0)
+        if (currentTutorial != 2)
         {
             mouseManager.canClick = false;
             textManager.displayButton = true;
@@ -163,7 +167,7 @@ public class TutorialManager : MonoBehaviour
         DisplayNextBlackScreen();
         buttonAnimator.SetBool("Jump", false);
 
-        if (currentTutorial == 12)
+        if (currentTutorial == 23)
         {
             //Destroy tutorial manager
             showExit = false;
@@ -175,35 +179,47 @@ public class TutorialManager : MonoBehaviour
         }
 
         nextTutorialButton.SetActive(false);
-        if (currentTutorial != 8 && currentTutorial != 9 && currentTutorial != 10) mouseManager.canClick = false;
-        else textManager.displayButton = true;
 
-        mouseManager.canClick = true;
+        /*
+        if (currentTutorial != 17 && currentTutorial != 18 && currentTutorial != 20) mouseManager.canClick = false;
+        else
+        {
+            textManager.displayButton = true;
+            Debug.Log(1);
+        }
+        */
+
+        if (currentTutorial != 2 && currentTutorial != 5 && currentTutorial != 7 && currentTutorial != 10 && currentTutorial != 13)
+        {
+            mouseManager.canClick = false;
+            textManager.displayButton = true;
+        } 
+        else mouseManager.canClick = true;
 
         switch (currentTutorial)
         {
-            case 1:
-                RemoveTutorial();
-                break;
-
             case 3:
                 RemoveTutorial();
                 break;
 
-            case 5:
-                RemoveTutorial();
-                break;
-
             case 6:
-                hand.ActivateColliders(false);
-                break;
-
-            case 7:
-                hand.ActivateColliders(true);
                 RemoveTutorial();
                 break;
 
             case 11:
+                RemoveTutorial();
+                break;
+
+            case 13:
+                hand.ActivateColliders(false);
+                break;
+
+            case 14:
+                hand.ActivateColliders(true);
+                RemoveTutorial();
+                break;
+
+            case 22:
                 RemoveTutorial();
                 mouseManager.tutorialManager = null;
                 break;
@@ -225,7 +241,7 @@ public class TutorialManager : MonoBehaviour
         bool istrue = false;
         if(mySlot == chosenSlots[currentTutorial]) istrue = true;
 
-        if ((currentTutorial == 4 && mySlot == chosenSlots[currentTutorial - 1])) istrue = true;
+        if ((currentTutorial == 10 && mySlot == chosenSlots[currentTutorial - 1])) istrue = true;
 
         return istrue;
     }
