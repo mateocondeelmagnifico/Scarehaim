@@ -12,6 +12,7 @@ TagManager:
   - Hand
   - Undo Button
   - Tutorial Button
+  - BlackScreen
   layers:
   - Default
   - TransparentFX

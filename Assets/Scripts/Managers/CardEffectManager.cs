@@ -303,6 +303,8 @@ public class CardEffectManager : MonoBehaviour
 
             mouseManager.hover2Pos = null;
         }
+
+        mouseManager.hoverAesthetics.SetActive(false);
         effectActive = false;
     }
     private void DiscardCards(string cardType, int amount)

@@ -12675,11 +12675,11 @@ MonoBehaviour:
   blackscreen2: {fileID: 9760938}
   treatSlot: {fileID: 8461058157240041751, guid: 199959124e234ed43bb750c196840160, type: 3}
   costumeSlot: {fileID: 8461058157240041751, guid: 088fb83327d52c048aa6d16daabecbdb, type: 3}
-  paymentButtons: {fileID: 0}
-  bigButton: {fileID: 0}
+  paymentButtons: {fileID: 1609047140}
+  bigButton: {fileID: 1856164976}
   hand1: {fileID: 776948678}
   hand2: {fileID: 1495499987}
-  gameWonMenu: {fileID: 0}
+  gameWonMenu: {fileID: 2077404959}
   merrowHand: {fileID: 904356216}
   fearCounter: {fileID: 396937812}
   slotPosition: {fileID: 339999000}
@@ -13251,7 +13251,7 @@ GameObject:
   - component: {fileID: 1259167737}
   m_Layer: 0
   m_Name: Black Screen
-  m_TagString: Untagged
+  m_TagString: BlackScreen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

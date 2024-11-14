@@ -107,8 +107,15 @@ public class TutManager2 : TutorialManager
 
         nextTutorialButton.SetActive(false);
 
-        if (currentTutorial != 15 && currentTutorial != 17) mouseManager.canClick = true;
-        else textManager.displayButton = true;
+        if (currentTutorial != 2 && currentTutorial != 6 && currentTutorial != 7 && currentTutorial != 9 && currentTutorial != 11)
+        {
+            mouseManager.canClick = false;
+            textManager.displayButton = true;
+        }
+        else
+        {
+            mouseManager.canClick = true;
+        }
 
         switch (currentTutorial)
         {

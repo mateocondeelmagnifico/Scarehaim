@@ -73,10 +73,6 @@ public class TutorialManager : MonoBehaviour
                     }
                     break;
 
-                case 7:
-                    if () Nextmenu();
-                    break;
-
                 case 11:
                     if (manager.CheckIsInCheckMovement())
                     {
@@ -122,14 +118,19 @@ public class TutorialManager : MonoBehaviour
         {
             if (!manager.powerUpOn)
             {
-                if(mouseManager.cardGrabbed) screenImage.enabled = false;
+                if (mouseManager.cardGrabbed) screenImage.enabled = false;
                 else
                 {
                     screenImage.enabled = true;
                     screenImage.sprite = blackScreens[currentTutorial - 1];
-                }           
+                }
             }
-            else screenImage.sprite = blackScreens[currentTutorial];
+            else
+            {
+                screenImage.sprite = blackScreens[currentTutorial];
+                textManager.displayButton = false;
+                Nextmenu();
+            }
         }
 
         if (showExit)
@@ -167,7 +168,7 @@ public class TutorialManager : MonoBehaviour
         DisplayNextBlackScreen();
         buttonAnimator.SetBool("Jump", false);
 
-        if (currentTutorial == 23)
+        if (currentTutorial >= 23)
         {
             //Destroy tutorial manager
             showExit = false;
@@ -180,21 +181,15 @@ public class TutorialManager : MonoBehaviour
 
         nextTutorialButton.SetActive(false);
 
-        /*
-        if (currentTutorial != 17 && currentTutorial != 18 && currentTutorial != 20) mouseManager.canClick = false;
-        else
-        {
-            textManager.displayButton = true;
-            Debug.Log(1);
-        }
-        */
-
-        if (currentTutorial != 2 && currentTutorial != 5 && currentTutorial != 7 && currentTutorial != 10 && currentTutorial != 13)
+        if (currentTutorial != 2 && currentTutorial != 5 && currentTutorial != 7 && currentTutorial != 10 && currentTutorial != 13 && currentTutorial != 14)
         {
             mouseManager.canClick = false;
             textManager.displayButton = true;
-        } 
-        else mouseManager.canClick = true;
+        }
+        else
+        {
+            mouseManager.canClick = true;
+        }
 
         switch (currentTutorial)
         {
@@ -219,9 +214,10 @@ public class TutorialManager : MonoBehaviour
                 RemoveTutorial();
                 break;
 
-            case 22:
+            case 21:
                 RemoveTutorial();
                 mouseManager.tutorialManager = null;
+                mouseManager.canClick = true;
                 break;
         }
 
@@ -230,6 +226,7 @@ public class TutorialManager : MonoBehaviour
 
     public void RemoveTutorial()
     {
+        textManager.displayButton = false;
         screenImage.enabled = false;
         textBox.gameObject.SetActive(false);
         hand.DeterminePosition();
@@ -248,6 +245,7 @@ public class TutorialManager : MonoBehaviour
 
     public void DisplayNextBlackScreen()
     {
+
         if (blackScreens[currentTutorial] != null)
         {
             screenImage.enabled = true;

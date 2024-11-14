@@ -206,6 +206,7 @@ public class TextManager : MonoBehaviour
     {
         for(int i = 0; i < whatToSay.Length + 1; i++)
         {
+
             tempText = whatToSay.Substring(0,i);
             textBox.text = tempText;    
             yield return new WaitForSeconds(0.03f);

@@ -13354,7 +13354,7 @@ GameObject:
   - component: {fileID: 1259167737}
   m_Layer: 0
   m_Name: Black Screen
-  m_TagString: Untagged
+  m_TagString: BlackScreen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22437,7 +22437,7 @@ PrefabInstance:
     - target: {fileID: 2271132349758565571, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: bigButton
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2140244784}
     - target: {fileID: 2271132349758565571, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: merrowHand
       value: 
@@ -22473,7 +22473,7 @@ PrefabInstance:
     - target: {fileID: 2271132349758565571, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: paymentButtons
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1250562997}
     - target: {fileID: 2271132349758565571, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: slotPositions.Array.data[0]
       value: 
@@ -22720,7 +22720,11 @@ PrefabInstance:
       objectReference: {fileID: 1884403230}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: chosenSlots.Array.size
-      value: 8
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: blackScreens.Array.size
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: tutorialTexts.Array.size
@@ -22728,6 +22732,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: chosenSlots.Array.data[0]
+      value: 
+      objectReference: {fileID: 2070088355}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: chosenSlots.Array.data[2]
       value: 
       objectReference: {fileID: 2070088355}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
@@ -22747,9 +22755,81 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1155759590}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: chosenSlots.Array.data[8]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: chosenSlots.Array.data[9]
+      value: 
+      objectReference: {fileID: 685545275}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: blackScreens.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: blackScreens.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: c5406cf019e1224488144568afa108a9, type: 3}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: blackScreens.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: blackScreens.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: blackScreens.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: c89cadf47007cd0448ada08581f54fff, type: 3}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: blackScreens.Array.data[7]
       value: 
+      objectReference: {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: blackScreens.Array.data[8]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: blackScreens.Array.data[9]
+      value: 
+      objectReference: {fileID: 21300000, guid: 464a1d66283e2984baa41539ae75313b, type: 3}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: blackScreens.Array.data[10]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: blackScreens.Array.data[11]
+      value: 
       objectReference: {fileID: 21300000, guid: 0c150e0b604728b48b77c4af4f08741a, type: 3}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: blackScreens.Array.data[12]
+      value: 
+      objectReference: {fileID: 21300000, guid: 464a1d66283e2984baa41539ae75313b, type: 3}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: blackScreens.Array.data[13]
+      value: 
+      objectReference: {fileID: 21300000, guid: 464a1d66283e2984baa41539ae75313b, type: 3}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: blackScreens.Array.data[14]
+      value: 
+      objectReference: {fileID: 21300000, guid: 464a1d66283e2984baa41539ae75313b, type: 3}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: blackScreens.Array.data[15]
+      value: 
+      objectReference: {fileID: 21300000, guid: 464a1d66283e2984baa41539ae75313b, type: 3}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: blackScreens.Array.data[16]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: blackScreens.Array.data[17]
+      value: 
+      objectReference: {fileID: 21300000, guid: c46280abfd8117444bc5b7dabd39ea50, type: 3}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: blackScreens.Array.data[18]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: tutorialTexts.Array.data[0]
       value: Alright, you did it, but this is not the end! Hehe!

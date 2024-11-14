@@ -194,6 +194,12 @@ public class MouseManager : MonoBehaviour
                     }
                 }
 
+                if (hit.collider.gameObject.tag.Equals("BlackScreen"))
+                {
+                    DeactivateDisplay();
+                    hoverAesthetics.SetActive(false);
+                }
+
                 if (Input.GetMouseButtonDown(0))
                 {
                     if (hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
@@ -293,6 +299,7 @@ public class MouseManager : MonoBehaviour
                         }
                         #endregion
                     }
+                    else if(!hit.collider.gameObject.tag.Equals("Player") && !hit.collider.gameObject.tag.Equals("Enemy")) hoverAesthetics.SetActive(false);
 
                     if (hit.collider.gameObject.tag.Equals("Undo Button"))
                     {
@@ -301,6 +308,7 @@ public class MouseManager : MonoBehaviour
                     }
 
                     if (hit.collider.gameObject.tag.Equals("Untagged")) DeactivateDisplay();
+                    
                 }
 
                 #region Display Hand
