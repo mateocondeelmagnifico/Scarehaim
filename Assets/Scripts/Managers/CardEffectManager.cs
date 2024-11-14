@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -377,9 +378,21 @@ public class CardEffectManager : MonoBehaviour
     public void CheckCanAfford()
     {
         bool canAfford = CanPay();
+        TextMeshProUGUI myText = tryPayButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 
-        if (canAfford) tryPayButton.color = new Color(1, 1, 1, 1);
-        else tryPayButton.color = new Color(1, 1, 1, 0.5f);
+        if (canAfford)
+        {
+
+            myText.color = new Color(myText.color.r, myText.color.g, myText.color.b, 1);
+            tryPayButton.transform.GetChild(1).GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            tryPayButton.transform.GetChild(2).GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        }
+        else
+        {
+            myText.color = new Color(myText.color.r, myText.color.g, myText.color.b, 0.5f);
+            tryPayButton.transform.GetChild(1).GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
+            tryPayButton.transform.GetChild(2).GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
+        }
     }
     private bool CanPay()
     {
