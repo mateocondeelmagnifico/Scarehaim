@@ -7,7 +7,7 @@ public class Hand : MonoBehaviour
     private Transform[] cards;
     private Vector3 defaultPos;
     public GameObject[] cardsStart;
-    public GameObject cardStorage, zPrompt;
+    public GameObject  zPrompt, cardStorage;
     private GameObject cardInLimbo;
     private BoardOverlay overlay;
     public Movement movimiento;
@@ -36,25 +36,33 @@ public class Hand : MonoBehaviour
 
             if (SceneManager.GetActiveScene().buildIndex == 1) hope = 10;
         }
-        else
+        else 
         {
             #region Give cards to old Hand
             Hand myHand = Hand.Instance;
-            if(myHand.resetCards) 
+
+            if (myHand.resetCards) 
             {
-                for(int i = 0; i < myHand.transform.childCount; i++)
+                
+                int childAmount1 = transform.childCount;
+                Destroy(myHand.cardStorage.gameObject);
+                DontDestroyOnLoad(cardStorage);
+                myHand.cardsStart = new GameObject[transform.childCount];
+
+                for (int i = 0; i < childAmount1; i++)
                 {
-                    Destroy(myHand.transform.GetChild(0).gameObject);
+                    Transform mycard = transform.GetChild(i);
+                    mycard.GetComponent<CardSlotHand>().inHand = true;
+                    mycard.GetComponent<CardSlotHand>().enabled = true;
+                    mycard.GetComponent<BoxCollider2D>().enabled = true;
+                    myHand.cardsStart[i] = mycard.gameObject;
                 }
 
-                for(int i = 0;i < transform.childCount; i++)
-                {
-                    transform.GetChild(0).transform.parent = myHand.transform;  
-                }
-
+                myHand.cardStorage = cardStorage;
                 myHand.resetCards = false;
             }
 
+            Debug.Log(cardStorage.transform.childCount);
             Destroy(this.gameObject);
             #endregion
         }
@@ -232,25 +240,30 @@ public class Hand : MonoBehaviour
             firstGame = false;
             return;
         }
+        Debug.Log(cardStorage.transform.childCount);
+        int childAmount = transform.childCount;
 
-        foreach (Transform child in this.transform)
+        for (int i = childAmount; i > 0; i--)
         {
-            Destroy(child.gameObject);
+           Destroy(transform.GetChild(i - 1).gameObject);
         }
+
 
         for (int i = 0; i < cardsStart.Length; i++)
         {
-           GameObject currentCard =  GameObject.Instantiate(cardsStart[i].gameObject, transform);
+           GameObject currentCard = GameObject.Instantiate(cardsStart[i].gameObject, transform);
            currentCard.SetActive(true);
         }
 
         yPos = -8;
-        
+        Debug.Log(cardStorage.transform.childCount);
         DeterminePosition();
     }
 
     private void DetermineStartCards()
     {
+        if (resetCards) return;
+        Debug.Log("exe");
         cardsStart = new GameObject[transform.childCount];
 
         for (int i = 0; i < transform.childCount; i++)
@@ -258,6 +271,7 @@ public class Hand : MonoBehaviour
             cardsStart[i] = GameObject.Instantiate(transform.GetChild(i).gameObject, cardStorage.transform);
             cardsStart[i].SetActive(false);
         }
+        Debug.Log(cardStorage.transform.childCount);
     }
     public void MoveHand(int x)
     {
@@ -352,7 +366,6 @@ public class Hand : MonoBehaviour
 
         zPrompt.transform.GetChild(1).localScale = new Vector3(xSize, 1, 1);
     }
-
     public void NukeSelf()
     {
         //Called by buttons
