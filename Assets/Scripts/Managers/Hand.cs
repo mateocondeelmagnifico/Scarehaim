@@ -209,7 +209,6 @@ public class Hand : MonoBehaviour
 
         DetermineStartCards();
     }
-
     public void RefreshCards()
     {
         if (firstGame)
@@ -257,17 +256,19 @@ public class Hand : MonoBehaviour
     public void HideHand(bool hide)
     {
         //Hide The hand below the screen at the start of the game
+
+        if(hide) yPos = -8;
+        else yPos = -5;
+
         for (int i = 0; i < cards.Length; i++)
         {        
             if (hide)
-            {
-                yPos = -8;
+            {         
                 cards[i].GetComponent<CardSlotHand>().inHand = true;
                 DeterminePosition();
             }
             else
-            {
-                yPos = -5;
+            {               
                 cards[i].GetComponent<CardSlotHand>().startingPos.y = yPos;
             }
         }
