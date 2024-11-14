@@ -207,8 +207,8 @@ public class CardSlotHand: CardSlot
 
         oldParent = transform.parent;
         transform.parent = null;
-        Hand.Instance.DeterminePosition();
-        Hand.Instance.ResizeHand(false);
+        hand.DeterminePosition();
+        hand.ResizeHand(false);
         inHand = false;
     }
 
@@ -221,10 +221,10 @@ public class CardSlotHand: CardSlot
 
         float yPos = 0;
 
-        if (Hand.Instance.transform.childCount > 0) yPos = Hand.Instance.transform.GetChild(0).transform.position.y;
-        else yPos = Hand.Instance.transform.position.y;
+        if (hand.transform.childCount > 0) yPos = hand.transform.GetChild(0).transform.position.y;
+        else yPos = hand.transform.position.y;
 
-        transform.parent = Hand.Instance.transform;
+        transform.parent = hand.transform;
         inHand = true;
     }
 }
