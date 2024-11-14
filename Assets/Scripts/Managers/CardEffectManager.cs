@@ -372,7 +372,7 @@ public class CardEffectManager : MonoBehaviour
     private void DisplayFear()
     {
         fearCounter.gameObject.SetActive(true);
-        fearText.text = "Courage = " + playerFear.hope.ToString();
+        fearText.text = playerFear.hope.ToString()+ "   Courage";
     }
     public void CheckCanAfford()
     {

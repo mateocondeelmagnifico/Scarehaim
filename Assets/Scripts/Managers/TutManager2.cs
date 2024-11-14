@@ -107,7 +107,7 @@ public class TutManager2 : TutorialManager
 
         nextTutorialButton.SetActive(false);
 
-        if (currentTutorial != 2 && currentTutorial != 6 && currentTutorial != 7 && currentTutorial != 9 && currentTutorial != 11)
+        if (currentTutorial != 2 && currentTutorial != 3 && currentTutorial != 6 && currentTutorial != 7 && currentTutorial != 9 && currentTutorial != 11)
         {
             mouseManager.canClick = false;
             textManager.displayButton = true;
@@ -119,7 +119,12 @@ public class TutManager2 : TutorialManager
 
         switch (currentTutorial)
         {
+            case 2:
+                hand.ActivateColliders(false);
+                break;
+
             case 3:
+                hand.ActivateColliders(true);
                 RemoveTutorial();
                 break;
 
