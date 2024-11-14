@@ -21388,7 +21388,7 @@ MonoBehaviour:
   costumes:
   - {fileID: 11400000, guid: d42ed4c72e30f2d45a25c464e13bcf2c, type: 2}
   enemy: {fileID: 798634178}
-  cardsUntilExit: 1
+  cardsUntilExit: 10
   treatAmount: 2
   costumeAmount: 2
   exitCardDealt: 0

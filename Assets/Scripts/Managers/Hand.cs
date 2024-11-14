@@ -26,15 +26,7 @@ public class Hand : MonoBehaviour
     {
         if (Instance == null)
         {
-            Instance = this;
-            DontDestroyOnLoad(this.gameObject);
-            DontDestroyOnLoad(cardStorage);
-            DontDestroyOnLoad(zPrompt);
-            firstGame = true;
-            DetermineStartCards();
-            hope = 5;          
-
-            if (SceneManager.GetActiveScene().buildIndex == 1) hope = 10;
+            PromoteToHand();
         }
         else 
         {
@@ -42,28 +34,13 @@ public class Hand : MonoBehaviour
             Hand myHand = Hand.Instance;
 
             if (myHand.resetCards) 
-            {
-                
-                int childAmount1 = transform.childCount;
-                Destroy(myHand.cardStorage.gameObject);
-                DontDestroyOnLoad(cardStorage);
-                myHand.cardsStart = new GameObject[transform.childCount];
-
-                for (int i = 0; i < childAmount1; i++)
-                {
-                    Transform mycard = transform.GetChild(i);
-                    mycard.GetComponent<CardSlotHand>().inHand = true;
-                    mycard.GetComponent<CardSlotHand>().enabled = true;
-                    mycard.GetComponent<BoxCollider2D>().enabled = true;
-                    myHand.cardsStart[i] = mycard.gameObject;
-                }
-
-                myHand.cardStorage = cardStorage;
-                myHand.resetCards = false;
+            {         
+                Destroy(Hand.Instance.cardStorage);
+                Destroy(Hand.Instance.gameObject);
+                PromoteToHand();
             }
-
-            Debug.Log(cardStorage.transform.childCount);
-            Destroy(this.gameObject);
+            else Destroy(this.gameObject);
+            
             #endregion
         }
 
@@ -240,14 +217,13 @@ public class Hand : MonoBehaviour
             firstGame = false;
             return;
         }
-        Debug.Log(cardStorage.transform.childCount);
+        
         int childAmount = transform.childCount;
 
-        for (int i = childAmount; i > 0; i--)
+        for (int i = childAmount - 1; i >= 0; i--)
         {
-           Destroy(transform.GetChild(i - 1).gameObject);
+            Destroy(transform.GetChild(i).gameObject);
         }
-
 
         for (int i = 0; i < cardsStart.Length; i++)
         {
@@ -256,14 +232,12 @@ public class Hand : MonoBehaviour
         }
 
         yPos = -8;
-        Debug.Log(cardStorage.transform.childCount);
         DeterminePosition();
     }
 
     private void DetermineStartCards()
     {
         if (resetCards) return;
-        Debug.Log("exe");
         cardsStart = new GameObject[transform.childCount];
 
         for (int i = 0; i < transform.childCount; i++)
@@ -271,7 +245,6 @@ public class Hand : MonoBehaviour
             cardsStart[i] = GameObject.Instantiate(transform.GetChild(i).gameObject, cardStorage.transform);
             cardsStart[i].SetActive(false);
         }
-        Debug.Log(cardStorage.transform.childCount);
     }
     public void MoveHand(int x)
     {
@@ -380,5 +353,18 @@ public class Hand : MonoBehaviour
         {
             transform.GetChild(i).GetComponent<BoxCollider2D>().enabled = state;
         }
+    }
+
+    private void PromoteToHand()
+    {
+        Instance = this;
+        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(cardStorage);
+        DontDestroyOnLoad(zPrompt);
+        firstGame = true;
+        DetermineStartCards();
+        hope = 5;
+
+        if (SceneManager.GetActiveScene().buildIndex == 1) hope = 10;
     }
 }
