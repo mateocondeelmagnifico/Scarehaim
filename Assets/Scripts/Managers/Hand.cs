@@ -352,6 +352,7 @@ public class Hand : MonoBehaviour
 
         zPrompt.transform.GetChild(1).localScale = new Vector3(xSize, 1, 1);
     }
+
     public void NukeSelf()
     {
         //Called by buttons
