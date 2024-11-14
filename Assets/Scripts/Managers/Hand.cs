@@ -333,8 +333,12 @@ public class Hand : MonoBehaviour
                 xSize = 1;
                 break;
 
-            case >= 4:
+            case  4:
                 xSize = 1.4f;
+                break;
+
+            case >= 5:
+                xSize = 1.65f;
                 break;
         }
 
