@@ -233,7 +233,6 @@ public class Hand : MonoBehaviour
         yPos = -8;
         DeterminePosition();
     }
-
     private void DetermineStartCards()
     {
         if (resetCards) return;
@@ -359,7 +358,6 @@ public class Hand : MonoBehaviour
             transform.GetChild(i).GetComponent<BoxCollider2D>().enabled = state;
         }
     }
-
     private void PromoteToHand()
     {
         Instance = this;

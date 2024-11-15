@@ -130,8 +130,8 @@ public class CardEffectManager : MonoBehaviour
             case 2:
                 for(int i = 0; i < 2; i++)
                 {
-                    if (i == 0) offset = new Vector3(-1,0,0);
-                    else offset = new Vector3(1, 0, 0);
+                    if (i == 0) offset = new Vector3(-1.4f,0,0);
+                    else offset = new Vector3(1.4f, 0, 0);
 
                     newSlot = Instantiate(slotPrefab);
                     newSlot.transform.position = slotPosition.position + offset;
@@ -146,7 +146,7 @@ public class CardEffectManager : MonoBehaviour
                     switch(i)
                     {
                         case 0:
-                            offset = new Vector3(2, 0, 0);
+                            offset = new Vector3(2.8f, 0, 0);
                             break;
 
                         case 1:
@@ -154,7 +154,7 @@ public class CardEffectManager : MonoBehaviour
                             break;
 
                         case 2:
-                            offset = new Vector3(-2, 0, 0);
+                            offset = new Vector3(-2.8f, 0, 0);
                             break;
                     }
 

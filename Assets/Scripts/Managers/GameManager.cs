@@ -39,8 +39,7 @@ public class GameManager : MonoBehaviour
     public GameObject player, selectedCardSlot, handSlotPrefab, slotToReplace, newCardSlot, emptySlot, newCard;
     private GameObject selectedCard;
 
-    [HideInInspector]
-    public Transform deck, discardPile, hand;
+    public Transform deck, discardPile, hand, discardCenter;
     void Awake()
     {
         Time.timeScale = 1.0f;
@@ -150,10 +149,10 @@ public class GameManager : MonoBehaviour
                         }
                         else
                         {
-                            MoveCard(newCardSlot, discardPile.position, newCardSlot.transform.GetChild(0).GetComponent<SpriteRenderer>());
+                            MoveCard(newCardSlot, discardCenter.position, newCardSlot.transform.GetChild(0).GetComponent<SpriteRenderer>());
                         }
                     }
-                    else if (moveCard) MoveCard(selectedCard, discardPile.position, selectedCard.GetComponent<SpriteRenderer>());
+                    else if (moveCard) MoveCard(selectedCard, discardCenter.position, selectedCard.GetComponent<SpriteRenderer>());
                 }
                 else
                 {
@@ -213,7 +212,7 @@ public class GameManager : MonoBehaviour
             moveCard = false;
             accelerator = 0.5f;
 
-            if(desiredPos == discardPile.position)
+            if(desiredPos == discardCenter.position)
             {
                 if(moveCardToHand)
                 {

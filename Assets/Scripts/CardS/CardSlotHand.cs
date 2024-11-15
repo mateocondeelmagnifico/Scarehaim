@@ -116,6 +116,7 @@ public class CardSlotHand: CardSlot
     
     private void TryToPlayCard()
     {
+        Vector3 offset = new Vector3(0.08f, 0.13f,0);
         bool cardPlayed = false;
         if (gameManager.currentState == GameManager.turnState.CheckMovement && !GameManager.Instance.powerUpOn && !inHand)
         {
@@ -172,7 +173,7 @@ public class CardSlotHand: CardSlot
 
                     if (blackScreen.childCount > 0)
                     {
-                        direction = blackScreen.GetChild(chosenSlot).position;
+                        direction = blackScreen.GetChild(chosenSlot).position + offset;
                         isPayment = true;
                         transform.parent = effectManager.blackScreen.transform.GetChild(chosenSlot);
                         cardPlayed = true;
