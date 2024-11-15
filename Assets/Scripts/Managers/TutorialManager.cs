@@ -184,6 +184,7 @@ public class TutorialManager : MonoBehaviour
         if (currentTutorial != 2 && currentTutorial != 5 && currentTutorial != 7 && currentTutorial != 10 && currentTutorial != 13 && currentTutorial != 14)
         {
             mouseManager.canClick = false;
+            mouseManager.display.enabled = false;
             textManager.displayButton = true;
         }
         else

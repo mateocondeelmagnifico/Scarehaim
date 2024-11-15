@@ -19,7 +19,7 @@ public class TutManager2 : TutorialManager
         if (manager.currentState == GameManager.turnState.Endturn) tutorialPlayed = false;
         if(manager.trapTriggered) trapDone = true;
         if (currentTutorial == 6 && trapDone) tutorialPlayed = false;
-        if (currentTutorial == 11)
+        if (currentTutorial == 12)
         {
             if(manager.powerUpOn || mouseManager.cardGrabbed) screenImage.enabled = false;
             else screenImage.enabled = true;
@@ -61,7 +61,7 @@ public class TutManager2 : TutorialManager
                     }
                     break;
 
-                case 10:
+                case 11:
                     if (manager.CheckIsInCheckMovement() && doOnce)
                     {
                         //Go to Costume tutorial
@@ -70,7 +70,7 @@ public class TutManager2 : TutorialManager
                     }
                     break;
 
-                case 11:
+                case 12:
                     if (manager.CheckIsInCheckMovement() && manager.playerMove.turnsWithcostume > 0 && !doOnce)
                     {
                         //Go to Costume tutorial
@@ -79,7 +79,7 @@ public class TutManager2 : TutorialManager
                     }
                     break;
 
-                    case 17:
+                    case 18:
                     screenImage.enabled = true;
                     break;
             }
@@ -95,7 +95,7 @@ public class TutManager2 : TutorialManager
 
         DisplayNextBlackScreen();
 
-        if (currentTutorial == 19)
+        if (currentTutorial == 20)
         {
             //Destroy tutorial manager
             RemoveTutorial();
@@ -107,9 +107,10 @@ public class TutManager2 : TutorialManager
 
         nextTutorialButton.SetActive(false);
 
-        if (currentTutorial != 2 && currentTutorial != 3 && currentTutorial != 6 && currentTutorial != 7 && currentTutorial != 9 && currentTutorial != 11)
+        if (currentTutorial != 2 && currentTutorial != 3 && currentTutorial != 6 && currentTutorial != 10 && currentTutorial != 12)
         {
             mouseManager.canClick = false;
+            mouseManager.display.enabled = false;
             textManager.displayButton = true;
         }
         else
@@ -128,7 +129,7 @@ public class TutManager2 : TutorialManager
                 RemoveTutorial();
                 break;
 
-            case 10:
+            case 11:
                 RemoveTutorial();
                 break;
         }
@@ -138,6 +139,6 @@ public class TutManager2 : TutorialManager
 
     public void OptionsPressed()
     {
-        if (currentTutorial == 17) Nextmenu();
+        if (currentTutorial == 18) Nextmenu();
     }
 }
