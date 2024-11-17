@@ -25,7 +25,7 @@ public class TrickContainer : CardObject
                 manager.trapTriggered = true;
                 if (manager.currentState == GameManager.turnState.CheckCardEffect)
                 {
-                    CardEffectManager.Instance.InformMoveHand(new Vector3(transform.position.x, transform.position.y, 0), myTrick.image, myTrick.myCost);
+                    CardEffectManager.Instance.InformMoveHand(new Vector3(transform.position.x, transform.position.y, 0), myTrick.PaymentImage, myTrick.myCost);
                     TextManager.Instance.inTrap = true;
                     if (myIndicator != null) Destroy(myIndicator);
                     Destroy(gameObject);

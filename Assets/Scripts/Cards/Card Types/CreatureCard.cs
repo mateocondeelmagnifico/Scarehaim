@@ -12,6 +12,7 @@ public class CreatureCard : Card
     public GameManager manager;
     public Transform player;
     [HideInInspector] public CreatureContainer container;
+    public Sprite paymentImage;
 
     public override void Effect(GameObject card, GameObject cardSlot)
     { 
@@ -36,7 +37,7 @@ public class CreatureCard : Card
             return;
         }
 
-        CardEffectManager.Instance.ActivatePayment(image, myCost);
+        CardEffectManager.Instance.ActivatePayment(paymentImage, myCost);
         player.GetComponent<Movement>().hasMoved = false;
         container.isDone = true;
     }

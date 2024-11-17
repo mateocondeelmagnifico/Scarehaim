@@ -4411,10 +4411,11 @@ MonoBehaviour:
   Sources:
   - {fileID: 1084197958}
   - {fileID: 1084197960}
-  - {fileID: 1084197958}
+  - {fileID: 1084197963}
   volumeSlider: {fileID: 892776088}
   autoPlayMusic: 0
   volumeSetting: 0
+  isFirst: 0
 --- !u!82 &1084197963
 AudioSource:
   m_ObjectHideFlags: 0

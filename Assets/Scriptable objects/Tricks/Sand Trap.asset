@@ -27,3 +27,4 @@ MonoBehaviour:
     secondConsequenceName: 
     consequenceAmount: -2
     secondConsequenceAmount: 0
+  PaymentImage: {fileID: 21300000, guid: 4c6fc2a8b365ef649979af8ec5a8fc00, type: 3}

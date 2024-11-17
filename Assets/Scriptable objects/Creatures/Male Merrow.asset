@@ -31,3 +31,4 @@ MonoBehaviour:
   manager: {fileID: 0}
   player: {fileID: 0}
   container: {fileID: 0}
+  paymentImage: {fileID: 21300000, guid: a39bfa1a7aa7b4548bd1f3485e24e7f6, type: 3}

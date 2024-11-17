@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: Cozy Fireplace
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 8c94c5b2c21e3dc4499d58dcbc7740af, type: 3}
-  bigImage: {fileID: 21300000, guid: 9a9af69d4aedf5b41ae2287f1e8b0b38, type: 3}
+  bigImage: {fileID: 21300000, guid: cb7f0ea8d8bda0b41851d0fbac88caed, type: 3}
+  myObject: {fileID: 0}
+  myCardObject: {fileID: 0}
+  description: 

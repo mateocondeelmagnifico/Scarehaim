@@ -17,8 +17,8 @@ public class CardEffectManager : MonoBehaviour
     private GameManager manager;
     private TextManager textManager;
     [SerializeField] MouseManager mouseManager;
-    private Image displayImage, tryPayButton;
-    private TMPro.TextMeshProUGUI explanation, fearText;
+    [SerializeField] private Image displayImage, tryPayButton;
+    [SerializeField] private TMPro.TextMeshProUGUI explanation, fearText;
     private Cost currentCost;
     private Fear playerFear;
     private SoundManager soundManager;
@@ -46,8 +46,6 @@ public class CardEffectManager : MonoBehaviour
 
         paymentMenu.SetActive(false);
         blackScreen.SetActive(false);
-        displayImage = paymentMenu.transform.GetChild(0).GetComponent<Image>();
-        explanation = paymentMenu.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>();
     }
     private void Start()
     {
@@ -373,7 +371,7 @@ public class CardEffectManager : MonoBehaviour
     private void DisplayFear()
     {
         fearCounter.gameObject.SetActive(true);
-        fearText.text = playerFear.hope.ToString()+ "   Courage";
+        fearText.text = playerFear.hope.ToString();
     }
     public void CheckCanAfford()
     {

@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
@@ -12,6 +11,8 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] private bool autoPlayMusic;
     public float volumeSetting;
+
+    public bool isFirst;
     void Awake()
     {
         if(Instance == null)
@@ -30,10 +31,12 @@ public class SoundManager : MonoBehaviour
     {
         volumeSlider.value = InfoKeeper.instance.volume;
         volumeSetting = volumeSlider.value;
+        if (SceneManager.GetActiveScene().buildIndex == 0) isFirst = true;
     }
 
     private void Update()
     {
+        if(isFirst) Sources[0].volume = volumeSetting;
         volumeSetting = volumeSlider.value;
         Sources[2].volume = volumeSetting;
     }

@@ -5,5 +5,5 @@ using UnityEngine;
 public class Trick : Card
 {
     public Cost myCost;
-
+    public Sprite PaymentImage;
 }
