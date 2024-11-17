@@ -87,20 +87,18 @@ public class SceneManagement : MonoBehaviour
         #region Delete arrows from exit menu
         //If you hover a button and press esc in this menu the arrows are not deactivated normally
         //so this finds the arrows code deactivates them
-        if (currentMenu.name == "Pause Menu")
+        for (int i = 0; i < currentMenu.transform.childCount; i++)
         {
-            for (int i = 0; i < currentMenu.transform.childCount; i++)
+            if(currentMenu.transform.GetChild(i).childCount > 0 && currentMenu.transform.GetChild(i).GetComponent<Button>())
             {
-                if(currentMenu.transform.GetChild(i).childCount > 0)
+                Transform myButton = currentMenu.transform.GetChild(i);
+                for (int e = 0; e < myButton.childCount; e++)
                 {
-                    Transform myButton = currentMenu.transform.GetChild(i);
-                    for (int e = 0; e < myButton.childCount; e++)
-                    {
-                        if(myButton.GetChild(e).GetComponent<Image>()) myButton.GetChild(e).gameObject.SetActive(false);
-                    }
+                     if(myButton.GetChild(e).GetComponent<Image>()) myButton.GetChild(e).gameObject.SetActive(false);
                 }
             }
         }
+        
         #endregion
 
         currentMenu = null;
