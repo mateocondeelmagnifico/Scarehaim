@@ -11405,6 +11405,10 @@ PrefabInstance:
       propertyPath: Sonidos.Array.data[0].clip
       value: 
       objectReference: {fileID: 8300000, guid: 0e2cf8131f1e59042ad8e2262ae4f3c7, type: 3}
+    - target: {fileID: 3376626047237437451, guid: 39ef8e22f91d7524fba57b013353219b, type: 3}
+      propertyPath: Sonidos.Array.data[0].volume
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 6705204745689640785, guid: 39ef8e22f91d7524fba57b013353219b, type: 3}
       propertyPath: m_RootOrder
       value: -1
