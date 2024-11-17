@@ -5,6 +5,7 @@ using UnityEngine;
 public class Fear : MonoBehaviour
 {
     public TMPro.TextMeshProUGUI text;
+    [SerializeField] private Animator fearAnimator;
     private TextManager textManager;
     public GameObject gameOverMenu;
     public int hope;
@@ -29,6 +30,20 @@ public class Fear : MonoBehaviour
         {
             hope = 10;
         }
+
+        #region Make text red and shake
+        if (hope <= 4)
+        {
+            text.color = new Color(1, (float)hope / 5, (float)hope / 5);
+            if (hope > 2) fearAnimator.SetFloat("Intensity", 1);
+            else fearAnimator.SetFloat("Intensity", 2);
+        }
+        else
+        {
+            text.color = new Color(1, 1, 1);
+            fearAnimator.SetFloat("Intensity", 0);
+        }
+        #endregion
 
         if (hope <= 3)
         {
