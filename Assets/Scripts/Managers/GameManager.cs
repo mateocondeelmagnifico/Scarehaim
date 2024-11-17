@@ -205,7 +205,7 @@ public class GameManager : MonoBehaviour
         //This method is used to move cards to the deck and discard pile
         accelerator += Time.deltaTime * 2;
         whatCard.transform.position = Vector3.MoveTowards(whatCard.transform.position, desiredPos, 6 * Time.deltaTime * accelerator);
-        renderer.sortingOrder = 0;
+        renderer.sortingOrder = 1;
 
         if(whatCard.transform.position == desiredPos)
         {
