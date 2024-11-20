@@ -12595,7 +12595,7 @@ MonoBehaviour:
     consequenceAmount: 0
     secondConsequenceAmount: 0
   optionsButton: {fileID: 1755312600}
-  endSprite: {fileID: 21300000, guid: bea8c85bfd9f69c4b942b2d1fc0f4e01, type: 3}
+  endSprite: {fileID: 21300000, guid: 61bc094d574eb8e41ba1f3daf8ab0db3, type: 3}
   effectActive: 0
   moveHand: 0
   isEnding: 0

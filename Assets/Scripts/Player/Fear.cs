@@ -32,6 +32,7 @@ public class Fear : MonoBehaviour
         }
 
         #region Make text red and shake
+        /*
         if (hope <= 4)
         {
             text.color = new Color(1, (float)hope / 5, (float)hope / 5);
@@ -43,6 +44,7 @@ public class Fear : MonoBehaviour
             text.color = new Color(1, 1, 1);
             fearAnimator.SetFloat("Intensity", 0);
         }
+        */
         #endregion
 
         if (hope <= 3)

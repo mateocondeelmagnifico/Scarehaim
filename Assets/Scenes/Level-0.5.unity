@@ -23834,6 +23834,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2140244784}
     - target: {fileID: 2271132349758565571, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: endSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 61bc094d574eb8e41ba1f3daf8ab0db3, type: 3}
+    - target: {fileID: 2271132349758565571, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: merrowHand
       value: 
       objectReference: {fileID: 904356216}
