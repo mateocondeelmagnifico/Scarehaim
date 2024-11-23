@@ -10606,8 +10606,8 @@ MonoBehaviour:
 
 '
     title: Radar 1/2
-  - image: {fileID: 21300000, guid: afd6eb988fff72244a5ecf8401e96279, type: 3}
-    text: The radar can detect tricks. When it detects one a skull will appear over
+  - image: {fileID: 21300000, guid: bbed74ae92d89aa40b14f47e7b0327c3, type: 3}
+    text: The radar can detect tricks. When it detects one an eye will appear over
       it.
     title: Radar 2/2
   arrowLeft: {fileID: 1382109224}

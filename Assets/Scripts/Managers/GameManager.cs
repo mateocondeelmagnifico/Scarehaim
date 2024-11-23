@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Vector3.Distance(enemy.transform.position, player.transform.position) < 0.3f && turnCount > 2) player.GetComponent<Fear>().UpdateFear(-10);
+        if (Vector2.Distance(enemy.transform.position, player.transform.position) < 0.01f && turnCount > 2) player.GetComponent<Fear>().UpdateFear(-10);
 
         #region Check Turn State
         switch (currentState)
