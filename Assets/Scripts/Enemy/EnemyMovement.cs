@@ -33,7 +33,6 @@ public class EnemyMovement : MonoBehaviour
     }
     private void Update()
     {
-
         if(isMoving)
         {
             Move();
@@ -157,6 +156,10 @@ public class EnemyMovement : MonoBehaviour
         {
             destination = new Vector3(cardActualPos.x, cardActualPos.y, -0.13f);
             myPos = cardGridPos;
+            if(playerMove.myPos.x == myPos.x && playerMove.myPos.y == myPos.y)
+            {
+                GetComponent<SpriteRenderer>().sortingOrder = 5;
+            }
             isMoving = true;
             turnCounter.MoveLeft();
         }

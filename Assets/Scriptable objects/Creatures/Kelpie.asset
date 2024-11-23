@@ -28,7 +28,7 @@ MonoBehaviour:
     secondConsequenceName: 
     consequenceAmount: -3
     secondConsequenceAmount: 0
-  disguiseToIgnore: 
+  disguiseToIgnore: Ghost Garb
   manager: {fileID: 0}
   player: {fileID: 0}
   container: {fileID: 0}
