@@ -18,7 +18,7 @@ public class CardEffectManager : MonoBehaviour
     private TextManager textManager;
     [SerializeField] MouseManager mouseManager;
     [SerializeField] private Image displayImage, tryPayButton;
-    [SerializeField] private TMPro.TextMeshProUGUI explanation, fearText;
+    [SerializeField] private TMPro.TextMeshProUGUI explanation, fearText, fearModTxt;
     private Cost currentCost;
     private Fear playerFear;
     private SoundManager soundManager;
@@ -90,7 +90,7 @@ public class CardEffectManager : MonoBehaviour
     }
     // Este script se encarga de los momentos en los que tienes que pagar por enemigos o trampas
     public void ActivatePayment(Sprite image, Cost whatCost)
-   {
+    {
         //This displays the payment Window
         #region Set variables and activate things
         mySprite = image;
@@ -107,6 +107,7 @@ public class CardEffectManager : MonoBehaviour
         optionsButton.enabled = false;
         DisplayFear();
         handScript.MoveHand(0);
+        SetFearModTxt(whatCost.consequenceAmount);
         #endregion
 
         #region Spawn Cost Slots
@@ -380,16 +381,33 @@ public class CardEffectManager : MonoBehaviour
 
         if (canAfford)
         {
-
             myText.color = new Color(myText.color.r, myText.color.g, myText.color.b, 1);
             tryPayButton.transform.GetChild(1).GetComponent<Image>().color = new Color(1, 1, 1, 1);
             tryPayButton.transform.GetChild(2).GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            #region Display amount of courage gained
+            if (!isEnding) SetFearModTxt(currentCost.rewardAmount);
+            else
+            {
+                int amount = 0;
+                for (int i = 0; i < blackScreen.transform.childCount; i++)
+                {
+                    if (blackScreen.transform.GetChild(i).childCount > 0)
+                    {
+                        amount += 2;
+                    }
+                }
+
+                SetFearModTxt(Mathf.Clamp(amount, 2, 10 - playerFear.hope));
+            }
+            #endregion
         }
         else
         {
             myText.color = new Color(myText.color.r, myText.color.g, myText.color.b, 0.5f);
             tryPayButton.transform.GetChild(1).GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
             tryPayButton.transform.GetChild(2).GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
+            if (!isEnding) SetFearModTxt(currentCost.consequenceAmount);
+            else SetFearModTxt(0);
         }
     }
     private bool CanPay()
@@ -421,5 +439,24 @@ public class CardEffectManager : MonoBehaviour
         }
 
         return canPay;
+    }
+    private void SetFearModTxt(int amount)
+    {
+        //Set text to show if the player loses or gains courage
+        string sign = "";
+        if(amount == 0)
+        {
+            fearModTxt.text = "";
+            return;
+        }
+
+        if (amount < 0) fearModTxt.color = Color.red;
+        else
+        {
+            fearModTxt.color = Color.green;
+            sign = "+";
+        }
+
+        fearModTxt.text = sign + amount.ToString(); 
     }
 }
