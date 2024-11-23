@@ -16,9 +16,9 @@ MonoBehaviour:
   bigImage: {fileID: 21300000, guid: dbfc8728942d60c489dc505cecffff3f, type: 3}
   myObject: {fileID: 0}
   myCardObject: {fileID: 0}
-  description: Pay 1 treat or lose 2 courage.
+  description: Pay 1 costume or lose 2 courage.
   myCost:
-    explanation: Pay 1 Costume or lose 2 courage.
+    explanation: Pay <color=green>1 Costume</color> or <color=red>lose 2 </color>courage.
     CostName: Costume
     costAmount: 1
     reward: 

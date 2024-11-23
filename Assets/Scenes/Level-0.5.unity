@@ -3634,7 +3634,7 @@ MonoBehaviour:
         m_MethodName: DisplayMenu
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1685085494}
+          m_ObjectArgument: {fileID: 215782773}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -4094,7 +4094,7 @@ MonoBehaviour:
         m_MethodName: DisplayMenu
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1685085494}
+          m_ObjectArgument: {fileID: 215782773}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -4721,7 +4721,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game Won
+  m_text: Tutorial passed
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d93d94de1ea1d864283329f42ef88f03, type: 2}
   m_sharedMaterial: {fileID: -4317416503888858199, guid: d93d94de1ea1d864283329f42ef88f03, type: 2}
@@ -24272,7 +24272,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: tutorialTexts.Array.data[6]
-      value: Activate the radar with the left mouse button, and click to use it.
+      value: Activate the radar with the right mouse button, and click the other
+        button to use it.
       objectReference: {fileID: 0}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: tutorialTexts.Array.data[7]

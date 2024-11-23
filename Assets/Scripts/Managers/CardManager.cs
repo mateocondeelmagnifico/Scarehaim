@@ -48,7 +48,7 @@ public class CardManager : MonoBehaviour
         gameManager = GameManager.Instance;
         playerPos = gameManager.player.transform;
         doorText.text = cardsUntilExit.ToString();
-        startTimer = 3;
+        startTimer = 2;
 
         #region Create Cards List
         cards.Add(enviroments);

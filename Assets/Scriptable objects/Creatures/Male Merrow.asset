@@ -18,7 +18,7 @@ MonoBehaviour:
   myCardObject: {fileID: 0}
   description: Lose 3 courage, can be ignored with disguise
   myCost:
-    explanation: A wild merrow appears, lose 3 courage
+    explanation: A wild merrow appears, <color=red>lose 3 </color> courage
     CostName: 
     costAmount: 0
     reward: 

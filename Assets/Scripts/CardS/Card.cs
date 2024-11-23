@@ -6,7 +6,7 @@ public class Card : ScriptableObject
     public Sprite image, bigImage;
     [HideInInspector] public CardObject myObject;
     public GameObject myCardObject;
-    public string description;
+    [TextArea] public string description;
 
     public virtual void Effect(GameObject card, GameObject cardSlot)
     {

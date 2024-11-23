@@ -18,7 +18,8 @@ MonoBehaviour:
   myCardObject: {fileID: 0}
   description: Pay 2 Treats and gain 2 Courage or Don't pay and Lose 3 Courage
   myCost:
-    explanation: Pay 2 Treats and gain 2 Courage or Don't pay and Lose 3 Courage
+    explanation: Pay <color=blue>2 Treats</color> and gain 2 Courage or Don't pay
+      and <color=red>Lose 3</color> Courage
     CostName: Treat
     costAmount: 2
     reward: Fear

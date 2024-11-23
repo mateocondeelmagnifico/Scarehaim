@@ -347,6 +347,7 @@ public class Hand : MonoBehaviour
     {
         //Called by buttons
         Destroy(cardStorage.gameObject);
+        Destroy(zPrompt.gameObject);
         Destroy(this.gameObject);
     }
     public void ActivateColliders(bool state)

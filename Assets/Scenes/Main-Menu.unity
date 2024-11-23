@@ -1053,7 +1053,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1690,12 +1690,12 @@ MonoBehaviour:
   skipTutorialMenu: {fileID: 226463688}
   gameWonMenu: {fileID: 0}
   optionsMenu: {fileID: 0}
-  pauseMenu: {fileID: 0}
+  pauseMenu: {fileID: 1343180821}
   blackscreen: {fileID: 269851994}
   loadingIcon: {fileID: 2131006931}
   loadingMenu: {fileID: 562925523}
   currentMenu: {fileID: 0}
-  canPause: 0
+  canPause: 1
 --- !u!4 &538322097
 Transform:
   m_ObjectHideFlags: 0
@@ -6074,7 +6074,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Skip Tutorial?
+  m_text: Play Tutorial?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d93d94de1ea1d864283329f42ef88f03, type: 2}
   m_sharedMaterial: {fileID: -4317416503888858199, guid: d93d94de1ea1d864283329f42ef88f03, type: 2}
@@ -6140,7 +6140,7 @@ MonoBehaviour:
   m_margin: {x: -36.31395, y: 0, z: -39.77253, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1286464816
@@ -7300,7 +7300,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1794902232
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8071,7 +8071,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

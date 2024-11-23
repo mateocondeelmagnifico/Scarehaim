@@ -18,7 +18,8 @@ MonoBehaviour:
   myCardObject: {fileID: 0}
   description: A cold hug,  pay 1 treat or lose 2 courage
   myCost:
-    explanation: A cold hug,  pay 1 treat or lose 2 courage
+    explanation: A cold hug,  pay<color=blue> 1 treat </color> or <color=red>lose
+      2 </color>courage
     CostName: Treat
     costAmount: 1
     reward: 

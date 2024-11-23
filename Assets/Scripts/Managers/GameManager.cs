@@ -205,9 +205,10 @@ public class GameManager : MonoBehaviour
         //This method is used to move cards to the deck and discard pile
         accelerator += Time.deltaTime * 2;
         whatCard.transform.position = Vector3.MoveTowards(whatCard.transform.position, desiredPos, 6 * Time.deltaTime * accelerator);
-        renderer.sortingOrder = 1;
+        if (desiredPos == discardCenter.position) renderer.sortingOrder = 1;
+        else renderer.sortingOrder = 4;
 
-        if(whatCard.transform.position == desiredPos)
+        if (whatCard.transform.position == desiredPos)
         {
             moveCard = false;
             accelerator = 0.5f;
@@ -246,7 +247,7 @@ public class GameManager : MonoBehaviour
             Vector3 desiredPos = new Vector3(4, -5, -2);
 
             card.transform.position = Vector3.MoveTowards(card.transform.position, desiredPos, 6 * Time.deltaTime * accelerator);
-
+            card.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 1;
 
             if (card.transform.position == desiredPos)
             {
