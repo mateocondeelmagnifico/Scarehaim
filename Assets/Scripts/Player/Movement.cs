@@ -382,7 +382,11 @@ public class Movement : MonoBehaviour
     }
     public void MoveHighlights(int whichOne, Vector2 pos, string myColor)
     {
-        if (pos == new Vector2(20, 20)) return;
+        if (pos == new Vector2(20, 20))
+        {
+            myHighlights[whichOne].SetActive(false);
+            return;
+        }
         
         //If the position wanted does not exist, object is not set active
         myHighlights[whichOne].SetActive(true);

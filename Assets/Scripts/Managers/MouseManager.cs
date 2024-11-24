@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class MouseManager : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class MouseManager : MonoBehaviour
 
     [SerializeField] private Transform board, tricks;
 
-    private bool handDisplayed, highlightsSpawned, cardHandHovered, wantsToDisplay, playerDisplay;
+    private bool handDisplayed, highlightsSpawned, cardHandHovered, wantsToDisplay, playerDisplay, canFire;
     public bool moveCard, cardInformed,  isInTutorial, needsTreat, radarActive, cardGrabbed, hasTreat, canClick;
 
     private float handtimer, displayTimer;
@@ -332,10 +333,18 @@ public class MouseManager : MonoBehaviour
                 #endregion
 
                 #region Check Radar
-
-
-                if (!hit.collider.gameObject.tag.Equals("Player") && manager.CheckIsInCheckMovement())
+                if(manager.CheckIsInCheckMovement())
                 {
+                    #region Toggle and Fire radar
+                    if (Input.GetMouseButtonDown(0) && radarActive && canFire)
+                    {
+                        FireRadar();
+                        boardOverlay.DeactivatOverlay();
+                        radarText.text = "";
+                        soundManager.PlaySound("Radar");
+                        canFire = false;
+                    }
+
                     if (Input.GetMouseButtonDown(1) && !hasTreat)
                     {
                         if (radarActive)
@@ -348,78 +357,94 @@ public class MouseManager : MonoBehaviour
                             boardOverlay.ACtivateOverlay("Green");
                             radarText.transform.position = new Vector3(hit.point.x + 0.8f, hit.point.y - 0.8f, -1);
                             radarText.text = (trickRadar.numberOfScans + 1).ToString();
+                            hoverAesthetics.SetActive(false);
                             soundManager.PlaySound("Radar On");
                         }
-                    }
+                    }  
+                    #endregion
 
+                    //Check Direction of radar
                     if (radarActive)
                     {
+                        #region Declare variables & check Direction
+                        for(int i = 0; i < 3; i++)
+                        {
+                            radarPositions[i] = new Vector2(20,20);
+                            //If they stay in this value, they won't appear
+                        }
+                        
+                        Vector2 playerPos = new Vector2(playerMove.transform.position.x, playerMove.transform.position.y);
                         if (!highlightsSpawned)
                         {
                             pMovement.SpawnHighlight(3);
                             highlightsSpawned = true;
                         }
-
-                        #region Define Variables
-                        radarPositions[0] = Vector2.zero;
-                        radarPositions[1] = Vector2.zero;
-                        radarPositions[2] = Vector2.zero;
-                        Vector2 cardVector = new Vector2(cardHit.transform.position.x, cardHit.transform.position.y);
-                        float playerY = pMovement.transform.position.y;
-                        float playerX = pMovement.transform.position.x;
-                        #endregion
-
-                        if (Mathf.Abs(playerX - cardHit.transform.position.x) <= 2 && Mathf.Abs(playerY - cardHit.transform.position.y) <= 2.7f)
+                        
+                        //Place highlights at their respective place
+                        if (Mathf.Abs(hit.point.x - playerPos.x) > Mathf.Abs(hit.point.y - playerPos.y))
                         {
-
-                            //if scanner is in range
-                            if (cardHit.transform.position.x != playerX)
+                            if (hit.point.x > playerPos.x)
                             {
-                                pMovement.MoveHighlights(0, new Vector2(cardVector.x, playerY), "blue");
-                                radarPositions[0] = new Vector2(cardVector.x, playerY);
-
-                                if (playerY < -2f) { }
-                                else
+                                //Right
+                                if(playerPos.x < 7.93)
                                 {
-                                    pMovement.MoveHighlights(1, new Vector2(cardVector.x, playerY - 2.7f), "blue");
-                                    radarPositions[1] = new Vector2(cardVector.x, playerY - 2.7f);
+                                    if(playerPos.y <  2.65f) radarPositions[0] = new Vector2(playerPos.x + 2, playerPos.y + 2.7f);
+                                    radarPositions[1] = new Vector2(playerPos.x + 2, playerPos.y);
+                                    if (playerPos.y > -2.69f) radarPositions[2] = new Vector2(playerPos.x + 2, playerPos.y - 2.7f);
                                 }
-
-                                if (playerY! > 0.2f) { }
-                                else
-                                {
-                                    pMovement.MoveHighlights(2, new Vector2(cardVector.x, playerY + 2.7f), "blue");
-                                    radarPositions[2] = new Vector2(cardVector.x, playerY + 2.7f);
-                                }
+                                else canFire = false;
                             }
                             else
                             {
-                                pMovement.MoveHighlights(0, cardVector, "blue");
-                                radarPositions[0] = cardVector;
-
-                                if (FindBoardPos(cardVector + new Vector2(-2, 0)))
+                                //Left
+                                if (playerPos.x > -0.05)
                                 {
-                                    pMovement.MoveHighlights(1, cardVector + new Vector2(-2, 0), "blue");
-                                    radarPositions[1] = cardVector + new Vector2(-2, 0);
+                                    if (playerPos.y < 2.65f) radarPositions[0] = new Vector2(playerPos.x - 2, playerPos.y + 2.7f);
+                                    radarPositions[1] = new Vector2(playerPos.x - 2, playerPos.y);
+                                    if (playerPos.y > -2.69f) radarPositions[2] = new Vector2(playerPos.x - 2, playerPos.y - 2.7f);
                                 }
-
-                                if (FindBoardPos(cardVector + new Vector2(2, 0)))
-                                {
-                                    pMovement.MoveHighlights(2, cardVector + new Vector2(2, 0), "blue");
-                                    radarPositions[2] = cardVector + new Vector2(2, 0);
-                                }
+                                else canFire = false;
                             }
                         }
-                    }
+                        else
+                        {
+                            if (hit.point.y > playerPos.y)
+                            {
+                                //Up
+                                if (playerPos.y < 2.65)
+                                {
+                                    if(playerPos.x > -0.05) radarPositions[0] = new Vector2(playerPos.x - 2, playerPos.y + 2.7f);
+                                    radarPositions[1] = new Vector2(playerPos.x, playerPos.y + 2.7f);
+                                    if (playerPos.x < 7.93) radarPositions[2] = new Vector2(playerPos.x + 2, playerPos.y + 2.7f);
+                                }
+                                else canFire = false;
+                            }
+                            else
+                            {
+                                //Down
+                                if (playerPos.y > -2.5)
+                                {
+                                    if (playerPos.x > -0.05) radarPositions[0] = new Vector2(playerPos.x - 2, playerPos.y - 2.7f);
+                                    radarPositions[1] = new Vector2(playerPos.x, playerPos.y - 2.7f);
+                                    if (playerPos.x < 7.93) radarPositions[2] = new Vector2(playerPos.x + 2, playerPos.y - 2.7f);
+                                }
+                                else canFire = false;
+                            }
+                        }
+                        #endregion
 
-                    if (Input.GetMouseButtonDown(0) && radarActive)
-                    {
-                        FireRadar();
-                        boardOverlay.DeactivatOverlay();
-                        radarText.text = "";
-                        soundManager.PlaySound("Radar");
-                    }
+                        //Place highlights in the spots if they are valid
+                        for (int i = 0; i < 3; i++)
+                        {
+                            pMovement.MoveHighlights(i, radarPositions[i], "blue");
 
+                            if(radarPositions[i] != new Vector2(20,20)) canFire = true;
+                        }
+
+                        //Set radar text to reflect if you fire the radar
+                        if(!canFire) radarText.text = "";
+                        else radarText.text = (trickRadar.numberOfScans + 1).ToString();
+                    }
                 }
                 #endregion
             }
@@ -587,9 +612,9 @@ public class MouseManager : MonoBehaviour
         {
             for(int e = 0;e < radarPositions.Length;e++)
             {
-                if (radarPositions[e] != Vector2.zero)
+                if (radarPositions[e] != new Vector2(20,20))
                 {
-                    if (radarPositions[e].x == tricks.GetChild(i).transform.position.x && radarPositions[e].y == tricks.GetChild(i).transform.position.y)
+                    if (Vector2.Distance(radarPositions[e], tricks.GetChild(i).transform.position) <= 0.1f)
                     {
                         GameObject trapMarker = GameObject.Instantiate(trapIndicator, tricks.GetChild(i).transform.position, Quaternion.identity);
                         tricks.GetChild(i).GetComponent<TrickContainer>().myIndicator = trapMarker;
@@ -628,7 +653,9 @@ public class MouseManager : MonoBehaviour
         }
     }
     private void PlaceHighlight(int whichOne)
-    {    
+    {
+        if (radarActive) return;
+
         if (cardHit.transform.childCount > 0 || cardHit.CompareTag("Enemy"))
         {
             if(whichOne == 0)
