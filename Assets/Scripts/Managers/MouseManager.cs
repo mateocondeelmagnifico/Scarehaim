@@ -32,7 +32,7 @@ public class MouseManager : MonoBehaviour
     private Vector2[] radarPositions;
 
     public GameObject firstSelect, selectedCardSlot, hoverAesthetics, hoverAesthetics2, trapIndicator, hover2Pos;
-    private GameObject cardHit;
+    private GameObject cardHit, tutHit;
 
     private Color startColor;
 
@@ -245,7 +245,7 @@ public class MouseManager : MonoBehaviour
 
                                     if (playerMove.turnsWithcostume <= 0)
                                     {
-                                        selectedCardSlot = cardHit;
+                                        selectedCardSlot = cardHit;    
                                         manager.selectedCardSlot = cardHit;
                                     }
                                     else
@@ -256,6 +256,8 @@ public class MouseManager : MonoBehaviour
                                             manager.selectedCardSlot = cardHit;
                                         }
                                     }
+
+                                    if (tutorialManager != null) tutHit = cardHit;
                                     cardInformed = false;
 
                                     #region Inform Player to move and tutorial to progress
@@ -268,7 +270,7 @@ public class MouseManager : MonoBehaviour
 
                                         DeactivateDisplay();
                                     }
-                                    else if (tutorialManager.IsCorrectCard(selectedCardSlot) == true)
+                                    else if (tutorialManager.IsCorrectCard(tutHit) == true)
                                     {
                                         if (!needsTreat)
                                         {
@@ -330,6 +332,8 @@ public class MouseManager : MonoBehaviour
                 #endregion
 
                 #region Check Radar
+
+
                 if (!hit.collider.gameObject.tag.Equals("Player") && manager.CheckIsInCheckMovement())
                 {
                     if (Input.GetMouseButtonDown(1) && !hasTreat)

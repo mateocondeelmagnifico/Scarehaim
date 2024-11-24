@@ -79,7 +79,7 @@ public class TutManager2 : TutorialManager
                     }
                     break;
 
-                    case 18:
+                    case 20:
                     screenImage.enabled = true;
                     break;
             }
@@ -95,7 +95,8 @@ public class TutManager2 : TutorialManager
 
         DisplayNextBlackScreen();
 
-        if (currentTutorial == 20)
+
+        if (currentTutorial == 21)
         {
             //Destroy tutorial manager
             RemoveTutorial();
@@ -106,11 +107,11 @@ public class TutManager2 : TutorialManager
         }
 
         nextTutorialButton.SetActive(false);
+        mouseManager.display.enabled = false;
 
-        if (currentTutorial != 2 && currentTutorial != 3 && currentTutorial != 6 && currentTutorial != 10 && currentTutorial != 12)
+        if (currentTutorial != 2 && currentTutorial != 3 && currentTutorial != 6 && currentTutorial != 10 && currentTutorial != 12 && currentTutorial != 16 && currentTutorial != 17)
         {
-            mouseManager.canClick = false;
-            mouseManager.display.enabled = false;
+            mouseManager.canClick = false;           
             textManager.displayButton = true;
         }
         else
@@ -139,6 +140,6 @@ public class TutManager2 : TutorialManager
 
     public void OptionsPressed()
     {
-        if (currentTutorial == 18) Nextmenu();
+        if (currentTutorial == 19) Nextmenu();
     }
 }

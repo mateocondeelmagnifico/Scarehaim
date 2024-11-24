@@ -13634,6 +13634,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 894686014138126463, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
   m_PrefabInstance: {fileID: 1026890211}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1026890213 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5757337979554174078, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
+  m_PrefabInstance: {fileID: 1026890211}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1028493374
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19309,6 +19314,11 @@ PrefabInstance:
 --- !u!4 &1584677806 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 894686014138126463, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
+  m_PrefabInstance: {fileID: 1584677805}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1584677807 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5757337979554174078, guid: aa41ff0d3e969c14fa24768c5c6ff75d, type: 3}
   m_PrefabInstance: {fileID: 1584677805}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1587065652
@@ -25751,15 +25761,15 @@ PrefabInstance:
       objectReference: {fileID: 1884403230}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: chosenSlots.Array.size
-      value: 11
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: blackScreens.Array.size
-      value: 21
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: tutorialTexts.Array.size
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: chosenSlots.Array.data[0]
@@ -25830,6 +25840,34 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 685545275}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: chosenSlots.Array.data[11]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: chosenSlots.Array.data[12]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: chosenSlots.Array.data[13]
+      value: 
+      objectReference: {fileID: 685545275}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: chosenSlots.Array.data[14]
+      value: 
+      objectReference: {fileID: 685545275}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: chosenSlots.Array.data[15]
+      value: 
+      objectReference: {fileID: 1584677807}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: chosenSlots.Array.data[16]
+      value: 
+      objectReference: {fileID: 1584677807}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: chosenSlots.Array.data[17]
+      value: 
+      objectReference: {fileID: 1026890213}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: blackScreens.Array.data[10]
       value: 
       objectReference: {fileID: 21300000, guid: 464a1d66283e2984baa41539ae75313b, type: 3}
@@ -25856,17 +25894,21 @@ PrefabInstance:
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: blackScreens.Array.data[16]
       value: 
-      objectReference: {fileID: 21300000, guid: 464a1d66283e2984baa41539ae75313b, type: 3}
+      objectReference: {fileID: 21300000, guid: 2df5edb1c1033784caa0a6c9c5f16d25, type: 3}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: blackScreens.Array.data[17]
       value: 
-      objectReference: {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
+      objectReference: {fileID: 21300000, guid: 0ade27bc60e749141859caae538fd4f9, type: 3}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: blackScreens.Array.data[18]
       value: 
-      objectReference: {fileID: 21300000, guid: c46280abfd8117444bc5b7dabd39ea50, type: 3}
+      objectReference: {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: blackScreens.Array.data[19]
+      value: 
+      objectReference: {fileID: 21300000, guid: c46280abfd8117444bc5b7dabd39ea50, type: 3}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: blackScreens.Array.data[20]
       value: 
       objectReference: {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
@@ -25937,32 +25979,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: tutorialTexts.Array.data[16]
-      value: "You\u2019ll see, some Creatures ignore you if you\u2019re wearing it,
-        too."
+      value: Let's try it out! select this square please.
       objectReference: {fileID: 0}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: tutorialTexts.Array.data[17]
-      value: "Well, that\u2019s all you needed to know, darling!"
+      value: Now this one, don't worry, he can't see you with the costume on
       objectReference: {fileID: 0}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: tutorialTexts.Array.data[18]
-      value: You can review the instructions in the Options menu over there.
+      value: "Well, that\u2019s all you needed to know, darling!"
       objectReference: {fileID: 0}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: tutorialTexts.Array.data[19]
+      value: You can review the instructions in the Options menu over there.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[20]
       value: 'Now this was all a test, now the real game starts! HAHA!
 
 '
       objectReference: {fileID: 0}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
-      propertyPath: tutorialTexts.Array.data[20]
-      value: That's all you need to know! Click on the options button if you forget
-        anything.
-      objectReference: {fileID: 0}
-    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: tutorialTexts.Array.data[21]
-      value: That's all you need to know! Click on the options button if you forget
-        anything.
+      value: 'Now this was all a test, now the real game starts! HAHA!
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: tutorialTexts.Array.data[22]
