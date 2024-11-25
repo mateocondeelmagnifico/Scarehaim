@@ -297,7 +297,7 @@ public class Hand : MonoBehaviour
         overlay.DeactivatOverlay();
         MouseManager.instance.hasTreat = false;
         activateColliders = true;
-        timer = 0.25f;
+        timer = 0.9f;
 
         cardInLimbo.transform.position = transform.position;
         cardInLimbo.transform.parent = transform;      

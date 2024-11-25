@@ -188,6 +188,8 @@ public class MouseManager : MonoBehaviour
                 else
                 {
                     cardHit = null;
+                    hoverAesthetics.SetActive(false);
+
                     if (cardHandHovered || hit.collider.gameObject.tag.Equals("Undo Button"))
                     {
                         DeactivateDisplay();
@@ -197,7 +199,7 @@ public class MouseManager : MonoBehaviour
                             currentCardHand.hoverTimer = 0;
                             currentCardHand.isHovered = false;
                         } 
-                        hoverAesthetics.SetActive(false);
+                        
                     }
                 }
 
