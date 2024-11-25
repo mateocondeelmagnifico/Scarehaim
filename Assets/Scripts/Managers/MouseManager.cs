@@ -180,16 +180,8 @@ public class MouseManager : MonoBehaviour
                             }
                         }
 
-                        if (Input.GetMouseButtonUp(0))
-                        {
-                            //Finish follow
-                            currentCardHand.followMouse = false;
-                            cardGrabbed = false;
-                            hoverAesthetics.SetActive(false);
-                            DeactivateDisplay();
-                        }
+                        
                     }
-
 
                     #endregion
                 }
@@ -200,10 +192,23 @@ public class MouseManager : MonoBehaviour
                     {
                         DeactivateDisplay();
                         cardHandHovered = false;
-                        currentCardHand.hoverTimer = 0;
-                        currentCardHand.isHovered = false;
+                        if(currentCardHand != null)
+                        {
+                            currentCardHand.hoverTimer = 0;
+                            currentCardHand.isHovered = false;
+                        } 
                         hoverAesthetics.SetActive(false);
                     }
+                }
+
+                if (Input.GetMouseButtonUp(0) && cardGrabbed && currentCardHand != null)
+                {
+                    //Finish follow
+                    currentCardHand.followMouse = false;
+                    cardGrabbed = false;
+                    currentCardHand.Relocate(hit.point);
+                    hoverAesthetics.SetActive(false);
+                    DeactivateDisplay();
                 }
 
                 if (hit.collider.gameObject.tag.Equals("BlackScreen"))
@@ -735,7 +740,6 @@ public class MouseManager : MonoBehaviour
             hoverAesthetics.SetActive(false);
         }
     }
-
     private float CheckOffset(GameObject card)
     {
         //Check if selected card is a treat to move text

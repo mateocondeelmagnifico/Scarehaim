@@ -57,10 +57,12 @@ public class CardSlotHand: CardSlot
         #endregion
 
         #region Go home
+        
         if (transform.position != startingPos && !isPayment && !followMouse && !goHome)
         {
-            Relocate();
+            Relocate(transform.position);
         }
+        
 
         if (goHome && !isPayment && transform.position != startingPos)
         {
@@ -104,9 +106,9 @@ public class CardSlotHand: CardSlot
         #endregion
     }
 
-    public void Relocate()
+    public void Relocate(Vector3 pos)
     {
-        if(Vector3.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(startingPos.x, startingPos.y)) <= 2f) GoHome();
+        if (Vector3.Distance(new Vector2(pos.x, pos.y), new Vector2(startingPos.x, startingPos.y)) <= 2f) GoHome();
         else
         {
             if (!inHand) TryToPlayCard();
