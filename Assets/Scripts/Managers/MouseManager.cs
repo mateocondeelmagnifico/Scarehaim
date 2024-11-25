@@ -1,8 +1,7 @@
+using System.Collections.Generic;
 using TMPro;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class MouseManager : MonoBehaviour
 {
@@ -618,6 +617,8 @@ public class MouseManager : MonoBehaviour
     }
     private void FireRadar()
     {
+        List<Vector3> posList =new List<Vector3>();
+
         for(int i = 0;i < tricks.childCount;i++)
         {
             for(int e = 0;e < radarPositions.Length;e++)
@@ -630,6 +631,8 @@ public class MouseManager : MonoBehaviour
                         tricks.GetChild(i).GetComponent<TrickContainer>().myIndicator = trapMarker;
                         trapMarker.transform.parent = tricks.GetChild(i);
                     }
+
+                    posList.Add(radarPositions[e]);
                 }
             }
         }
@@ -641,6 +644,8 @@ public class MouseManager : MonoBehaviour
         }
         radarActive = false;
         pMovement.DespawnHighlights(0);
+
+        trickRadar.PlayScanAnim(posList);
     }
     public void DeactivateDisplay()
     {
