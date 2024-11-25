@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Experimental.GraphView.GraphView;
@@ -25,10 +26,10 @@ public class MouseManager : MonoBehaviour
 
     [SerializeField] private Transform board, tricks;
 
-    private bool handDisplayed, highlightsSpawned, cardHandHovered, wantsToDisplay, playerDisplay, canFire;
-    public bool moveCard, cardInformed,  isInTutorial, needsTreat, radarActive, cardGrabbed, hasTreat, canClick;
+    private bool handDisplayed, highlightsSpawned, cardHandHovered, wantsToDisplay, playerDisplay, canFire, radarsOut;
+    public bool moveCard, cardInformed,  isInTutorial, needsTreat, radarActive, cardGrabbed, hasTreat, canClick, dontDisplay;
 
-    private float handtimer, displayTimer;
+    private float handtimer, displayTimer, displayTimer2, originalPos;
 
     private Vector2[] radarPositions;
 
@@ -63,6 +64,7 @@ public class MouseManager : MonoBehaviour
         radarPositions = new Vector2[3];
         descriptionText = display.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         descriptionText.enabled = false;
+        originalPos = descriptionText.transform.position.y;
 
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
@@ -95,6 +97,16 @@ public class MouseManager : MonoBehaviour
             }
         }
 
+        //Display 0 radars
+        if(radarsOut)
+        {
+            displayTimer2 -= Time.deltaTime;
+            if (displayTimer2 <= 0)
+            {
+                radarsOut = false;
+                radarText.enabled = false;
+            }
+        }
     }
 
     private void Raycast()
@@ -107,7 +119,7 @@ public class MouseManager : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(myCam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
         #endregion
 
-        if (radarActive) radarText.transform.position = new Vector3(hit.point.x + 0.8f, hit.point.y - 0.8f, -2);
+        if (radarActive || radarsOut) radarText.transform.position = new Vector3(hit.point.x + 0.8f, hit.point.y - 0.8f, -2);
 
         if (hit.collider != null)
         {
@@ -148,7 +160,7 @@ public class MouseManager : MonoBehaviour
 
                         if (currentCardHand.hoverTimer >= 0.2f)
                         {
-                            DisplayCard(currentCardHand.objectSprite, currentCardHand.objectDescription);
+                            DisplayCard(currentCardHand.objectSprite, currentCardHand.objectDescription, CheckOffset(cardHit.transform.GetChild(0).gameObject));
 
                             cardHandHovered = true;
                         }
@@ -211,7 +223,7 @@ public class MouseManager : MonoBehaviour
                         {
                             hoverAesthetics.SetActive(false);
                             firstSelect = cardHit;
-                            DisplayCard(cardHit.GetComponent<DisplayBigImage>().bigImage, "");
+                            DisplayCard(cardHit.GetComponent<DisplayBigImage>().bigImage, "", 0);
 
                             if (hit.collider.gameObject.tag.Equals("Player"))
                             {
@@ -294,7 +306,7 @@ public class MouseManager : MonoBehaviour
                                 {
                                     soundManager.PlaySound("Card Hovered");
                                     firstSelect = cardHit;
-                                    DisplayCard(cardHit.GetComponent<CardSlot>().objectSprite, cardHit.GetComponent<CardSlot>().objectDescription);
+                                    DisplayCard(cardHit.GetComponent<CardSlot>().objectSprite, cardHit.GetComponent<CardSlot>().objectDescription, CheckOffset(cardHit.transform.GetChild(0).gameObject));
                                 }
                                 else DeactivateDisplay();
                             }
@@ -357,8 +369,21 @@ public class MouseManager : MonoBehaviour
                             boardOverlay.ACtivateOverlay("Green");
                             radarText.transform.position = new Vector3(hit.point.x + 0.8f, hit.point.y - 0.8f, -1);
                             radarText.text = (trickRadar.numberOfScans + 1).ToString();
+                            DeactivateDisplay();
+                            hover2Pos = null;
                             hoverAesthetics.SetActive(false);
                             soundManager.PlaySound("Radar On");
+                        }
+
+                        //Display 0 radars
+                        if (trickRadar.numberOfScans <= 0 && !radarActive)
+                        {
+                            radarsOut = true;
+                            displayTimer2 = 0.6f;
+                            radarText.color = Color.red;
+                            radarText.enabled = true;
+                            radarText.text = "0";
+                            radarText.transform.position = new Vector3(hit.point.x + 0.8f, hit.point.y - 0.8f, -1);
                         }
                     }  
                     #endregion
@@ -591,21 +616,6 @@ public class MouseManager : MonoBehaviour
         }
         return iReach;
     }
-    private bool FindBoardPos(Vector2 pos)
-    {
-        bool isTrue = false;
-
-        for(int i = 0; i < board.childCount; i++)
-        {
-            if(board.GetChild(i).transform.position.x == pos.x && board.GetChild(i).transform.position.y == pos.y)
-            {
-                isTrue = true;
-                i = board.childCount;
-            }
-        }
-
-        return isTrue;
-    }
     private void FireRadar()
     {
         for(int i = 0;i < tricks.childCount;i++)
@@ -624,7 +634,11 @@ public class MouseManager : MonoBehaviour
             }
         }
 
-        if(tutorialManager != null) tutorialManager.radarDone = true;
+        if (tutorialManager != null)
+        {
+            if(tutorialManager.currentTutorial == 6)
+            tutorialManager.radarDone = true;
+        }
         radarActive = false;
         pMovement.DespawnHighlights(0);
     }
@@ -641,8 +655,21 @@ public class MouseManager : MonoBehaviour
         hoverAesthetics2.SetActive(false);
         if(!playerMove.moveSelected)playerMove.DespawnHighlights(0);
     }
-    private void DisplayCard(Sprite spriteToDisplay, string description)
+    private void DisplayCard(Sprite spriteToDisplay, string description, float offSet)
     {
+        if (dontDisplay) return;
+
+        //Move text
+        Vector3 pos = descriptionText.transform.position;
+        if (offSet != 0)
+        {      
+            if (pos.y == originalPos)
+            {
+                descriptionText.transform.position = new Vector3(pos.x, pos.y + offSet, pos.z);
+            }
+        }
+        else descriptionText.transform.position = new Vector3(pos.x, originalPos, pos.z);
+
         display.sprite = spriteToDisplay;
         descriptionText.text = description;
 
@@ -702,5 +729,13 @@ public class MouseManager : MonoBehaviour
         {
             hoverAesthetics.SetActive(false);
         }
+    }
+
+    private float CheckOffset(GameObject card)
+    {
+        //Check if selected card is a treat to move text
+        float offset = 0f;
+        if (card.CompareTag("Treat")) offset = -0.1f;
+        return offset;
     }
 }

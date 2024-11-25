@@ -106,8 +106,7 @@ public class TutManager2 : TutorialManager
             return;
         }
 
-        nextTutorialButton.SetActive(false);
-        mouseManager.display.enabled = false;
+        nextTutorialButton.SetActive(false);      
 
         if (currentTutorial != 2 && currentTutorial != 3 && currentTutorial != 6 && currentTutorial != 10 && currentTutorial != 12 && currentTutorial != 16 && currentTutorial != 17)
         {
@@ -118,6 +117,8 @@ public class TutManager2 : TutorialManager
         {
             mouseManager.canClick = true;
         }
+
+        mouseManager.display.enabled = false;
 
         switch (currentTutorial)
         {
@@ -130,8 +131,17 @@ public class TutManager2 : TutorialManager
                 RemoveTutorial();
                 break;
 
-            case 11:
-                RemoveTutorial();
+            case 4:
+                hand.ActivateColliders(false);
+                break;
+
+            case 12:
+                hand.ActivateColliders(true);
+                mouseManager.dontDisplay = true;
+                break;
+
+            case 13:
+                mouseManager.dontDisplay = false;
                 break;
         }
 

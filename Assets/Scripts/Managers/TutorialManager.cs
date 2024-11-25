@@ -183,14 +183,15 @@ public class TutorialManager : MonoBehaviour
 
         if (currentTutorial != 2 && currentTutorial != 5 && currentTutorial != 7 && currentTutorial != 10 && currentTutorial != 13 && currentTutorial != 14)
         {
-            mouseManager.canClick = false;
-            mouseManager.display.enabled = false;
+            mouseManager.canClick = false;     
             textManager.displayButton = true;
         }
         else
         {
             mouseManager.canClick = true;
         }
+
+        mouseManager.display.enabled = false;
 
         switch (currentTutorial)
         {
@@ -200,6 +201,12 @@ public class TutorialManager : MonoBehaviour
 
             case 6:
                 RemoveTutorial();
+                break;
+
+            case 8:
+                manager.player.GetComponent<Movement>().DespawnHighlights(0);
+                mouseManager.hover2Pos = null;
+                mouseManager.firstSelect = null;
                 break;
 
             case 11:
