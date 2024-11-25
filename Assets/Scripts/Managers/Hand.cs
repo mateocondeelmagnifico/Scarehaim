@@ -88,7 +88,8 @@ public class Hand : MonoBehaviour
             {
                 cards[i] = transform.GetChild(i);
 
-                cards[i].rotation = Quaternion.identity;
+                //cards[i].rotation = Quaternion.identity;
+                cards[i].GetComponent<CardSlotHand>().zRot = 0;
                 cards[i].GetComponent<CardSlotHand>().startingPos = new Vector3(defaultPos.x, yPos, defaultPos.z);
                 cards[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = 20 - i;
             }
@@ -119,7 +120,8 @@ public class Hand : MonoBehaviour
                 if ((cards.Length == 3 && i == 1) || (cards.Length == 5 && i == 2) || cards.Length == 1)
                 {
                     //Do nothing
-                    cards[i].rotation = Quaternion.identity;
+                    //cards[i].rotation = Quaternion.identity;
+                    cards[i].GetComponent<CardSlotHand>().zRot = 0;
                     cards[i].GetComponent<CardSlotHand>().startingPos = new Vector3(defaultPos.x, yPos, defaultPos.z);
                 }
                 else
@@ -153,8 +155,8 @@ public class Hand : MonoBehaviour
     }
     private void MoveAndRot(int whatcard, Vector3 offset, float multiplier)
     {
-        cards[whatcard].GetComponent<CardSlotHand>().startingPos += offset;
-        cards[whatcard].Rotate(0, 0, 10 * multiplier);
+        cards[whatcard].GetComponent<CardSlotHand>().startingPos += offset - new Vector3(0,0.2f,0);
+        cards[whatcard].GetComponent<CardSlotHand>().zRot += 36 * multiplier;
     }
     public void ResizeHand(bool makeBig)
     {

@@ -14,6 +14,7 @@ public class CardSlotHand: CardSlot
 
     private int chosenSlot;
     private float accelerator = 0.5f;
+    public float zRot;
 
     protected override void Start()
     {
@@ -91,6 +92,7 @@ public class CardSlotHand: CardSlot
             else
             {
                 accelerator = 0.5f;
+                zRot = 0;
                 transform.rotation = Quaternion.identity;
                 effectManager.CheckCanAfford();
                 hasArrived = true;
@@ -103,6 +105,15 @@ public class CardSlotHand: CardSlot
         if (hoverTimer < 1.5f && isHovered) hoverTimer += Time.deltaTime;
 
         if (!isHovered) hoverTimer = 0;
+        #endregion
+
+        #region Check rotation
+        if (transform.rotation.z > zRot/360 +0.0001f || transform.rotation.z < zRot/360 - 0.0001f)
+        {
+            int rotOffset = 30;
+            if(transform.rotation.z > zRot/360) rotOffset = -30;
+            transform.Rotate(0,0, rotOffset * Time.deltaTime);
+        }
         #endregion
     }
 
