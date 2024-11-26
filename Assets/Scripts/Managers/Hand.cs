@@ -170,13 +170,13 @@ public class Hand : MonoBehaviour
         bool goDown = false;
         if (makeBig)
         {
-            if(transform.GetChild(0).position.y <= -4) goUp = true;
+            if(transform.GetChild(0).position.y <= -4f) goUp = true;
         }
         else 
         {
             switch(transform.GetChild(0).position.y)
             {
-                case <-5:
+                case <-5.5f:
                     goUp = true;
                     break;
 
@@ -294,14 +294,16 @@ public class Hand : MonoBehaviour
     {
         cardInLimbo.SetActive(true);
         cardInLimbo.transform.GetChild(0).GetComponent<CardObject>().myCard.UndoEffect();
+        cardInLimbo.GetComponent<CardSlotHand>().inHand = true;
+        cardInLimbo.GetComponent<BoxCollider2D>().enabled = false;
         TurnCheck.instance.UndoCostumes();
         if (overlay == null) overlay = BoardOverlay.instance;
         overlay.DeactivatOverlay();
         MouseManager.instance.hasTreat = false;
         activateColliders = true;
-        timer = 0.9f;
+        timer = 0.6f;
 
-        cardInLimbo.transform.position = transform.position;
+        cardInLimbo.transform.position = new Vector3 (transform.position.x, yPos, transform.position.z);
         cardInLimbo.transform.parent = transform;      
     }
     private void UndoCostumeMove()

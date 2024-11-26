@@ -110,8 +110,8 @@ public class CardSlotHand: CardSlot
         #region Check rotation
         if (transform.rotation.z > zRot/360 +0.0001f || transform.rotation.z < zRot/360 - 0.0001f)
         {
-            int rotOffset = 30;
-            if(transform.rotation.z > zRot/360) rotOffset = -30;
+            int rotOffset = 37;
+            if(transform.rotation.z > zRot/360) rotOffset = -37;
             transform.Rotate(0,0, rotOffset * Time.deltaTime);
         }
         #endregion
@@ -218,7 +218,6 @@ public class CardSlotHand: CardSlot
     public void Disown()
     {
         //Deja de ser hijo de la mano para que esta enseña que hay una carta menos
-
         oldParent = transform.parent;
         transform.parent = null;
         hand.DeterminePosition();
