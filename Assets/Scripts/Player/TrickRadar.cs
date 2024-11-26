@@ -53,10 +53,9 @@ public class TrickRadar : MonoBehaviour
         //Makes as much as you want
         for(int i = 0; i < cardPos.Count; i++)
         {
-            scans.Add(GameObject.Instantiate(scanObject, new Vector3(cardPos[i].x -0.7f, cardPos[i].y, cardPos[i].z), Quaternion.identity));
-            desiredPoss.Add(new Vector3(scans[i].transform.position.x + 1.4f, scans[i].transform.position.y, scans[i].transform.position.z));
+            scans.Add(GameObject.Instantiate(scanObject, new Vector3(cardPos[i].x -0.85f, cardPos[i].y, cardPos[i].z), Quaternion.identity));
+            desiredPoss.Add(new Vector3(scans[i].transform.position.x + 1.75f, scans[i].transform.position.y, scans[i].transform.position.z));
         }
-       
         moveScans = true;
     }
 }

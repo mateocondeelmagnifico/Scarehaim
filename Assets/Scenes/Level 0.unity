@@ -9024,7 +9024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfScans: 3
   ghostMoveOn: 0
-  scanObject: {fileID: 0}
+  scanObject: {fileID: 8367180847112348394, guid: ec0d0835b6af9af498198d4f87d44739, type: 3}
 --- !u!1 &690539742
 GameObject:
   m_ObjectHideFlags: 0
@@ -11463,7 +11463,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8df9b7177fd006341a87c15390fd9897, type: 3}
   - {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
   - {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
-  - {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
+  - {fileID: 21300000, guid: 8df9b7177fd006341a87c15390fd9897, type: 3}
   - {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
   - {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
   - {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}

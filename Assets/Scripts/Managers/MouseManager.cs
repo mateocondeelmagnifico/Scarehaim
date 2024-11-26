@@ -637,10 +637,16 @@ public class MouseManager : MonoBehaviour
                         GameObject trapMarker = GameObject.Instantiate(trapIndicator, tricks.GetChild(i).transform.position, Quaternion.identity);
                         tricks.GetChild(i).GetComponent<TrickContainer>().myIndicator = trapMarker;
                         trapMarker.transform.parent = tricks.GetChild(i);
-                    }
-
-                    posList.Add(radarPositions[e]);
+                    } 
                 }
+            }
+        }
+
+        for (int e = 0; e < radarPositions.Length; e++)
+        {
+            if (radarPositions[e] != new Vector2(20, 20))
+            {
+                posList.Add(radarPositions[e]);
             }
         }
 

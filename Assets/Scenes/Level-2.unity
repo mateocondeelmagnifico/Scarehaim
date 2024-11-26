@@ -8393,6 +8393,7 @@ MonoBehaviour:
   cardGrabbed: 0
   hasTreat: 0
   canClick: 0
+  dontDisplay: 0
   firstSelect: {fileID: 0}
   selectedCardSlot: {fileID: 0}
   hoverAesthetics: {fileID: 744728880}
@@ -8701,6 +8702,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfScans: 3
   ghostMoveOn: 0
+  scanObject: {fileID: 8367180847112348394, guid: ec0d0835b6af9af498198d4f87d44739, type: 3}
 --- !u!1 &712489948
 GameObject:
   m_ObjectHideFlags: 0

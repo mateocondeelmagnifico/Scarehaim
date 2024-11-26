@@ -9317,6 +9317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfScans: 3
   ghostMoveOn: 0
+  scanObject: {fileID: 8367180847112348394, guid: ec0d0835b6af9af498198d4f87d44739, type: 3}
 --- !u!1 &690142830
 GameObject:
   m_ObjectHideFlags: 0
