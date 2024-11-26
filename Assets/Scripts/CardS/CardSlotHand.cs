@@ -91,6 +91,7 @@ public class CardSlotHand: CardSlot
             }
             else
             {
+                cardObject.GetComponent<SpriteRenderer>().sortingOrder = 7;
                 accelerator = 0.5f;
                 zRot = 0;
                 transform.rotation = Quaternion.identity;

@@ -650,11 +650,6 @@ public class MouseManager : MonoBehaviour
             }
         }
 
-        if (tutorialManager != null)
-        {
-            if(tutorialManager.currentTutorial == 6)
-            tutorialManager.radarDone = true;
-        }
         radarActive = false;
         pMovement.DespawnHighlights(0);
 
@@ -676,7 +671,7 @@ public class MouseManager : MonoBehaviour
     private void DisplayCard(Sprite spriteToDisplay, string description, float offSet)
     {
         if (dontDisplay) return;
-
+        
         //Move text
         Vector3 pos = descriptionText.transform.position;
         if (offSet != 0)

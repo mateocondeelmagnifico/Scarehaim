@@ -7,6 +7,7 @@ public class TrickRadar : MonoBehaviour
     public bool ghostMoveOn;
     private bool moveScans;
     public GameObject scanObject;
+    [SerializeField] private TutorialManager tutorialManager;
     private List<GameObject> scans = new List<GameObject>();
     private List<Vector3> desiredPoss = new List<Vector3>();
 
@@ -30,6 +31,10 @@ public class TrickRadar : MonoBehaviour
                     desiredPoss.RemoveAt(i);
                 }
                 moveScans = false;
+                if (tutorialManager != null)
+                {
+                   if(tutorialManager.currentTutorial == 6) tutorialManager.radarDone = true;
+                }
             }
         }
     }

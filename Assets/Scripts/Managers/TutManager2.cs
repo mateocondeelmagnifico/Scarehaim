@@ -137,10 +137,13 @@ public class TutManager2 : TutorialManager
 
             case 12:
                 hand.ActivateColliders(true);
+                break;
+
+            case 16:
                 mouseManager.dontDisplay = true;
                 break;
 
-            case 13:
+            case 18:
                 mouseManager.dontDisplay = false;
                 break;
         }

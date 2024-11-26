@@ -9025,6 +9025,7 @@ MonoBehaviour:
   numberOfScans: 3
   ghostMoveOn: 0
   scanObject: {fileID: 8367180847112348394, guid: ec0d0835b6af9af498198d4f87d44739, type: 3}
+  tutorialManager: {fileID: 0}
 --- !u!1 &690539742
 GameObject:
   m_ObjectHideFlags: 0
@@ -11372,7 +11373,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &818420429
 Transform:
   m_ObjectHideFlags: 0
@@ -22594,7 +22595,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7159921f2a12dd9429fcdb4b4e8e00c1, type: 2}
   costumes: []
   enemy: {fileID: 798634178}
-  cardsUntilExit: 5
+  cardsUntilExit: 1
   treatAmount: 2
   costumeAmount: 0
   exitCardDealt: 0
