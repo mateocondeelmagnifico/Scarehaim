@@ -193,12 +193,14 @@ public class Hand : MonoBehaviour
                 if (goUp)
                 {
                     yPos = -4;
+                    
                     DeterminePosition();
                 }
 
                 if (goDown)
                 {
                     yPos = -5;
+                    MouseManager.instance.handDisplayed = false;
                     DeterminePosition();
                 }
             }
@@ -362,6 +364,8 @@ public class Hand : MonoBehaviour
         {
             transform.GetChild(i).GetComponent<BoxCollider2D>().enabled = state;
         }
+
+        zPrompt.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = state;
     }
     private void PromoteToHand()
     {

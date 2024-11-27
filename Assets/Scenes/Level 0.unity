@@ -11373,7 +11373,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &818420429
 Transform:
   m_ObjectHideFlags: 0
@@ -22595,7 +22595,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7159921f2a12dd9429fcdb4b4e8e00c1, type: 2}
   costumes: []
   enemy: {fileID: 798634178}
-  cardsUntilExit: 1
+  cardsUntilExit: 5
   treatAmount: 2
   costumeAmount: 0
   exitCardDealt: 0

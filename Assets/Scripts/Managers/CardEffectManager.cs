@@ -31,7 +31,7 @@ public class CardEffectManager : MonoBehaviour
 
     public bool effectActive, moveHand, isEnding, hasLost;
 
-    private Vector3 desiredPos, originalPos;
+    private Vector3 desiredPos, originalPos, originalPos2;
 
     private void Awake()
     {
@@ -59,6 +59,7 @@ public class CardEffectManager : MonoBehaviour
         overlay = BoardOverlay.instance;
         soundManager = SoundManager.Instance;
         tryPayButton = paymentButtons.transform.GetChild(0).GetComponent<Image>();
+        originalPos2 = fearModTxt.transform.position;
 
         originalPos = merrowHand.transform.position;
     }
@@ -457,6 +458,16 @@ public class CardEffectManager : MonoBehaviour
             sign = "+";
         }
 
-        fearModTxt.text = sign + amount.ToString(); 
+        fearModTxt.text = sign + amount.ToString();
+
+        //If player is spending too much or going to ide, Warning
+        if (playerFear.hope + amount <= 0 || playerFear.hope + amount > 10)
+        {
+            if (playerFear.hope + amount <= 0) fearModTxt.text += "<br> Death";
+            if (playerFear.hope + amount > 10) fearModTxt.text += "<br> Too Much!";
+
+            fearModTxt.transform.position = new Vector3(originalPos2.x, originalPos2.y - 24, originalPos2.z);
+        }
+        else fearModTxt.transform.position = originalPos2;
     }
 }

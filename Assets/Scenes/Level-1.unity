@@ -6918,6 +6918,7 @@ MonoBehaviour:
   goHome: 0
   effectManager: {fileID: 1155827278}
   oldParent: {fileID: 0}
+  zRot: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -8593,6 +8594,7 @@ MonoBehaviour:
   numberOfScans: 3
   ghostMoveOn: 0
   scanObject: {fileID: 8367180847112348394, guid: ec0d0835b6af9af498198d4f87d44739, type: 3}
+  tutorialManager: {fileID: 0}
 --- !u!1 &695802235
 GameObject:
   m_ObjectHideFlags: 0
@@ -8751,6 +8753,7 @@ MonoBehaviour:
   goHome: 0
   effectManager: {fileID: 1155827278}
   oldParent: {fileID: 0}
+  zRot: 0
 --- !u!1 &728649125
 GameObject:
   m_ObjectHideFlags: 0
@@ -14160,7 +14163,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.029090405, y: -0.04936695}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -14171,7 +14174,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 19.290695, y: 10.911116}
   m_EdgeRadius: 0
 --- !u!1 &1267824059
 GameObject:
@@ -18471,6 +18474,7 @@ MonoBehaviour:
   goHome: 0
   effectManager: {fileID: 1155827278}
   oldParent: {fileID: 0}
+  zRot: 0
 --- !u!1 &1571830514
 GameObject:
   m_ObjectHideFlags: 0
