@@ -12,6 +12,7 @@ public class TutManager2 : TutorialManager
         //Give player more hope so that the tutorial doesn't kill him
         Fear playerFear = manager.player.GetComponent<Fear>();
         if (playerFear.hope < 5) playerFear.UpdateFear(5 - playerFear.hope);
+        mouseManager.canScan = false;
     }
 
     public override void Update()
@@ -124,6 +125,7 @@ public class TutManager2 : TutorialManager
         {
             case 2:
                 hand.ActivateColliders(false);
+                hand.ActivateUndoColliders(false);
                 break;
 
             case 3:
@@ -133,10 +135,17 @@ public class TutManager2 : TutorialManager
 
             case 4:
                 hand.ActivateColliders(false);
+                mouseManager.canScan = true;
                 break;
 
-            case 12:
+            case 11:
                 hand.ActivateColliders(true);
+                hand.ActivateUndoColliders(true);
+                break;
+
+            case 13:
+                hand.ActivateColliders(false);
+                hand.ActivateUndoColliders(false);
                 break;
 
             case 16:
@@ -144,6 +153,8 @@ public class TutManager2 : TutorialManager
                 break;
 
             case 18:
+                hand.ActivateColliders(true);
+                hand.ActivateUndoColliders(true);
                 mouseManager.dontDisplay = false;
                 break;
         }

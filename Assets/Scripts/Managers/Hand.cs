@@ -363,8 +363,10 @@ public class Hand : MonoBehaviour
         for(int i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).GetComponent<BoxCollider2D>().enabled = state;
-        }
-
+        }     
+    }
+    public void ActivateUndoColliders(bool state)
+    {
         zPrompt.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = state;
     }
     private void PromoteToHand()

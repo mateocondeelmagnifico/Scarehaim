@@ -26,7 +26,7 @@ public class MouseManager : MonoBehaviour
     [SerializeField] private Transform board, tricks;
 
     private bool highlightsSpawned, cardHandHovered, wantsToDisplay, playerDisplay, canFire, radarsOut;
-    public bool moveCard, cardInformed,  isInTutorial, needsTreat, radarActive, cardGrabbed, hasTreat, canClick, dontDisplay, handDisplayed;
+    public bool moveCard, cardInformed,  isInTutorial, needsTreat, radarActive, cardGrabbed, hasTreat, canClick, dontDisplay, handDisplayed, canScan;
 
     private float handtimer, displayTimer, displayTimer2, originalPos;
 
@@ -337,13 +337,19 @@ public class MouseManager : MonoBehaviour
                 {
                     if (hit.collider.gameObject.CompareTag("Hand") || cardHit.GetComponent<CardSlotHand>())
                     {
-                        if (handtimer < 1.5f) handtimer += Time.deltaTime;
-
-                        if (handtimer > 0.2f && !handDisplayed && !manager.moveCardToHand)
+                        
+                        if (!cardGrabbed || hit.point.y < -3.5f)
                         {
-                            hand.ResizeHand(true);
-                            handDisplayed = true;
+                            if (handtimer < 1.5f) handtimer += Time.deltaTime;
+
+                            if (handtimer > 0.2f && !handDisplayed && !manager.moveCardToHand)
+                            {
+                                hand.ResizeHand(true);
+                                handDisplayed = true;
+                            }
                         }
+                        else hand.ResizeHand(false);
+
                     }
                     else ShrinkHand();
                 }
@@ -363,7 +369,7 @@ public class MouseManager : MonoBehaviour
                         canFire = false;
                     }
 
-                    if (Input.GetMouseButtonDown(1) && !hasTreat)
+                    if (Input.GetMouseButtonDown(1) && !hasTreat && canScan)
                     {
                         if (radarActive)
                         {
