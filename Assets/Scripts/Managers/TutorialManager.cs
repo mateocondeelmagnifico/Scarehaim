@@ -206,6 +206,7 @@ public class TutorialManager : MonoBehaviour
             case 8:
                 manager.player.GetComponent<Movement>().DespawnHighlights(0);
                 hand.ActivateColliders(false);
+                hand.ActivateUndoColliders(false);
                 mouseManager.hover2Pos = null;
                 mouseManager.firstSelect = null;
                 break;
@@ -215,7 +216,8 @@ public class TutorialManager : MonoBehaviour
                 break;
 
             case 13:
-                hand.ActivateColliders(false);
+                hand.ActivateColliders(true);
+                hand.ActivateUndoColliders(true);
                 break;
 
             case 14:
