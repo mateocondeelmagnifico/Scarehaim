@@ -8705,6 +8705,7 @@ MonoBehaviour:
   numberOfScans: 3
   ghostMoveOn: 0
   scanObject: {fileID: 8367180847112348394, guid: ec0d0835b6af9af498198d4f87d44739, type: 3}
+  scanObjectVert: {fileID: 704912194572388379, guid: 8c7d1a923606de448b7adc0b0fcf3354, type: 3}
   tutorialManager: {fileID: 0}
 --- !u!1 &712489948
 GameObject:

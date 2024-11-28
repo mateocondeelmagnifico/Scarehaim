@@ -6,7 +6,7 @@ public class TrickRadar : MonoBehaviour
     public int numberOfScans;
     public bool ghostMoveOn;
     private bool moveScans;
-    public GameObject scanObject;
+    public GameObject scanObject, scanObjectVert;
     [SerializeField] private TutorialManager tutorialManager;
     private List<GameObject> scans = new List<GameObject>();
     private List<Vector3> desiredPoss = new List<Vector3>();
@@ -26,7 +26,7 @@ public class TrickRadar : MonoBehaviour
             }
            
             //If the last scan has arrived, destroy all
-            if (scans[scans.Count -1].transform.position.x >= desiredPoss[desiredPoss.Count -1].x)
+            if (Vector3.Distance(scans[scans.Count - 1].transform.position, desiredPoss[desiredPoss.Count - 1])  <= 0.1f)
             {
                 int listCount = scans.Count;
                 for (int i = listCount - 1; i >= 0; i--)
@@ -61,10 +61,26 @@ public class TrickRadar : MonoBehaviour
     {
         //Make scanner objects
         //Makes as much as you want
+        GameObject myScanObject = scanObject;
+        Vector3 offset = new Vector3(0.85f,0,0);
+        Quaternion myRot = Quaternion.identity;
+        if (whatDirection == Direction.up || whatDirection == Direction.down)
+        {
+            myRot = Quaternion.Euler(0,0,90);
+            myScanObject = scanObjectVert;
+
+            if(whatDirection == Direction.up) offset = new Vector3(0, 1.3f, 0);
+            else offset = new Vector3(0, -1.3f, 0);
+        }
+        else
+        {
+            if (whatDirection == Direction.left) offset = new Vector3(-0.85f, 0, 0);
+        }
+
         for(int i = 0; i < cardPos.Count; i++)
         {
-            scans.Add(GameObject.Instantiate(scanObject, new Vector3(cardPos[i].x -0.85f, cardPos[i].y, cardPos[i].z), Quaternion.identity));
-            desiredPoss.Add(new Vector3(scans[i].transform.position.x + 1.75f, scans[i].transform.position.y, scans[i].transform.position.z));
+            scans.Add(GameObject.Instantiate(myScanObject, cardPos[i] - offset, myRot));
+            desiredPoss.Add(scans[i].transform.position + (offset * 2));
         }
         moveScans = true;
     }
