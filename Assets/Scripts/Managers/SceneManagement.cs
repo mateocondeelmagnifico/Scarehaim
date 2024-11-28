@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -14,7 +15,9 @@ public class SceneManagement : MonoBehaviour
     private GameObject oldMenu;
 
     public bool canPause;
-    private bool wasActive;
+    private bool wasActive, activate;
+
+    private float opacity;
     private void Awake()
     {
         if (Instance == null)
@@ -29,7 +32,7 @@ public class SceneManagement : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) && canPause)
+        if (Input.GetKeyDown(KeyCode.Escape) && canPause)
         {
             if(currentMenu == null)
             {
@@ -39,6 +42,64 @@ public class SceneManagement : MonoBehaviour
             {
                 ExitMenu(currentMenu);
             }
+        }
+
+        //Check all children of a menu and increase their opacity
+        if (activate && currentMenu != null)
+        {
+            ReduceMenuOpacity();
+
+            opacity += 0.022f;
+
+            if (opacity >= 1)
+            {
+                opacity = 0;
+                activate = false;
+            }
+        }
+    }
+
+    private void ReduceMenuOpacity()
+    {
+        for (int i = 0; i < currentMenu.transform.childCount; i++)
+        {
+            Transform relevantObj = currentMenu.transform.GetChild(i);
+
+            ChangeOpacity(relevantObj);
+
+            if (relevantObj.childCount > 0)
+            {
+                for (int e = 0; e < relevantObj.transform.childCount; e++)
+                {
+                    Transform relevantObj2 = relevantObj.transform.GetChild(e);
+
+                    ChangeOpacity(relevantObj2);
+
+                    if (relevantObj2.childCount > 0)
+                    {
+                        for (int r = 0; r < relevantObj2.transform.childCount; r++)
+                        {
+                            ChangeOpacity(relevantObj2.transform.GetChild(r));
+                        }
+                    }
+                }
+            }
+        }
+    }
+    private void ChangeOpacity(Transform myObject)
+    {
+        Color relevantColor = Color.white;
+
+        if (myObject.GetComponent<Image>())
+        {
+            relevantColor = myObject.GetComponent<Image>().color;
+            myObject.GetComponent<Image>().color = new Color(relevantColor.r, relevantColor.g, relevantColor.b, opacity);
+        }
+
+        if (myObject.GetComponent<TextMeshProUGUI>())
+        {
+            relevantColor = myObject.GetComponent<TextMeshProUGUI>().color;
+            myObject.GetComponent<TextMeshProUGUI>().color = new Color(relevantColor.r, relevantColor.g, relevantColor.b, opacity);
         }
     }
     public void ChangeScene(int whatScene)
@@ -72,8 +133,10 @@ public class SceneManagement : MonoBehaviour
         if (currentMenu != null) currentMenu.SetActive(false);
         oldMenu = currentMenu;
         currentMenu = menu;
-        menu.SetActive(true);       
-        
+        ReduceMenuOpacity();
+        menu.SetActive(true);
+        activate = true;
+
         Time.timeScale = 0;
     }
     public void ReturnToMenu()
