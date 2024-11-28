@@ -8394,6 +8394,8 @@ MonoBehaviour:
   hasTreat: 0
   canClick: 0
   dontDisplay: 0
+  handDisplayed: 0
+  canScan: 1
   firstSelect: {fileID: 0}
   selectedCardSlot: {fileID: 0}
   hoverAesthetics: {fileID: 744728880}

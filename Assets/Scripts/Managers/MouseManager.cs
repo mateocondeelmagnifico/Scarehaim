@@ -359,14 +359,106 @@ public class MouseManager : MonoBehaviour
                 #region Check Radar
                 if(manager.CheckIsInCheckMovement())
                 {
+                    TrickRadar.Direction radarDirection = new TrickRadar.Direction();
+
+                    //Check Direction of radar
+                    if (radarActive)
+                    {
+                        #region Declare variables & check Direction
+                        for (int i = 0; i < 3; i++)
+                        {
+                            radarPositions[i] = new Vector2(20, 20);
+                            //If they stay in this value, they won't appear
+                        }
+
+                        Vector2 playerPos = new Vector2(playerMove.transform.position.x, playerMove.transform.position.y);
+                        if (!highlightsSpawned)
+                        {
+                            pMovement.SpawnHighlight(3);
+                            highlightsSpawned = true;
+                        }
+
+                        //Place highlights at their respective place
+                        if (Mathf.Abs(hit.point.x - playerPos.x) > Mathf.Abs(hit.point.y - playerPos.y))
+                        {
+                            if (hit.point.x > playerPos.x)
+                            {
+                                //Right
+                                if (playerPos.x < 7.93)
+                                {
+                                    if (playerPos.y < 2.65f) radarPositions[0] = new Vector2(playerPos.x + 2, playerPos.y + 2.7f);
+                                    radarPositions[1] = new Vector2(playerPos.x + 2, playerPos.y);
+                                    if (playerPos.y > -2.69f) radarPositions[2] = new Vector2(playerPos.x + 2, playerPos.y - 2.7f);
+                                    radarDirection = TrickRadar.Direction.right;
+                                }
+                                else canFire = false;
+                            }
+                            else
+                            {
+                                //Left
+                                if (playerPos.x > -0.05)
+                                {
+                                    if (playerPos.y < 2.65f) radarPositions[0] = new Vector2(playerPos.x - 2, playerPos.y + 2.7f);
+                                    radarPositions[1] = new Vector2(playerPos.x - 2, playerPos.y);
+                                    if (playerPos.y > -2.69f) radarPositions[2] = new Vector2(playerPos.x - 2, playerPos.y - 2.7f);
+                                    radarDirection = TrickRadar.Direction.left;
+                                }
+                                else canFire = false;
+                            }
+                        }
+                        else
+                        {
+                            if (hit.point.y > playerPos.y)
+                            {
+                                //Up
+                                if (playerPos.y < 2.65)
+                                {
+                                    if (playerPos.x > -0.05) radarPositions[0] = new Vector2(playerPos.x - 2, playerPos.y + 2.7f);
+                                    radarPositions[1] = new Vector2(playerPos.x, playerPos.y + 2.7f);
+                                    if (playerPos.x < 7.93) radarPositions[2] = new Vector2(playerPos.x + 2, playerPos.y + 2.7f);
+                                    radarDirection = TrickRadar.Direction.up;
+                                }
+                                else canFire = false;
+                            }
+                            else
+                            {
+                                //Down
+                                if (playerPos.y > -2.5)
+                                {
+                                    if (playerPos.x > -0.05) radarPositions[0] = new Vector2(playerPos.x - 2, playerPos.y - 2.7f);
+                                    radarPositions[1] = new Vector2(playerPos.x, playerPos.y - 2.7f);
+                                    if (playerPos.x < 7.93) radarPositions[2] = new Vector2(playerPos.x + 2, playerPos.y - 2.7f);
+                                    radarDirection = TrickRadar.Direction.down;
+                                }
+                                else canFire = false;
+                            }
+                        }
+                        #endregion
+
+                        //Place highlights in the spots if they are valid
+                        for (int i = 0; i < 3; i++)
+                        {
+                            pMovement.MoveHighlights(i, radarPositions[i], "blue");
+
+                            if (radarPositions[i] != new Vector2(20, 20)) canFire = true;
+                        }
+
+                        //Set radar text to reflect if you fire the radar
+                        if (!canFire) radarText.text = "";
+                        else radarText.text = (trickRadar.numberOfScans + 1).ToString();
+                    }
+
                     #region Toggle and Fire radar
                     if (Input.GetMouseButtonDown(0) && radarActive && canFire)
                     {
-                        FireRadar();
-                        boardOverlay.DeactivatOverlay();
-                        radarText.text = "";
-                        soundManager.PlaySound("Radar");
-                        canFire = false;
+                        if(tutorialManager == null || (radarDirection == TrickRadar.Direction.right || tutorialManager.currentTutorial != 6))
+                        {
+                            FireRadar(radarDirection);
+                            boardOverlay.DeactivatOverlay();
+                            radarText.text = "";
+                            soundManager.PlaySound("Radar");
+                            canFire = false;
+                        }                       
                     }
 
                     if (Input.GetMouseButtonDown(1) && !hasTreat && canScan)
@@ -398,90 +490,7 @@ public class MouseManager : MonoBehaviour
                             radarText.transform.position = new Vector3(hit.point.x + 0.8f, hit.point.y - 0.8f, -1);
                         }
                     }  
-                    #endregion
-
-                    //Check Direction of radar
-                    if (radarActive)
-                    {
-                        #region Declare variables & check Direction
-                        for(int i = 0; i < 3; i++)
-                        {
-                            radarPositions[i] = new Vector2(20,20);
-                            //If they stay in this value, they won't appear
-                        }
-                        
-                        Vector2 playerPos = new Vector2(playerMove.transform.position.x, playerMove.transform.position.y);
-                        if (!highlightsSpawned)
-                        {
-                            pMovement.SpawnHighlight(3);
-                            highlightsSpawned = true;
-                        }
-                        
-                        //Place highlights at their respective place
-                        if (Mathf.Abs(hit.point.x - playerPos.x) > Mathf.Abs(hit.point.y - playerPos.y))
-                        {
-                            if (hit.point.x > playerPos.x)
-                            {
-                                //Right
-                                if(playerPos.x < 7.93)
-                                {
-                                    if(playerPos.y <  2.65f) radarPositions[0] = new Vector2(playerPos.x + 2, playerPos.y + 2.7f);
-                                    radarPositions[1] = new Vector2(playerPos.x + 2, playerPos.y);
-                                    if (playerPos.y > -2.69f) radarPositions[2] = new Vector2(playerPos.x + 2, playerPos.y - 2.7f);
-                                }
-                                else canFire = false;
-                            }
-                            else
-                            {
-                                //Left
-                                if (playerPos.x > -0.05)
-                                {
-                                    if (playerPos.y < 2.65f) radarPositions[0] = new Vector2(playerPos.x - 2, playerPos.y + 2.7f);
-                                    radarPositions[1] = new Vector2(playerPos.x - 2, playerPos.y);
-                                    if (playerPos.y > -2.69f) radarPositions[2] = new Vector2(playerPos.x - 2, playerPos.y - 2.7f);
-                                }
-                                else canFire = false;
-                            }
-                        }
-                        else
-                        {
-                            if (hit.point.y > playerPos.y)
-                            {
-                                //Up
-                                if (playerPos.y < 2.65)
-                                {
-                                    if(playerPos.x > -0.05) radarPositions[0] = new Vector2(playerPos.x - 2, playerPos.y + 2.7f);
-                                    radarPositions[1] = new Vector2(playerPos.x, playerPos.y + 2.7f);
-                                    if (playerPos.x < 7.93) radarPositions[2] = new Vector2(playerPos.x + 2, playerPos.y + 2.7f);
-                                }
-                                else canFire = false;
-                            }
-                            else
-                            {
-                                //Down
-                                if (playerPos.y > -2.5)
-                                {
-                                    if (playerPos.x > -0.05) radarPositions[0] = new Vector2(playerPos.x - 2, playerPos.y - 2.7f);
-                                    radarPositions[1] = new Vector2(playerPos.x, playerPos.y - 2.7f);
-                                    if (playerPos.x < 7.93) radarPositions[2] = new Vector2(playerPos.x + 2, playerPos.y - 2.7f);
-                                }
-                                else canFire = false;
-                            }
-                        }
-                        #endregion
-
-                        //Place highlights in the spots if they are valid
-                        for (int i = 0; i < 3; i++)
-                        {
-                            pMovement.MoveHighlights(i, radarPositions[i], "blue");
-
-                            if(radarPositions[i] != new Vector2(20,20)) canFire = true;
-                        }
-
-                        //Set radar text to reflect if you fire the radar
-                        if(!canFire) radarText.text = "";
-                        else radarText.text = (trickRadar.numberOfScans + 1).ToString();
-                    }
+                    #endregion  
                 }
                 #endregion
             }
@@ -628,7 +637,7 @@ public class MouseManager : MonoBehaviour
         }
         return iReach;
     }
-    private void FireRadar()
+    private void FireRadar(TrickRadar.Direction scanDir)
     {
         List<Vector3> posList =new List<Vector3>();
 
@@ -659,7 +668,7 @@ public class MouseManager : MonoBehaviour
         radarActive = false;
         pMovement.DespawnHighlights(0);
 
-        trickRadar.PlayScanAnim(posList);
+        trickRadar.PlayScanAnim(posList, scanDir);
     }
     public void DeactivateDisplay()
     {

@@ -9317,7 +9317,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfScans: 3
   ghostMoveOn: 0
-  scanRequired: 0
   scanObject: {fileID: 8367180847112348394, guid: ec0d0835b6af9af498198d4f87d44739, type: 3}
   tutorialManager: {fileID: 818420431}
 --- !u!1 &690142830
@@ -25932,7 +25931,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: tutorialTexts.Array.data[4]
-      value: "You can\u2019t see them, but there are three of them hidden in enviroment
+      value: "You can\u2019t see them, but there are three of them hidden in environment
         cards."
       objectReference: {fileID: 0}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}

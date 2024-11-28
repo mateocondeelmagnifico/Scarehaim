@@ -11,6 +11,11 @@ public class TrickRadar : MonoBehaviour
     private List<GameObject> scans = new List<GameObject>();
     private List<Vector3> desiredPoss = new List<Vector3>();
 
+    public enum Direction
+    {
+        left, right, down, up
+    }
+
     private void Update()
     {
         if(moveScans)
@@ -52,7 +57,7 @@ public class TrickRadar : MonoBehaviour
         return isTrue;
    }
 
-    public void PlayScanAnim(List <Vector3> cardPos)
+    public void PlayScanAnim(List <Vector3> cardPos, Direction whatDirection)
     {
         //Make scanner objects
         //Makes as much as you want

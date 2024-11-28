@@ -11375,7 +11375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &818420429
 Transform:
   m_ObjectHideFlags: 0
@@ -11413,7 +11413,7 @@ MonoBehaviour:
   - "As you know, you\u2019re playing with your brother\u2019s card."
   - Be careful! His soul is contained in it!
   - Double click on an adjacent card to move to it.
-  - That was an enviroment card, discard 10 and you will win.
+  - That was an environment card, discard 10 and you will win.
   - Little Farrell can move one step each turn, in any direction.
   - Oh, look! A nice sweet Treat Card! Go grab it.
   - "It\u2019s in your hand now! "
@@ -22597,7 +22597,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7159921f2a12dd9429fcdb4b4e8e00c1, type: 2}
   costumes: []
   enemy: {fileID: 798634178}
-  cardsUntilExit: 5
+  cardsUntilExit: 1
   treatAmount: 2
   costumeAmount: 0
   exitCardDealt: 0
