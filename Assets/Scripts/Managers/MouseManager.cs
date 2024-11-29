@@ -100,6 +100,9 @@ public class MouseManager : MonoBehaviour
         if(radarsOut)
         {
             displayTimer2 -= Time.deltaTime;
+
+            radarText.color = new Color(radarText.color.r, radarText.color.g, radarText.color.b, displayTimer2 /0.6f);
+
             if (displayTimer2 <= 0)
             {
                 radarsOut = false;
@@ -488,6 +491,7 @@ public class MouseManager : MonoBehaviour
                             radarsOut = true;
                             displayTimer2 = 0.6f;
                             radarText.color = Color.red;
+                            radarText.color = new Color(radarText.color.r, radarText.color.g, radarText.color.b,1);
                             radarText.enabled = true;
                             radarText.text = "0";
                             radarText.transform.position = new Vector3(hit.point.x + 0.8f, hit.point.y - 0.8f, -1);
