@@ -60,7 +60,7 @@ public class TrickRadar : MonoBehaviour
     public void PlayScanAnim(List <Vector3> cardPos, Direction whatDirection)
     {
         //Make scanner objects
-        //Makes as much as you want
+        //Makes as much as you need
         GameObject myScanObject = scanObject;
         Vector3 offset = new Vector3(0.85f,0,0);
         Quaternion myRot = Quaternion.identity;

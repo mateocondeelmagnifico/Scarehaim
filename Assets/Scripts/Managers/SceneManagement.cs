@@ -10,6 +10,7 @@ public class SceneManagement : MonoBehaviour
     public static SceneManagement Instance { get; private set; }
     private AsyncOperation operation;
     [SerializeField] private GameObject skipTutorialMenu;
+    [SerializeField] private TextMeshProUGUI finalTips;
 
     public GameObject gameWonMenu, optionsMenu, pauseMenu, blackscreen, loadingIcon, loadingMenu, currentMenu;
     private GameObject oldMenu;
@@ -18,6 +19,10 @@ public class SceneManagement : MonoBehaviour
     private bool wasActive, activate;
 
     private float opacity;
+
+    [TextArea]
+    [SerializeField] private string[] tips;
+    
     private void Awake()
     {
         if (Instance == null)
@@ -138,6 +143,11 @@ public class SceneManagement : MonoBehaviour
         activate = true;
 
         Time.timeScale = 0;
+    }
+    public void DisplayDeathMenu(GameObject menu)
+    {
+        finalTips.text = tips[Random.Range(0, tips.Length)];
+        DisplayMenu(menu);
     }
     public void ReturnToMenu()
     {

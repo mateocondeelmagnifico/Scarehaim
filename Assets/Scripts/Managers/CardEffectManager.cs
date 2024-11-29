@@ -398,7 +398,7 @@ public class CardEffectManager : MonoBehaviour
                     }
                 }
 
-                SetFearModTxt(Mathf.Clamp(amount, 2, 10 - playerFear.hope));
+                SetFearModTxt(amount);
             }
             #endregion
         }

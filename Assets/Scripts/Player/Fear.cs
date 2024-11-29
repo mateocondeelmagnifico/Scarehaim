@@ -67,7 +67,7 @@ public class Fear : MonoBehaviour
             hope = 0;
             Time.timeScale = 0;
             CardEffectManager.Instance.hasLost = true;
-            SceneManagement.Instance.DisplayMenu(gameOverMenu);
+            SceneManagement.Instance.DisplayDeathMenu(gameOverMenu);
             SceneManagement.Instance.canPause = false;
 
             SoundManager.Instance.PlaySound("Game Over");

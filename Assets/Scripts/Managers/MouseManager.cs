@@ -337,7 +337,7 @@ public class MouseManager : MonoBehaviour
                 {
                     if (hit.collider.gameObject.CompareTag("Hand") || cardHit.GetComponent<CardSlotHand>())
                     {
-                        
+
                         if (!cardGrabbed || hit.point.y < -3.5f)
                         {
                             if (handtimer < 1.5f) handtimer += Time.deltaTime;
@@ -348,8 +348,11 @@ public class MouseManager : MonoBehaviour
                                 handDisplayed = true;
                             }
                         }
-                        else hand.ResizeHand(false);
-
+                        else
+                        {
+                            handtimer = 0;
+                            hand.ResizeHand(false);
+                        }
                     }
                     else ShrinkHand();
                 }
