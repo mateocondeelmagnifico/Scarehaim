@@ -50,6 +50,7 @@ public class SceneManagement : MonoBehaviour
         }
 
         //Check all children of a menu and increase their opacity
+        /*
         if (activate && currentMenu != null)
         {
             ReduceMenuOpacity();
@@ -62,6 +63,7 @@ public class SceneManagement : MonoBehaviour
                 activate = false;
             }
         }
+        */
     }
 
     private void ReduceMenuOpacity()
@@ -138,7 +140,7 @@ public class SceneManagement : MonoBehaviour
         if (currentMenu != null) currentMenu.SetActive(false);
         oldMenu = currentMenu;
         currentMenu = menu;
-        ReduceMenuOpacity();
+        //ReduceMenuOpacity();
         menu.SetActive(true);
         activate = true;
 
