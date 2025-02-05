@@ -75,7 +75,7 @@ MonoBehaviour:
   - name: Next Stage
     volume: 0.5
     source: 2
-    clip: {fileID: 8300000, guid: 2e10db669debd9b4e86db2fa86f53b89, type: 3}
+    clip: {fileID: 8300000, guid: e133361cc24e75b49a4fef0b7dd6bc30, type: 3}
   - name: Radar
     volume: 0.4
     source: 0
@@ -107,6 +107,7 @@ MonoBehaviour:
   volumeSlider: {fileID: 0}
   autoPlayMusic: 1
   volumeSetting: 0
+  isFirst: 0
 --- !u!82 &1517937604603110046
 AudioSource:
   m_ObjectHideFlags: 0
