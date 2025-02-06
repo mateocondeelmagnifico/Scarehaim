@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class OptionsManager : MonoBehaviour
@@ -6,6 +7,7 @@ public class OptionsManager : MonoBehaviour
     private InfoKeeper infoKeeper;
     private bool isFullScreen;
     private int currentRes;
+    private Vector2 trueRes;
 
     private void Start()
     {
@@ -93,17 +95,25 @@ public class OptionsManager : MonoBehaviour
                 break;
         }
 
-        Screen.SetResolution((int)values.x, (int)values.y, isFullScreen);
-        PlayerPrefs.SetInt("Resolution", number);
-        infoKeeper.Resolution = number;
-        infoKeeper.Fullsreen = isFullScreen;
-        Camera.main.pixelRect = new Rect(0, 0, Screen.currentResolution.width, Screen.currentResolution.height);
+
+        trueRes = values;
         resText.text = values.x.ToString() + "x" + values.y.ToString();
     }
 
     public void UpdateVolume()
     {
+        //Tambien updatea la resolucion, lo llama un botón
         InfoKeeper.instance.volume = SoundManager.Instance.volumeSetting;
         PlayerPrefs.SetFloat("Volume", SoundManager.Instance.volumeSetting);
+        UpdateRes(trueRes);
+    }
+
+    private void UpdateRes(Vector2 value)
+    {
+        Screen.SetResolution((int)value.x, (int)value.y, isFullScreen);
+        PlayerPrefs.SetInt("Resolution", currentRes);
+        infoKeeper.Resolution = currentRes;
+        infoKeeper.Fullsreen = isFullScreen;
+        Camera.main.pixelRect = new Rect(0, 0, Screen.currentResolution.width, Screen.currentResolution.height);
     }
 }
