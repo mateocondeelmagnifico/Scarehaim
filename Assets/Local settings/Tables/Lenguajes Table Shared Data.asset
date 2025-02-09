@@ -112,21 +112,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5143381430272
-    m_Key: 'Are you sure you
-
-      want to exit?'
+    m_Key: Are you sure you want to exit?
     m_Metadata:
       m_Items: []
   - m_Id: 5337258938368
-    m_Key: 'Are you sure you
-
-      want to retry?'
+    m_Key: Are you sure you want to retry?
     m_Metadata:
       m_Items: []
   - m_Id: 5487914143744
-    m_Key: 'Are you sure you
-
-      want to return?'
+    m_Key: Are you sure you want to return?
     m_Metadata:
       m_Items: []
   - m_Id: 6059614556160
