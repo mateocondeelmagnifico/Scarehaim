@@ -17,7 +17,131 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: f7361ff28c69ca048959392000cf1837, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 442535530496
+    m_Localized: Comenzar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1236768935936
+    m_Localized: Opciones
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1422052315136
+    m_Localized: Salir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1545431961600
+    m_Localized: Cargando...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1739980558336
+    m_Localized: Volumen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1820339228672
+    m_Localized: Como jugar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1929797980160
+    m_Localized: "Resoluci\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2023679086592
+    m_Localized: Pantalla completa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2217426571264
+    m_Localized: Volver
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2419029987328
+    m_Localized: Salir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2709598785536
+    m_Localized: Movimiento
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3200063918080
+    m_Localized: "Resoluci\xF3n HD Recomendada"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3323078660096
+    m_Localized: Jugar Tutorial?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3447695626240
+    m_Localized: Si
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3477961723904
+    m_Localized: Aguantarlo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3892635783168
+    m_Localized: Pagar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3941860134912
+    m_Localized: No pagar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4115336548352
+    m_Localized: Victoria
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4265790427136
+    m_Localized: Siguiente Nivel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4450843119616
+    m_Localized: Pausa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4584054214656
+    m_Localized: Continuar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4743077056512
+    m_Localized: Volver a empezar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4814376030208
+    m_Localized: "Men\xFA Principal"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5041136881664
+    m_Localized: Derrota
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5143381430272
+    m_Localized: "\xBFEst\xE1s seguro que quieres salir?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5337258938368
+    m_Localized: "\xBFEst\xE1s seguro de que quieres volver a empezar?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5487914143744
+    m_Localized: "\xBFEst\xE1s seguro de que quieres volver?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6059614556160
+    m_Localized: Segundo nivel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6190346817536
+    m_Localized: Volver al nivel anterior
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6388817088512
+    m_Localized: "El progreso se perder\xE1"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6639665827840
+    m_Localized: El Pantano
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

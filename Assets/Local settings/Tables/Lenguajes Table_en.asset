@@ -17,7 +17,137 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: f7361ff28c69ca048959392000cf1837, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 442535530496
+    m_Localized: Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1236768935936
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1422052315136
+    m_Localized: Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1545431961600
+    m_Localized: Loading...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1739980558336
+    m_Localized: Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1820339228672
+    m_Localized: How to play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1929797980160
+    m_Localized: Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2023679086592
+    m_Localized: Fullscreen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2217426571264
+    m_Localized: Go Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2419029987328
+    m_Localized: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2709598785536
+    m_Localized: Movement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3200063918080
+    m_Localized: HD Resolution Recommended
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3323078660096
+    m_Localized: Play Tutorial?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3447695626240
+    m_Localized: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3477961723904
+    m_Localized: Endure it
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3892635783168
+    m_Localized: Pay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3941860134912
+    m_Localized: Don't Pay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4115336548352
+    m_Localized: Game Won
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4265790427136
+    m_Localized: Next Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4450843119616
+    m_Localized: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4584054214656
+    m_Localized: Resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4743077056512
+    m_Localized: Retry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4814376030208
+    m_Localized: Main Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5041136881664
+    m_Localized: Game Over
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5143381430272
+    m_Localized: 'Are you sure you
+
+      want to exit?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5337258938368
+    m_Localized: 'Are you sure you
+
+      want to retry?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5487914143744
+    m_Localized: 'Are you sure you
+
+      want to return?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6059614556160
+    m_Localized: Second Stage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6190346817536
+    m_Localized: Return to previous Stage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6388817088512
+    m_Localized: Progress Will be lost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6639665827840
+    m_Localized: The Swamp
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

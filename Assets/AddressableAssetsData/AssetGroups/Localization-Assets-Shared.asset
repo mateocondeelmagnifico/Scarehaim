@@ -17,11 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 9535d35922131f74ea13f3581553ff28
   m_SerializeEntries:
-  - m_GUID: 18005f5383e4c8842ae6b615019cca2d
-    m_Address: Assets/Local settings/Tables/Base Table Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f7361ff28c69ca048959392000cf1837
     m_Address: Assets/Local settings/Tables/Lenguajes Table Shared Data.asset
     m_ReadOnly: 1

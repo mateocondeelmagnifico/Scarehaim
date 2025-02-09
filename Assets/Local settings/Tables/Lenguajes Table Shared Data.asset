@@ -14,7 +14,137 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TableCollectionName: Lenguajes Table
   m_TableCollectionNameGuidString: f7361ff28c69ca048959392000cf1837
-  m_Entries: []
+  m_Entries:
+  - m_Id: 442535530496
+    m_Key: Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1236768935936
+    m_Key: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1422052315136
+    m_Key: Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1545431961600
+    m_Key: Loading
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1739980558336
+    m_Key: Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1820339228672
+    m_Key: How to play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1929797980160
+    m_Key: Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2023679086592
+    m_Key: Fullscreen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2217426571264
+    m_Key: Go Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2419029987328
+    m_Key: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2709598785536
+    m_Key: Movement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3200063918080
+    m_Key: HD Resolution Recommended
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3323078660096
+    m_Key: Play Tutorial?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3447695626240
+    m_Key: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3477961723904
+    m_Key: Endure it
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3892635783168
+    m_Key: Pay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3941860134912
+    m_Key: Don't Pay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4115336548352
+    m_Key: Game Won
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4265790427136
+    m_Key: Next Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4450843119616
+    m_Key: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4584054214656
+    m_Key: Resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4743077056512
+    m_Key: Retry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4814376030208
+    m_Key: Main Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5041136881664
+    m_Key: Game Over
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5143381430272
+    m_Key: 'Are you sure you
+
+      want to exit?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5337258938368
+    m_Key: 'Are you sure you
+
+      want to retry?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5487914143744
+    m_Key: 'Are you sure you
+
+      want to return?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6059614556160
+    m_Key: Second Stage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6190346817536
+    m_Key: Return to previous Stage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6388817088512
+    m_Key: Progress Will be lost
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6639665827840
+    m_Key: The Swamp
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
