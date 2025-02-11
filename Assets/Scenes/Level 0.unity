@@ -12653,6 +12653,18 @@ MonoBehaviour:
   inTutorial: 1
   displayButton: 0
   inTrap: 0
+  test:
+    m_TableReference:
+      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
+    m_TableEntryReference:
+      m_KeyId: 481147140984832
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &943855796
 GameObject:
   m_ObjectHideFlags: 0

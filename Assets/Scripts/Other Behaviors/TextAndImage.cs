@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization;
 
 [System.Serializable]
 public class TextAndImage
 {
     public Sprite image;
 
-    [TextArea]
-    public string text, title;
+    public LocalizedString text, title;
 }

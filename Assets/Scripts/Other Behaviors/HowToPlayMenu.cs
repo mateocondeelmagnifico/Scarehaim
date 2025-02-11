@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,8 +37,8 @@ public class HowToPlayMenu : MonoBehaviour
         else arrowRight.SetActive(true);
         #endregion
 
-        titulo.text = tutorials[currentTutorial].title;
-        texto.text = tutorials[currentTutorial].text;
+        titulo.text = tutorials[currentTutorial].title.GetLocalizedString();
+        texto.text = tutorials[currentTutorial].text.GetLocalizedString();
         contador.text = (currentTutorial + 1).ToString() + "/" + tutorials.Length.ToString();
         imagen.sprite = tutorials[currentTutorial].image;
     }

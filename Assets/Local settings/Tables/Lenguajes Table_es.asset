@@ -146,6 +146,56 @@ MonoBehaviour:
     m_Localized: "Volver al Men\xFA"
     m_Metadata:
       m_Items: []
+  - m_Id: 477842813767680
+    m_Localized: "Bueno Deidre, ver\xE1s que este juego es muy f\xE1cil"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 481147140984832
+    m_Localized: "No te preocupes Deidre, ver\xE1s que este juego es muy simple"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 482361438130176
+    m_Localized: "Anda ni\xF1a, que tu hermanito est\xE1 llorando"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 482534235066368
+    m_Localized: "Que mal te portas con \xE9l! Se nota que eres la hermana grande"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 482540182589440
+    m_Localized: "Tiene que ser f\xE1cil jugar sin un monstruo a tus espaldas, tu
+      hermano sin embargo..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 482541856116736
+    m_Localized: Ay... tu pobre hermanito se ha echado a llorar!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 483224856580096
+    m_Localized: Eres todo un listillo no?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 483284021432320
+    m_Localized: "Ay ni\xF1os, no volv\xE1is a hacer eso nunca"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 483295014703104
+    m_Localized: "Est\xE1is empezando a ser un estorbo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 483327868686336
+    m_Localized: "No entiendo como vuestra madre aguanta a un par de cr\xEDos tan
+      molestos."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 483757994561536
+    m_Localized: Hueles...Delicioso
+    m_Metadata:
+      m_Items: []
+  - m_Id: 483806115811328
+    m_Localized: Casi puedo tocarte
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class TextManager : MonoBehaviour
 {
@@ -37,6 +39,7 @@ public class TextManager : MonoBehaviour
 
     public bool fearReached, closeToEnemy, inTutorial, displayButton, inTrap; //accesed by enemyMovement
     private bool displayText, hasTalked;
+
     private void Awake()
     {
         if(Instance == null)
@@ -54,7 +57,8 @@ public class TextManager : MonoBehaviour
 
     void Update()
     {
-        if(startTextCD > 0) startTextCD -= Time.deltaTime;
+
+        if (startTextCD > 0) startTextCD -= Time.deltaTime;
         else if (!hasTalked)
         {
             Talk(currentState);

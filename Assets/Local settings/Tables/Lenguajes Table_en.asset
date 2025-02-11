@@ -146,6 +146,55 @@ MonoBehaviour:
     m_Localized: Back To Menu
     m_Metadata:
       m_Items: []
+  - m_Id: 477842813767680
+    m_Localized: "Well, Deidre, this game is so easy, you\u2019ll see"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 481147140984832
+    m_Localized: "Well, Deidre, this game is so easy, you\u2019ll see"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 482361438130176
+    m_Localized: "C\u2019mon, girl, your little brother is crying"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 482534235066368
+    m_Localized: "You are so mean to him! No doubt you\u2019re the older one"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 482540182589440
+    m_Localized: "It has to be so easy to play when the bad guy is not right behind
+      you\u2026 but your brother"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 482541856116736
+    m_Localized: "Aw\u2026 your little brother is sobbing! Poor thing"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 483224856580096
+    m_Localized: "You are very smart, aren\u2019t you?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 483284021432320
+    m_Localized: "My, my, children. Don\u2019t do that again"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 483295014703104
+    m_Localized: You both are starting to be a nuisance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 483327868686336
+    m_Localized: How can your mother stand such an annoying pair of kids?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 483757994561536
+    m_Localized: "You smell\u2026 good"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 483806115811328
+    m_Localized: I can almost touch you
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
