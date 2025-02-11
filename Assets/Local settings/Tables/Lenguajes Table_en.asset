@@ -195,6 +195,97 @@ MonoBehaviour:
     m_Localized: I can almost touch you
     m_Metadata:
       m_Items: []
+  - m_Id: 687544503914496
+    m_Localized: Double click on an adjacent card to move to it
+    m_Metadata:
+      m_Items: []
+  - m_Id: 687844199518208
+    m_Localized: 'Moving to an enviroment decreases the counter to exit.
+
+      When
+      you get to 0 an exit card will appear.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 688099913650176
+    m_Localized: 'Treat and costume cards will give you benefits when used.
+
+      Enemies
+      will give you negative effects.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 688426595405824
+    m_Localized: "There are 3 tricks hidden inside the cards. in each level\r.\nIf
+      you step on them you will be punished."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 688687460143104
+    m_Localized: 'Treats allow you to move two spaces in one move and skip over enemies.
+
+      Costumes
+      allow you to move twice for three turns'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 689480812744704
+    m_Localized: 'The merrow starts chasing you after two moves.
+
+      She will
+      block your way if you''re using a treat and kill you if she touches you'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 689926847614976
+    m_Localized: 'Monsters and tricks will make you lose courage, you lose if it
+      reaches 0.
+
+      At the end of the stage you can trade treats to increase
+      courage.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 690184046530560
+    m_Localized: You can activate the radar by pressing the Right Mouse Button, you
+      can then use with the Left Mouse Button. It can be used 3 times per round.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 690442860253184
+    m_Localized: The radar can detect tricks. When it detects one an eye will appear
+      over it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 691063776628736
+    m_Localized: How To Win
+    m_Metadata:
+      m_Items: []
+  - m_Id: 691114678702080
+    m_Localized: Special Cards
+    m_Metadata:
+      m_Items: []
+  - m_Id: 691160178511872
+    m_Localized: Tricks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 691189937098752
+    m_Localized: Treats and Costumes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 691243255091200
+    m_Localized: The Merrow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 691288587128832
+    m_Localized: Hope
+    m_Metadata:
+      m_Items: []
+  - m_Id: 691334959353856
+    m_Localized: Radar 1/2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 691374318702592
+    m_Localized: Radar 2/2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 689468594737152
+    m_Localized: Tutorial passed
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

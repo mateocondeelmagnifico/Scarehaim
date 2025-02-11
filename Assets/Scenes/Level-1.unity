@@ -1735,56 +1735,181 @@ MonoBehaviour:
   contador: {fileID: 953698005}
   tutorials:
   - image: {fileID: 21300000, guid: 5617a74f651cc164584fe7f9d1fef24f, type: 3}
-    text: Click on an adjacent card to move to it
-    title: 'Movement
-
-'
+    text:
+      m_TableReference:
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
+      m_TableEntryReference:
+        m_KeyId: 2709598785536
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
+      m_TableEntryReference:
+        m_KeyId: 687544503914496
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   - image: {fileID: 21300000, guid: a0330387b80eaa745a2a49c35771d72c, type: 3}
-    text: 'Moving to an enviroment decreases the counter to exit.
-
-      When you
-      get to 0 an exit card will appear.'
-    title: How To Win
+    text:
+      m_TableReference:
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
+      m_TableEntryReference:
+        m_KeyId: 691063776628736
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
+      m_TableEntryReference:
+        m_KeyId: 687844199518208
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   - image: {fileID: 21300000, guid: f90c8132864e6e24f8d1864622eff440, type: 3}
-    text: 'Treat and costume cards will give you benefits when used.
-
-      Enemies
-      will give you negative effects.'
-    title: Special Cards
+    text:
+      m_TableReference:
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
+      m_TableEntryReference:
+        m_KeyId: 691114678702080
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
+      m_TableEntryReference:
+        m_KeyId: 688099913650176
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   - image: {fileID: 21300000, guid: b5cadd883e8780f4c805008d802c9559, type: 3}
-    text: 'There are 3 tricks hidden inside the cards.
-
-      When you step on them
-      you will be punished.'
-    title: Tricks
+    text:
+      m_TableReference:
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
+      m_TableEntryReference:
+        m_KeyId: 691160178511872
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
+      m_TableEntryReference:
+        m_KeyId: 688426595405824
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   - image: {fileID: 21300000, guid: 6340aaadb3e283a4aaf2959926f31ccd, type: 3}
-    text: 'Treats allow you to move two spaces and skip over enemies.
-
-      Costumes
-      allow you to move twice for three turns'
-    title: Treats and Costumes
+    text:
+      m_TableReference:
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
+      m_TableEntryReference:
+        m_KeyId: 691189937098752
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
+      m_TableEntryReference:
+        m_KeyId: 688687460143104
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   - image: {fileID: 21300000, guid: 57478a538e3ede24d8933942d4dc28b4, type: 3}
-    text: 'The merrow starts chasing you after two moves.
-
-      She will block your
-      way if you''re using a treat and kill you if she touches you'
-    title: The Merrow
+    text:
+      m_TableReference:
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
+      m_TableEntryReference:
+        m_KeyId: 691243255091200
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
+      m_TableEntryReference:
+        m_KeyId: 689480812744704
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   - image: {fileID: 21300000, guid: feff7097bf21aa84b86a20362ee342e4, type: 3}
-    text: 'Monsters and tricks will make you lose courage, you lose if it reaches
-      0.
-
-      At the end of the stage you can trade treats to increase courage.'
-    title: Hope
+    text:
+      m_TableReference:
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
+      m_TableEntryReference:
+        m_KeyId: 691288587128832
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
+      m_TableEntryReference:
+        m_KeyId: 689926847614976
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   - image: {fileID: 21300000, guid: 850c1468376b97a4ca0332fa3c3fbc81, type: 3}
-    text: You can activate the radar by pressing the Right Mouse Button, you can
-      then use with the Left Mouse Button. It can be used 3 times per round.
-    title: Radar 1/2
+    text:
+      m_TableReference:
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
+      m_TableEntryReference:
+        m_KeyId: 691334959353856
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
+      m_TableEntryReference:
+        m_KeyId: 690184046530560
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   - image: {fileID: 21300000, guid: bbed74ae92d89aa40b14f47e7b0327c3, type: 3}
-    text: The radar can detect tricks. When it detects one an eye will appear over
-      it.
-    title: Radar 2/2
+    text:
+      m_TableReference:
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
+      m_TableEntryReference:
+        m_KeyId: 691374318702592
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+    title:
+      m_TableReference:
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
+      m_TableEntryReference:
+        m_KeyId: 690442860253184
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
   arrowLeft: {fileID: 610522974}
   arrowRight: {fileID: 1508807637}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &189692625
 GameObject:
   m_ObjectHideFlags: 0

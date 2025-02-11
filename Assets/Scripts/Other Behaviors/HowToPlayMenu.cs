@@ -37,8 +37,9 @@ public class HowToPlayMenu : MonoBehaviour
         else arrowRight.SetActive(true);
         #endregion
 
-        titulo.text = tutorials[currentTutorial].title.GetLocalizedString();
-        texto.text = tutorials[currentTutorial].text.GetLocalizedString();
+        //Esto está al revés porque soy bobo
+        titulo.text = tutorials[currentTutorial].text.GetLocalizedString();
+        texto.text = tutorials[currentTutorial].title.GetLocalizedString();
         contador.text = (currentTutorial + 1).ToString() + "/" + tutorials.Length.ToString();
         imagen.sprite = tutorials[currentTutorial].image;
     }

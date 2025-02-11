@@ -196,6 +196,96 @@ MonoBehaviour:
     m_Localized: Casi puedo tocarte
     m_Metadata:
       m_Items: []
+  - m_Id: 687544503914496
+    m_Localized: Haz doble click en una carta para moverte hacia ella
+    m_Metadata:
+      m_Items: []
+  - m_Id: 687844199518208
+    m_Localized: 'Moverte hacia una carta de entorno reduce el contador de la salida.
+
+      Cuando
+      llega a 0, la salida aparece.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 688099913650176
+    m_Localized: 'Las cartas de dulces y disfraces tienen efectos positivos cuando
+      se usan.
+
+      Los enemigos tienen efectos negativos.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 688426595405824
+    m_Localized: "Hay 3 trampas escondidas en las cartas de cada nivel.\nSi las pisas
+      habr\xE1 consequencias."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 688687460143104
+    m_Localized: 'Los dulces te permiten moverte dos casillas en un solo movimiento
+      y saltar sobre enemigos.
+
+      Los disfraces te permiten moverte dos veces
+      por turno durante tres turnos.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 689480812744704
+    m_Localized: "La merrow empieza a perseguirte despu\xE9s de dos movimientos.
+      Bloquea tu movimiento si usas un dulce y te mata si te alcanza."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 689926847614976
+    m_Localized: 'Los monstruos y las trampas hacen que pierdas courage, sillega
+      a 0 pierdes.
+
+      Al final de cada nivel puedes usar dulces para recuperar
+      courage.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 690184046530560
+    m_Localized: Puedes activar el radar con el click derecho, luego lo activas con
+      el click izquierdo. Puedes usarlo 3 veces por nivel.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 690442860253184
+    m_Localized: "El radar puede detectar trampas. Cuando encuentres una, un ojo
+      aparecer\xE1 sobre ella."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 691063776628736
+    m_Localized: Como ganar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 691114678702080
+    m_Localized: Cartas especiales
+    m_Metadata:
+      m_Items: []
+  - m_Id: 691160178511872
+    m_Localized: Trampas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 691189937098752
+    m_Localized: Dulces y disfraces
+    m_Metadata:
+      m_Items: []
+  - m_Id: 691243255091200
+    m_Localized: La Merrow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 691288587128832
+    m_Localized: Esperanza
+    m_Metadata:
+      m_Items: []
+  - m_Id: 691334959353856
+    m_Localized: Radar 1/2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 691374318702592
+    m_Localized: Radar 2/2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 689468594737152
+    m_Localized: Tutorial completado
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
