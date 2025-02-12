@@ -27499,6 +27499,174 @@ PrefabInstance:
       value: That's all you need to know! Click on the options button if you forget
         anything.
       objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[0].m_TableEntryReference.m_KeyId
+      value: 716898717945856
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[1].m_TableEntryReference.m_KeyId
+      value: 716932477898752
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[2].m_TableEntryReference.m_KeyId
+      value: 716945933225984
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[3].m_TableEntryReference.m_KeyId
+      value: 716961301155840
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[4].m_TableEntryReference.m_KeyId
+      value: 717034147827712
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[5].m_TableEntryReference.m_KeyId
+      value: 717054624419840
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[6].m_TableEntryReference.m_KeyId
+      value: 717496959913984
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[7].m_TableEntryReference.m_KeyId
+      value: 717512332038144
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[8].m_TableEntryReference.m_KeyId
+      value: 717531453870080
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[9].m_TableEntryReference.m_KeyId
+      value: 717544913391616
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[10].m_TableEntryReference.m_KeyId
+      value: 717557898956800
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[11].m_TableEntryReference.m_KeyId
+      value: 717573598236672
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[12].m_TableEntryReference.m_KeyId
+      value: 717590560002048
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[13].m_TableEntryReference.m_KeyId
+      value: 717606112481280
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[14].m_TableEntryReference.m_KeyId
+      value: 717666917306368
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[15].m_TableEntryReference.m_KeyId
+      value: 717683635802112
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[16].m_TableEntryReference.m_KeyId
+      value: 717698693353472
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[17].m_TableEntryReference.m_KeyId
+      value: 717713797042176
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[18].m_TableEntryReference.m_KeyId
+      value: 717726912630784
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[19].m_TableEntryReference.m_KeyId
+      value: 717738048507904
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[20].m_TableEntryReference.m_KeyId
+      value: 717750371373056
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[0].m_TableReference.m_TableCollectionName
+      value: GUID:f7361ff28c69ca048959392000cf1837
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[1].m_TableReference.m_TableCollectionName
+      value: GUID:f7361ff28c69ca048959392000cf1837
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[2].m_TableReference.m_TableCollectionName
+      value: GUID:f7361ff28c69ca048959392000cf1837
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[3].m_TableReference.m_TableCollectionName
+      value: GUID:f7361ff28c69ca048959392000cf1837
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[4].m_TableReference.m_TableCollectionName
+      value: GUID:f7361ff28c69ca048959392000cf1837
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[5].m_TableReference.m_TableCollectionName
+      value: GUID:f7361ff28c69ca048959392000cf1837
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[6].m_TableReference.m_TableCollectionName
+      value: GUID:f7361ff28c69ca048959392000cf1837
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[7].m_TableReference.m_TableCollectionName
+      value: GUID:f7361ff28c69ca048959392000cf1837
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[8].m_TableReference.m_TableCollectionName
+      value: GUID:f7361ff28c69ca048959392000cf1837
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[9].m_TableReference.m_TableCollectionName
+      value: GUID:f7361ff28c69ca048959392000cf1837
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[10].m_TableReference.m_TableCollectionName
+      value: GUID:f7361ff28c69ca048959392000cf1837
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[11].m_TableReference.m_TableCollectionName
+      value: GUID:f7361ff28c69ca048959392000cf1837
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[12].m_TableReference.m_TableCollectionName
+      value: GUID:f7361ff28c69ca048959392000cf1837
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[13].m_TableReference.m_TableCollectionName
+      value: GUID:f7361ff28c69ca048959392000cf1837
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[14].m_TableReference.m_TableCollectionName
+      value: GUID:f7361ff28c69ca048959392000cf1837
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[15].m_TableReference.m_TableCollectionName
+      value: GUID:f7361ff28c69ca048959392000cf1837
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[16].m_TableReference.m_TableCollectionName
+      value: GUID:f7361ff28c69ca048959392000cf1837
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[17].m_TableReference.m_TableCollectionName
+      value: GUID:f7361ff28c69ca048959392000cf1837
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[18].m_TableReference.m_TableCollectionName
+      value: GUID:f7361ff28c69ca048959392000cf1837
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[19].m_TableReference.m_TableCollectionName
+      value: GUID:f7361ff28c69ca048959392000cf1837
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: tutorialTexts.Array.data[20].m_TableReference.m_TableCollectionName
+      value: GUID:f7361ff28c69ca048959392000cf1837
+      objectReference: {fileID: 0}
     - target: {fileID: 8460313530419967459, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: m_IsActive
       value: 1

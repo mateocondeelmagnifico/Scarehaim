@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class TutorialManager : MonoBehaviour
     public bool radarDone; //Used by inherited member
     private bool showExit;
 
-    [TextArea, SerializeField] protected string[] tutorialTexts;
+    [SerializeField] protected LocalizedString[] tutorialTexts;
     [SerializeField] protected GameObject[] chosenSlots;
     [SerializeField] protected Sprite[] blackScreens, exitspots1, exitspots2, exitspots3;
     [SerializeField] protected SpriteRenderer screenImage, cenefa;
@@ -143,7 +144,7 @@ public class TutorialManager : MonoBehaviour
     {
         textBox.gameObject.SetActive(true);
 
-        textManager.TutorialTalk(tutorialTexts[currentTutorial]);
+        textManager.TutorialTalk(tutorialTexts[currentTutorial].GetLocalizedString());
 
         mouseManager.DeactivateDisplay();
         mouseManager.hoverAesthetics.SetActive(false);
@@ -229,7 +230,7 @@ public class TutorialManager : MonoBehaviour
                 break;
         }
 
-        if(textBox.gameObject.activeInHierarchy) textManager.TutorialTalk(tutorialTexts[currentTutorial]);
+        if(textBox.gameObject.activeInHierarchy) textManager.TutorialTalk(tutorialTexts[currentTutorial].GetLocalizedString());
     }
 
     public void RemoveTutorial()

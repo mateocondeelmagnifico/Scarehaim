@@ -286,6 +286,195 @@ MonoBehaviour:
     m_Localized: Tutorial passed
     m_Metadata:
       m_Items: []
+  - m_Id: 709530923847680
+    m_Localized: "As you know, you\u2019re playing with your brother\u2019s card."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709563937214464
+    m_Localized: Be careful! His soul is contained in it!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709607289540608
+    m_Localized: Double click on an adjacent card to move to it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709618400251904
+    m_Localized: That was an enviroment card, step on 10 and you will win.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709639132696576
+    m_Localized: Little Farrell can move one step each turn, in any direction.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709653468827648
+    m_Localized: Oh, look! A nice sweet Treat Card! Go grab it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709667989508096
+    m_Localized: "It\u2019s in your hand now! "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709679062470656
+    m_Localized: Drag the card towards the table to use it. Now.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709693629288448
+    m_Localized: "Your brother looks a little excited! Isn\u2019t that too much sugar?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709704899383296
+    m_Localized: "Now you\u2019ll skip any card in your next move. But not mine!
+      Hehe."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709719831105536
+    m_Localized: "How lucky! There\u2019s two nice Treats you can land on."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709735501025280
+    m_Localized: Sweet! If you regret using a treat you can press the undo button
+      to get it back.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709748788580352
+    m_Localized: Now, that card right next to you is my Snow Dummy.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709758733275136
+    m_Localized: Step on it, see what happens!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709770296971264
+    m_Localized: "\rHehe! That was a Creature Card."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709782514978816
+    m_Localized: Creature Cards can take away your Courage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709793919291392
+    m_Localized: Courage is your health. Reach 0 and you will lose! Hahaha!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709806065995776
+    m_Localized: You can check what a Card does by clicking on it, and it will appear
+      over me.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709822880960512
+    m_Localized: "Now it\u2019s my turn! I will follow you now, like in a game of
+      tag."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709835593895936
+    m_Localized: If I reach you, I win.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709854384377856
+    m_Localized: "But I\u2019ll make it easy for you, I cannot move diagonally."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709867307028480
+    m_Localized: Haha! Not so fast! You still have to reach the Escape card! I will
+      keep chasing you until you do.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 712925780922368
+    m_Localized: If you escape you can spend treats to gain back courage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 716701191393280
+    m_Localized: Congrats, you did it!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 716898717945856
+    m_Localized: But this is not the end! Hehe!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 716932477898752
+    m_Localized: Just this one phase and it will be over.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 716945933225984
+    m_Localized: "Now, why don\u2019t you move here? I want to show you something."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 716961301155840
+    m_Localized: "\rHehe, now that was a Trick!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717034147827712
+    m_Localized: "You can\u2019t see them, but there are three of them hidden in
+      the table in each stage."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717054624419840
+    m_Localized: "But don\u2019t worry, there is a way to detect them."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717496959913984
+    m_Localized: Activate the radar with the right mouse button, and click the other
+      button to use it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717512332038144
+    m_Localized: You see this Icon? It means there's a trap in that spot.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717531453870080
+    m_Localized: You can only use the radar three times per level, so be wise!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717544913391616
+    m_Localized: "Now, I\u2019ll give you a present for doing so well."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717557898956800
+    m_Localized: Go get this thing won't you darling?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717573598236672
+    m_Localized: That is a Costume card.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717590560002048
+    m_Localized: 'Drag it towards the table to make Farrell wear it. '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717606112481280
+    m_Localized: Look, it fits him so well!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717666917306368
+    m_Localized: With the Costume, you can move two times each turn.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717683635802112
+    m_Localized: And it lasts for three turns!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717698693353472
+    m_Localized: Let's try it out! select this square please.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717713797042176
+    m_Localized: Now this one, don't worry, he can't see you with the costume on
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717726912630784
+    m_Localized: "Well, that\u2019s all you needed to know darling!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717738048507904
+    m_Localized: You can review my instructions in the Options menu over there.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717750371373056
+    m_Localized: 'Now this was all a test, now the real game starts! HAHA!
+
+'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

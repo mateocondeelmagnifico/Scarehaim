@@ -145,7 +145,7 @@ public class TutManager2 : TutorialManager
                 break;
         }
 
-        if (textBox.gameObject.activeInHierarchy) textManager.TutorialTalk(tutorialTexts[currentTutorial]);
+        if (textBox.gameObject.activeInHierarchy) textManager.TutorialTalk(tutorialTexts[currentTutorial].GetLocalizedString());
     }
 
     public void OptionsPressed()

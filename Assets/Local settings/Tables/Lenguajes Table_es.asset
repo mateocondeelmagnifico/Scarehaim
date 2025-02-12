@@ -233,11 +233,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 689926847614976
-    m_Localized: 'Los monstruos y las trampas hacen que pierdas courage, sillega
-      a 0 pierdes.
+    m_Localized: 'Los monstruos y las trampas hacen que pierdas coraje, sillega a
+      0 pierdes.
 
       Al final de cada nivel puedes usar dulces para recuperar
-      courage.'
+      coraje.'
     m_Metadata:
       m_Items: []
   - m_Id: 690184046530560
@@ -284,6 +284,196 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 689468594737152
     m_Localized: Tutorial completado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709530923847680
+    m_Localized: "Como sabes, est\xE1s jugando con la carta de tu hermano."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709563937214464
+    m_Localized: "Ten cuidado! Su alma est\xE1 dentro!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709607289540608
+    m_Localized: Haz doble click sobre una carta cercana para moverte hacia ella.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709618400251904
+    m_Localized: Esa era una carta de entorno, pisa sobre 10 para ganar.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709639132696576
+    m_Localized: "El peque\xF1o farrel puede ir a cualquier carta que est\xE9 a 1
+      de distancia en su turno."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709653468827648
+    m_Localized: Oh mira! Una carta de dulce! Ve a por ella.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709667989508096
+    m_Localized: "Ahora est\xE1 en tu mano!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709679062470656
+    m_Localized: Arrastra la carta hacia la mesa para usarla. Ahora.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709693629288448
+    m_Localized: "Vaya, parece que a tu hermano se le ha dado un subid\xF3n de az\xFAcar."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709704899383296
+    m_Localized: "Ahora te saltar\xE1s una carta en tu pr\xF3ximo movimiento. Bueno,
+      todas excepto la m\xEDa."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709719831105536
+    m_Localized: Que suerte! Hay dos cartas de dulce sobre las que puedes aterrizar.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709735501025280
+    m_Localized: "Que bien! Si te arrepientes de usar un dulce puedes pulsar el bot\xF3n
+      de regresar para volver atr\xE1s."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709748788580352
+    m_Localized: "Ahora, esa carta que tienes cerca es my mu\xF1eco de nieve."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709758733275136
+    m_Localized: Pisalo, a ver que pasa!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709770296971264
+    m_Localized: JeJe! Eso era una carta de criatura.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709782514978816
+    m_Localized: Las criaturas te pueden quitar tu coraje.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709793919291392
+    m_Localized: "El coraje es tu vida. Si llegas a 0 perder\xE1s! Jajaja!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709806065995776
+    m_Localized: "Puedes mirar lo que hace una carta haci\xE9ndole click, ver\xE1s
+      que aparecen sobre m\xED."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709822880960512
+    m_Localized: Ahora es mi turno! Te voy a perseguir como en el pilla-pilla.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709835593895936
+    m_Localized: Si te alcanzo, yo gano.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709854384377856
+    m_Localized: "Pero te lo pondre f\xE1cil, no me puedo mover en diagonal."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709867307028480
+    m_Localized: "Jeje! No tan r\xE1pido! A\xFAn tienes que llegar a la carta de
+      salida! No parar\xE9 hasta que la alcances."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 712925780922368
+    m_Localized: Si consigues escapar puedes usar tus dulces para recuperar coraje.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 716701191393280
+    m_Localized: Enhorabuena, lo has conseguido!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 716898717945856
+    m_Localized: Pero esto no es el final! Jeje!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 716932477898752
+    m_Localized: "Una fase m\xE1s y ya est\xE1."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 716945933225984
+    m_Localized: "Por qu\xE9 no te mueves aqu\xED? Te quiero ense\xF1ar algo."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 716961301155840
+    m_Localized: Jeje, eso era una trampa.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717034147827712
+    m_Localized: No las puedes ver, pero hay tres escondidas en el tablero de cada
+      nivel.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717054624419840
+    m_Localized: Pero no te preocupes. Hay una manera de detectarlas.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717496959913984
+    m_Localized: Activa el radar con el click derecho, luego usa el click izquierdo
+      para usarlo.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717512332038144
+    m_Localized: "Ves este icono? Significa que ah\xED hay una trampa."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717531453870080
+    m_Localized: "Solo puedes usar el radar tres veces por nivel, as\xED que \xFAsalo
+      con cabeza."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717544913391616
+    m_Localized: "Ahora te dar\xE9 un regalo por jugar as\xED de bien."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717557898956800
+    m_Localized: Ve a recoger eso si no te importa querida.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717573598236672
+    m_Localized: Eso es una carta de disfraz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717590560002048
+    m_Localized: "Arr\xE1strala hacia la mesa para que Farrel se lo ponga."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717606112481280
+    m_Localized: Mira, le queda muy bien!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717666917306368
+    m_Localized: Con el disfraz puedes moverte dos casillas por turno.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717683635802112
+    m_Localized: Y dura tres turnos!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717698693353472
+    m_Localized: Vamos a probarlo! Selecciona esta casilla por favor.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717713797042176
+    m_Localized: Y ahora esta. No te preocupes, no puede verte mientras que tengas
+      puesto el disfraz.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717726912630784
+    m_Localized: "Bueno, eso es todo lo que necesitas saber car\xF1o!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717738048507904
+    m_Localized: "Puedes revisar mis instrucciones en el men\xFA de opciones all\xED."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 717750371373056
+    m_Localized: Todo esto ha sido una prueba, ahora empieza el juego de verdad!
+      JAJA!
     m_Metadata:
       m_Items: []
   references:
