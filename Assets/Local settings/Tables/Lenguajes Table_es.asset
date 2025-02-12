@@ -476,6 +476,72 @@ MonoBehaviour:
       JAJA!
     m_Metadata:
       m_Items: []
+  - m_Id: 1163049686552576
+    m_Localized: Dos pescaditos han venido a jugar con nosotros chicos!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1163225046208512
+    m_Localized: "Un ni\xF1o...Dos? Que juego m\xE1s curioso..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1163514893586432
+    m_Localized: "Que haces aqu\xED? Cu\xE1ntos a\xF1os tienes?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1163702022459392
+    m_Localized: "No sabes lo que tienes.\nNo sabes lo que podr\xEDas perder."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1163828791103488
+    m_Localized: "Un peque\xF1o pescadito\nSe cay\xF3 en una cueva\nSus huesos hicieron
+      crack y su coraz\xF3n hizo squish."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1164017002106880
+    m_Localized: "No eres un poco peque\xF1a para apostar querida?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1164091555860480
+    m_Localized: "Anda ni\xF1a, tu hermanito est\xE1 llorando."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1164235412099072
+    m_Localized: "Que mala eres con \xE9l! Eres la hermana mayor sin duda."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1164351304912896
+    m_Localized: "Tiene que ser f\xE1cil jugar sin un monstruo detr\xE1s tuyo, tu
+      hermano sin embargo..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1164522130526208
+    m_Localized: Aw... tu hermano se ha echado a llorar. Pobrecito!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1164658260856832
+    m_Localized: Tu eres muy lista no?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1164773985898496
+    m_Localized: "Ay ni\xF1os, no hagais eso nunca mas."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1164862674456576
+    m_Localized: "Est\xE1is empezando a ser un incordio."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1164946048831488
+    m_Localized: No entiendo como vuestra madre os soporta.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1165030945738752
+    m_Localized: Hueles...delicioso.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1165150672146432
+    m_Localized: Casi llego a tocarte.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

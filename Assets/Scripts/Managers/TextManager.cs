@@ -10,9 +10,8 @@ public class TextManager : MonoBehaviour
     public SpriteRenderer enemyRenderer;
     [HideInInspector] public TutorialManager tutorialManager;
 
-    [TextArea]
-    [SerializeField] private string[] greetings, basicDialogue, fearOver7, annoyed, nearPlayer;
-    private string[] currentTexts;
+    [SerializeField] private LocalizedString[] greetings, basicDialogue, fearOver7, annoyed, nearPlayer;
+    private LocalizedString[] currentTexts;
     private string tempText;
 
     [SerializeField] private Sprite[] sprites;
@@ -174,7 +173,7 @@ public class TextManager : MonoBehaviour
         }
 
         box.enabled = true;
-        StartCoroutine(ProduceLetters(currentTexts[randomNum]));
+        StartCoroutine(ProduceLetters(currentTexts[randomNum].GetLocalizedString()));
         displayText = false;
         textCooldown = 30;
         textDuration = 7;

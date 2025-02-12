@@ -12900,34 +12900,138 @@ MonoBehaviour:
   enemyRenderer: {fileID: 1574868882}
   tutorialManager: {fileID: 0}
   greetings:
-  - "Well, Deidre, this game is so easy, you\u2019ll see"
-  - "Well, Deidre, this game is so easy, you\u2019ll see"
-  - "Well, Deidre, this game is so easy, you\u2019ll see"
+  - m_TableReference:
+      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
+    m_TableEntryReference:
+      m_KeyId: 481147140984832
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
+    m_TableEntryReference:
+      m_KeyId: 481147140984832
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
+    m_TableEntryReference:
+      m_KeyId: 481147140984832
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   basicDialogue:
-  - 'You don''t know what you have
-
-    You don''t know what you could lose'
-  - 'One little fish
-
-    Fell into a cave
-
-    His bones went crack and his heart
-    went squish'
-  - Aren't you a little young to bet dear?
+  - m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   fearOver7:
-  - "C\u2019mon, girl, your little brother is crying\r\n"
-  - "You are so mean to him! No doubt you\u2019re the older one"
-  - "It has to be so easy to play when the bad guy is not right behind you\u2026
-    but your brother"
-  - "Aw\u2026 your little brother is sobbing! Poor thing"
+  - m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   annoyed:
-  - "You are very smart, aren\u2019t you?\r\n"
-  - "My, my, children. Don\u2019t do that again"
-  - You both are starting to be a nuisance
-  - How can your mother stand such an annoying pair of kids?
+  - m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   nearPlayer:
-  - "You smell\u2026 good\r\n"
-  - I can almost touch you
+  - m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   sprites:
   - {fileID: 21300000, guid: 590887f9103812e4b88fbc2a72830b1c, type: 3}
   - {fileID: 21300000, guid: 26397cff801669041a4e53eda4bdf0ce, type: 3}
@@ -12941,6 +13045,9 @@ MonoBehaviour:
   inTutorial: 1
   displayButton: 0
   inTrap: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &943855796
 GameObject:
   m_ObjectHideFlags: 0
