@@ -542,6 +542,47 @@ MonoBehaviour:
     m_Localized: Casi llego a tocarte.
     m_Metadata:
       m_Items: []
+  - m_Id: 1168436217270272
+    m_Localized: "Ve m\xE1s r\xE1pido, no tengo tiempo infinito sabes."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1168493054283776
+    m_Localized: "No sonr\xEDas, no sabes en lo que te est\xE1s metiendo."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1168784440971264
+    m_Localized: "Prueba a correr ahora ni\xF1a! "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1168855211462656
+    m_Localized: "Ni\xF1a!! Ten cuidado con tu hermano!!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1168869434347520
+    m_Localized: "Y yo que pensaba que los hermanos se ten\xEDan que cuidar entre
+      ellos."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1169274335678464
+    m_Localized: Es tan complicado quedarse quieto y callado?!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1169331411767296
+    m_Localized: "T\xFA! Espero que os est\xE9is diviertiendo ni\xF1atos!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1169346351878144
+    m_Localized: "Te est\xE1s portando mal."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1169613675843584
+    m_Localized: "Mis ni\xF1os se alimentar\xE1n de ti."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1169653601423360
+    m_Localized: No le quieres salvar, Deidre?
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
