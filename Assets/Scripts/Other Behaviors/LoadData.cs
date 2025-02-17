@@ -16,6 +16,7 @@ public class LoadData : MonoBehaviour
             else infoKeeper.Fullsreen = true;
         }
         if (PlayerPrefs.HasKey("Volume")) infoKeeper.volume = PlayerPrefs.GetFloat("Volume");
-       Destroy(gameObject);
+        if(PlayerPrefs.HasKey("Lenguaje")) infoKeeper.Lenguaje = PlayerPrefs.GetInt("Lenguaje");
+        Destroy(gameObject);
     }
 }

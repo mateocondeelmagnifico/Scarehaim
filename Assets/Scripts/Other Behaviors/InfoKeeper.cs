@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InfoKeeper : MonoBehaviour
 {
@@ -10,11 +9,22 @@ public class InfoKeeper : MonoBehaviour
 
     public float volume = 1;
     public int Resolution = 1;
+    public int Lenguaje = 1;
     public bool Fullsreen = true;
     private void Awake()
     {
         if (instance == null) instance = this;
         else Destroy(this.gameObject);
         DontDestroyOnLoad(this);
+    }
+    private void Start()
+    {
+        OptionsManager.instance.LoadValues(this);
+        SceneManager.activeSceneChanged += SceneChanged;
+    }
+
+    private void SceneChanged(Scene current, Scene next)
+    {
+        OptionsManager.instance.LoadValues(this);
     }
 }

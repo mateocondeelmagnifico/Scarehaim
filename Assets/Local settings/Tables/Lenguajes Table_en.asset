@@ -593,6 +593,10 @@ MonoBehaviour:
     m_Localized: "Deidre, don\u2019t you want to save him?"
     m_Metadata:
       m_Items: []
+  - m_Id: 2905881675390976
+    m_Localized: Apply Changes
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

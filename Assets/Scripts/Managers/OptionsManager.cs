@@ -1,23 +1,23 @@
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 public class OptionsManager : MonoBehaviour
 {
-    public TMPro.TextMeshProUGUI resText, FullScreenText;
+    public TMPro.TextMeshProUGUI resText, FullScreenText, LenguajeText;
     private InfoKeeper infoKeeper;
     private bool isFullScreen;
-    private int currentRes;
+    private int currentRes, selectedLenguaje;
     private Vector2 trueRes;
+    
+    public static OptionsManager instance { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
-        infoKeeper = InfoKeeper.instance;
-        isFullScreen = infoKeeper.Fullsreen;
-        if(isFullScreen) FullScreenText.text = "Full Screen";
-        else FullScreenText.text = "Windowed";
-        resText.text = Screen.currentResolution.width.ToString() + "x" + Screen.currentResolution.height.ToString();
-        SetMyResolution(infoKeeper.Resolution);
+        if (instance == null) instance = this;
+        else Destroy(gameObject);
+        gameObject.SetActive(false);
     }
+
     public void SetResolutionAuto() 
     { 
         Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height,true);
@@ -51,6 +51,31 @@ public class OptionsManager : MonoBehaviour
         }    
     }
 
+    public void ChangeLenguaje(int value)
+    {
+        selectedLenguaje += value;
+        if (selectedLenguaje < 0) selectedLenguaje = 1;
+        if (selectedLenguaje > 1) selectedLenguaje = 0;
+
+        switch(selectedLenguaje)
+        {
+            case 0:
+                LenguajeText.text = "English";
+                break;
+
+            case 1:
+                LenguajeText.text = "Español";
+                break;
+        }
+    }
+
+    public void SetLenguaje()
+    {
+        Debug.Log(LocalizationSettings.AvailableLocales.Locales.Count);
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[selectedLenguaje];
+        infoKeeper.Lenguaje = selectedLenguaje;
+        PlayerPrefs.SetInt("Lenguaje", selectedLenguaje);
+    }
 
     public void SetMyResolution(int number)
     {
@@ -99,13 +124,25 @@ public class OptionsManager : MonoBehaviour
         trueRes = values;
         resText.text = values.x.ToString() + "x" + values.y.ToString();
     }
-
-    public void UpdateVolume()
+    public void UpdateValues()
     {
         //Tambien updatea la resolucion, lo llama un botón
         InfoKeeper.instance.volume = SoundManager.Instance.volumeSetting;
         PlayerPrefs.SetFloat("Volume", SoundManager.Instance.volumeSetting);
         UpdateRes(trueRes);
+        SetLenguaje();
+    }
+
+    public void LoadValues(InfoKeeper keeper)
+    {
+        infoKeeper = keeper;
+        isFullScreen = infoKeeper.Fullsreen;
+        selectedLenguaje = infoKeeper.Lenguaje;
+        if (isFullScreen) FullScreenText.text = "Full Screen";
+        else FullScreenText.text = "Windowed";
+        resText.text = Screen.currentResolution.width.ToString() + "x" + Screen.currentResolution.height.ToString();
+        SetMyResolution(infoKeeper.Resolution);
+        UpdateValues();
     }
 
     private void UpdateRes(Vector2 value)
