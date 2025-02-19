@@ -8061,6 +8061,27 @@ MonoBehaviour:
   resText: {fileID: 1625599031}
   FullScreenText: {fileID: 30394203}
   LenguajeText: {fileID: 578783020}
+  fullscreen:
+    m_TableReference:
+      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
+    m_TableEntryReference:
+      m_KeyId: 2023679086592
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  windowed:
+    m_TableReference:
+      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
+    m_TableEntryReference:
+      m_KeyId: 2989664817139712
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1349192635
 GameObject:
   m_ObjectHideFlags: 0

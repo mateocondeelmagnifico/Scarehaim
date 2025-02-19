@@ -587,6 +587,10 @@ MonoBehaviour:
     m_Localized: Aplicar Cambios
     m_Metadata:
       m_Items: []
+  - m_Id: 2989664817139712
+    m_Localized: Windowed
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -551,6 +551,10 @@ MonoBehaviour:
     m_Key: Apply Changes
     m_Metadata:
       m_Items: []
+  - m_Id: 2989664817139712
+    m_Key: Windowed
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

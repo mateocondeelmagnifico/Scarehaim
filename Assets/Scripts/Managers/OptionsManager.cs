@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 
 public class OptionsManager : MonoBehaviour
@@ -8,14 +9,30 @@ public class OptionsManager : MonoBehaviour
     private bool isFullScreen;
     private int currentRes, selectedLenguaje;
     private Vector2 trueRes;
+    [SerializeField] private LocalizedString fullscreen, windowed;
+    private float timer;
+    private bool initialCheck;
     
     public static OptionsManager instance { get; private set; }
 
     private void Awake()
     {
         if (instance == null) instance = this;
-        else Destroy(gameObject);
-        gameObject.SetActive(false);
+        else Destroy(gameObject);    
+        timer = 0.01f;
+    }
+
+    private void Update()
+    {
+        //Esto es una gilipollez pero el paquete de localizacion no se carga en el start por alguna razón
+        if (timer > 0) timer -= Time.deltaTime;
+        else if (!initialCheck)
+        {
+            ChangeLenguaje(0);
+            SetLenguaje();
+            initialCheck = true;
+            gameObject.SetActive(false);
+        }
     }
 
     public void SetResolutionAuto() 
@@ -41,12 +58,12 @@ public class OptionsManager : MonoBehaviour
 
         if (isFullScreen)
         {
-            FullScreenText.text = "Full Screen";
+            FullScreenText.text = fullscreen.GetLocalizedString();
             PlayerPrefs.SetInt("Fullscreen", 1);
         }
         else
         {
-            FullScreenText.text = "Windowed";
+            FullScreenText.text = windowed.GetLocalizedString();
             PlayerPrefs.SetInt("Fullscreen", 0);
         }    
     }
@@ -72,9 +89,21 @@ public class OptionsManager : MonoBehaviour
     public void SetLenguaje()
     {
         Debug.Log(LocalizationSettings.AvailableLocales.Locales.Count);
+        if (LocalizationSettings.AvailableLocales.Locales.Count == 0) return;
+
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[selectedLenguaje];
         infoKeeper.Lenguaje = selectedLenguaje;
         PlayerPrefs.SetInt("Lenguaje", selectedLenguaje);
+        switch (selectedLenguaje)
+        {
+            case 0:
+                LenguajeText.text = "English";
+                break;
+
+            case 1:
+                LenguajeText.text = "Español";
+                break;
+        }
     }
 
     public void SetMyResolution(int number)
