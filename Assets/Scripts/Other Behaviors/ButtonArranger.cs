@@ -6,19 +6,20 @@ public class ButtonArranger : MonoBehaviour
     [SerializeField] private TextMeshProUGUI myText;
     [SerializeField] private RectTransform leftArrow, rightArrow;
     TMP_TextInfo tInfo;
-    private string prevText;
 
     [SerializeField] private bool specialArrows;
+
+    private float timer;
+    private bool call;
 
     //reposiciona las flechas y el tamaño del texto para que la UI no se joda con la traducción del texto
 
     private void Start()
     {
-        prevText = myText.text;
         MoveArrows();
     }
 
-    public void MoveArrows()
+    private void MoveArrows()
     {
         tInfo = myText.textInfo;
         if (tInfo.characterCount == 0) return;
@@ -31,14 +32,19 @@ public class ButtonArranger : MonoBehaviour
         Debug.Log(first.bottomLeft.x + ", " + sec.bottomRight.x + " " + name);
     }
 
+    public void CallMoveArrows()
+    {
+        timer = 0.1f;
+        call = true;
+    }
+
     private void Update()
     {
-        //Esto detecta cuando se cambia de idioma
-        if(prevText != myText.text)
+        if(timer > 0) timer -= Time.deltaTime;
+        else if(call)
         {
-            prevText = myText.text;
-           
             MoveArrows();
+            call = false;
         }
     }
 }
