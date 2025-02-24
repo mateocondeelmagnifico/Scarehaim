@@ -62,7 +62,6 @@ public class SceneManagement : MonoBehaviour
         //Aqui va código que cambia la escena segun en la que estes
         //Lo ampliare cuando ya veamos como vamos a organizar las escenas
         gameWonMenu.SetActive(true);
-        Time.timeScale = 0;
     }
     public void DisplayMenu(GameObject menu)
     {
@@ -73,8 +72,6 @@ public class SceneManagement : MonoBehaviour
         oldMenu = currentMenu;
         currentMenu = menu;
         menu.SetActive(true);       
-        
-        Time.timeScale = 0;
     }
     public void ReturnToMenu()
     {
@@ -106,8 +103,6 @@ public class SceneManagement : MonoBehaviour
 
         if(wasActive) wasActive = false; 
         else blackscreen.SetActive(false);
-
-        Time.timeScale = 1;
     }
     public void CallLoadScene()
     {

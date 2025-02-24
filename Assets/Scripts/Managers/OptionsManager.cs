@@ -88,7 +88,6 @@ public class OptionsManager : MonoBehaviour
 
     public void SetLenguaje()
     {
-        Debug.Log(LocalizationSettings.AvailableLocales.Locales.Count);
         if (LocalizationSettings.AvailableLocales.Locales.Count == 0) return;
 
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[selectedLenguaje];

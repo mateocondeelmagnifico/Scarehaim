@@ -29,7 +29,6 @@ public class ButtonArranger : MonoBehaviour
 
         leftArrow.localPosition = new Vector2(-(Mathf.Abs(first.bottomLeft.x) + 15), 0);
         rightArrow.localPosition = new Vector2(sec.bottomRight.x + 15, 0);
-        Debug.Log(first.bottomLeft.x + ", " + sec.bottomRight.x + " " + name);
     }
 
     public void CallMoveArrows()
