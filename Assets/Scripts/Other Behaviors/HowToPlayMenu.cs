@@ -43,4 +43,11 @@ public class HowToPlayMenu : MonoBehaviour
         contador.text = (currentTutorial + 1).ToString() + "/" + tutorials.Length.ToString();
         imagen.sprite = tutorials[currentTutorial].image;
     }
+
+    public void RefreshValues()
+    {
+        //Hay que llamar a este método para que al abrirlo la traducción funcione
+        titulo.text = tutorials[currentTutorial].text.GetLocalizedString();
+        texto.text = tutorials[currentTutorial].title.GetLocalizedString();
+    }
 }

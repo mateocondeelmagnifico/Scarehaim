@@ -745,7 +745,7 @@ MonoBehaviour:
   myText: {fileID: 30394203}
   leftArrow: {fileID: 969017392}
   rightArrow: {fileID: 1140231151}
-  specialArrows: 0
+  specialArrows: 1
 --- !u!1 &203762930
 GameObject:
   m_ObjectHideFlags: 0
@@ -2857,6 +2857,18 @@ MonoBehaviour:
           m_StringArgument: Button Press
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 774161592}
+        m_TargetAssemblyTypeName: HowToPlayMenu, Assembly-CSharp
+        m_MethodName: RefreshValues
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1132203668}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -3436,8 +3448,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030517578, y: 31}
-  m_SizeDelta: {x: 244.9602, y: 112.2526}
+  m_AnchoredPosition: {x: 0, y: 36.3}
+  m_SizeDelta: {x: 244.9602, y: 29.3135}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &648191007
 MonoBehaviour:
@@ -4278,18 +4290,18 @@ MonoBehaviour:
   - image: {fileID: 21300000, guid: 5617a74f651cc164584fe7f9d1fef24f, type: 3}
     text:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 2709598785536
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
     title:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 687544503914496
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -4297,18 +4309,18 @@ MonoBehaviour:
   - image: {fileID: 21300000, guid: a0330387b80eaa745a2a49c35771d72c, type: 3}
     text:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 691063776628736
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
     title:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 687844199518208
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -4316,18 +4328,18 @@ MonoBehaviour:
   - image: {fileID: 21300000, guid: f90c8132864e6e24f8d1864622eff440, type: 3}
     text:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 691114678702080
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
     title:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 688099913650176
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -4335,18 +4347,18 @@ MonoBehaviour:
   - image: {fileID: 21300000, guid: b5cadd883e8780f4c805008d802c9559, type: 3}
     text:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 691160178511872
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
     title:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 688426595405824
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -4354,18 +4366,18 @@ MonoBehaviour:
   - image: {fileID: 21300000, guid: 6340aaadb3e283a4aaf2959926f31ccd, type: 3}
     text:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 691189937098752
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
     title:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 688687460143104
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -4373,18 +4385,18 @@ MonoBehaviour:
   - image: {fileID: 21300000, guid: 57478a538e3ede24d8933942d4dc28b4, type: 3}
     text:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 691243255091200
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
     title:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 689480812744704
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -4392,18 +4404,18 @@ MonoBehaviour:
   - image: {fileID: 21300000, guid: feff7097bf21aa84b86a20362ee342e4, type: 3}
     text:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 691288587128832
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
     title:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 689926847614976
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -4411,18 +4423,18 @@ MonoBehaviour:
   - image: {fileID: 21300000, guid: 850c1468376b97a4ca0332fa3c3fbc81, type: 3}
     text:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 691334959353856
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
     title:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 690184046530560
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -4430,18 +4442,18 @@ MonoBehaviour:
   - image: {fileID: 21300000, guid: afd6eb988fff72244a5ecf8401e96279, type: 3}
     text:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 691374318702592
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
       m_LocalVariables: []
     title:
       m_TableReference:
-        m_TableCollectionName: 
+        m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
       m_TableEntryReference:
-        m_KeyId: 0
+        m_KeyId: 690442860253184
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -10162,7 +10174,7 @@ MonoBehaviour:
   myText: {fileID: 1625599031}
   leftArrow: {fileID: 1238259284}
   rightArrow: {fileID: 1049629589}
-  specialArrows: 0
+  specialArrows: 1
 --- !u!1 &2089790847
 GameObject:
   m_ObjectHideFlags: 0

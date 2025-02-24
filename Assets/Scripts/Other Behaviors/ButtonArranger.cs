@@ -7,15 +7,18 @@ public class ButtonArranger : MonoBehaviour
     [SerializeField] private RectTransform leftArrow, rightArrow;
     TMP_TextInfo tInfo;
 
+    [Header("Marca esto para los que tengan las flechas raras")]
     [SerializeField] private bool specialArrows;
 
-    private float timer;
+    private float timer, offset;
     private bool call;
 
     //reposiciona las flechas y el tamaño del texto para que la UI no se joda con la traducción del texto
 
     private void Start()
     {
+        if (specialArrows) offset = 24;
+        else offset = 15;
         MoveArrows();
     }
 
@@ -27,8 +30,8 @@ public class ButtonArranger : MonoBehaviour
         TMP_CharacterInfo first = tInfo.characterInfo[0];
         TMP_CharacterInfo sec = tInfo.characterInfo[tInfo.characterCount - 1];
 
-        leftArrow.localPosition = new Vector2(-(Mathf.Abs(first.bottomLeft.x) + 15), 0);
-        rightArrow.localPosition = new Vector2(sec.bottomRight.x + 15, 0);
+        leftArrow.localPosition = new Vector2(-(Mathf.Abs(first.bottomLeft.x) + offset), 0);
+        rightArrow.localPosition = new Vector2(sec.bottomRight.x + offset, 0);
     }
 
     public void CallMoveArrows()

@@ -93,6 +93,7 @@ public class OptionsManager : MonoBehaviour
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[selectedLenguaje];
         infoKeeper.Lenguaje = selectedLenguaje;
         PlayerPrefs.SetInt("Lenguaje", selectedLenguaje);
+
         switch (selectedLenguaje)
         {
             case 0:
