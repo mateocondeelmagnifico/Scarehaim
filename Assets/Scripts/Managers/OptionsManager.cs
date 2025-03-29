@@ -30,8 +30,8 @@ public class OptionsManager : MonoBehaviour
         {
             ChangeLenguaje(0);
             SetLenguaje();
+            SetMyResolution(currentRes);
             initialCheck = true;
-            gameObject.SetActive(false);
         }
     }
 
@@ -169,8 +169,7 @@ public class OptionsManager : MonoBehaviour
         selectedLenguaje = infoKeeper.Lenguaje;
         if (isFullScreen) FullScreenText.text = "Full Screen";
         else FullScreenText.text = "Windowed";
-        resText.text = Screen.currentResolution.width.ToString() + "x" + Screen.currentResolution.height.ToString();
-        SetMyResolution(infoKeeper.Resolution);
+        currentRes = infoKeeper.Resolution;
         UpdateValues();
     }
 
