@@ -36,7 +36,8 @@ public class OptionsManager : MonoBehaviour
     }
 
     public void SetResolutionAuto() 
-    { 
+    {
+        return;
         Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height,true);
     }
 
@@ -175,6 +176,7 @@ public class OptionsManager : MonoBehaviour
 
     private void UpdateRes(Vector2 value)
     {
+        return;
         Screen.SetResolution((int)value.x, (int)value.y, isFullScreen);
         PlayerPrefs.SetInt("Resolution", currentRes);
         infoKeeper.Resolution = currentRes;
