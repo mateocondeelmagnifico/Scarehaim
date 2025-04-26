@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
@@ -30,11 +31,10 @@ public class OptionsManager : MonoBehaviour
         {
             ChangeLenguaje(0);
             SetLenguaje();
-            SetMyResolution(currentRes);
+            //SetMyResolution(currentRes);
             initialCheck = true;
         }
     }
-
     public void SetResolutionAuto() 
     {
         return;
@@ -90,7 +90,7 @@ public class OptionsManager : MonoBehaviour
     public void SetLenguaje()
     {
         if (LocalizationSettings.AvailableLocales.Locales.Count == 0) return;
-
+        Debug.Log(selectedLenguaje);
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[selectedLenguaje];
         infoKeeper.Lenguaje = selectedLenguaje;
         PlayerPrefs.SetInt("Lenguaje", selectedLenguaje);
