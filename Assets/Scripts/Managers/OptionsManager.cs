@@ -1,4 +1,4 @@
-using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
@@ -10,10 +10,15 @@ public class OptionsManager : MonoBehaviour
     private InfoKeeper infoKeeper;
     private bool isFullScreen;
     private int currentRes, selectedLenguaje;
-    private Vector2 trueRes;
     [SerializeField] private LocalizedString fullscreen, windowed;
     private float timer;
     private bool initialCheck;
+
+    private Resolution[] resolutions;
+    private Resolution tempRes;
+    private List<Resolution> filteredResolutions = new List<Resolution>();
+    private float currentRefreshRate; 
+    private List<string> resolutionNames = new List<string>();
 
     [SerializeField] private Slider volumeSlider;
     
@@ -23,12 +28,30 @@ public class OptionsManager : MonoBehaviour
     {
         if (instance == null) instance = this;
         else Destroy(gameObject);    
-        timer = 0.01f;
+        timer = 0.2f;
     }
 
     private void Start()
     {
-        LoadValues(InfoKeeper.instance);
+        resolutions = Screen.resolutions;
+        currentRefreshRate = (float)Screen.currentResolution.refreshRateRatio.value;
+
+        for(int i = 0; i < resolutions.Length; i++)
+        {
+            if ((float)resolutions[i].refreshRateRatio.value == currentRefreshRate)
+            {
+                filteredResolutions.Add(resolutions[i]);
+            }
+        }
+
+        for(int i = 0;i < filteredResolutions.Count;i++)
+        {
+            resolutionNames.Add(filteredResolutions[i].width + "x" + filteredResolutions[i].height + " " + filteredResolutions[i].refreshRateRatio + "Hz");
+            if(filteredResolutions[i].width == Screen.width && filteredResolutions[i].height == Screen.height)
+            {
+                currentRes = i - 1;
+            }
+        } 
     }
 
     private void Update()
@@ -37,22 +60,17 @@ public class OptionsManager : MonoBehaviour
         if (timer > 0) timer -= Time.deltaTime;
         else if (!initialCheck)
         {
-            ChangeLenguaje(0);
-            SetLenguaje();
-            //SetMyResolution(currentRes);
+            LoadValues(InfoKeeper.instance);
+            UpdateValues();
             initialCheck = true;
         }
-    }
-    public void SetResolutionAuto() 
-    { 
-        //Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height,true);
     }
 
     public void ChangeRes(int amount)
     {
         currentRes += amount;
-        if(currentRes < 0) currentRes = 8;
-        if(currentRes > 8) currentRes = 0;
+        if(currentRes < 0) currentRes = filteredResolutions.Count;
+        if(currentRes > filteredResolutions.Count) currentRes = 0;
 
         SetMyResolution(currentRes);
     }
@@ -114,58 +132,18 @@ public class OptionsManager : MonoBehaviour
     }
 
     public void SetMyResolution(int number)
-    {
-        Vector2 values = Vector2.zero;
+    {    
+        tempRes = filteredResolutions[number];
 
-        switch(number)
-        {
-            case 0:
-                values = new Vector2(1920,1080);
-                break;
-
-            case 1:
-                values = new Vector2(1366, 768);
-                break;
-
-            case 2:
-                values = new Vector2(1280, 1024);
-                break;
-
-            case 3:
-                values = new Vector2(1440, 900);
-                break;
-
-            case 4:
-                values = new Vector2(1600, 900);
-                break;
-
-            case 5:
-                values = new Vector2(1680, 1050);
-                break;
-
-            case 6:
-                values = new Vector2(1280, 800);
-                break;
-
-            case 7:
-                values = new Vector2(1024, 768);
-                break;
-
-            case 8:
-                values = new Vector2(3840, 2160);
-                break;
-        }
-
-
-        trueRes = values;
-        resText.text = values.x.ToString() + "x" + values.y.ToString();
+        resText.text = tempRes.width.ToString() + "x" + tempRes.height.ToString();
     }
     public void UpdateValues()
     {
         //Tambien updatea la resolucion, lo llama un botón
         InfoKeeper.instance.volume = SoundManager.Instance.volumeSetting;
         PlayerPrefs.SetFloat("Volume", SoundManager.Instance.volumeSetting);
-        UpdateRes(trueRes);
+        SetMyResolution(currentRes);
+        UpdateRes();
         SetLenguaje();
     }
 
@@ -176,17 +154,17 @@ public class OptionsManager : MonoBehaviour
         selectedLenguaje = infoKeeper.Lenguaje;
         if (isFullScreen) FullScreenText.text = "Full Screen";
         else FullScreenText.text = "Windowed";
-        currentRes = infoKeeper.Resolution;
+        if(infoKeeper.hasRes) currentRes = infoKeeper.resolution;
         volumeSlider.value = infoKeeper.volume;
         UpdateValues();
     }
 
-    private void UpdateRes(Vector2 value)
+    private void UpdateRes()
     {
-        //Screen.SetResolution((int)value.x, (int)value.y, isFullScreen);
-        //PlayerPrefs.SetInt("Resolution", currentRes);
-        //infoKeeper.Resolution = currentRes;
-        //infoKeeper.Fullsreen = isFullScreen;
+        Screen.SetResolution(tempRes.width, tempRes.height, isFullScreen);
+        PlayerPrefs.SetInt("Resolution", currentRes);
+        infoKeeper.resolution = currentRes;
+        infoKeeper.Fullsreen = isFullScreen;
         //Camera.main.pixelRect = new Rect(0, 0, Screen.currentResolution.width, Screen.currentResolution.height);
     }
 }

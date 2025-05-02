@@ -8,9 +8,10 @@ public class InfoKeeper : MonoBehaviour
     public static InfoKeeper instance { get; private set;}
 
     public float volume = 1;
-    public int Resolution = 1;
+    public int resolution;
     public int Lenguaje = 1;
     public bool Fullsreen = true;
+    public bool hasRes;
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -19,12 +20,12 @@ public class InfoKeeper : MonoBehaviour
     }
     private void Start()
     {
-        OptionsManager.instance.LoadValues(this);
+        //OptionsManager.instance.LoadValues(this);
         SceneManager.activeSceneChanged += SceneChanged;
     }
 
     private void SceneChanged(Scene current, Scene next)
     {
-        OptionsManager.instance.LoadValues(this);
+        //OptionsManager.instance.LoadValues(this);
     }
 }

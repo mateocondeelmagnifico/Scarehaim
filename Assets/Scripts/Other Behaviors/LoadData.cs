@@ -9,7 +9,12 @@ public class LoadData : MonoBehaviour
 
     private void Awake()
     {
-       if(PlayerPrefs.HasKey("Resolution")) infoKeeper.Resolution = PlayerPrefs.GetInt("Resolution");
+        if (PlayerPrefs.HasKey("Resolution"))
+        {
+            infoKeeper.resolution = PlayerPrefs.GetInt("Resolution");
+            infoKeeper.hasRes = true;
+        }
+
         if (PlayerPrefs.HasKey("Fullscreen"))
         {
             if (PlayerPrefs.GetInt("Fullscreen") == 0) infoKeeper.Fullsreen = false;
