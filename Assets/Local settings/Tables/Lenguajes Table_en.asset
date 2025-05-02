@@ -295,7 +295,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 709607289540608
-    m_Localized: Double click on an adjacent card to move to it.
+    m_Localized: Click on an adjacent card to move to it.
     m_Metadata:
       m_Items: []
   - m_Id: 709618400251904
@@ -357,8 +357,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 709806065995776
-    m_Localized: You can check what a Card does by clicking on it, and it will appear
-      over me.
+    m_Localized: You can check what a Card does by clicking the mouse wheel, and
+      it will appear over me.
     m_Metadata:
       m_Items: []
   - m_Id: 709822880960512

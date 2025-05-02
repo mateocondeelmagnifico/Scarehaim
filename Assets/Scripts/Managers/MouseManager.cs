@@ -26,14 +26,14 @@ public class MouseManager : MonoBehaviour
     [SerializeField] private Transform board, tricks;
 
     private bool handDisplayed, highlightsSpawned, cardHandHovered, wantsToDisplay, playerDisplay, canFire, radarsOut;
-    public bool moveCard, cardInformed,  isInTutorial, needsTreat, radarActive, cardGrabbed, hasTreat, canClick, dontDisplay;
+    public bool moveCard, cardInformed,  isInTutorial, needsTreat, radarActive, cardGrabbed, hasTreat, canClick, dontDisplay, cantScan;
 
-    private float handtimer, displayTimer, displayTimer2, originalPos;
+    private float handtimer, displayTimer, displayTimer2, originalPos, highlightTimer;
 
     private Vector2[] radarPositions;
 
-    public GameObject firstSelect, selectedCardSlot, hoverAesthetics, hoverAesthetics2, trapIndicator, hover2Pos;
-    private GameObject cardHit, tutHit;
+    public GameObject selectedCardSlot, hoverAesthetics, hoverAesthetics2, trapIndicator, hover2Pos;
+    private GameObject cardHit, tutHit, highlightToDelete, displayCard;
 
     private Color startColor;
 
@@ -106,6 +106,19 @@ public class MouseManager : MonoBehaviour
                 radarText.enabled = false;
             }
         }
+
+        # region Delete highlight after a bit
+        if (highlightToDelete != null)
+        {
+            if(highlightTimer > 0) highlightTimer -= Time.deltaTime;
+            else
+            {
+                highlightToDelete.SetActive(false);
+                highlightToDelete = null;
+                hover2Pos = null;
+            }
+        }
+        #endregion
     }
 
     private void Raycast()
@@ -124,6 +137,7 @@ public class MouseManager : MonoBehaviour
         {
             if (canClick)
             {
+                #region Hover
                 if (hit.collider.gameObject.tag.Equals("Card Slot") || hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
                 {
                     //Put highlights when hovering over cards
@@ -142,7 +156,7 @@ public class MouseManager : MonoBehaviour
                         }
                     }
 
-                    if (manager.CheckIsInCheckMovement() || effectManager.effectActive) PlaceHighlight(0);
+                    if (manager.CheckIsInCheckMovement() || effectManager.effectActive) PlaceHighlight(0, false);
 
                     if (hit.collider.gameObject.tag.Equals("Enemy") && manager.CheckIsInCheckMovement() && playerMove.turnsWithcostume <= 0)
                     {
@@ -157,12 +171,7 @@ public class MouseManager : MonoBehaviour
 
                         currentCardHand.isHovered = true;
 
-                        if (currentCardHand.hoverTimer >= 0.2f)
-                        {
-                            DisplayCard(currentCardHand.objectSprite, currentCardHand.objectDescription, CheckOffset(cardHit.transform.GetChild(0).gameObject));
-
-                            cardHandHovered = true;
-                        }
+                        if (currentCardHand.hoverTimer >= 0.2f) cardHandHovered = true;
 
                         if (Input.GetMouseButton(0) && !cardGrabbed && (manager.CheckIsInCheckMovement() || manager.currentState == GameManager.turnState.CheckCardEffect))
                         {
@@ -178,9 +187,7 @@ public class MouseManager : MonoBehaviour
                                 currentCardHand.hasArrived = false;
                                 effectManager.CheckCanAfford();
                             }
-                        }
-
-                        
+                        }                       
                     }
 
                     #endregion
@@ -202,6 +209,7 @@ public class MouseManager : MonoBehaviour
                         
                     }
                 }
+                #endregion
 
                 if (Input.GetMouseButtonUp(0) && cardGrabbed && currentCardHand != null)
                 {
@@ -219,17 +227,23 @@ public class MouseManager : MonoBehaviour
                     hoverAesthetics.SetActive(false);
                 }
 
-                if (Input.GetMouseButtonDown(0))
+                #region Inspect Card
+                if (Input.GetKeyDown(KeyCode.Mouse2))
                 {
-                    if (hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
+                    if (displayCard == cardHit)
                     {
-                        DisplayBigImage display = cardHit.GetComponent<DisplayBigImage>();
-                        //Display player or enemy card
-                        if (firstSelect != cardHit)
+                        DeactivateDisplay();
+                        displayCard = null;
+                    }
+                    else
+                    {
+                        displayCard = cardHit;
+
+                        if (hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
                         {
-                            hoverAesthetics.SetActive(false);
-                            firstSelect = cardHit;
+                            DisplayBigImage display = cardHit.GetComponent<DisplayBigImage>();
                             DisplayCard(cardHit.GetComponent<DisplayBigImage>().bigImage, "", 0);
+
 
                             if (hit.collider.gameObject.tag.Equals("Player"))
                             {
@@ -237,13 +251,33 @@ public class MouseManager : MonoBehaviour
                                 hopeText.text = cardHit.GetComponent<Fear>().hope.ToString();
                             }
                             else hopeText.enabled = false;
-                            PlaceHighlight(1);
+
+                            soundManager.PlaySound("Card Hovered");
                         }
-                        else
+                        else if (hit.collider.gameObject.tag.Equals("Card Slot"))
                         {
-                            firstSelect = null;
-                            DeactivateDisplay();
+                            if (cardHit.GetComponent<CardSlotHand>())
+                            {
+                                DisplayCard(currentCardHand.objectSprite, currentCardHand.objectDescription, CheckOffset(cardHit.transform.GetChild(0).gameObject));
+                            }
+                            else
+                            {
+                                DisplayCard(cardHit.GetComponent<CardSlot>().objectSprite, cardHit.GetComponent<CardSlot>().objectDescription, CheckOffset(cardHit.transform.GetChild(0).gameObject));
+                            }
+
+                            soundManager.PlaySound("Card Hovered");
                         }
+                    }    
+                }
+               
+                #endregion
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    if (hit.collider.gameObject.tag.Equals("Player") || hit.collider.gameObject.tag.Equals("Enemy"))
+                    {                      
+                        //Click on enemy or player card
+                        //Aqui haría falta feedback que deje claro que eso no se puede
                     }
 
                     if (hit.collider.gameObject.tag.Equals("Card Slot"))
@@ -251,12 +285,11 @@ public class MouseManager : MonoBehaviour
                         #region Select card in Board
 
                         hopeText.enabled = false;
+
                         if (!radarActive && !currentCard.isInHand)
                         {
-                            PlaceHighlight(1);
+                            PlaceHighlight(1, true);
 
-                            if (firstSelect == cardHit)
-                            {
                                 if (manager.CheckIsInCheckMovement() && currentCard.transform.childCount > 0)
                                 {
                                     if (CanReach(currentCard.Location) && cardHit.GetComponent<CardSlot>().unavailable > 0) SoundManager.Instance.PlaySound("Card Picked");
@@ -305,18 +338,6 @@ public class MouseManager : MonoBehaviour
                                     }
                                     #endregion
                                 }
-                            }
-                            else
-                            {
-                                if (cardHit.transform.childCount > 0)
-                                {
-                                    soundManager.PlaySound("Card Hovered");
-                                    firstSelect = cardHit;
-                                    DisplayCard(cardHit.GetComponent<CardSlot>().objectSprite, cardHit.GetComponent<CardSlot>().objectDescription, CheckOffset(cardHit.transform.GetChild(0).gameObject));
-                                }
-                                else DeactivateDisplay();
-                            }
-
                         }
                         #endregion
                     }
@@ -328,8 +349,7 @@ public class MouseManager : MonoBehaviour
                         hand.Undo();
                     }
 
-                    if (hit.collider.gameObject.tag.Equals("Untagged")) DeactivateDisplay();
-                    
+                    DeactivateDisplay();
                 }
 
                 #region Display Hand
@@ -351,7 +371,7 @@ public class MouseManager : MonoBehaviour
                 #endregion
 
                 #region Check Radar
-                if(manager.CheckIsInCheckMovement())
+                if(manager.CheckIsInCheckMovement() && !cantScan)
                 {
                     #region Toggle and Fire radar
                     if (Input.GetMouseButtonDown(0) && radarActive && canFire)
@@ -661,10 +681,9 @@ public class MouseManager : MonoBehaviour
         blackBox.enabled = false;
         hopeText.enabled = false;
         wantsToDisplay = false;
-        firstSelect = null;
         hopeText.text = "";
         descriptionText.text = "";
-        hoverAesthetics2.SetActive(false);
+        //hoverAesthetics2.SetActive(false);
         if(!playerMove.moveSelected)playerMove.DespawnHighlights(0);
     }
     private void DisplayCard(Sprite spriteToDisplay, string description, float offSet)
@@ -691,9 +710,11 @@ public class MouseManager : MonoBehaviour
             wantsToDisplay = true;
         }
     }
-    private void PlaceHighlight(int whichOne)
+    private void PlaceHighlight(int whichOne, bool isTimed)
     {
         if (radarActive) return;
+
+        if (isTimed) highlightTimer = 0.5f;
 
         if (cardHit.transform.childCount > 0 || cardHit.CompareTag("Enemy"))
         {
@@ -706,8 +727,11 @@ public class MouseManager : MonoBehaviour
                 }    
 
                 hoverAesthetics.SetActive(true);
+                if(isTimed) highlightToDelete = hoverAesthetics;
+
                 hoverAesthetics.transform.position = cardHit.transform.position;
                 hoverAesthetics.transform.rotation = cardHit.transform.rotation;
+
                 if(cardHit.transform.childCount > 0)
                 if (cardHit.transform.GetChild(0).GetComponent<SpriteRenderer>()) hoverRenderer.sortingOrder = cardHit.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder;
 
@@ -726,6 +750,8 @@ public class MouseManager : MonoBehaviour
                 hover2Pos = cardHit;
                 hoverAesthetics.SetActive(false);
                 hoverAesthetics2.SetActive(true);
+                if (isTimed) highlightToDelete = hoverAesthetics2;
+
                 hoverAesthetics2.transform.position = cardHit.transform.position;
                 hoverAesthetics2.transform.rotation = cardHit.transform.rotation;
 

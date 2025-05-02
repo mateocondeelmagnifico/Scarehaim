@@ -9864,7 +9864,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfScans: 3
   ghostMoveOn: 0
-  scanObject: {fileID: 0}
+  scanObject: {fileID: 8367180847112348394, guid: ec0d0835b6af9af498198d4f87d44739, type: 3}
 --- !u!1 &690142830
 GameObject:
   m_ObjectHideFlags: 0
@@ -28581,6 +28581,10 @@ PrefabInstance:
       propertyPath: LenguajeText
       value: 
       objectReference: {fileID: 418436937}
+    - target: {fileID: 7529588352414098393, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: volumeSlider
+      value: 
+      objectReference: {fileID: 1174422624}
     - target: {fileID: 7529588352414098393, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: FullScreenText
       value: 

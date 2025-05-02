@@ -295,7 +295,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 709607289540608
-    m_Localized: Haz doble click sobre una carta cercana para moverte hacia ella.
+    m_Localized: Haz click sobre una carta cercana para moverte hacia ella.
     m_Metadata:
       m_Items: []
   - m_Id: 709618400251904
@@ -358,8 +358,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 709806065995776
-    m_Localized: "Puedes mirar lo que hace una carta haci\xE9ndole click, ver\xE1s
-      que aparecen sobre m\xED."
+    m_Localized: "Puedes mirar lo que hace una carta usando el bot\xF3n central del
+      rat\xF3n, ver\xE1s que aparecen sobre m\xED."
     m_Metadata:
       m_Items: []
   - m_Id: 709822880960512

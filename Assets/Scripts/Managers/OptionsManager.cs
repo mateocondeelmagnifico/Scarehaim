@@ -2,6 +2,7 @@ using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
+using UnityEngine.UI;
 
 public class OptionsManager : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class OptionsManager : MonoBehaviour
     [SerializeField] private LocalizedString fullscreen, windowed;
     private float timer;
     private bool initialCheck;
+
+    [SerializeField] private Slider volumeSlider;
     
     public static OptionsManager instance { get; private set; }
 
@@ -21,6 +24,11 @@ public class OptionsManager : MonoBehaviour
         if (instance == null) instance = this;
         else Destroy(gameObject);    
         timer = 0.01f;
+    }
+
+    private void Start()
+    {
+        LoadValues(InfoKeeper.instance);
     }
 
     private void Update()
@@ -36,9 +44,8 @@ public class OptionsManager : MonoBehaviour
         }
     }
     public void SetResolutionAuto() 
-    {
-        return;
-        Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height,true);
+    { 
+        //Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height,true);
     }
 
     public void ChangeRes(int amount)
@@ -90,7 +97,6 @@ public class OptionsManager : MonoBehaviour
     public void SetLenguaje()
     {
         if (LocalizationSettings.AvailableLocales.Locales.Count == 0) return;
-        Debug.Log(selectedLenguaje);
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[selectedLenguaje];
         infoKeeper.Lenguaje = selectedLenguaje;
         PlayerPrefs.SetInt("Lenguaje", selectedLenguaje);
@@ -164,23 +170,23 @@ public class OptionsManager : MonoBehaviour
     }
 
     public void LoadValues(InfoKeeper keeper)
-    {
+    {        
         infoKeeper = keeper;
         isFullScreen = infoKeeper.Fullsreen;
         selectedLenguaje = infoKeeper.Lenguaje;
         if (isFullScreen) FullScreenText.text = "Full Screen";
         else FullScreenText.text = "Windowed";
         currentRes = infoKeeper.Resolution;
+        volumeSlider.value = infoKeeper.volume;
         UpdateValues();
     }
 
     private void UpdateRes(Vector2 value)
     {
-        return;
-        Screen.SetResolution((int)value.x, (int)value.y, isFullScreen);
-        PlayerPrefs.SetInt("Resolution", currentRes);
-        infoKeeper.Resolution = currentRes;
-        infoKeeper.Fullsreen = isFullScreen;
-        Camera.main.pixelRect = new Rect(0, 0, Screen.currentResolution.width, Screen.currentResolution.height);
+        //Screen.SetResolution((int)value.x, (int)value.y, isFullScreen);
+        //PlayerPrefs.SetInt("Resolution", currentRes);
+        //infoKeeper.Resolution = currentRes;
+        //infoKeeper.Fullsreen = isFullScreen;
+        //Camera.main.pixelRect = new Rect(0, 0, Screen.currentResolution.width, Screen.currentResolution.height);
     }
 }

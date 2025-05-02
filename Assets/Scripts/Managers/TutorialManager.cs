@@ -36,6 +36,7 @@ public class TutorialManager : MonoBehaviour
         mouseManager.tutorialManager = this;
         textManager.tutorialManager = this;
         buttonAnimator = nextTutorialButton.GetComponent<Animator>();
+        
         //textManager.displayButton = true;
     }
 
@@ -207,7 +208,6 @@ public class TutorialManager : MonoBehaviour
             case 8:
                 manager.player.GetComponent<Movement>().DespawnHighlights(0);
                 mouseManager.hover2Pos = null;
-                mouseManager.firstSelect = null;
                 break;
 
             case 11:
