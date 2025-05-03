@@ -9,9 +9,9 @@ public class InfoKeeper : MonoBehaviour
 
     public float volume = 1;
     public int resolution;
-    public int Lenguaje = 1;
+    public int Lenguaje = 0;
     public bool Fullsreen = true;
-    public bool hasRes;
+    public bool hasRes = false;
     private void Awake()
     {
         if (instance == null) instance = this;
