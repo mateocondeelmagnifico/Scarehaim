@@ -555,6 +555,10 @@ MonoBehaviour:
     m_Key: Windowed
     m_Metadata:
       m_Items: []
+  - m_Id: 30866411541516288
+    m_Key: Reset Changes
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

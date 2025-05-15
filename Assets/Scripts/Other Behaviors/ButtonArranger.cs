@@ -17,8 +17,8 @@ public class ButtonArranger : MonoBehaviour
 
     private void Start()
     {
-        if (specialArrows) offset = 24;
-        else offset = 15;
+        if (specialArrows) offset = 45;
+        else offset = 20;
         MoveArrows();
     }
 

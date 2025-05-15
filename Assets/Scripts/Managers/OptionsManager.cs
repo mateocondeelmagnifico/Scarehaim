@@ -12,7 +12,7 @@ public class OptionsManager : MonoBehaviour
     private int currentRes, selectedLenguaje;
     [SerializeField] private LocalizedString fullscreen, windowed;
     private float timer;
-    private bool initialCheck, resCheck;
+    private bool initialCheck, resCheck, lengCheck;
 
     private Resolution[] resolutions;
     private Resolution tempRes;
@@ -28,7 +28,7 @@ public class OptionsManager : MonoBehaviour
     {
         if (instance == null) instance = this;
         else Destroy(gameObject);    
-        timer = 0.5f;
+        timer = 0.1f;
     }
 
     private void Start()
@@ -44,23 +44,7 @@ public class OptionsManager : MonoBehaviour
             }
         }
 
-        for(int i = 0;i < filteredResolutions.Count;i++)
-        {
-            resolutionNames.Add(filteredResolutions[i].width + "x" + filteredResolutions[i].height + " " + filteredResolutions[i].refreshRateRatio + "Hz");
-            
-            if (filteredResolutions[i].width == 1920 && filteredResolutions[i].height == 1080)
-            {
-                currentRes = i;
-                resCheck = true;
-            }
-            /*
-            else if(filteredResolutions[i].width == Screen.width && filteredResolutions[i].height == Screen.height && !resCheck)
-            {
-                currentRes = i;
-                resCheck = true;
-            }
-            */
-        } 
+        SetResToScreen();
     }
 
     private void Update()
@@ -70,7 +54,16 @@ public class OptionsManager : MonoBehaviour
         else if (!initialCheck)
         {
             LoadValues(InfoKeeper.instance);
-            selectedLenguaje = 0;
+
+            if (LocalizationSettings.SelectedLocale != LocalizationSettings.AvailableLocales.GetLocale("English"))
+            {
+                //Esta parte en particular es horrorosa pero el tio que hizo la localizacion en unity es gilipollas
+                selectedLenguaje = 1;
+                Debug.Log(selectedLenguaje);
+                ChangeLenguaje(1);
+                SetLenguaje();
+            }
+            
             initialCheck = true;
         }
     }
@@ -111,7 +104,9 @@ public class OptionsManager : MonoBehaviour
         if (selectedLenguaje < 0) selectedLenguaje = 1;
         if (selectedLenguaje > 1) selectedLenguaje = 0;
 
-        switch(selectedLenguaje)
+        lengCheck = true;
+
+        switch (selectedLenguaje)
         {
             case 0:
                 LenguajeText.text = "English";
@@ -125,10 +120,12 @@ public class OptionsManager : MonoBehaviour
 
     public void SetLenguaje()
     {
-        if (LocalizationSettings.AvailableLocales.Locales.Count == 0) return;
+        if (LocalizationSettings.AvailableLocales.Locales.Count == 0 || !lengCheck) return;
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[selectedLenguaje];
         infoKeeper.Lenguaje = selectedLenguaje;
         PlayerPrefs.SetInt("Lenguaje", selectedLenguaje);
+
+        lengCheck = false;
 
         switch (selectedLenguaje)
         {
@@ -186,5 +183,35 @@ public class OptionsManager : MonoBehaviour
         infoKeeper.hasRes = true;
         infoKeeper.Fullsreen = isFullScreen;
         //Camera.main.pixelRect = new Rect(0, 0, Screen.currentResolution.width, Screen.currentResolution.height);
+    }
+
+    public void ResetChanges()
+    {
+        //Lo llama el botón del options manager
+        PlayerPrefs.DeleteAll();
+        SetResToScreen();
+        resCheck = true;
+        SetMyResolution(currentRes);
+        UpdateRes();
+    }
+
+    private void SetResToScreen()
+    {
+        for (int i = 0; i < filteredResolutions.Count; i++)
+        {
+            resolutionNames.Add(filteredResolutions[i].width + "x" + filteredResolutions[i].height + " " + filteredResolutions[i].refreshRateRatio + "Hz");
+
+            if (filteredResolutions[i].width == 1920 && filteredResolutions[i].height == 1080)
+            {
+                currentRes = i;
+                resCheck = true;
+            }
+            else if(filteredResolutions[i].width == Screen.width && filteredResolutions[i].height == Screen.height && !resCheck)
+            {
+                currentRes = i;
+                resCheck = true;
+            }
+            
+        }
     }
 }

@@ -33,7 +33,7 @@ MonoBehaviour:
     - rid: 4207942264734089216
       type: {class: CommandLineLocaleSelector, ns: UnityEngine.Localization.Settings, asm: Unity.Localization}
       data:
-        m_CommandLineArgument: -language=
+        m_CommandLineArgument: -language=en
     - rid: 4207942264734089217
       type: {class: SystemLocaleSelector, ns: UnityEngine.Localization.Settings, asm: Unity.Localization}
     - rid: 4207942264734089218
