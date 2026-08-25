@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Linq;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Localization;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class TextManager : MonoBehaviour
 {
@@ -41,7 +44,7 @@ public class TextManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }
@@ -49,7 +52,7 @@ public class TextManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        textBox.text = "";
+        //textBox.text = "";
         textCooldown = 4;
         currentState = EnemyStates.Greeting;
     }
@@ -79,16 +82,16 @@ public class TextManager : MonoBehaviour
             displayText = true;
         }
 
-        if(textDuration > 0)
+        if (textDuration > 0)
         {
             textDuration -= Time.deltaTime;
 
-            if(displayText)
+            if (displayText)
             {
                 Talk(currentState);
             }
         }
-        else 
+        else
         {
             box.enabled = false;
             textBox.text = "";
@@ -103,7 +106,7 @@ public class TextManager : MonoBehaviour
                 enemyRenderer.sprite = sprites[2];
             }
             else if (!closeToEnemy)
-            {       
+            {
                 if (!fearReached)
                 {
                     currentState = EnemyStates.Idle;
@@ -124,7 +127,7 @@ public class TextManager : MonoBehaviour
         #endregion
 
         #region Timer
-        if(annoyedDuration > 0)
+        if (annoyedDuration > 0)
         {
             annoyedDuration -= Time.deltaTime;
         }
@@ -164,16 +167,18 @@ public class TextManager : MonoBehaviour
         }
 
 
-        int randomNum = Random.Range(0, currentTexts.Length);
+        int randomNum = UnityEngine.Random.Range(0, currentTexts.Length);
 
-        if(currentTexts.GetHashCode() == lastArray && randomNum == lastText)
+        if (currentTexts.GetHashCode() == lastArray && randomNum == lastText)
         {
             if (randomNum >= currentTexts.Length - 1) randomNum = 0;
             else randomNum++;
         }
 
         box.enabled = true;
-        StartCoroutine(ProduceLetters(currentTexts[randomNum].GetLocalizedString()));
+
+        ProcessText(currentTexts[randomNum]);
+
         displayText = false;
         textCooldown = 30;
         textDuration = 7;
@@ -182,21 +187,36 @@ public class TextManager : MonoBehaviour
         lastText = randomNum;
     }
 
-    public void TutorialTalk(string myText)
+    public void TutorialTalk(LocalizedString myText)
     {
         inTutorial = true;
         box.enabled = true;
         displayText = false;
         tempText = "";
         StopAllCoroutines();
-        
-        StartCoroutine(ProduceLetters(myText));
+
+        ProcessText(myText);
     }
 
-    public void StopTalk()
+    private void ProcessText(LocalizedString text)
     {
-        box.enabled = false;
-        textBox.text = "";
+        //Este void hace que en la build web cargue el texto traducido
+        //Cuando el texto ha cargado entonces empieza a crear las letras
+
+        var operation = text.GetLocalizedStringAsync();
+        UpdateString(operation);
+    }
+
+    void UpdateString(AsyncOperationHandle<string> value)
+    {
+        if (!value.IsDone)
+        {
+            // Defer the callback until the operation is finished
+            value.Completed += UpdateString;
+            return;
+        }
+
+        StartCoroutine(ProduceLetters(value.Result));
     }
 
     public void SwapSprite()

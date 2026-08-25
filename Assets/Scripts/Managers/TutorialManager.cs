@@ -145,7 +145,8 @@ public class TutorialManager : MonoBehaviour
     {
         textBox.gameObject.SetActive(true);
 
-        textManager.TutorialTalk(tutorialTexts[currentTutorial].GetLocalizedString());
+        //textManager.TutorialTalk(tutorialTexts[currentTutorial].GetLocalizedString());
+        textManager.TutorialTalk(tutorialTexts[currentTutorial]);
 
         mouseManager.DeactivateDisplay();
         mouseManager.hoverAesthetics.SetActive(false);
@@ -230,7 +231,8 @@ public class TutorialManager : MonoBehaviour
                 break;
         }
 
-        if(textBox.gameObject.activeInHierarchy) textManager.TutorialTalk(tutorialTexts[currentTutorial].GetLocalizedString());
+        //if(textBox.gameObject.activeInHierarchy) textManager.TutorialTalk(tutorialTexts[currentTutorial].GetLocalizedString());
+        if(textBox.gameObject.activeInHierarchy) textManager.TutorialTalk(tutorialTexts[currentTutorial]);
     }
 
     public void RemoveTutorial()
