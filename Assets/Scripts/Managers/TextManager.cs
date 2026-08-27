@@ -1,9 +1,8 @@
-using System;
 using System.Collections;
-using System.Linq;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.Tables;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class TextManager : MonoBehaviour
@@ -13,8 +12,9 @@ public class TextManager : MonoBehaviour
     public SpriteRenderer enemyRenderer;
     [HideInInspector] public TutorialManager tutorialManager;
 
-    [SerializeField] private LocalizedString[] greetings, basicDialogue, fearOver7, annoyed, nearPlayer;
-    private LocalizedString[] currentTexts;
+    [TextArea]
+    [SerializeField] private string[] greetings, basicDialogue, fearOver7, annoyed, nearPlayer;
+    private string[] currentTexts;
     private string tempText;
 
     [SerializeField] private Sprite[] sprites;
@@ -177,7 +177,8 @@ public class TextManager : MonoBehaviour
 
         box.enabled = true;
 
-        ProcessText(currentTexts[randomNum]);
+        //ProcessText(currentTexts[randomNum]);
+        StartCoroutine(ProduceLetters(currentTexts[randomNum]));
 
         displayText = false;
         textCooldown = 30;
@@ -187,7 +188,7 @@ public class TextManager : MonoBehaviour
         lastText = randomNum;
     }
 
-    public void TutorialTalk(LocalizedString myText)
+    public void TutorialTalk(string myText)
     {
         inTutorial = true;
         box.enabled = true;
@@ -195,7 +196,8 @@ public class TextManager : MonoBehaviour
         tempText = "";
         StopAllCoroutines();
 
-        ProcessText(myText);
+        StartCoroutine(ProduceLetters(myText));
+        //ProcessText(myText);
     }
 
     private void ProcessText(LocalizedString text)
@@ -204,7 +206,27 @@ public class TextManager : MonoBehaviour
         //Cuando el texto ha cargado entonces empieza a crear las letras
 
         var operation = text.GetLocalizedStringAsync();
-        UpdateString(operation);
+
+        //Get locale and neccesary values
+        //Este sistema no es óptimo, en un futuro habría que cambiarlo
+        var table = LocalizationSettings.StringDatabase.GetTableAsync(text.TableReference);
+
+        //UpdateString(operation);
+        //StartCoroutine(ProduceLetters(Localize(table, text.)));
+        StartCoroutine(ProduceLetters(Localize(table.Result, "Tut 1")));
+    }
+
+    public static string Localize(StringTable table, string key)
+    {
+        if (table == null) { Debug.Log("noTable");  return key; }
+
+        Debug.Log(key);
+        var entry = table.GetEntry(key);
+        if (entry == null) { return key; }
+
+        Debug.Log(entry.GetLocalizedString());
+
+        return entry.GetLocalizedString();
     }
 
     void UpdateString(AsyncOperationHandle<string> value)
@@ -212,11 +234,22 @@ public class TextManager : MonoBehaviour
         if (!value.IsDone)
         {
             // Defer the callback until the operation is finished
+            //waits until it translates
             value.Completed += UpdateString;
-            return;
+            value.WaitForCompletion();
         }
+        else
+        {
+            string wantedText = value.Result;
 
-        StartCoroutine(ProduceLetters(value.Result));
+            StartCoroutine(ProduceLetters(wantedText));
+        }
+    }
+
+    public void StopTalk()
+    {
+        box.enabled = false;
+        textBox.text = "";
     }
 
     public void SwapSprite()

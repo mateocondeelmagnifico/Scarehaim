@@ -1339,7 +1339,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: qrqwer
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d93d94de1ea1d864283329f42ef88f03, type: 2}
   m_sharedMaterial: {fileID: -4317416503888858199, guid: d93d94de1ea1d864283329f42ef88f03, type: 2}
@@ -12117,190 +12117,31 @@ MonoBehaviour:
   mouseManager: {fileID: 679540269}
   radarDone: 0
   tutorialTexts:
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 709530923847680
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 709563937214464
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 709607289540608
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 709618400251904
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 709639132696576
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 709653468827648
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 709667989508096
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 709679062470656
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 709693629288448
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 709704899383296
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 709719831105536
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 709735501025280
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 709748788580352
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 709758733275136
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 709770296971264
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 709782514978816
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 709793919291392
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 709806065995776
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 709822880960512
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 709835593895936
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 709854384377856
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 709867307028480
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 712925780922368
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  - "As you know, you\u2019re playing with your brother\u2019s card."
+  - Be careful! His soul is contained in it!
+  - Click on an adjacent card to move to it.
+  - That was an enviroment card, step on 10 and you will win.
+  - Little Farrell can move one step each turn, in any direction.
+  - Oh, look! A nice sweet Treat Card! Go grab it.
+  - "It\u2019s in your hand now! "
+  - Drag the card towards the table to use it. Now.
+  - "Your brother looks a little excited! Isn\u2019t that too much sugar?"
+  - "Now you\u2019ll skip any card in your next move. But not mine! Hehe."
+  - "How lucky! There\u2019s two nice Treats you can land on."
+  - Sweet! If you regret using a treat you can press the undo button to get it back.
+  - Now, that card right next to you is my Snow Dummy.
+  - Step on it, see what happens!
+  - "\rHehe! That was a Creature Card."
+  - Creature Cards can take away your Courage.
+  - Courage is your health. Reach 0 and you will lose! Hahaha!
+  - You can check what a Card does by clicking the mouse wheel, and it will appear
+    over me.
+  - "Now it\u2019s my turn! I will follow you now, like in a game of tag."
+  - If I reach you, I win.
+  - "But I\u2019ll make it easy for you, I cannot move diagonally."
+  - Haha! Not so fast! You still have to reach the Escape card! I will keep chasing
+    you until you do.
+  - If you escape you can spend treats to gain back courage.
   chosenSlots:
   - {fileID: 150453012}
   - {fileID: 332225209}
@@ -12362,9 +12203,6 @@ MonoBehaviour:
   screenImage: {fileID: 2041627018}
   cenefa: {fileID: 142486507}
   currentTutorial: 0
-  references:
-    version: 2
-    RefIds: []
 --- !u!1 &821245242
 GameObject:
   m_ObjectHideFlags: 0
@@ -12993,138 +12831,39 @@ MonoBehaviour:
   enemyRenderer: {fileID: 1574868882}
   tutorialManager: {fileID: 0}
   greetings:
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 481147140984832
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 481147140984832
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 481147140984832
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  - "Well, Deidre, this game is so easy, you\u2019ll see"
+  - "Well, Deidre, this game is so easy, you\u2019ll see"
+  - "Well, Deidre, this game is so easy, you\u2019ll see"
   basicDialogue:
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1163702022459392
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1163828791103488
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1164017002106880
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  - Are you having fun dear? I am.
+  - You're so young. I was young once.
+  - 'You''re doing great dear, keep going.
+
+'
   fearOver7:
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 482361438130176
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 482534235066368
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 482540182589440
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 482541856116736
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  - 'Take care now, dear girl.
+
+'
+  - 'Be careful, your poor brother is getting scared.
+
+'
+  - 'Monsters are scary dear, try and keep your brother away.
+
+'
   annoyed:
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 483224856580096
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 483284021432320
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 483295014703104
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 483327868686336
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  - "Haha, well played\u2026\r\n"
+  - 'Good move, you learn so fast! So fast...
+
+'
+  - "Hmph\u2026\r\n"
   nearPlayer:
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 483757994561536
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 483806115811328
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  - 'Hehehe, I''m gonna get you!
+
+'
+  - 'Closer and closer I ever get, like winter to summer I come and reap.
+
+'
+  - Oh look at your brother... He's so scared.
   sprites:
   - {fileID: 21300000, guid: 590887f9103812e4b88fbc2a72830b1c, type: 3}
   - {fileID: 21300000, guid: 26397cff801669041a4e53eda4bdf0ce, type: 3}
@@ -13138,9 +12877,6 @@ MonoBehaviour:
   inTutorial: 1
   displayButton: 0
   inTrap: 0
-  references:
-    version: 2
-    RefIds: []
 --- !u!1 &943855796
 GameObject:
   m_ObjectHideFlags: 0

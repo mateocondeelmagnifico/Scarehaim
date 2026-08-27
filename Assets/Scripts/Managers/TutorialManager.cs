@@ -20,7 +20,8 @@ public class TutorialManager : MonoBehaviour
     public bool radarDone; //Used by inherited member
     private bool showExit;
 
-    [SerializeField] protected LocalizedString[] tutorialTexts;
+    [TextArea]
+    [SerializeField] protected string[] tutorialTexts;
     [SerializeField] protected GameObject[] chosenSlots;
     [SerializeField] protected Sprite[] blackScreens, exitspots1, exitspots2, exitspots3;
     [SerializeField] protected SpriteRenderer screenImage, cenefa;

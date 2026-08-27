@@ -28345,6 +28345,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1574868882}
     - target: {fileID: 6125602056207676952, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: trueannoyed.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125602056207676952, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: greetings.Array.data[0]
       value: Congrats, you did it!
       objectReference: {fileID: 0}
@@ -28355,6 +28359,78 @@ PrefabInstance:
     - target: {fileID: 6125602056207676952, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: greetings.Array.data[2]
       value: Congrats, you did it!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125602056207676952, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: truefearOver7.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125602056207676952, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: truegreetings.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125602056207676952, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: trueannoyed.Array.data[0]
+      value: "Haha, well played\u2026"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125602056207676952, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: trueannoyed.Array.data[1]
+      value: Good move, you learn so fast! So fast...
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125602056207676952, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: trueannoyed.Array.data[2]
+      value: "Hmph\u2026\r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125602056207676952, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: truenearPlayer.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125602056207676952, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: truefearOver7.Array.data[0]
+      value: "\rTake care now, dear girl."
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125602056207676952, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: truefearOver7.Array.data[1]
+      value: Be careful, your poor brother is getting scared.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125602056207676952, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: truefearOver7.Array.data[2]
+      value: Monsters are scary dear, try and keep your brother away.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125602056207676952, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: truegreetings.Array.data[0]
+      value: Congrats, you did it!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125602056207676952, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: truegreetings.Array.data[1]
+      value: Congrats, you did it!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125602056207676952, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: truebasicDialogue.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125602056207676952, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: truenearPlayer.Array.data[0]
+      value: Hehehe, I'm gonna get you!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125602056207676952, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: truenearPlayer.Array.data[1]
+      value: Closer and closer I ever get, like winter to summer I move and plow.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125602056207676952, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: truenearPlayer.Array.data[2]
+      value: Oh look at your brother... He's so scared.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125602056207676952, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: truebasicDialogue.Array.data[0]
+      value: Are you having fun dear? I am.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125602056207676952, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: truebasicDialogue.Array.data[1]
+      value: You're so young. I was young once.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6125602056207676952, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: truebasicDialogue.Array.data[2]
+      value: You're doing great dear, keep going.
       objectReference: {fileID: 0}
     - target: {fileID: 6125602056207676952, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: annoyed.Array.data[0].m_TableEntryReference.m_KeyId
@@ -28577,6 +28653,10 @@ PrefabInstance:
       value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: trueTutTexts.Array.size
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: tutorialTexts.Array.size
       value: 21
       objectReference: {fileID: 0}
@@ -28677,6 +28757,48 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1026890213}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: trueTutTexts.Array.data[0]
+      value: But this is not the end! Hehe!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: trueTutTexts.Array.data[1]
+      value: Just this one phase and it will be over.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: trueTutTexts.Array.data[2]
+      value: "Now, why don\u2019t you move here? I want to show you something."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: trueTutTexts.Array.data[3]
+      value: "\rHehe, now that was a Trick!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: trueTutTexts.Array.data[4]
+      value: "You can\u2019t see them, but there are three of them hidden in the
+        table in each stage."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: trueTutTexts.Array.data[5]
+      value: "But don\u2019t worry, there is a way to detect them."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: trueTutTexts.Array.data[6]
+      value: Activate the radar with the right mouse button, and click the other
+        button to use it.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: trueTutTexts.Array.data[7]
+      value: You see this Icon? It means there's a trap in that spot.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: trueTutTexts.Array.data[8]
+      value: You can only use the radar three times per level, so be wise!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: trueTutTexts.Array.data[9]
+      value: "Now, I\u2019ll give you a present for doing so well."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: blackScreens.Array.data[10]
       value: 
       objectReference: {fileID: 21300000, guid: 464a1d66283e2984baa41539ae75313b, type: 3}
@@ -28720,6 +28842,52 @@ PrefabInstance:
       propertyPath: blackScreens.Array.data[20]
       value: 
       objectReference: {fileID: 21300000, guid: 5cc43f9b7180a024e86f45d1de36f5e0, type: 3}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: trueTutTexts.Array.data[10]
+      value: Go get this thing won't you darling?
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: trueTutTexts.Array.data[11]
+      value: That is a Costume card.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: trueTutTexts.Array.data[12]
+      value: 'Drag it towards the table to make Farrell wear it. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: trueTutTexts.Array.data[13]
+      value: Look, it fits him so well!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: trueTutTexts.Array.data[14]
+      value: With the Costume, you can move two times each turn.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: trueTutTexts.Array.data[15]
+      value: And it lasts for three turns!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: trueTutTexts.Array.data[16]
+      value: Let's try it out! select this square please.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: trueTutTexts.Array.data[17]
+      value: Now this one, don't worry, he can't see you with the costume on
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: trueTutTexts.Array.data[18]
+      value: "Well, that\u2019s all you needed to know darling!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: trueTutTexts.Array.data[19]
+      value: You can review my instructions in the Options menu over there.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
+      propertyPath: trueTutTexts.Array.data[20]
+      value: 'Now this was all a test, now the real game starts! HAHA!
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 8414657409744208033, guid: 63daa5bf2299eca4f9e5139c79b012c4, type: 3}
       propertyPath: tutorialTexts.Array.data[0]
       value: But this is not the end! Hehe!
