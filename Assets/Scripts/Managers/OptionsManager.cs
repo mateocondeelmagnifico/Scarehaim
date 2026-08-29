@@ -59,7 +59,6 @@ public class OptionsManager : MonoBehaviour
             {
                 //Esta parte en particular es horrorosa pero el tio que hizo la localizacion en unity es gilipollas
                 selectedLenguaje = 1;
-                Debug.Log(selectedLenguaje);
                 ChangeLenguaje(1);
                 SetLenguaje();
             }
