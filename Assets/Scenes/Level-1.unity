@@ -4579,7 +4579,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 4
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -12763,138 +12763,26 @@ MonoBehaviour:
   enemyRenderer: {fileID: 1574868882}
   tutorialManager: {fileID: 0}
   greetings:
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1163049686552576
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1163225046208512
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1163514893586432
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  - 
+  - 
+  - 
   basicDialogue:
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1163702022459392
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1163828791103488
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1164017002106880
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  - 
+  - 
+  - 
   fearOver7:
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1164091555860480
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1164235412099072
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1164351304912896
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1164522130526208
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  - 
+  - 
+  - 
+  - 
   annoyed:
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1164658260856832
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1164773985898496
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1164862674456576
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1164946048831488
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  - 
+  - 
+  - 
+  - 
   nearPlayer:
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1165030945738752
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1165150672146432
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  - 
+  - 
   sprites:
   - {fileID: 21300000, guid: cf61d8a7eb624e648950910e5c976b06, type: 3}
   - {fileID: 21300000, guid: 0469d431bf165e143ae0deb6732c55df, type: 3}
@@ -12908,9 +12796,6 @@ MonoBehaviour:
   inTutorial: 0
   displayButton: 0
   inTrap: 0
-  references:
-    version: 2
-    RefIds: []
 --- !u!1 &908488150
 GameObject:
   m_ObjectHideFlags: 0
@@ -14941,7 +14826,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1122730537
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17008,7 +16893,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 65, y: 0}
+  m_AnchoredPosition: {x: 100, y: 0}
   m_SizeDelta: {x: 15, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1327523744
@@ -21608,7 +21493,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -65, y: 0}
+  m_AnchoredPosition: {x: -100, y: 0}
   m_SizeDelta: {x: 15, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1662686999

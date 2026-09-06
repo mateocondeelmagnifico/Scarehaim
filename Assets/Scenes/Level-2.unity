@@ -7987,7 +7987,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 4
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -9387,7 +9387,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -65, y: 0}
+  m_AnchoredPosition: {x: -100, y: 0}
   m_SizeDelta: {x: 15, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &692222152
@@ -12219,114 +12219,23 @@ MonoBehaviour:
   enemyRenderer: {fileID: 1574868882}
   tutorialManager: {fileID: 0}
   greetings:
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1168436217270272
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1168493054283776
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  - 
+  - 
   basicDialogue:
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1163702022459392
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1163828791103488
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1164017002106880
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  - 
+  - 
+  - 
   fearOver7:
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1168784440971264
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1168855211462656
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1168869434347520
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  - 
+  - 
+  - 
   annoyed:
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1169274335678464
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1169331411767296
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1169346351878144
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  - 
+  - 
+  - 
   nearPlayer:
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1169613675843584
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
-  - m_TableReference:
-      m_TableCollectionName: GUID:f7361ff28c69ca048959392000cf1837
-    m_TableEntryReference:
-      m_KeyId: 1169653601423360
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
+  - 
+  - 
   sprites:
   - {fileID: 21300000, guid: 5cf34bf146b6bb74eb0753696680d089, type: 3}
   - {fileID: 21300000, guid: 9d09cc5c415d6f042b11e67f0b2556bd, type: 3}
@@ -12340,9 +12249,6 @@ MonoBehaviour:
   inTutorial: 0
   displayButton: 0
   inTrap: 0
-  references:
-    version: 2
-    RefIds: []
 --- !u!1 &918432669
 GameObject:
   m_ObjectHideFlags: 0
@@ -13249,7 +13155,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1033787186
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20202,7 +20108,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 65, y: 0}
+  m_AnchoredPosition: {x: 100, y: 0}
   m_SizeDelta: {x: 15, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1521849496
